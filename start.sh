@@ -23,6 +23,11 @@ if [[ $project_name == '' ]]; then
     echo "— The project name is required"; exit 0;
 fi;
 
+read -p "What's the project dev url ? " project_dev_url;
+if [[ $project_dev_url == '' ]]; then
+    echo "— The project dev_url is required"; exit 0;
+fi;
+
 read -p "What's the project id ? " project_id;
 if [[ $project_id == '' ]]; then
     echo "— The project id is required"; exit 0;
@@ -110,6 +115,23 @@ do
 done;
 
 cd "${MAINDIR}";
+
+###################################
+## Set .htaccess
+###################################
+
+echo '### Set htaccess';
+
+echo "# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress" >> "${MAINDIR}.htaccess";
 
 ###################################
 ## Set gitignore
