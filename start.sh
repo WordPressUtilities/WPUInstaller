@@ -4,8 +4,7 @@
 ## Vars
 ###################################
 
-WP_DOMAIN='https://fr.wordpress.org/';
-WP_INSTALL_FILE='latest-fr_FR.zip';
+WP_LOCALE='fr_FR';
 WP_THEME_DIR='wp-content/themes/';
 WP_MUPLUGINS_DIR='wp-content/mu-plugins/';
 WP_PLUGINS_DIR='wp-content/plugins/';
@@ -13,6 +12,12 @@ WPU_SUBMODULE_PLUGINS="wpuoptions wpupostmetas wpuseo";
 WPU_MUPLUGINS="wpu_body_classes wpu_posttypestaxos wpu_ux_tweaks";
 WPU_FORCED_MUPLUGINS="wpudisablecomments wpudisablesearch wpudisableposts wputh_admin_protect";
 MAINDIR="${PWD}/";
+
+###################################
+## Conf
+###################################
+
+export PATH=$PATH:/Applications/MAMP/Library/bin/
 
 ###################################
 ## Questions
@@ -33,27 +38,67 @@ if [[ $project_id == '' ]]; then
     echo "— The project id is required"; exit 0;
 fi;
 
+read -p "What's your email address ? " email_address;
+if [[ $email_address == '' ]]; then
+    echo "— The email address is required"; exit 0;
+fi;
+
+read -p "What's the MYSQL HOST ? " mysql_host;
+if [[ $mysql_host == '' ]]; then
+    mysql_user="localhost";
+fi;
+
+read -p "What's the MYSQL USER ? " mysql_user;
+if [[ $mysql_user == '' ]]; then
+    mysql_user="root";
+fi;
+
+read -p "What's the MYSQL PASSWORD ? " mysql_password;
+if [[ $mysql_password == '' ]]; then
+    mysql_user="root";
+fi;
+
+read -p "What's the MYSQL DATABASE ? " mysql_database;
+if [[ $mysql_database == '' ]]; then
+    echo "— The MYSQL DATABASE is required"; exit 0;
+fi;
+
 ###################################
 ## Test git
 ###################################
 
-if [[ ! -f 'wp-content' ]]; then
+if [[ ! -d '.git' ]]; then
     git init;
 fi;
+
+###################################
+## Install WP-CLI
+###################################
+
+curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar;
+chmod +x wp-cli.phar;
 
 ###################################
 ## WordPress installation
 ###################################
 
 # If there is no wp-content dir
-if [[ ! -f 'wp-content' ]]; then
-    echo '### WordPress installation';
-    curl -O "${WP_DOMAIN}${WP_INSTALL_FILE}";
-    unzip "${WP_INSTALL_FILE}";
-    rm "${WP_INSTALL_FILE}";
-    mv wordpress/* .;
-    rm -rf "wordpress/";
+if [[ ! -d 'wp-content' ]]; then
+    php wp-cli.phar core download --locale=${WP_LOCALE}
 fi;
+
+# WP Config
+if [[ ! -f 'wp-config.php' ]]; then
+    php wp-cli.phar core config --dbhost=${mysql_host} --dbname=${mysql_database} --dbuser=${mysql_user} --dbpass=${mysql_pass} --extra-php <<PHP
+define( 'WP_DEBUG', true );
+define( 'WP_DEBUG_LOG', true );
+PHP
+fi;
+
+# If table are not present
+if ! $(php wp-cli.phar core is-installed); then
+    php wp-cli.phar core install --url=${project_dev_url} --title=${project_name} --admin_user=admin --admin_password=admin --admin_email=${email_address}
+fi
 
 ###################################
 ## WPUtilities installation
@@ -107,7 +152,6 @@ echo '### Plugins installation';
 
 cd "${WP_PLUGINS_DIR}";
 
-WPU_SUBMODULE_PLUGINS="wpuoptions wpupostmetas wpuseo";
 for i in $WPU_SUBMODULE_PLUGINS
 do
     echo "## Install ${i}";
