@@ -97,7 +97,7 @@ fi;
 
 # WP Config
 if [[ ! -f 'wp-config.php' ]]; then
-    php wp-cli.phar core config --dbhost=${mysql_host} --dbname=${mysql_database} --dbuser=${mysql_user} --dbpass=${mysql_pass} --extra-php <<PHP
+    php wp-cli.phar core config --dbhost=${mysql_host} --dbname=${mysql_database} --dbuser=${mysql_user} --dbpass=${mysql_password} --extra-php <<PHP
 define( 'WP_DEBUG', true );
 define( 'WP_DEBUG_LOG', true );
 PHP
@@ -105,7 +105,7 @@ fi;
 
 # If table are not present
 if ! $(php wp-cli.phar core is-installed); then
-    php wp-cli.phar core install --url=${project_dev_url} --title=${project_name} --admin_user=admin --admin_password=admin --admin_email=${email_address}
+    php wp-cli.phar core install --url=${project_dev_url} --title="${project_name}" --admin_user=admin --admin_password=admin --admin_email=${email_address}
 fi
 
 ###################################
