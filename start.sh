@@ -209,3 +209,5 @@ rm -rf "${WP_THEME_DIR}twentyfourteen/";
 rm -rf "${WP_THEME_DIR}twentythirteen/";
 rm -rf "${WP_THEME_DIR}twentytwelve/";
 rm -rf "WPUtilities/";
+rm -rf "wp-cli.phar";
+rm -rf "readme.html";
