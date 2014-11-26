@@ -119,16 +119,24 @@ git clone git@github.com:Darklg/WPUtilities.git;
 ## Theme installation
 ###################################
 
-echo '### Theme installation';
+echo '### Parent Theme installation';
 
-cp -r "WPUtilities/${WP_THEME_DIR}WPUTheme/" "${WP_THEME_DIR}${project_id}";
+cd "${MAINDIR}${WP_THEME_DIR}";
+git submodule add "git@github.com:WordPressUtilities/WPUTheme.git";
+
+echo '### Child theme initialisation';
+
+cd "${MAINDIR}${WP_THEME_DIR}";
+mkdir "${project_id}";
+touch "${MAINDIR}${WP_THEME_DIR}${project_id}/style.css";
 
 echo "/*
 Theme Name: ${project_name} theme
 Description: A WordPress theme for ${project_name}
+Template: WPUTheme
 Author: Darklg
 Author URI: http://darklg.me/
-*/" > "${WP_THEME_DIR}${project_id}/style.css";
+*/" > "${MAINDIR}${WP_THEME_DIR}${project_id}/style.css";
 
 ###################################
 ## MU-Plugins installation
