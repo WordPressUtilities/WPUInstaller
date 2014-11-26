@@ -25,38 +25,46 @@ export PATH=$PATH:/Applications/MAMP/Library/bin/
 
 read -p "What's the project name ? " project_name;
 if [[ $project_name == '' ]]; then
-    echo "— The project name is required"; exit 0;
+    project_name="WordPress Theme";
 fi;
+echo "- Project name: ${project_name}";
 
 read -p "What's the project dev url ? " project_dev_url;
 if [[ $project_dev_url == '' ]]; then
-    echo "— The project dev_url is required"; exit 0;
+    project_dev_url="http://localhost/wptheme/";
 fi;
+echo "- Project URL: ${project_dev_url}";
+
 
 read -p "What's the project id ? " project_id;
 if [[ $project_id == '' ]]; then
-    echo "— The project id is required"; exit 0;
+    project_id="wptheme";
 fi;
+echo "- Project ID: ${project_id}";
 
 read -p "What's your email address ? " email_address;
 if [[ $email_address == '' ]]; then
-    echo "— The email address is required"; exit 0;
+    email_address="test@yopmail.com";
 fi;
+echo "- Email: ${email_address}";
 
 read -p "What's the MYSQL HOST ? " mysql_host;
 if [[ $mysql_host == '' ]]; then
-    mysql_user="localhost";
+    mysql_host="localhost";
 fi;
+echo "- MySQL Host: ${mysql_host}";
 
 read -p "What's the MYSQL USER ? " mysql_user;
 if [[ $mysql_user == '' ]]; then
     mysql_user="root";
 fi;
+echo "- MySQL User: ${mysql_user}";
 
 read -p "What's the MYSQL PASSWORD ? " mysql_password;
 if [[ $mysql_password == '' ]]; then
-    mysql_user="root";
+    mysql_password="root";
 fi;
+echo "- MySQL Pass: ${mysql_password}";
 
 read -p "What's the MYSQL DATABASE ? " mysql_database;
 if [[ $mysql_database == '' ]]; then
