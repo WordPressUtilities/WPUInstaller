@@ -136,20 +136,20 @@ Author URI: http://darklg.me/
 
 echo '### MU-Plugins installation';
 
-mkdir "${WP_MUPLUGINS_DIR}";
+mkdir "${MAINDIR}${WP_MUPLUGINS_DIR}";
 
 # Classic MU Plugins
 for i in $WPU_MUPLUGINS
 do
     echo "## Install ${i}";
-    cp "WPUtilities/${WP_MUPLUGINS_DIR}/${i}.php" "${WP_MUPLUGINS_DIR}/${i}.php";
+    cp "${MAINDIR}WPUtilities/${WP_MUPLUGINS_DIR}${i}.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${i}.php";
 done;
 
 # Forced MU Plugins
 for i in $WPU_FORCED_MUPLUGINS
 do
     echo "## Install ${i}";
-    cp "WPUtilities/${WP_PLUGINS_DIR}/${i}.php" "${WP_MUPLUGINS_DIR}/${i}.php";
+    cp "${MAINDIR}WPUtilities/${WP_PLUGINS_DIR}${i}.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${i}.php";
 done;
 
 ###################################
@@ -158,7 +158,7 @@ done;
 
 echo '### Plugins installation';
 
-cd "${WP_PLUGINS_DIR}";
+cd "${MAINDIR}${WP_PLUGINS_DIR}";
 
 for i in $WPU_SUBMODULE_PLUGINS
 do
