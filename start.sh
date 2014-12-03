@@ -126,6 +126,7 @@ git submodule add "git@github.com:WordPressUtilities/WPUTheme.git";
 
 echo '### Child theme initialisation';
 
+# Generate child theme
 cd "${MAINDIR}${WP_THEME_DIR}";
 mkdir "${project_id}";
 touch "${MAINDIR}${WP_THEME_DIR}${project_id}/style.css";
@@ -137,6 +138,9 @@ Template: WPUTheme
 Author: Darklg
 Author URI: http://darklg.me/
 */" > "${MAINDIR}${WP_THEME_DIR}${project_id}/style.css";
+
+# Activate child theme
+php wp-cli.phar theme activate "${project_id}";
 
 ###################################
 ## MU-Plugins installation
@@ -175,6 +179,11 @@ do
 done;
 
 cd "${MAINDIR}";
+
+for i in $WPU_SUBMODULE_PLUGINS
+do
+    php wp-cli.phar plugin activate "${i}";
+done;
 
 ###################################
 ## Set .htaccess
