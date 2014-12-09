@@ -12,6 +12,7 @@ WPU_SUBMODULE_PLUGINS="wpuoptions wpupostmetas wpuseo";
 WPU_MUPLUGINS="wpu_body_classes wpu_posttypestaxos wpu_ux_tweaks";
 WPU_FORCED_MUPLUGINS="wpudisablecomments wpudisablesearch wpudisableposts wputh_admin_protect";
 MAINDIR="${PWD}/";
+SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/";
 
 ###################################
 ## Conf
@@ -138,6 +139,8 @@ Template: WPUTheme
 Author: Darklg
 Author URI: http://darklg.me/
 */" > "${MAINDIR}${WP_THEME_DIR}${project_id}/style.css";
+
+cp "${SCRIPTDIR}inc/functions.php" "${MAINDIR}${WP_THEME_DIR}${project_id}functions.php";
 
 # Activate child theme
 php wp-cli.phar theme activate "${project_id}";
