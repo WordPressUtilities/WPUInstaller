@@ -140,7 +140,7 @@ Author: Darklg
 Author URI: http://darklg.me/
 */" > "${MAINDIR}${WP_THEME_DIR}${project_id}/style.css";
 
-cp "${SCRIPTDIR}inc/functions.php" "${MAINDIR}${WP_THEME_DIR}${project_id}functions.php";
+cp "${SCRIPTDIR}inc/functions.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/functions.php";
 
 # Activate child theme
 php wp-cli.phar theme activate "${project_id}";
