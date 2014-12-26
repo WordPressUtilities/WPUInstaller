@@ -212,6 +212,7 @@ RewriteRule . /index.php [L]
 echo '### Set gitignore';
 
 echo "wp-content/uploads/
+wp-content/debug.log
 wp-config.php" >> "${MAINDIR}.gitignore";
 
 ###################################
