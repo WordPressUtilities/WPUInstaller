@@ -90,6 +90,17 @@ function wputhchild_remove_page_templates($templates) {
     return $templates;
 }
 
+/* Google Fonts
+ -------------------------- */
+
+add_action('wputh_google_fonts', 'wputhchild_googlefonts');
+function wputhchild_googlefonts() {
+    return array(
+        'family' => 'Open+Sans',
+        // 'subset' => 'latin',
+    );
+}
+
 /* Thumbnails
  -------------------------- */
 
