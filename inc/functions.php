@@ -5,6 +5,16 @@ include dirname(__FILE__) . '/../WPUTheme/z-protect.php';
   Theme options
 ---------------------------------------------------------- */
 
+/* Parent Theme
+ -------------------------- */
+
+add_filter('wputheme_display_header', 'wpusubtheme_show_item', 1, 1);
+add_filter('wputheme_display_mainwrapper', 'wpusubtheme_show_item', 1, 1);
+add_filter('wputheme_display_footer', 'wpusubtheme_show_item', 1, 1);
+function wpusubtheme_show_item() {
+    return false;
+}
+
 /* Post types
  -------------------------- */
 
