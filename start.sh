@@ -227,6 +227,7 @@ rm -f "${WP_PLUGINS_DIR}hello.php";
 rm -rf "${WP_PLUGINS_DIR}akismet/";
 
 # Unused themes
+rm -rf "${WP_THEME_DIR}twentyfifteen/";
 rm -rf "${WP_THEME_DIR}twentyfourteen/";
 rm -rf "${WP_THEME_DIR}twentythirteen/";
 rm -rf "${WP_THEME_DIR}twentytwelve/";
