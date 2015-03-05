@@ -142,6 +142,7 @@ Author: Darklg
 Author URI: http://darklg.me/
 */" > "${MAINDIR}${WP_THEME_DIR}${project_id}/style.css";
 
+cp "${SCRIPTDIR}inc/index.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/index.php";
 cp "${SCRIPTDIR}inc/functions.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/functions.php";
 
 # Activate child theme
