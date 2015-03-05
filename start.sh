@@ -143,6 +143,7 @@ Author URI: http://darklg.me/
 cp "${SCRIPTDIR}inc/functions.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/functions.php";
 
 # Activate child theme
+cd "${MAINDIR}";
 php wp-cli.phar theme activate "${project_id}";
 
 ###################################
