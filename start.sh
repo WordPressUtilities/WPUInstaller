@@ -36,7 +36,6 @@ if [[ $project_dev_url == '' ]]; then
 fi;
 echo "- Project URL: ${project_dev_url}";
 
-
 read -p "What's the project id ? " project_id;
 if [[ $project_id == '' ]]; then
     project_id="wptheme";
@@ -119,6 +118,9 @@ git clone git@github.com:Darklg/WPUtilities.git;
 ###################################
 ## Theme installation
 ###################################
+
+# Deleting default themes
+rm -rfd "${WP_THEME_DIR}*/";
 
 echo '### Parent Theme installation';
 
@@ -227,10 +229,6 @@ rm -f "${WP_PLUGINS_DIR}hello.php";
 rm -rf "${WP_PLUGINS_DIR}akismet/";
 
 # Unused themes
-rm -rf "${WP_THEME_DIR}twentyfifteen/";
-rm -rf "${WP_THEME_DIR}twentyfourteen/";
-rm -rf "${WP_THEME_DIR}twentythirteen/";
-rm -rf "${WP_THEME_DIR}twentytwelve/";
 rm -rf "WPUtilities/";
 rm -rf "wp-cli.phar";
 rm -rf "readme.html";
