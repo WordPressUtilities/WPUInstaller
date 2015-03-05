@@ -106,7 +106,7 @@ function wputhchild_remove_page_templates($templates) {
 add_action('wputh_google_fonts', 'wputhchild_googlefonts');
 function wputhchild_googlefonts() {
     return array(
-        'family' => 'Open+Sans',
+        // 'family' => 'Open+Sans',
         // 'subset' => 'latin',
     );
 }
