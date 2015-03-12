@@ -120,7 +120,7 @@ git clone git@github.com:Darklg/WPUtilities.git;
 ###################################
 
 # Deleting default themes
-rm -rfd "${WP_THEME_DIR}*/";
+rm -rf "${WP_THEME_DIR}twenty*";
 
 echo '### Parent Theme installation';
 
