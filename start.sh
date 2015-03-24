@@ -119,12 +119,13 @@ git clone git@github.com:Darklg/WPUtilities.git;
 ## Theme installation
 ###################################
 
+cd "${MAINDIR}${WP_THEME_DIR}";
+
 # Deleting default themes
-rm -rf "${WP_THEME_DIR}twenty*";
+rm -rf "${MAINDIR}${WP_THEME_DIR}twenty*";
 
 echo '### Parent Theme installation';
 
-cd "${MAINDIR}${WP_THEME_DIR}";
 git submodule add "git@github.com:WordPressUtilities/WPUTheme.git";
 
 echo '### Child theme initialisation';
