@@ -6,6 +6,7 @@
 
 WP_LOCALE='fr_FR';
 WP_THEME_DIR='wp-content/themes/';
+WP_LANG_DIR='wp-content/languages/';
 WP_MUPLUGINS_DIR='wp-content/mu-plugins/';
 WP_PLUGINS_DIR='wp-content/plugins/';
 WPU_SUBMODULE_PLUGINS="wpuoptions wpupostmetas wpuseo wpuposttypestaxos wputhumbnails";
@@ -80,6 +81,21 @@ if [[ ! -d '.git' ]]; then
 fi;
 
 ###################################
+## Set gitignore
+###################################
+
+echo '### Set gitignore';
+
+echo "node_modules
+.sass-cache
+wp-cli.phar
+/WPUtilities/
+/.htaccess
+/wp-content/uploads/
+/wp-content/debug.log
+/wp-config.php" >> "${MAINDIR}.gitignore";
+
+###################################
 ## Install WP-CLI
 ###################################
 
@@ -108,6 +124,20 @@ if ! $(php wp-cli.phar core is-installed); then
     php wp-cli.phar core install --url=${project_dev_url} --title="${project_name}" --admin_user=admin --admin_password=admin --admin_email=${email_address}
 fi
 
+# Deleting default items
+rm -rf "${MAINDIR}${WP_THEME_DIR}twentythirteen/";
+rm -rf "${MAINDIR}${WP_THEME_DIR}twentyfourteen/";
+rm -rf "${MAINDIR}${WP_THEME_DIR}twentyfifteen/";
+rm -rf "${MAINDIR}${WP_LANG_DIR}plugins/";
+rm -rf "${MAINDIR}${WP_LANG_DIR}themes/";
+rm -rf "${MAINDIR}${WP_PLUGINS_DIR}akismet/";
+rm -rf "${MAINDIR}${WP_PLUGINS_DIR}hello.php";
+rm -rf "${MAINDIR}readme.html";
+
+# Commit WordPress Installation
+git add .
+git commit -m "Installation - WordPress";
+
 ###################################
 ## WPUtilities installation
 ###################################
@@ -121,12 +151,13 @@ git clone git@github.com:Darklg/WPUtilities.git;
 
 cd "${MAINDIR}${WP_THEME_DIR}";
 
-# Deleting default themes
-rm -rf "${MAINDIR}${WP_THEME_DIR}twenty*";
-
 echo '### Parent Theme installation';
 
 git submodule add "git@github.com:WordPressUtilities/WPUTheme.git";
+
+# Commit Theme Installation
+git add .
+git commit -m "Installation - Framework Theme";
 
 echo '### Child theme initialisation';
 
@@ -150,6 +181,10 @@ cp "${SCRIPTDIR}inc/functions.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/funct
 cd "${MAINDIR}";
 php wp-cli.phar theme activate "${project_id}";
 
+# Commit Theme Installation
+git add .
+git commit -m "Installation - Child Theme";
+
 ###################################
 ## MU-Plugins installation
 ###################################
@@ -172,6 +207,10 @@ do
     cp "${MAINDIR}WPUtilities/${WP_PLUGINS_DIR}${i}.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${i}.php";
 done;
 
+# Commit Add mu-plugins
+git add .
+git commit -m "Installation - MU-Plugins";
+
 ###################################
 ## Plugins installation
 ###################################
@@ -193,6 +232,10 @@ do
     php wp-cli.phar plugin activate "${i}";
 done;
 
+# Commit Add plugins
+git add .
+git commit -m "Installation - Plugins";
+
 ###################################
 ## Set .htaccess
 ###################################
@@ -211,17 +254,6 @@ RewriteRule . /index.php [L]
 # END WordPress" >> "${MAINDIR}.htaccess";
 
 ###################################
-## Set gitignore
-###################################
-
-echo '### Set gitignore';
-
-echo "/.htaccess
-/wp-content/uploads/
-/wp-content/debug.log
-/wp-config.php" >> "${MAINDIR}.gitignore";
-
-###################################
 ## Clean up
 ###################################
 
@@ -229,9 +261,7 @@ echo '### Clean up';
 
 # Unused plugins
 rm -f "${WP_PLUGINS_DIR}hello.php";
-rm -rf "${WP_PLUGINS_DIR}akismet/";
 
 # Unused themes
 rm -rf "WPUtilities/";
 rm -rf "wp-cli.phar";
-rm -rf "readme.html";
