@@ -114,6 +114,18 @@ function wputhchild_googlefonts() {
 /* Thumbnails
  -------------------------- */
 
-if (function_exists('add_image_size')) {
-    add_image_size('maxithumb', 200, 200, 1);
+add_filter('wpu_thumbnails_sizes', 'wputhchild_set_wpu_thumbnails_sizes');
+function wputhchild_set_wpu_thumbnails_sizes($sizes) {
+
+    // $sizes['maxithumb'] = array(
+    //     'w' => 200,
+    //     'h' => 200,
+    //     'crop' => true,
+    //     'name' => 'Maxithumb',
+    //     'post_type' => array(
+    //         'page'
+    //     )
+    //     'display_gallery_insert' => true,
+    // );
+    return $sizes;
 }
