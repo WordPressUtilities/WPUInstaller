@@ -181,6 +181,13 @@ cp "${SCRIPTDIR}inc/index.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/index.php
 # - Functions
 cp "${SCRIPTDIR}inc/functions.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/functions.php";
 
+# - Templates
+mkdir "${MAINDIR}${WP_THEME_DIR}${project_id}tpl/";
+touch "${MAINDIR}${WP_THEME_DIR}${project_id}tpl/.htaccess";
+echo 'deny from all' > "${MAINDIR}${WP_THEME_DIR}${project_id}tpl/.htaccess";
+cp "${SCRIPTDIR}inc/tpl/header.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/tpl/header.php";
+cp "${SCRIPTDIR}inc/tpl/footer.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/tpl/footer.php";
+
 # Activate child theme
 cd "${MAINDIR}";
 php wp-cli.phar theme activate "${project_id}";

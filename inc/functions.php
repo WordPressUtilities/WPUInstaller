@@ -5,6 +5,28 @@ include dirname(__FILE__) . '/../WPUTheme/z-protect.php';
   Theme options
 ---------------------------------------------------------- */
 
+/* Social networks
+ -------------------------- */
+
+$wpu_social_links = array(
+    'twitter' => 'Twitter',
+    'facebook' => 'Facebook',
+    'instagram' => 'Instagram',
+);
+
+/* Load header & footer
+ -------------------------- */
+
+add_action('wputheme_header_items', 'wputhchild_header');
+function wputhchild_header() {
+    include get_stylesheet_directory() . '/tpl/header.php';
+}
+
+add_action('wp_footer', 'wputhchild_footer');
+function wputhchild_footer() {
+    include get_stylesheet_directory() . '/tpl/footer.php';
+}
+
 /* Parent Theme
  -------------------------- */
 
