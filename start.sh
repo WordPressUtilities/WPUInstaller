@@ -143,7 +143,7 @@ git commit -m "Installation - WordPress";
 ###################################
 
 echo '### WPUtilities installation';
-git clone git@github.com:Darklg/WPUtilities.git;
+git clone https://github.com/Darklg/WPUtilities.git;
 
 ###################################
 ## Theme installation
@@ -164,8 +164,9 @@ echo '### Child theme initialisation';
 # Generate child theme
 cd "${MAINDIR}${WP_THEME_DIR}";
 mkdir "${project_id}";
-touch "${MAINDIR}${WP_THEME_DIR}${project_id}/style.css";
 
+# - Style CSS
+touch "${MAINDIR}${WP_THEME_DIR}${project_id}/style.css";
 echo "/*
 Theme Name: ${project_name} theme
 Description: A WordPress theme for ${project_name}
@@ -174,7 +175,10 @@ Author: Darklg
 Author URI: http://darklg.me/
 */" > "${MAINDIR}${WP_THEME_DIR}${project_id}/style.css";
 
+# - Index
 cp "${SCRIPTDIR}inc/index.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/index.php";
+
+# - Functions
 cp "${SCRIPTDIR}inc/functions.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/functions.php";
 
 # Activate child theme
