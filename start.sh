@@ -143,7 +143,7 @@ git commit -m "Installation - WordPress";
 ###################################
 
 echo '### WPUtilities installation';
-git clone https://github.com/Darklg/WPUtilities.git;
+git clone --depth=1 https://github.com/Darklg/WPUtilities.git;
 
 ###################################
 ## Theme installation
@@ -153,7 +153,7 @@ cd "${MAINDIR}${WP_THEME_DIR}";
 
 echo '### Parent Theme installation';
 
-git submodule add "git@github.com:WordPressUtilities/WPUTheme.git";
+git submodule add "https://github.com/WordPressUtilities/WPUTheme.git";
 
 # Commit Theme Installation
 git add .
@@ -233,7 +233,7 @@ cd "${MAINDIR}${WP_PLUGINS_DIR}";
 for i in $WPU_SUBMODULE_PLUGINS
 do
     echo "## Install ${i}";
-    git submodule add "git@github.com:WordPressUtilities/${i}.git";
+    git submodule add "https://github.com/WordPressUtilities/${i}.git";
 done;
 
 cd "${MAINDIR}";
