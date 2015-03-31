@@ -41,14 +41,13 @@ function wpusubtheme_show_item() {
  -------------------------- */
 
 function wputh_set_theme_posttypes($post_types) {
-    $post_types = array(
-        // 'projects' => array(
-        //     'menu_icon' => 'dashicons-portfolio',
-        //     'name' => __('Project', 'wputh') ,
-        //     'plural' => __('Projects', 'wputh') ,
-        //     'female' => 0
-        // ) ,
-    );
+
+    // $post_types['work'] = array(
+    //     'menu_icon' => 'dashicons-portfolio',
+    //     'name' => __('Work', 'wputh') ,
+    //     'plural' => __('Works', 'wputh') ,
+    //     'female' => 0
+    // );
     return $post_types;
 }
 
