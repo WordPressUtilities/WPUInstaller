@@ -31,17 +31,17 @@ if [[ $project_name == '' ]]; then
 fi;
 echo "- Project name: ${project_name}";
 
-read -p "What's the project dev url ? " project_dev_url;
-if [[ $project_dev_url == '' ]]; then
-    project_dev_url="http://localhost/wptheme/";
-fi;
-echo "- Project URL: ${project_dev_url}";
-
 read -p "What's the project id ? " project_id;
 if [[ $project_id == '' ]]; then
     project_id="wptheme";
 fi;
 echo "- Project ID: ${project_id}";
+
+read -p "What's the project dev url ? " project_dev_url;
+if [[ $project_dev_url == '' ]]; then
+    project_dev_url="http://localhost/${project_id}/";
+fi;
+echo "- Project URL: ${project_dev_url}";
 
 read -p "What's your email address ? " email_address;
 if [[ $email_address == '' ]]; then
@@ -69,7 +69,7 @@ echo "- MySQL Pass: ${mysql_password}";
 
 read -p "What's the MYSQL DATABASE ? " mysql_database;
 if [[ $mysql_database == '' ]]; then
-    echo "— The MYSQL DATABASE is required"; exit 0;
+    mysql_database="${project_id}";
 fi;
 
 ###################################
