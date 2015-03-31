@@ -138,6 +138,7 @@ rm -rf "${MAINDIR}readme.html";
 git add .
 git commit -m "Installation - WordPress";
 
+
 ###################################
 ## WPUtilities installation
 ###################################
@@ -182,9 +183,9 @@ cp "${SCRIPTDIR}inc/index.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/index.php
 cp "${SCRIPTDIR}inc/functions.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/functions.php";
 
 # - Templates
-mkdir "${MAINDIR}${WP_THEME_DIR}${project_id}tpl/";
-touch "${MAINDIR}${WP_THEME_DIR}${project_id}tpl/.htaccess";
-echo 'deny from all' > "${MAINDIR}${WP_THEME_DIR}${project_id}tpl/.htaccess";
+mkdir "${MAINDIR}${WP_THEME_DIR}${project_id}/tpl/";
+touch "${MAINDIR}${WP_THEME_DIR}${project_id}/tpl/.htaccess";
+echo 'deny from all' > "${MAINDIR}${WP_THEME_DIR}${project_id}/tpl/.htaccess";
 cp "${SCRIPTDIR}inc/tpl/header.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/tpl/header.php";
 cp "${SCRIPTDIR}inc/tpl/footer.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/tpl/footer.php";
 
