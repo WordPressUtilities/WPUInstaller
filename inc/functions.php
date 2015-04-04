@@ -30,6 +30,7 @@ function wputhchild_footer() {
 /* Parent Theme
  -------------------------- */
 
+add_filter('wputheme_display_breadcrumbs', 'wpusubtheme_show_item', 1, 1);
 add_filter('wputheme_display_header', 'wpusubtheme_show_item', 1, 1);
 add_filter('wputheme_display_mainwrapper', 'wpusubtheme_show_item', 1, 1);
 add_filter('wputheme_display_footer', 'wpusubtheme_show_item', 1, 1);
