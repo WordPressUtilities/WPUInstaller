@@ -177,7 +177,7 @@ Author URI: http://darklg.me/
 */" > "${MAINDIR}${WP_THEME_DIR}${project_id}/style.css";
 
 # - Index
-cp "${SCRIPTDIR}inc/index.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/index.php";
+cp "${SCRIPTDIR}inc/home.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/home.php";
 
 # - Functions
 cp "${SCRIPTDIR}inc/functions.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/functions.php";
