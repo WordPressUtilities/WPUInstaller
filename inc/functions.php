@@ -5,6 +5,14 @@ include dirname(__FILE__) . '/../WPUTheme/z-protect.php';
   Theme options
 ---------------------------------------------------------- */
 
+/* Lang
+ -------------------------- */
+
+add_action('after_setup_theme', 'wpuproject_setup');
+function wpuproject_setup() {
+    load_theme_textdomain('wpuproject', get_stylesheet_directory() . '/inc/lang');
+}
+
 /* Social networks
  -------------------------- */
 

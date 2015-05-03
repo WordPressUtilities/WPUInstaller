@@ -195,6 +195,10 @@ echo 'deny from all' > "${MAINDIR}${WP_THEME_DIR}${project_id}/tpl/.htaccess";
 cp "${SCRIPTDIR}inc/tpl/header.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/tpl/header.php";
 cp "${SCRIPTDIR}inc/tpl/footer.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/tpl/footer.php";
 
+# - Translation
+mkdir "${MAINDIR}${WP_THEME_DIR}${project_id}/inc/lang/";
+cp "${SCRIPTDIR}inc/lang/fr_FR.po" "${MAINDIR}${WP_THEME_DIR}${project_id}/inc/lang/fr_FR.po";
+
 # Activate child theme
 cd "${MAINDIR}";
 php wp-cli.phar theme activate "${project_id}";
