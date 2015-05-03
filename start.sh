@@ -51,7 +51,7 @@ echo "- Email: ${email_address}";
 
 read -p "What's the MYSQL HOST ? " mysql_host;
 if [[ $mysql_host == '' ]]; then
-    mysql_host="localhost";
+    mysql_host="127.0.0.1";
 fi;
 echo "- MySQL Host: ${mysql_host}";
 
