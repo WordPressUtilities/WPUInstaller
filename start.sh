@@ -271,6 +271,10 @@ RewriteRule . /index.php [L]
 </IfModule>
 # END WordPress" >> "${MAINDIR}.htaccess";
 
+echo '### Update permalinks';
+
+php wp-cli.phar rewrite flush
+
 ###################################
 ## Clean up
 ###################################
