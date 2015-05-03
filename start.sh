@@ -115,7 +115,13 @@ fi;
 if [[ ! -f 'wp-config.php' ]]; then
     php wp-cli.phar core config --dbhost=${mysql_host} --dbname=${mysql_database} --dbuser=${mysql_user} --dbpass=${mysql_password} --extra-php <<PHP
 define( 'WP_DEBUG', true );
-define( 'WP_DEBUG_LOG', true );
+if ( WP_DEBUG ) {
+    @ini_set( 'display_errors', 0 );
+    if ( !defined( 'WP_DEBUG_LOG' ) ) define( 'WP_DEBUG_LOG', 1 );
+    if ( !defined( 'WP_DEBUG_DISPLAY' ) ) define( 'WP_DEBUG_DISPLAY', false );
+    if ( !defined( 'SCRIPT_DEBUG' ) ) define( 'SCRIPT_DEBUG', 1 );
+    if ( !defined( 'SAVEQUERIES' ) ) define( 'SAVEQUERIES', 1 );
+}
 PHP
 fi;
 
