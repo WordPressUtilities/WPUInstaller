@@ -42,7 +42,6 @@ function wpusubtheme_show_item() {
  -------------------------- */
 
 function wputh_set_theme_posttypes($post_types) {
-
     // $post_types['work'] = array(
     //     'menu_icon' => 'dashicons-portfolio',
     //     'name' => __('Work', 'wputh') ,
@@ -56,12 +55,10 @@ function wputh_set_theme_posttypes($post_types) {
  -------------------------- */
 
 function wputh_set_theme_taxonomies($taxonomies) {
-    $taxonomies = array(
-        // 'projects-director' => array(
-        //     'name' => __('Directors', 'wputh') ,
-        //     'post_type' => 'projects'
-        // )
-    );
+    // $taxonomies['work-type'] = array(
+    //     'name' => __( 'Work type', 'wputh' ),
+    //     'post_type' => 'work'
+    // );
     return $taxonomies;
 }
 
@@ -88,7 +85,11 @@ function wputh_set_pages_site($pages_site) {
  -------------------------- */
 
 $WPUJavaScripts = array(
-    'jquery' => array()
+    'jquery' => array(),
+    'events' => array(
+        'uri' => '/assets/js/events.js',
+        'footer' => 1
+    ) ,
 );
 
 /* Styles
