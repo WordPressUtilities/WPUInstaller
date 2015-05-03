@@ -287,3 +287,7 @@ rm -f "${WP_PLUGINS_DIR}hello.php";
 # Unused themes
 rm -rf "WPUtilities/";
 rm -rf "wp-cli.phar";
+
+echo '### Success';
+
+open "${project_dev_url}";
