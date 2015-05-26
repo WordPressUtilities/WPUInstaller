@@ -74,17 +74,15 @@ function wputh_set_theme_taxonomies($taxonomies) {
  -------------------------- */
 
 function wputh_set_pages_site($pages_site) {
-    $pages_site = array(
-        'about__page_id' => array(
-            'constant' => 'ABOUT__PAGE_ID',
-            'post_title' => 'A Propos',
-            'post_content' => '<p>Contenu à propos.</p>',
-        ) ,
-        'mentions__page_id' => array(
-            'constant' => 'MENTIONS__PAGE_ID',
-            'post_title' => 'Mentions légales',
-            'post_content' => '<p>Contenu des mentions légales</p>',
-        ) ,
+    $pages_site['about__page_id'] = array(
+        'constant' => 'ABOUT__PAGE_ID',
+        'post_title' => 'A Propos',
+        'post_content' => '<p>Contenu à propos.</p>',
+    );
+    $pages_site['mentions__page_id'] = array(
+        'constant' => 'MENTIONS__PAGE_ID',
+        'post_title' => 'Mentions légales',
+        'post_content' => '<p>Contenu des mentions légales</p>',
     );
     return $pages_site;
 }
