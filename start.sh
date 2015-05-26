@@ -295,4 +295,5 @@ rm -rf "wp-cli.phar";
 
 echo '### Success';
 
+cd "${MAINDIR}${WP_THEME_DIR}${project_id}";
 open "${project_dev_url}";
