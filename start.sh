@@ -196,6 +196,7 @@ cp "${SCRIPTDIR}inc/tpl/header.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/tpl/
 cp "${SCRIPTDIR}inc/tpl/footer.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/tpl/footer.php";
 
 # - Translation
+mkdir "${MAINDIR}${WP_THEME_DIR}${project_id}/inc/";
 mkdir "${MAINDIR}${WP_THEME_DIR}${project_id}/inc/lang/";
 cp "${SCRIPTDIR}inc/lang/fr_FR.po" "${MAINDIR}${WP_THEME_DIR}${project_id}/inc/lang/fr_FR.po";
 
