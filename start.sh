@@ -43,6 +43,11 @@ if [[ $project_dev_url == '' ]]; then
 fi;
 echo "- Project URL: ${project_dev_url}";
 
+read -p "Is it a multilingual project ? (Y/n) " project_l10n;
+if [[ $project_l10n == '' ]]; then
+    project_l10n="y";
+fi;
+
 read -p "What's your email address ? " email_address;
 if [[ $email_address == '' ]]; then
     email_address="test@yopmail.com";
@@ -255,6 +260,13 @@ for i in $WPU_SUBMODULE_PLUGINS
 do
     php wp-cli.phar plugin activate "${i}";
 done;
+
+if [[ $project_l10n == 'y' ]]; then
+    echo "## Install Qtranslate X";
+    php wp-cli.phar plugin install qtranslate-x --activate
+    php wp-cli.phar option update qtranslate_default_language 'fr';
+    php wp-cli.phar option update qtranslate_enabled_languages '["fr","en"]' --format=json;
+fi;
 
 # Commit Add plugins
 git add .
