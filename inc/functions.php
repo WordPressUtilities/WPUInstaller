@@ -38,13 +38,11 @@ function wputhchild_footer() {
 /* Parent Theme
  -------------------------- */
 
-add_filter('wputheme_display_breadcrumbs', 'wpusubtheme_show_item', 1, 1);
-add_filter('wputheme_display_header', 'wpusubtheme_show_item', 1, 1);
-add_filter('wputheme_display_mainwrapper', 'wpusubtheme_show_item', 1, 1);
-add_filter('wputheme_display_footer', 'wpusubtheme_show_item', 1, 1);
-function wpusubtheme_show_item() {
-    return false;
-}
+add_filter('wputheme_display_languages', '__return_false', 1, 1);
+add_filter('wputheme_display_breadcrumbs', '__return_false', 1, 1);
+add_filter('wputheme_display_header', '__return_false', 1, 1);
+add_filter('wputheme_display_mainwrapper', '__return_false', 1, 1);
+add_filter('wputheme_display_footer', '__return_false', 1, 1);
 
 /* Post types
  -------------------------- */
