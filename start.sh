@@ -276,7 +276,11 @@ git commit -m "Installation - Plugins";
 ## Set .htaccess
 ###################################
 
-echo '### Set htaccess';
+echo '### Set htaccess - performance';
+
+cp "${MAINDIR}WPUtilities/wp-content/.htaccess" "${MAINDIR}wp-content/.htaccess";
+
+echo '### Set htaccess - permalinks';
 
 echo "# BEGIN WordPress
 <IfModule mod_rewrite.c>
