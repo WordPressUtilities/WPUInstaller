@@ -14,6 +14,7 @@ WPU_MUPLUGINS="wpu_body_classes wpu_ux_tweaks";
 WPU_FORCED_MUPLUGINS="wpudisablecomments wpudisablesearch wpudisableposts wputh_admin_protect";
 MAINDIR="${PWD}/";
 SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/";
+alias wp='php wp-cli.phar';
 
 ###################################
 ## Conf
