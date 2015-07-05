@@ -151,6 +151,11 @@ rm -rf "${MAINDIR}readme.html";
 git add .
 git commit -m "Installation - WordPress";
 
+# Delete default content
+php wp-cli.phar post delete $(php wp-cli.phar post list --post_type='page' --format=ids)
+php wp-cli.phar post delete $(php wp-cli.phar post list --post_type='post' --format=ids)
+php wp-cli.phar comment delete $(php wp-cli.phar comment list --format=ids)
+
 
 ###################################
 ## WPUtilities installation
