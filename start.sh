@@ -47,6 +47,13 @@ echo "- Project URL: ${project_dev_url}";
 read -p "Is it a multilingual project ? (Y/n) " project_l10n;
 if [[ $project_l10n == '' ]]; then
     project_l10n="y";
+else
+    read -p "What's the locale [${WP_LOCALE}]? " user_locale;
+    if [[ $user_locale == '' ]]; then
+        user_locale="${WP_LOCALE}";
+    fi;
+    WP_LOCALE="${user_locale}";
+    echo "- Locale: ${WP_LOCALE}";
 fi;
 
 read -p "What's your email address ? " email_address;
