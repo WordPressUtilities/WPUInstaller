@@ -219,6 +219,13 @@ mkdir "${MAINDIR}${WP_THEME_DIR}${project_id}/inc/";
 mkdir "${MAINDIR}${WP_THEME_DIR}${project_id}/inc/lang/";
 cp "${SCRIPTDIR}inc/lang/fr_FR.po" "${MAINDIR}${WP_THEME_DIR}${project_id}/inc/lang/fr_FR.po";
 
+# - Assets
+mkdir "${MAINDIR}${WP_THEME_DIR}${project_id}/assets/";
+mkdir "${MAINDIR}${WP_THEME_DIR}${project_id}/assets/images";
+wget "http://placehold.it/200x100/fff/000?text=${project_id}" -q -O "${MAINDIR}${WP_THEME_DIR}${project_id}/assets/images/logo.png";
+mkdir "${MAINDIR}${WP_THEME_DIR}${project_id}/assets/js";
+touch "${MAINDIR}${WP_THEME_DIR}${project_id}/assets/js/events.js";
+
 # Activate child theme
 cd "${MAINDIR}";
 php wp-cli.phar theme activate "${project_id}";
