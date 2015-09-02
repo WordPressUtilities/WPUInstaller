@@ -86,6 +86,12 @@ if [[ $mysql_database == '' ]]; then
 fi;
 
 ###################################
+## Shorthand vars
+###################################
+
+WPU_THEME="${MAINDIR}${WP_THEME_DIR}${project_id}/";
+
+###################################
 ## Test git
 ###################################
 
@@ -192,39 +198,39 @@ cd "${MAINDIR}${WP_THEME_DIR}";
 mkdir "${project_id}";
 
 # - Style CSS
-touch "${MAINDIR}${WP_THEME_DIR}${project_id}/style.css";
+touch "${WPU_THEME}style.css";
 echo "/*
 Theme Name: ${project_name} theme
 Description: A WordPress theme for ${project_name}
 Template: WPUTheme
 Author: Darklg
 Author URI: http://darklg.me/
-*/" > "${MAINDIR}${WP_THEME_DIR}${project_id}/style.css";
+*/" > "${WPU_THEME}style.css";
 
 # - Index
-cp "${SCRIPTDIR}inc/home.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/home.php";
+cp "${SCRIPTDIR}inc/home.php" "${WPU_THEME}home.php";
 
 # - Functions
-cp "${SCRIPTDIR}inc/functions.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/functions.php";
+cp "${SCRIPTDIR}inc/functions.php" "${WPU_THEME}functions.php";
 
 # - Templates
-mkdir "${MAINDIR}${WP_THEME_DIR}${project_id}/tpl/";
-touch "${MAINDIR}${WP_THEME_DIR}${project_id}/tpl/.htaccess";
-echo 'deny from all' > "${MAINDIR}${WP_THEME_DIR}${project_id}/tpl/.htaccess";
-cp "${SCRIPTDIR}inc/tpl/header.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/tpl/header.php";
-cp "${SCRIPTDIR}inc/tpl/footer.php" "${MAINDIR}${WP_THEME_DIR}${project_id}/tpl/footer.php";
+mkdir "${WPU_THEME}tpl/";
+touch "${WPU_THEME}tpl/.htaccess";
+echo 'deny from all' > "${WPU_THEME}tpl/.htaccess";
+cp "${SCRIPTDIR}inc/tpl/header.php" "${WPU_THEME}tpl/header.php";
+cp "${SCRIPTDIR}inc/tpl/footer.php" "${WPU_THEME}tpl/footer.php";
 
 # - Translation
-mkdir "${MAINDIR}${WP_THEME_DIR}${project_id}/inc/";
-mkdir "${MAINDIR}${WP_THEME_DIR}${project_id}/inc/lang/";
-cp "${SCRIPTDIR}inc/lang/fr_FR.po" "${MAINDIR}${WP_THEME_DIR}${project_id}/inc/lang/fr_FR.po";
+mkdir "${WPU_THEME}inc/";
+mkdir "${WPU_THEME}inc/lang/";
+cp "${SCRIPTDIR}inc/lang/fr_FR.po" "${WPU_THEME}inc/lang/fr_FR.po";
 
 # - Assets
-mkdir "${MAINDIR}${WP_THEME_DIR}${project_id}/assets/";
-mkdir "${MAINDIR}${WP_THEME_DIR}${project_id}/assets/images";
-wget "http://placehold.it/200x100/fff/000?text=${project_id}" -q -O "${MAINDIR}${WP_THEME_DIR}${project_id}/assets/images/logo.png";
-mkdir "${MAINDIR}${WP_THEME_DIR}${project_id}/assets/js";
-touch "${MAINDIR}${WP_THEME_DIR}${project_id}/assets/js/events.js";
+mkdir "${WPU_THEME}assets/";
+mkdir "${WPU_THEME}assets/images";
+wget "http://placehold.it/200x100/fff/000?text=${project_id}" -q -O "${WPU_THEME}assets/images/logo.png";
+mkdir "${WPU_THEME}assets/js";
+touch "${WPU_THEME}assets/js/events.js";
 
 # Activate child theme
 cd "${MAINDIR}";
@@ -332,5 +338,5 @@ rm -rf "wp-cli.phar";
 
 echo '### Success';
 
-cd "${MAINDIR}${WP_THEME_DIR}${project_id}";
+cd "${WPU_THEME}";
 open "${project_dev_url}";
