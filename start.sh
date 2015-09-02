@@ -151,13 +151,13 @@ if ! $(php wp-cli.phar core is-installed); then
 fi
 
 # Deleting default items
+wp plugin delete akismet;
+wp plugin delete hello;
 rm -rf "${MAINDIR}${WP_THEME_DIR}twentythirteen/";
 rm -rf "${MAINDIR}${WP_THEME_DIR}twentyfourteen/";
 rm -rf "${MAINDIR}${WP_THEME_DIR}twentyfifteen/";
 rm -rf "${MAINDIR}${WP_LANG_DIR}plugins/";
 rm -rf "${MAINDIR}${WP_LANG_DIR}themes/";
-rm -rf "${MAINDIR}${WP_PLUGINS_DIR}akismet/";
-rm -rf "${MAINDIR}${WP_PLUGINS_DIR}hello.php";
 rm -rf "${MAINDIR}readme.html";
 
 # Commit WordPress Installation
@@ -321,7 +321,7 @@ RewriteRule . /index.php [L]
 
 echo '### Update permalinks';
 
-php wp-cli.phar rewrite flush
+php wp-cli.phar rewrite flush --hard
 
 ###################################
 ## Clean up
