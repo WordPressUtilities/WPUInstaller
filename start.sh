@@ -170,7 +170,7 @@ rm -rf "${MAINDIR}readme.html";
 
 # Commit WordPress Installation
 git add .
-git commit -m "Installation - WordPress";
+git commit -m "Installation - WordPress" --quiet;
 
 # Delete default content
 php wp-cli.phar post delete $(php wp-cli.phar post list --post_type='page' --format=ids)
@@ -183,7 +183,7 @@ php wp-cli.phar comment delete $(php wp-cli.phar comment list --format=ids)
 ###################################
 
 echo '### WPUtilities installation';
-git clone --depth=1 https://github.com/Darklg/WPUtilities.git;
+git clone --quiet --depth=1 https://github.com/Darklg/WPUtilities.git;
 
 ###################################
 ## Theme installation
@@ -193,11 +193,11 @@ cd "${MAINDIR}${WP_THEME_DIR}";
 
 echo '### Parent Theme installation';
 
-git submodule add "https://github.com/WordPressUtilities/WPUTheme.git";
+git submodule --quiet add "https://github.com/WordPressUtilities/WPUTheme.git";
 
 # Commit Theme Installation
 git add .
-git commit -m "Installation - Framework Theme";
+git commit -m "Installation - Framework Theme" --quiet;
 
 echo '### Child theme initialisation';
 
@@ -246,7 +246,7 @@ php wp-cli.phar theme activate "${project_id}";
 
 # Commit Theme Installation
 git add .
-git commit -m "Installation - Child Theme";
+git commit -m "Installation - Child Theme" --quiet;
 
 ###################################
 ## MU-Plugins installation
@@ -272,7 +272,7 @@ done;
 
 # Commit Add mu-plugins
 git add .
-git commit -m "Installation - MU-Plugins";
+git commit -m "Installation - MU-Plugins" --quiet;
 
 ###################################
 ## Plugins installation
@@ -285,7 +285,7 @@ cd "${MAINDIR}${WP_PLUGINS_DIR}";
 for i in $WPU_SUBMODULE_PLUGINS
 do
     echo "## Install ${i}";
-    git submodule add "https://github.com/WordPressUtilities/${i}.git";
+    git submodule --quiet add "https://github.com/WordPressUtilities/${i}.git";
 done;
 
 cd "${MAINDIR}";
@@ -304,7 +304,7 @@ fi;
 
 # Commit Add plugins
 git add .
-git commit -m "Installation - Plugins";
+git commit -m "Installation - Plugins" --quiet;
 
 ###################################
 ## Set .htaccess
