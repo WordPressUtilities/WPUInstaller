@@ -88,6 +88,11 @@ if [[ $mysql_database == '' ]]; then
     mysql_database="${project_id}";
 fi;
 
+read -p "Start installation ? (Y/n) " start_installation;
+if [[ $start_installation == 'n' ]]; then
+    exit 0;
+fi;
+
 ###################################
 ## Shorthand vars
 ###################################
