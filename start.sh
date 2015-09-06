@@ -32,9 +32,12 @@ if [[ $project_name == '' ]]; then
 fi;
 echo "- Project name: ${project_name}";
 
-read -p "What's the project id ? " project_id;
+default_project_id="$(echo -e "${project_name}" | tr -d '[[:space:]]' | tr [:upper:] [:lower:])";
+default_project_id="$(echo ${default_project_id} | iconv -f utf8 -t ascii//TRANSLIT)";
+default_project_id="$(echo ${default_project_id} | tr -cd '[[:alnum:]]._-')";
+read -p "What's the project id ? [${default_project_id}] : " project_id;
 if [[ $project_id == '' ]]; then
-    project_id="wptheme";
+    project_id="${default_project_id}";
 fi;
 echo "- Project ID: ${project_id}";
 
