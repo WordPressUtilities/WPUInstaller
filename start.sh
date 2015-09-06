@@ -329,7 +329,7 @@ RewriteRule . /index.php [L]
 
 echo '### Update permalinks';
 
-php wp-cli.phar rewrite flush --hard
+php wp-cli.phar rewrite flush;
 
 ###################################
 ## Clean up
