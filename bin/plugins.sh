@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###################################
-## Plugins installation v 0.1
+## Plugins installation
 ###################################
 
 echo '### Plugins installation';
@@ -15,8 +15,6 @@ do
     php "${MAINDIR}wp-cli.phar" plugin activate "${i}";
 done;
 
-done;
-
 if [[ $project_l10n == 'y' ]]; then
     echo "## Install Qtranslate X";
     php "${MAINDIR}wp-cli.phar" plugin install qtranslate-x --activate
@@ -25,5 +23,5 @@ if [[ $project_l10n == 'y' ]]; then
 fi;
 
 # Commit Add plugins
-git add .
+git add -A
 git commit -m "Installation - Plugins" --quiet;

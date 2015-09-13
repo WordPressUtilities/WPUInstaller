@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###################################
-## MU-Plugins installation v 0.1
+## MU-Plugins installation
 ###################################
 
 echo '### MU-Plugins installation';
@@ -23,5 +23,5 @@ do
 done;
 
 # Commit Add mu-plugins
-git add .
+git add -A
 git commit -m "Installation - MU-Plugins" --quiet;

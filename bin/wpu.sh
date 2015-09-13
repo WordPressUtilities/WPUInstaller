@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###################################
-## WPUtilities installation v 0.1
+## WPUtilities installation
 ###################################
 
 echo '### WPUtilities installation';

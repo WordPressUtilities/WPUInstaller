@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###################################
-## Theme installation v 0.1
+## Theme installation
 ###################################
 
 cd "${MAINDIR}${WP_THEME_DIR}";
@@ -11,7 +11,7 @@ echo '### Parent Theme installation';
 git submodule --quiet add "https://github.com/WordPressUtilities/WPUTheme.git";
 
 # Commit Theme Installation
-git add .
+git add -A
 git commit -m "Installation - Framework Theme" --quiet;
 
 echo '### Child theme initialisation';
@@ -60,5 +60,5 @@ cd "${MAINDIR}";
 php "${MAINDIR}wp-cli.phar" theme activate "${project_id}";
 
 # Commit Theme Installation
-git add .
+git add -A
 git commit -m "Installation - Child Theme" --quiet;

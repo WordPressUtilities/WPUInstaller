@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###################################
-## WP Cli v 0.1
+## WP Cli
 ###################################
 
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar;

@@ -16,7 +16,6 @@ export PATH=$PATH:/Applications/MAMP/Library/bin/
 . "${SCRIPTDIR}bin/htaccess.sh";
 . "${SCRIPTDIR}bin/clean.sh";
 
-
 echo '### Success';
 
 cd "${WPU_THEME}";

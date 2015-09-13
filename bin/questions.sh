@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###################################
-## Questions v 0.1
+## Questions
 ###################################
 
 read -p "What's the project name ? " project_name;

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###################################
-## WordPress installation v 0.1
+## WordPress installation
 ###################################
 
 # If there is no wp-content dir
@@ -39,12 +39,8 @@ rm -rf "${MAINDIR}${WP_LANG_DIR}plugins/";
 rm -rf "${MAINDIR}${WP_LANG_DIR}themes/";
 rm -rf "${MAINDIR}readme.html";
 
-# Commit WordPress Installation
-git add .
-git commit -m "Installation - WordPress" --quiet;
 
-# Delete default content
-php "${MAINDIR}wp-cli.phar" post delete $(php wp-cli.phar post list --post_type='page' --format=ids)
-php "${MAINDIR}wp-cli.phar" post delete $(php wp-cli.phar post list --post_type='post' --format=ids)
-php "${MAINDIR}wp-cli.phar" comment delete $(php wp-cli.phar comment list --format=ids)
+# Commit WordPress Installation
+git add -A
+git commit -m "Installation - WordPress" --quiet;
 

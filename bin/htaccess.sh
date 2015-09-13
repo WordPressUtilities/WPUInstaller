@@ -1,12 +1,16 @@
 #!/bin/bash
 
 ###################################
-## Set .htaccess v 0.1
+## Set .htaccess
 ###################################
 
 echo '### Set htaccess - performance';
 
 cp "${MAINDIR}WPUtilities/wp-content/.htaccess" "${MAINDIR}wp-content/.htaccess";
+
+# Commit Add htaccess
+git add -A
+git commit -m "Installation - content htaccess" --quiet;
 
 echo '### Set htaccess - permalinks';
 
