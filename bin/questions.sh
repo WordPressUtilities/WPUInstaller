@@ -66,6 +66,11 @@ if [[ $mysql_database == '' ]]; then
     mysql_database="${project_id}";
 fi;
 
+read -p "Use git submodules ? (Y/n) " use_submodules;
+if [[ $use_submodules != 'n' ]]; then
+    use_submodules='y';
+fi;
+
 read -p "Start installation ? (Y/n) " start_installation;
 if [[ $start_installation == 'n' ]]; then
     exit 0;

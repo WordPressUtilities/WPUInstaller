@@ -11,7 +11,12 @@ cd "${MAINDIR}${WP_PLUGINS_DIR}";
 for i in $WPU_SUBMODULE_PLUGINS
 do
     echo "## Install ${i}";
-    git submodule --quiet add "https://github.com/WordPressUtilities/${i}.git";
+    if [[ $use_submodules == 'y' ]]; then
+        git submodule --quiet add "https://github.com/WordPressUtilities/${i}.git";
+    else
+        git clone --quiet "https://github.com/WordPressUtilities/${i}.git";
+        rm -rf "${i}/.git";
+    fi;
     php "${MAINDIR}wp-cli.phar" plugin activate "${i}";
 done;
 
