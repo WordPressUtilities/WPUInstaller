@@ -62,6 +62,7 @@ touch "${WPU_THEME}assets/js/events.js";
 
 # Activate child theme
 cd "${MAINDIR}";
+php "${MAINDIR}wp-cli.phar" theme activate "WPUTheme";
 php "${MAINDIR}wp-cli.phar" theme activate "${project_id}";
 
 # Commit Theme Installation
