@@ -50,6 +50,8 @@ cp "${SCRIPTDIR}inc/tpl/footer.php" "${WPU_THEME}tpl/footer.php";
 
 # - Translation
 mkdir "${WPU_THEME}inc/";
+touch "${WPU_THEME}inc/.htaccess";
+echo 'deny from all' > "${WPU_THEME}inc/.htaccess";
 mkdir "${WPU_THEME}inc/lang/";
 cp "${SCRIPTDIR}inc/lang/fr_FR.po" "${WPU_THEME}inc/lang/fr_FR.po";
 
