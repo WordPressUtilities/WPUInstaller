@@ -62,6 +62,11 @@ wget "http://placehold.it/200x100/fff/000?text=${project_id}" -q -O "${WPU_THEME
 mkdir "${WPU_THEME}assets/js";
 touch "${WPU_THEME}assets/js/events.js";
 
+# Delete default content ( Before creation by theme )
+php "${MAINDIR}wp-cli.phar" post delete $(php ${MAINDIR}wp-cli.phar post list --post_type='page' --format=ids)
+php "${MAINDIR}wp-cli.phar" post delete $(php ${MAINDIR}wp-cli.phar post list --post_type='post' --format=ids)
+php "${MAINDIR}wp-cli.phar" comment delete $(php ${MAINDIR}wp-cli.phar comment list --format=ids)
+
 # Activate child theme
 cd "${MAINDIR}";
 php "${MAINDIR}wp-cli.phar" theme activate "WPUTheme";
