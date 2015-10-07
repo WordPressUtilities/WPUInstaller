@@ -16,22 +16,25 @@ function wpuproject_setup() {
 /* Social networks
  -------------------------- */
 
-$wpu_social_links = array(
-    'twitter' => 'Twitter',
-    'facebook' => 'Facebook',
-    'instagram' => 'Instagram',
-);
+add_filter('wputheme_social_links', 'wpuproject_wputheme_social_links', 10, 1);
+function wpuproject_wputheme_social_links($links) {
+    return array(
+        'twitter' => 'Twitter',
+        'facebook' => 'Facebook',
+        'instagram' => 'Instagram',
+    );
+}
 
 /* Load header & footer
  -------------------------- */
 
-add_action('wputheme_header_items', 'wputhchild_header');
-function wputhchild_header() {
+add_action('wputheme_header_items', 'wpuproject_header');
+function wpuproject_header() {
     include get_stylesheet_directory() . '/tpl/header.php';
 }
 
-add_action('wp_footer', 'wputhchild_footer');
-function wputhchild_footer() {
+add_action('wp_footer', 'wpuproject_footer');
+function wpuproject_footer() {
     include get_stylesheet_directory() . '/tpl/footer.php';
 }
 
@@ -115,8 +118,8 @@ function wputh_control_stylesheets() {
 /* Exclude all parent templates
  -------------------------- */
 
-add_filter('theme_page_templates', 'wputhchild_remove_page_templates');
-function wputhchild_remove_page_templates($templates) {
+add_filter('theme_page_templates', 'wpuproject_remove_page_templates');
+function wpuproject_remove_page_templates($templates) {
     unset($templates['page-templates/page-bigpictures.php']);
     unset($templates['page-templates/page-contact.php']);
     unset($templates['page-templates/page-downloads.php']);
@@ -130,8 +133,8 @@ function wputhchild_remove_page_templates($templates) {
 /* Google Fonts
  -------------------------- */
 
-add_action('wputh_google_fonts', 'wputhchild_googlefonts');
-function wputhchild_googlefonts() {
+add_action('wputh_google_fonts', 'wpuproject_googlefonts');
+function wpuproject_googlefonts() {
     return array(
         // 'family' => 'Open+Sans',
         // 'subset' => 'latin',
@@ -141,8 +144,8 @@ function wputhchild_googlefonts() {
 /* Thumbnails
  -------------------------- */
 
-add_filter('wpu_thumbnails_sizes', 'wputhchild_set_wpu_thumbnails_sizes');
-function wputhchild_set_wpu_thumbnails_sizes($sizes) {
+add_filter('wpu_thumbnails_sizes', 'wpuproject_set_wpu_thumbnails_sizes');
+function wpuproject_set_wpu_thumbnails_sizes($sizes) {
 
     // $sizes['maxithumb'] = array(
     //     'w' => 200,

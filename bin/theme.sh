@@ -40,6 +40,7 @@ cp "${SCRIPTDIR}inc/home.php" "${WPU_THEME}home.php";
 
 # - Functions
 cp "${SCRIPTDIR}inc/functions.php" "${WPU_THEME}functions.php";
+sed -i '' "s/wpuproject/${project_id}/" "${WPU_THEME}functions.php";
 
 # - Templates
 mkdir "${WPU_THEME}tpl/";
@@ -62,7 +63,7 @@ wget "http://placehold.it/200x100/fff/000?text=${project_id}" -q -O "${WPU_THEME
 mkdir "${WPU_THEME}assets/js";
 touch "${WPU_THEME}assets/js/events.js";
 
-# Delete default content ( Before creation by theme )
+# Delete default content (Before creation at theme activation)
 php "${MAINDIR}wp-cli.phar" post delete $(php ${MAINDIR}wp-cli.phar post list --post_type='page' --format=ids)
 php "${MAINDIR}wp-cli.phar" post delete $(php ${MAINDIR}wp-cli.phar post list --post_type='post' --format=ids)
 php "${MAINDIR}wp-cli.phar" comment delete $(php ${MAINDIR}wp-cli.phar comment list --format=ids)
