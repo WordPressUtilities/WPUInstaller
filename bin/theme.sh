@@ -62,6 +62,7 @@ mkdir "${WPU_THEME}assets/images";
 wget "http://placehold.it/200x100/fff/000?text=${project_id}" -q -O "${WPU_THEME}assets/images/logo.png";
 mkdir "${WPU_THEME}assets/js";
 touch "${WPU_THEME}assets/js/events.js";
+echo 'jQuery(document).ready(function(){});' > "${WPU_THEME}assets/js/events.js";
 
 # Delete default content (Before creation at theme activation)
 php "${MAINDIR}wp-cli.phar" post delete $(php ${MAINDIR}wp-cli.phar post list --post_type='page' --format=ids)
