@@ -15,6 +15,7 @@ export PATH=$PATH:/Applications/MAMP/Library/bin/
 . "${SCRIPTDIR}bin/plugins.sh";
 . "${SCRIPTDIR}bin/htaccess.sh";
 . "${SCRIPTDIR}bin/clean.sh";
+. "${SCRIPTDIR}bin/intestarter.sh";
 
 echo '### Success';
 
