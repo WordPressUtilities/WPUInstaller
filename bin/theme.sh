@@ -67,7 +67,6 @@ echo 'jQuery(document).ready(function(){});' > "${WPU_THEME}assets/js/events.js"
 # Delete default content (Before creation at theme activation)
 php "${MAINDIR}wp-cli.phar" post delete $(php ${MAINDIR}wp-cli.phar post list --post_type='page' --format=ids)
 php "${MAINDIR}wp-cli.phar" post delete $(php ${MAINDIR}wp-cli.phar post list --post_type='post' --format=ids)
-php "${MAINDIR}wp-cli.phar" comment delete $(php ${MAINDIR}wp-cli.phar comment list --format=ids)
 
 # Activate child theme
 cd "${MAINDIR}";
