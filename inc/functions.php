@@ -146,16 +146,9 @@ function wpuproject_googlefonts() {
 
 add_filter('wpu_thumbnails_sizes', 'wpuproject_set_wpu_thumbnails_sizes');
 function wpuproject_set_wpu_thumbnails_sizes($sizes) {
-
-    // $sizes['maxithumb'] = array(
-    //     'w' => 200,
-    //     'h' => 200,
-    //     'crop' => true,
-    //     'name' => 'Maxithumb',
-    //     'post_type' => array(
-    //         'page'
-    //     )
-    //     'display_gallery_insert' => true,
-    // );
+    $sizes['big'] = array(
+        'w' => 1280,
+        'h' => 1280,
+    );
     return $sizes;
 }
