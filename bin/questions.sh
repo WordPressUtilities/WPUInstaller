@@ -71,6 +71,25 @@ if [[ $use_submodules != 'n' ]]; then
     use_submodules='y';
 fi;
 
+wpu_mysql_args="mysql -h${mysql_host} -u${mysql_user} -p${mysql_password}";
+
+new_database='y';
+for db in $($wpu_mysql_args -N <<< "show databases like '%${mysql_database}%'")
+do
+  case $db in
+    $mysql_database)
+      read -p "Database '${mysql_database}' already exists. Should it be dropped ? (y/N) " new_database;
+      if [[ $new_database == 'y' ]];then
+        echo '- Old database dropped';
+        echo $($wpu_mysql_args -e "DROP DATABASE IF EXISTS ${mysql_database}") > /dev/null;
+      fi;
+    ;;
+  esac
+done
+if [[ $new_database != 'n' ]]; then
+    new_database='y';
+fi;
+
 read -p "Start installation ? (Y/n) " start_installation;
 if [[ $start_installation == 'n' ]]; then
     exit 0;

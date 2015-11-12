@@ -11,7 +11,7 @@ fi;
 
 # WP Config
 if [[ ! -f 'wp-config.php' ]]; then
-    mysql -h${mysql_host} -u${mysql_user} -p${mysql_password} -e "create database IF NOT EXISTS ${mysql_database};";
+    echo $($wpu_mysql_args -e "create database IF NOT EXISTS ${mysql_database};") > /dev/null;
     php "${MAINDIR}wp-cli.phar" core config --dbhost=${mysql_host} --dbname=${mysql_database} --dbuser=${mysql_user} --dbpass=${mysql_password} --extra-php <<PHP
 define( 'WP_DEBUG', true );
 if ( WP_DEBUG ) {
