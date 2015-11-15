@@ -127,6 +127,7 @@ function wpuproject_remove_page_templates($templates) {
     unset($templates['page-templates/page-gallery.php']);
     unset($templates['page-templates/page-sitemap.php']);
     unset($templates['page-templates/page-webservice.php']);
+    unset($templates['page-templates/page-woocommerce.php']);
     return $templates;
 }
 
