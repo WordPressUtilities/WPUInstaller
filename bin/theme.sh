@@ -35,6 +35,9 @@ Author: Darklg
 Author URI: http://darklg.me/
 */" > "${WPU_THEME}style.css";
 
+# - htaccess
+cp "${SCRIPTDIR}inc/htaccess.txt" "${WPU_THEME}.htaccess";
+
 # - Index
 cp "${SCRIPTDIR}inc/home.php" "${WPU_THEME}home.php";
 

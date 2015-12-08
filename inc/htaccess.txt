@@ -1,0 +1,5 @@
+<IfModule mod_headers.c>
+<FilesMatch (grunt/|inc/|node_modules/|config.rb|Gruntfile.js|gruntfile.js|package.json)>
+Deny from all
+</FilesMatch>
+</IfModule>
