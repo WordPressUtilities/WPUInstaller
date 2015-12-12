@@ -35,6 +35,7 @@ wp plugin delete hello;
 rm -rf "${MAINDIR}${WP_THEME_DIR}twentythirteen/";
 rm -rf "${MAINDIR}${WP_THEME_DIR}twentyfourteen/";
 rm -rf "${MAINDIR}${WP_THEME_DIR}twentyfifteen/";
+rm -rf "${MAINDIR}${WP_THEME_DIR}twentysixteen/";
 rm -rf "${MAINDIR}${WP_LANG_DIR}plugins/";
 rm -rf "${MAINDIR}${WP_LANG_DIR}themes/";
 rm -rf "${MAINDIR}readme.html";
