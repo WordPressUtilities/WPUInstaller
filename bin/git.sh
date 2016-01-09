@@ -15,6 +15,7 @@ fi;
 echo '### Set gitignore';
 
 echo "node_modules
+tests/config.json
 .sass-cache
 wp-cli.phar
 /WPUtilities/

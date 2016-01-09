@@ -46,11 +46,11 @@ cp "${SCRIPTDIR}inc/functions.php" "${WPU_THEME}functions.php";
 sed -i '' "s/wpuproject/${project_id}/" "${WPU_THEME}functions.php";
 
 # - Templates
-mkdir "${WPU_THEME}tpl/";
-touch "${WPU_THEME}tpl/.htaccess";
-echo 'deny from all' > "${WPU_THEME}tpl/.htaccess";
-cp "${SCRIPTDIR}inc/tpl/header.php" "${WPU_THEME}tpl/header.php";
-cp "${SCRIPTDIR}inc/tpl/footer.php" "${WPU_THEME}tpl/footer.php";
+cp -rf "${SCRIPTDIR}inc/tpl/" "${WPU_THEME}tpl/";
+
+# - Tests
+cp -rf "${SCRIPTDIR}inc/tests/" "${WPU_THEME}tests/";
+sed -i '' "s,wpuprojecturl,${project_dev_url}," "${WPU_THEME}tests/config.json";
 
 # - Translation
 mkdir "${WPU_THEME}inc/";
