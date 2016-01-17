@@ -24,6 +24,10 @@ do
     fi;
 done;
 
+# Base MU Plugin
+cp "${SCRIPTDIR}inc/base_functions.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}_functions.php";
+sed -i '' "s/wpuproject/${project_name}/" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}_functions.php";
+
 # Commit Add mu-plugins
 git add -A
 git commit -m "Installation - MU-Plugins" --quiet;

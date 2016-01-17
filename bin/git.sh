@@ -15,11 +15,11 @@ fi;
 echo '### Set gitignore';
 
 echo "node_modules
-tests/config.json
 .sass-cache
 wp-cli.phar
 /WPUtilities/
 /.htaccess
+/wp-content/themes/${project_id}/tests/config.json
 /wp-content/uploads/
 /wp-content/debug.log
 /wp-config.php" >> "${MAINDIR}.gitignore";
