@@ -28,6 +28,15 @@ done;
 cp "${SCRIPTDIR}inc/base_functions.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}_functions.php";
 sed -i '' "s/wpuproject/${project_name}/" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}_functions.php";
 
+# Home page
+if [[ $home_is_cms == 'y' ]]; then
+    cp "${SCRIPTDIR}inc/cms_home.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}_home.php";
+    sed -i '' "s/wpuproject/${project_name}/" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}_home.php";
+    home__page_id=$(php wp-cli.phar option get home__page_id)
+    php "${MAINDIR}wp-cli.phar" option update page_on_front "${home__page_id}";
+    php "${MAINDIR}wp-cli.phar" option update show_on_front "page";
+fi;
+
 # Commit Add mu-plugins
 git add -A
 git commit -m "Installation - MU-Plugins" --quiet;

@@ -37,6 +37,11 @@ else
     echo "- Locale: ${WP_LOCALE}";
 fi;
 
+read -p "Is the home page a CMS page ? (Y/n) " home_is_cms;
+if [[ $home_is_cms == '' ]]; then
+    home_is_cms="y";
+fi;
+
 read -p "What's your email address ? [test@yopmail.com] : " email_address;
 if [[ $email_address == '' ]]; then
     email_address="test@yopmail.com";
