@@ -13,6 +13,7 @@ for i in $WPU_FORCED_MUPLUGINS
 do
     echo "## Install ${i}";
     cp "${MAINDIR}WPUtilities/${WP_MUPLUGINS_DIR}${i}.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${i}.php";
+    echo "- ${i} is installed.";
 done;
 
 # Classic MU Plugins
@@ -21,6 +22,7 @@ do
     read -p "## Install ${i} ? (y/N) " install_muplugin;
     if [[ $install_muplugin == 'y' ]];then
         cp "${MAINDIR}WPUtilities/${WP_PLUGINS_DIR}${i}.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${i}.php";
+        echo "- ${i} is installed.";
     fi;
 done;
 
@@ -31,7 +33,8 @@ sed -i '' "s/wpuproject/${project_name}/" "${MAINDIR}${WP_MUPLUGINS_DIR}${projec
 # Home page
 if [[ $home_is_cms == 'y' ]]; then
     cp "${SCRIPTDIR}inc/cms_home.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}_home.php";
-    sed -i '' "s/wpuproject/${project_name}/" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}_home.php";
+    sed -i '' "s/wpuprojectname/${project_name}/" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}_home.php";
+    sed -i '' "s/wpuprojectid/${project_id}/" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}_home.php";
     home__page_id=$(php wp-cli.phar option get home__page_id)
     php "${MAINDIR}wp-cli.phar" option update page_on_front "${home__page_id}";
     php "${MAINDIR}wp-cli.phar" option update show_on_front "page";
