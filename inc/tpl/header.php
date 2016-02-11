@@ -1,8 +1,12 @@
-<h1 class="logo"><a href="<?php echo home_url(); ?>"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/logo.png'; ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" /></a></h1>
+<header class="header-main">
 <?php
+wputh_display_title();
 wp_nav_menu( array(
     'depth' => 2,
     'theme_location' => 'main',
+    'container_class' => 'main-menu__wrapper',
     'menu_class' => 'main-menu'
 ) );
+echo wputh_get_social_links_html();
 ?>
+</header>
