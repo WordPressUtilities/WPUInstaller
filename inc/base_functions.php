@@ -1,5 +1,5 @@
 <?php
-
-/* ----------------------------------------------------------
-  [wpuproject] Functions
----------------------------------------------------------- */
+/*
+Plugin Name: [wpuproject] Functions
+Description: Website common functions
+*/
