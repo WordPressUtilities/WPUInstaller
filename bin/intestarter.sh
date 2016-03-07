@@ -9,6 +9,7 @@ if [[ $use_intestarter == 'y' ]]; then
 
 ## Init values
 is_wp_theme='y';
+from_wpinstaller='y';
 
 ## Backup files
 mv "${WPU_THEME}assets/images/logo.png" "${WPU_THEME}logo.png";
