@@ -47,30 +47,6 @@ add_filter('wputheme_display_header', '__return_false', 1, 1);
 add_filter('wputheme_display_mainwrapper', '__return_false', 1, 1);
 add_filter('wputheme_display_footer', '__return_false', 1, 1);
 
-/* Post types
- -------------------------- */
-
-function wputh_set_theme_posttypes($post_types) {
-    // $post_types['work'] = array(
-    //     'menu_icon' => 'dashicons-portfolio',
-    //     'name' => __('Work', 'wputh') ,
-    //     'plural' => __('Works', 'wputh') ,
-    //     'female' => 0
-    // );
-    return $post_types;
-}
-
-/* Taxonomies
- -------------------------- */
-
-function wputh_set_theme_taxonomies($taxonomies) {
-    // $taxonomies['work-type'] = array(
-    //     'name' => __( 'Work type', 'wputh' ),
-    //     'post_type' => 'work'
-    // );
-    return $taxonomies;
-}
-
 /* Pages
  -------------------------- */
 
