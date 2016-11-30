@@ -19,9 +19,9 @@ if [[ $project_id == '' ]]; then
 fi;
 echo "- Project ID: ${project_id}";
 
-read -p "What's the project dev url ? [http://localhost/${project_id}/] : " project_dev_url;
+read -p "What's the project dev url ? [http://${project_id}.dev/] : " project_dev_url;
 if [[ $project_dev_url == '' ]]; then
-    project_dev_url="http://localhost/${project_id}/";
+    project_dev_url="http://${project_id}.dev/";
 fi;
 echo "- Project URL: ${project_dev_url}";
 
@@ -48,9 +48,9 @@ if [[ $email_address == '' ]]; then
 fi;
 echo "- Email: ${email_address}";
 
-read -p "What's the MYSQL HOST ? [127.0.0.1] : " mysql_host;
+read -p "What's the MYSQL HOST ? [localhost] : " mysql_host;
 if [[ $mysql_host == '' ]]; then
-    mysql_host="127.0.0.1";
+    mysql_host="localhost";
 fi;
 echo "- MySQL Host: ${mysql_host}";
 
@@ -76,17 +76,16 @@ if [[ $use_submodules != 'n' ]]; then
     use_submodules='y';
 fi;
 
-wpu_mysql_args="mysql -h${mysql_host} -u${mysql_user} -p${mysql_password}";
 
 new_database='y';
-for db in $($wpu_mysql_args -N <<< "show databases like '%${mysql_database}%'")
+for db in $(mysql -h${mysql_host} -u${mysql_user} -p${mysql_password} -N <<< "show databases like '%${mysql_database}%'")
 do
   case $db in
     $mysql_database)
       read -p "Database '${mysql_database}' already exists. Should it be dropped ? (y/N) " new_database;
       if [[ $new_database == 'y' ]];then
         echo '- Old database dropped';
-        echo $($wpu_mysql_args -e "DROP DATABASE IF EXISTS ${mysql_database}") > /dev/null;
+        echo $(mysql -h${mysql_host} -u${mysql_user} -p${mysql_password} -e "DROP DATABASE IF EXISTS ${mysql_database}") > /dev/null;
       fi;
     ;;
   esac
