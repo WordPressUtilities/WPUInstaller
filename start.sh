@@ -1,7 +1,7 @@
 #!/bin/bash
 
 MAINDIR="${PWD}/";
-SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/";
+SCRIPTDIR="$( dirname "${BASH_SOURCE[0]}" )/";
 export PATH=$PATH:/Applications/MAMP/Library/bin/
 
 . "${SCRIPTDIR}bin/vars.sh";
