@@ -6,12 +6,14 @@
 
 # If there is no wp-content dir
 if [[ ! -d 'wp-content' ]]; then
+    echo '### Download WP Core';
     php "${MAINDIR}wp-cli.phar" core download --locale=${WP_LOCALE}
 fi;
 
 # WP Config
 if [[ ! -f 'wp-config.php' ]]; then
-    echo $($wpu_mysql_args -e "create database IF NOT EXISTS ${mysql_database};") > /dev/null;
+    echo '### Create WP Config';
+    echo $(mysql -h${mysql_host} -u${mysql_user} -p${mysql_password} -e "create database IF NOT EXISTS ${mysql_database};") > /dev/null;
     php "${MAINDIR}wp-cli.phar" core config --dbhost=${mysql_host} --dbname=${mysql_database} --dbuser=${mysql_user} --dbpass=${mysql_password} --extra-php <<PHP
 define( 'WP_DEBUG', true );
 if ( WP_DEBUG ) {
@@ -26,12 +28,14 @@ fi;
 
 # If table are not present
 if ! $(php wp-cli.phar core is-installed); then
+    echo '### Install WP';
     php "${MAINDIR}wp-cli.phar" core install --url=${project_dev_url} --title="${project_name}" --admin_user=admin --admin_password=admin --admin_email=${email_address}
 fi
 
 # Deleting default items
-wp plugin delete akismet;
-wp plugin delete hello;
+echo '### Deleting default items';
+php wp-cli.phar plugin delete akismet;
+php wp-cli.phar plugin delete hello;
 rm -rf "${MAINDIR}${WP_THEME_DIR}twentythirteen/";
 rm -rf "${MAINDIR}${WP_THEME_DIR}twentyfourteen/";
 rm -rf "${MAINDIR}${WP_THEME_DIR}twentyfifteen/";
