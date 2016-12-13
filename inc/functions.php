@@ -67,13 +67,16 @@ function wputh_set_pages_site($pages_site) {
 /* Scripts
  -------------------------- */
 
-$WPUJavaScripts = array(
-    'jquery' => array(),
-    'events' => array(
+add_filter('wputh_javascript_files', 'wpuproject_javascript_files', 99, 1);
+function wpuproject_javascript_files($files) {
+    unset($files['functions-faq-accordion']);
+    unset($files['functions-search-form-check']);
+    $files['events'] = array(
         'uri' => '/assets/js/events.js',
         'footer' => 1
-    ) ,
-);
+    );
+    return $files;
+}
 
 /* Styles
  -------------------------- */
