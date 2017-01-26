@@ -27,4 +27,4 @@ RewriteRule . /index.php [L]
 
 echo '### Update permalinks';
 
-php "${MAINDIR}wp-cli.phar" rewrite flush;
+php ${WPU_PHPCLI} rewrite flush;

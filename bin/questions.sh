@@ -6,7 +6,7 @@
 
 read -p "What's the project name ? " project_name;
 if [[ $project_name == '' ]]; then
-    project_name="WordPress Theme";
+    project_name="${PWD##*/}";
 fi;
 echo "- Project name: ${project_name}";
 
@@ -74,6 +74,13 @@ fi;
 read -p "Use git submodules ? (Y/n) " use_submodules;
 if [[ $use_submodules != 'n' ]]; then
     use_submodules='y';
+fi;
+
+
+read -p "Install WordPress in a subfolder ? (Y/n) " use_subfolder;
+if [[ $use_subfolder != 'n' ]]; then
+    use_subfolder='y';
+    WPU_PHPCLI="${WPU_PHPCLI} --path=wp-cms"
 fi;
 
 
