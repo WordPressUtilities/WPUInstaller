@@ -8,7 +8,21 @@
 if [[ ! -d 'wp-content' ]]; then
     echo '### Download WP Core';
 
-    php ${WPU_PHPCLI} core download --locale=${WP_LOCALE};
+    if [[ $use_submodules == 'y' ]]; then
+        # Retrieve last WordPress version
+        wget -O "${MAINDIR}version.json" http://api.wordpress.org/core/version-check/1.7/;
+        wp_version=$(stackov_parse_json $(cat ${MAINDIR}version.json) version);
+        git submodule add --quiet --depth 1 https://github.com/wordpress/wordpress wp-cms;
+        echo "... loading latest WordPress version";
+        cd "${MAINDIR}wp-cms";
+        git fetch --tags --quiet;
+        git checkout --quiet ${wp_version};
+        cd "${MAINDIR}";
+        rm "${MAINDIR}version.json";
+        echo "### Using WordPress v ${wp_version}";
+    else
+        php ${WPU_PHPCLI} core download --locale=${WP_LOCALE} --skip-themes --skip-plugins;
+    fi;
 
     if [[ $use_subfolder == 'y' ]]; then
         cd "${MAINDIR}";
@@ -52,11 +66,16 @@ if ! $(php ${WPU_PHPCLI} core is-installed); then
 fi
 
 
+if [[ $use_submodules == 'y' ]]; then
+    php ${WPU_PHPCLI} core language install ${WP_LOCALE};
+    php ${WPU_PHPCLI} core language activate ${WP_LOCALE};
+fi;
+
 # Deleting default items
 echo '### Deleting default items';
-php ${WPU_PHPCLI} plugin delete akismet;
-php ${WPU_PHPCLI} plugin delete hello;
 if [[ $use_subfolder == 'n' ]]; then
+    php ${WPU_PHPCLI} plugin delete akismet;
+    php ${WPU_PHPCLI} plugin delete hello;
     rm -rf "${MAINDIR}${WP_THEME_DIR}twentythirteen/";
     rm -rf "${MAINDIR}${WP_THEME_DIR}twentyfourteen/";
     rm -rf "${MAINDIR}${WP_THEME_DIR}twentyfifteen/";
@@ -70,6 +89,7 @@ fi;
 if [[ $use_subfolder == 'y' ]]; then
     cp "${SCRIPTDIR}inc/htaccess-wpsubfolder.txt" "${MAINDIR}.htaccess";
     cp "${SCRIPTDIR}inc/index-subfolder.php" "${MAINDIR}index.php";
+    git add -f "${MAINDIR}.htaccess";
 fi;
 
 # Commit WordPress Installation
