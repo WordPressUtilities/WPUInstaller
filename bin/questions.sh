@@ -42,6 +42,11 @@ if [[ $home_is_cms == '' ]]; then
     home_is_cms="y";
 fi;
 
+read -p "Is it an ecommerce ? (y/N) " is_woocommerce;
+if [[ $is_woocommerce == 'y' ]]; then
+    is_woocommerce="y";
+fi;
+
 read -p "What's your email address ? [test@yopmail.com] : " email_address;
 if [[ $email_address == '' ]]; then
     email_address="test@yopmail.com";
@@ -75,7 +80,6 @@ read -p "Use git submodules ? (Y/n) " use_submodules;
 if [[ $use_submodules != 'n' ]]; then
     use_submodules='y';
 fi;
-
 
 read -p "Install WordPress in a subfolder ? (Y/n) " use_subfolder;
 if [[ $use_subfolder != 'n' ]]; then
