@@ -4,6 +4,7 @@ MAINDIR="${PWD}/";
 SCRIPTDIR="$( dirname "${BASH_SOURCE[0]}" )/";
 export PATH=$PATH:/Applications/MAMP/Library/bin/
 
+. "${SCRIPTDIR}bin/tools.sh";
 . "${SCRIPTDIR}bin/vars.sh";
 . "${SCRIPTDIR}bin/questions.sh";
 . "${SCRIPTDIR}bin/git.sh";
