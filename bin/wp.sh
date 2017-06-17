@@ -8,7 +8,7 @@
 if [[ ! -d 'wp-content' ]]; then
     echo '### Download WP Core';
 
-    if [[ $use_submodules == 'y' ]]; then
+    if [[ $use_subfolder == 'y' ]]; then
         # Retrieve last WordPress version
         wget -O "${MAINDIR}version.json" http://api.wordpress.org/core/version-check/1.7/;
         wp_version=$(stackov_parse_json $(cat ${MAINDIR}version.json) version);
@@ -20,16 +20,12 @@ if [[ ! -d 'wp-content' ]]; then
         cd "${MAINDIR}";
         rm "${MAINDIR}version.json";
         echo "### Using WordPress v ${wp_version}";
-    else
-        php ${WPU_PHPCLI} core download --locale=${WP_LOCALE} --skip-themes --skip-plugins;
-    fi;
-
-    if [[ $use_subfolder == 'y' ]]; then
-        cd "${MAINDIR}";
         mkdir "${MAINDIR}wp-content/";
         mkdir "${MAINDIR}wp-content/themes/";
         mkdir "${MAINDIR}wp-content/plugins/";
         mkdir "${MAINDIR}wp-content/languages/";
+    else
+        php ${WPU_PHPCLI} core download --locale=${WP_LOCALE} --skip-themes --skip-plugins;
     fi;
 
 fi;

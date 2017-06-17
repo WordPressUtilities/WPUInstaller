@@ -87,7 +87,6 @@ if [[ $use_subfolder != 'n' ]]; then
     WPU_PHPCLI="${WPU_PHPCLI} --path=wp-cms"
 fi;
 
-
 new_database='y';
 for db in $(mysql -h${mysql_host} -u${mysql_user} -p${mysql_password} -N <<< "show databases like '%${mysql_database}%'")
 do
