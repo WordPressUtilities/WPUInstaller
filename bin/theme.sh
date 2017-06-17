@@ -17,7 +17,7 @@ fi;
 
 # Commit Theme Installation
 git add -A
-git commit -m "Installation - Framework Theme" --quiet;
+git commit --no-verify -m "Installation - Framework Theme" --quiet;
 
 echo '### Child theme initialisation';
 
@@ -78,4 +78,4 @@ php ${WPU_PHPCLI} theme activate "${project_id}";
 
 # Commit Theme Installation
 git add -A
-git commit -m "Installation - Child Theme" --quiet;
+git commit --no-verify -m "Installation - Child Theme" --quiet;

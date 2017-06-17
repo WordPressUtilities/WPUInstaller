@@ -10,7 +10,7 @@ cp "${MAINDIR}WPUtilities/wp-content/.htaccess" "${MAINDIR}wp-content/.htaccess"
 
 # Commit Add htaccess
 git add -A
-git commit -m "Installation - content htaccess" --quiet;
+git commit --no-verify -m "Installation - content htaccess" --quiet;
 
 echo '### Set htaccess - permalinks';
 

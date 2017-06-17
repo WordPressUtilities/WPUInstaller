@@ -22,7 +22,7 @@ done;
 
 # Commit Add plugins
 git add -A
-git commit -m "Installation - Plugins" --quiet;
+git commit --no-verify -m "Installation - Plugins" --quiet;
 
 # Qtranslate
 if [[ $project_l10n == 'y' ]]; then
@@ -33,7 +33,7 @@ if [[ $project_l10n == 'y' ]]; then
 
     # Commit plugin
     git add -A
-    git commit -m "Installation - Plugin : Qtranslate" --quiet;
+    git commit --no-verify -m "Installation - Plugin : Qtranslate" --quiet;
 fi;
 
 # Woocommerce
@@ -43,6 +43,6 @@ if [[ $is_woocommerce == 'y' ]]; then
 
     # Commit plugin
     git add -A
-    git commit -m "Installation - Plugin : Woocommerce" --quiet;
+    git commit --no-verify -m "Installation - Plugin : Woocommerce" --quiet;
 fi;
 

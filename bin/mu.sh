@@ -42,4 +42,4 @@ fi;
 
 # Commit Add mu-plugins
 git add -A
-git commit -m "Installation - MU-Plugins" --quiet;
+git commit --no-verify -m "Installation - MU-Plugins" --quiet;

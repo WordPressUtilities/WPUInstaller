@@ -94,5 +94,5 @@ fi;
 
 # Commit WordPress Installation
 git add -A
-git commit -m "Installation - WordPress" --quiet;
+git commit --no-verify -m "Installation - WordPress" --quiet;
 
