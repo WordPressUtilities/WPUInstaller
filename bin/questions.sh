@@ -81,10 +81,11 @@ if [[ $use_submodules != 'n' ]]; then
     use_submodules='y';
 fi;
 
-read -p "Install WordPress in a subfolder ? (Y/n) " use_subfolder;
-if [[ $use_subfolder != 'n' ]]; then
-    use_subfolder='y';
-    WPU_PHPCLI="${WPU_PHPCLI} --path=wp-cms"
+read -p "Install WordPress in a subfolder ? (y/N) " use_subfolder;
+if [[ $use_subfolder == 'y' ]]; then
+    WPU_PHPCLI="${WPU_PHPCLI} --path=wp-cms";
+else:
+    use_subfolder='n';
 fi;
 
 new_database='y';
