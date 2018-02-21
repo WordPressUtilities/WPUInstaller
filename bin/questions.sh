@@ -19,9 +19,9 @@ if [[ $project_id == '' ]]; then
 fi;
 echo "- Project ID: ${project_id}";
 
-read -p "What's the project dev url ? [http://${project_id}.dev/] : " project_dev_url;
+read -p "What's the project dev url ? [http://${project_id}.test/] : " project_dev_url;
 if [[ $project_dev_url == '' ]]; then
-    project_dev_url="http://${project_id}.dev/";
+    project_dev_url="http://${project_id}.test/";
 fi;
 echo "- Project URL: ${project_dev_url}";
 
