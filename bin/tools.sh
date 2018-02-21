@@ -20,3 +20,7 @@ function stackov_parse_json()
     sed -e 's/^"//'  -e 's/"$//'
 }
 
+function wpuinstaller_sed(){
+    sed -i.bak ${1} ${2};
+    rm "${2}.bak";
+}
