@@ -58,7 +58,7 @@ fi;
 # If table are not present
 if ! $(php ${WPU_PHPCLI} core is-installed); then
     echo '### Install WP';
-    php ${WPU_PHPCLI} core install --url=${project_dev_url} --title="${project_name}" --admin_user=admin --admin_password=admin --admin_email=${email_address}
+    php ${WPU_PHPCLI} core install --url="${project_dev_url}" --title="${project_name}" --admin_user=admin --admin_password=admin --admin_email="${email_address}"
 fi
 
 
