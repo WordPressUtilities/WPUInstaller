@@ -71,10 +71,17 @@ if [[ $mysql_password == '' ]]; then
 fi;
 echo "- MySQL Pass: ${mysql_password}";
 
+read -p "What's the MYSQL PREFIX ? [root] : " mysql_prefix;
+if [[ $mysql_prefix == '' ]]; then
+    mysql_prefix="$(echo ${project_id} | cut -c1-3)_";
+fi;
+echo "- MySQL Prefix: ${mysql_prefix}";
+
 read -p "What's the MYSQL DATABASE ? [${project_id}] : " mysql_database;
 if [[ $mysql_database == '' ]]; then
     mysql_database="${project_id}";
 fi;
+echo "- MySQL Database: ${mysql_database}";
 
 read -p "Use git submodules ? (Y/n) " use_submodules;
 if [[ $use_submodules != 'n' ]]; then
