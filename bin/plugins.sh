@@ -17,7 +17,7 @@ do
         rm -rf "${i}/.git";
     fi;
     cd "${MAINDIR}";
-    php ${WPU_PHPCLI}  plugin activate "${i}";
+    php ${WPU_PHPCLI} plugin activate "${i}";
 done;
 
 # Commit Add plugins
@@ -27,9 +27,9 @@ git commit --no-verify -m "Installation - Plugins" --quiet;
 # Qtranslate
 if [[ $project_l10n == 'y' ]]; then
     echo "## Install Qtranslate X";
-    php ${WPU_PHPCLI}  plugin install qtranslate-x --activate
-    php ${WPU_PHPCLI}  option update qtranslate_default_language 'fr';
-    php ${WPU_PHPCLI}  option update qtranslate_enabled_languages '["fr","en"]' --format=json;
+    php ${WPU_PHPCLI} plugin install qtranslate-x --activate
+    php ${WPU_PHPCLI} option update qtranslate_default_language 'fr';
+    php ${WPU_PHPCLI} option update qtranslate_enabled_languages '["fr","en"]' --format=json;
 
     # Commit plugin
     git add -A
@@ -39,10 +39,13 @@ fi;
 # Woocommerce
 if [[ $is_woocommerce == 'y' ]]; then
     echo "## Install Woocommerce";
-    php ${WPU_PHPCLI}  plugin install woocommerce --activate
+    php ${WPU_PHPCLI} plugin install woocommerce --activate
 
     # Commit plugin
     git add -A
     git commit --no-verify -m "Installation - Plugin : Woocommerce" --quiet;
 fi;
 
+# Language
+echo "## Update language";
+php ${WPU_PHPCLI} language core update;
