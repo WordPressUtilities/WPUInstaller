@@ -21,6 +21,6 @@ function stackov_parse_json()
 }
 
 function wpuinstaller_sed(){
-    sed -i.bak ${1} ${2};
+    sed -i.bak "${1}" "${2}";
     rm "${2}.bak";
 }
