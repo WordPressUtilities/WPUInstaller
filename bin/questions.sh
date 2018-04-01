@@ -71,9 +71,10 @@ if [[ $mysql_password == '' ]]; then
 fi;
 echo "- MySQL Pass: ${mysql_password}";
 
-read -p "What's the MYSQL PREFIX ? [root] : " mysql_prefix;
+default_mysql_prefix="$(echo ${project_id} | cut -c1-3)_";
+read -p "What's the MYSQL PREFIX ? [${default_mysql_prefix}] : " mysql_prefix;
 if [[ $mysql_prefix == '' ]]; then
-    mysql_prefix="$(echo ${project_id} | cut -c1-3)_";
+    mysql_prefix="${default_mysql_prefix}";
 fi;
 echo "- MySQL Prefix: ${mysql_prefix}";
 
