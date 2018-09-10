@@ -32,9 +32,14 @@ do
     fi;
 done;
 
-# Base MU Plugin
+# Base Functions plugin
 cp "${SCRIPTDIR}inc/base_functions.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_functions.php";
 wpuinstaller_sed "s/wpuproject/${project_name}/" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_functions.php";
+
+# Settings plugin
+cp "${SCRIPTDIR}inc/base_settings.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_settings.php";
+wpuinstaller_sed "s/wpuproject/${project_name}/" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_settings.php";
+wpuinstaller_sed "s/wpuprojectid/${project_id}/" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_settings.php";
 
 # Home page
 if [[ $home_is_cms == 'y' ]]; then
