@@ -43,14 +43,14 @@ cp "${SCRIPTDIR}inc/home.php" "${WPU_THEME}home.php";
 
 # - Functions
 cp "${SCRIPTDIR}inc/functions.php" "${WPU_THEME}functions.php";
-wpuinstaller_sed "s/wpuproject/${project_id}/" "${WPU_THEME}functions.php";
+wpuinstaller_sed "s/wpuproject/${project_id}/g" "${WPU_THEME}functions.php";
 
 # - Templates
 cp -rf "${SCRIPTDIR}inc/tpl/" "${WPU_THEME}tpl/";
 
 # - Tests
 cp -rf "${SCRIPTDIR}inc/tests/" "${WPU_THEME}tests/";
-wpuinstaller_sed "s,wpuprojecturl,${project_dev_url}," "${WPU_THEME}tests/config.json";
+wpuinstaller_sed "s,wpuprojecturl,${project_dev_url},g" "${WPU_THEME}tests/config.json";
 
 # - Translation
 mkdir "${WPU_THEME}inc/";

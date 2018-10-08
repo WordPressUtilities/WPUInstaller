@@ -48,9 +48,9 @@ if ( WP_DEBUG ) {
 PHP
 
     if [[ $use_subfolder == 'y' ]]; then
-        wpuinstaller_sed "s/##WPUINSTALLER##/define('WP_CONTENT_DIR', dirname(__FILE__)\.'\/\.\.\/wp-content');/" "${MAINDIR}wp-cms/wp-config.php";
+        wpuinstaller_sed "s/##WPUINSTALLER##/define('WP_CONTENT_DIR', dirname(__FILE__)\.'\/\.\.\/wp-content');/g" "${MAINDIR}wp-cms/wp-config.php";
     else
-        wpuinstaller_sed "s/##WPUINSTALLER##//" "${MAINDIR}wp-config.php";
+        wpuinstaller_sed "s/##WPUINSTALLER##//g" "${MAINDIR}wp-config.php";
     fi;
 
 fi;

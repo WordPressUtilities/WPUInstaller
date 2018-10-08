@@ -34,18 +34,18 @@ done;
 
 # Base Functions plugin
 cp "${SCRIPTDIR}inc/base_functions.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_functions.php";
-wpuinstaller_sed "s/wpuproject/${project_name}/" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_functions.php";
+wpuinstaller_sed "s/wpuproject/${project_name}/g" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_functions.php";
 
 # Settings plugin
 cp "${SCRIPTDIR}inc/base_settings.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_settings.php";
-wpuinstaller_sed "s/wpuprojectid/${project_id}/" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_settings.php";
-wpuinstaller_sed "s/wpuproject/${project_name}/" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_settings.php";
+wpuinstaller_sed "s/wpuprojectid/${project_id}/g" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_settings.php";
+wpuinstaller_sed "s/wpuproject/${project_name}/g" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_settings.php";
 
 # Home page
 if [[ $home_is_cms == 'y' ]]; then
     cp "${SCRIPTDIR}inc/cms_home.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_home.php";
-    wpuinstaller_sed "s/wpuprojectname/${project_name}/" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_home.php";
-    wpuinstaller_sed "s/wpuprojectid/${project_id}/" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_home.php";
+    wpuinstaller_sed "s/wpuprojectname/${project_name}/g" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_home.php";
+    wpuinstaller_sed "s/wpuprojectid/${project_id}/g" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_home.php";
     home__page_id=$(php ${WPU_PHPCLI} option get home__page_id)
     php ${WPU_PHPCLI} option update page_on_front "${home__page_id}";
     php ${WPU_PHPCLI} option update show_on_front "page";
