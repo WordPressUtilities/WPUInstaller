@@ -28,7 +28,7 @@ mkdir "${project_id}";
 # - Style CSS
 touch "${WPU_THEME}style.css";
 echo "/*
-Theme Name: ${project_name} theme
+Theme Name: ${project_name}
 Description: A WordPress theme for ${project_name}
 Template: WPUTheme
 Author: Darklg
@@ -57,7 +57,10 @@ mkdir "${WPU_THEME}inc/";
 touch "${WPU_THEME}inc/.htaccess";
 echo 'deny from all' > "${WPU_THEME}inc/.htaccess";
 mkdir "${WPU_THEME}inc/lang/";
-cp "${SCRIPTDIR}inc/lang/fr_FR.po" "${WPU_THEME}inc/lang/fr_FR.po";
+WPU_THEME_TRANSLATE_FILE="${WPU_THEME}inc/lang/${WP_LOCALE}.po";
+cp "${SCRIPTDIR}inc/lang/fr_FR.po" "${WPU_THEME_TRANSLATE_FILE}";
+wpuinstaller_sed "s/fr_FR/${WP_LOCALE}/g" "${WPU_THEME_TRANSLATE_FILE}";
+wpuinstaller_sed "s/wpuproject/${project_name}/g" "${WPU_THEME_TRANSLATE_FILE}";
 
 # - Assets
 mkdir "${WPU_THEME}assets/";

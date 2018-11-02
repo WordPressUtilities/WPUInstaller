@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Project\n"
+"Project-Id-Version: wpuproject\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
