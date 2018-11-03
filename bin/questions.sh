@@ -92,7 +92,7 @@ fi;
 read -p "Install WordPress in a subfolder ? (y/N) " use_subfolder;
 if [[ $use_subfolder == 'y' ]]; then
     WPU_PHPCLI="${WPU_PHPCLI} --path=wp-cms";
-else:
+else
     use_subfolder='n';
 fi;
 
