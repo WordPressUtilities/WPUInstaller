@@ -26,14 +26,24 @@ git commit --no-verify -m "Installation - Plugins" --quiet;
 
 # Qtranslate
 if [[ $project_l10n == 'y' ]]; then
-    echo "## Install Qtranslate X";
-    php ${WPU_PHPCLI} plugin install qtranslate-x --activate
-    php ${WPU_PHPCLI} option update qtranslate_default_language 'fr';
-    php ${WPU_PHPCLI} option update qtranslate_enabled_languages '["fr","en"]' --format=json;
+    if [[ $project_l10n_tool == 'qtranslate' ]]; then
+        echo "## Install Qtranslate X";
+        php ${WPU_PHPCLI} plugin install qtranslate-x --activate
+        php ${WPU_PHPCLI} option update qtranslate_default_language 'fr';
+        php ${WPU_PHPCLI} option update qtranslate_enabled_languages '["fr","en"]' --format=json;
 
-    # Commit plugin
-    git add -A
-    git commit --no-verify -m "Installation - Plugin : Qtranslate" --quiet;
+        # Commit plugin
+        git add -A
+        git commit --no-verify -m "Installation - Plugin : Qtranslate X" --quiet;
+    fi;
+    if [[ $project_l10n_tool == 'polylang' ]]; then
+        echo "## Install Polylang";
+        php ${WPU_PHPCLI} plugin install polylang --activate
+
+        # Commit plugin
+        git add -A
+        git commit --no-verify -m "Installation - Plugin : Polylang" --quiet;
+    fi;
 fi;
 
 # Woocommerce

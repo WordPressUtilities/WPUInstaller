@@ -36,6 +36,13 @@ else
     WP_LOCALE="${user_locale}";
     echo "- Locale: ${WP_LOCALE}";
 fi;
+project_l10n_tool='qtranslate';
+if [[ $project_l10n == 'y' ]]; then
+    read -p "Use Polylang instead of qtranslate ? (Y/n) " use_polylang;
+    if [[ $use_polylang == 'y' ]]; then
+        project_l10n_tool='polylang';
+    fi;
+fi;
 
 read -p "Is the home page a CMS page ? (Y/n) " home_is_cms;
 if [[ $home_is_cms == '' ]]; then
