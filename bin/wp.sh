@@ -20,15 +20,16 @@ if [[ ! -d 'wp-content' ]]; then
         cd "${MAINDIR}";
         rm "${MAINDIR}version.json";
         echo "### Using WordPress v ${wp_version}";
-        mkdir "${MAINDIR}wp-content/";
-        mkdir "${MAINDIR}wp-content/themes/";
-        mkdir "${MAINDIR}wp-content/plugins/";
-        mkdir "${MAINDIR}wp-content/languages/";
     else
-        php ${WPU_PHPCLI} core download --locale=${WP_LOCALE} --skip-themes --skip-plugins;
+        php ${WPU_PHPCLI} core download --locale=${WP_LOCALE} --skip-themes --skip-plugins --skip-content;
     fi;
-
 fi;
+
+mkdir "${MAINDIR}wp-content/";
+mkdir "${MAINDIR}${WP_THEME_DIR}";
+mkdir "${MAINDIR}${WP_LANG_DIR}";
+mkdir "${MAINDIR}${WP_MUPLUGINS_DIR}";
+mkdir "${MAINDIR}${WP_PLUGINS_DIR}";
 
 # WP Config
 if [[ ! -f "${MAINDIR}wp-config.php" ]]; then
@@ -70,14 +71,6 @@ fi;
 # Deleting default items
 echo '### Deleting default items';
 if [[ $use_subfolder == 'n' ]]; then
-    php ${WPU_PHPCLI} plugin delete akismet;
-    php ${WPU_PHPCLI} plugin delete hello;
-    rm -rf "${MAINDIR}${WP_THEME_DIR}twentythirteen/";
-    rm -rf "${MAINDIR}${WP_THEME_DIR}twentyfourteen/";
-    rm -rf "${MAINDIR}${WP_THEME_DIR}twentyfifteen/";
-    rm -rf "${MAINDIR}${WP_THEME_DIR}twentysixteen/";
-    rm -rf "${MAINDIR}${WP_LANG_DIR}plugins/";
-    rm -rf "${MAINDIR}${WP_LANG_DIR}themes/";
     rm -rf "${MAINDIR}readme.html";
 fi;
 

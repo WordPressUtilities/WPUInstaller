@@ -6,7 +6,6 @@
 
 echo '### MU-Plugins installation';
 
-mkdir "${MAINDIR}${WP_MUPLUGINS_DIR}";
 mkdir "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
 mkdir "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}";
 
