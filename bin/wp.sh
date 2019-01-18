@@ -37,7 +37,11 @@ if [[ ! -f "${MAINDIR}wp-config.php" ]]; then
 
     echo $(mysql -h${mysql_host} -u${mysql_user} -p${mysql_password} -e "create database IF NOT EXISTS ${mysql_database};") > /dev/null;
     php ${WPU_PHPCLI} core config --dbhost=${mysql_host} --dbname=${mysql_database} --dbuser=${mysql_user} --dbpass=${mysql_password} --dbprefix=${mysql_prefix} --extra-php <<PHP
+
 # URLs
+if(!\$_SERVER['HTTP_HOST']){
+    \$_SERVER['HTTP_HOST'] = '127.0.0.1';
+}
 define('WP_SITEURL', 'http://' . \$_SERVER['HTTP_HOST'] . '/');
 define('WP_HOME', 'http://' . \$_SERVER['HTTP_HOST'] . '/');
 
@@ -50,6 +54,7 @@ if ( WP_DEBUG ) {
     if ( !defined( 'SCRIPT_DEBUG' ) ) define( 'SCRIPT_DEBUG', 1 );
     if ( !defined( 'SAVEQUERIES' ) ) define( 'SAVEQUERIES', 1 );
 }
+
 ##WPUINSTALLER##
 PHP
 
