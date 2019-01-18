@@ -5,4 +5,5 @@
 ###################################
 
 echo '### WPUtilities installation';
-git clone --quiet --depth=1 https://github.com/Darklg/WPUtilities.git;
+git clone --quiet --depth=1 https://github.com/Darklg/WPUtilities.git WPUtilities;
+rm -rf WPUtilities/.git
