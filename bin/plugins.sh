@@ -56,6 +56,17 @@ if [[ $is_woocommerce == 'y' ]]; then
     git commit --no-verify -m "Installation - Plugin : Woocommerce" --quiet;
 fi;
 
+# Recommended
+if [[ $install_recommended_plugins == 'y' ]]; then
+    echo "## Install recommended plugins";
+    php ${WPU_PHPCLI} plugin install limit-login-attempts --activate;
+    php ${WPU_PHPCLI} plugin install health-check --activate;
+
+    # Commit plugin
+    git add -A
+    git commit --no-verify -m "Installation - Recommended Plugins" --quiet;
+fi;
+
 # Language
 echo "## Update language";
 php ${WPU_PHPCLI} language core update;

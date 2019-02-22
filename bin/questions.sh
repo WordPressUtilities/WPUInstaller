@@ -96,6 +96,11 @@ if [[ $use_submodules != 'n' ]]; then
     use_submodules='y';
 fi;
 
+read -p "Install recommended plugins ? (Y/n) " install_recommended_plugins;
+if [[ $install_recommended_plugins != 'n' ]]; then
+    install_recommended_plugins='y';
+fi;
+
 read -p "Install WordPress in a subfolder ? (y/N) " use_subfolder;
 if [[ $use_subfolder == 'y' ]]; then
     WPU_PHPCLI="${WPU_PHPCLI} --path=wp-cms";
