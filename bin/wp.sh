@@ -40,7 +40,7 @@ if [[ ! -f "${MAINDIR}wp-config.php" ]]; then
 
 # URLs
 if(!\$_SERVER['HTTP_HOST']){
-    \$_SERVER['HTTP_HOST'] = '127.0.0.1';
+    \$_SERVER['HTTP_HOST'] = '${project_dev_url_raw}';
 }
 define('WP_SITEURL', 'http://' . \$_SERVER['HTTP_HOST'] . '/');
 define('WP_HOME', 'http://' . \$_SERVER['HTTP_HOST'] . '/');

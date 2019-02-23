@@ -23,6 +23,8 @@ read -p "What's the project dev url ? [http://${project_id}.test] : " project_de
 if [[ $project_dev_url == '' ]]; then
     project_dev_url="http://${project_id}.test";
 fi;
+project_dev_url_raw=${project_dev_url/http:\/\//};
+project_dev_url_raw=${project_dev_url_raw/\//};
 echo "- Project URL: ${project_dev_url}";
 
 read -p "Is it a multilingual project ? (y/N) " project_l10n;
