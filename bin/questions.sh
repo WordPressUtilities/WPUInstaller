@@ -103,6 +103,11 @@ if [[ $install_recommended_plugins != 'n' ]]; then
     install_recommended_plugins='y';
 fi;
 
+read -p "Add shell scripts ? (y/N) " wpu_add_shell_scripts;
+if [[ $wpu_add_shell_scripts != 'y' ]]; then
+    wpu_add_shell_scripts='n';
+fi;
+
 read -p "Install WordPress in a subfolder ? (y/N) " use_subfolder;
 if [[ $use_subfolder == 'y' ]]; then
     WPU_PHPCLI="${WPU_PHPCLI} --path=wp-cms";

@@ -14,6 +14,7 @@ export PATH=$PATH:/Applications/MAMP/Library/bin/
 . "${SCRIPTDIR}bin/theme.sh";
 . "${SCRIPTDIR}bin/mu.sh";
 . "${SCRIPTDIR}bin/plugins.sh";
+. "${SCRIPTDIR}bin/shell.sh";
 . "${SCRIPTDIR}bin/htaccess.sh";
 . "${SCRIPTDIR}bin/clean.sh";
 . "${SCRIPTDIR}bin/intestarter.sh";
