@@ -45,26 +45,43 @@ if(!\$_SERVER['HTTP_HOST']){
 define('WP_SITEURL', 'http://' . \$_SERVER['HTTP_HOST'] . '/');
 define('WP_HOME', 'http://' . \$_SERVER['HTTP_HOST'] . '/');
 
+# Config
+define('EMPTY_TRASH_DAYS', 7);
+define('WP_POST_REVISIONS', 6);
+
+# Memory
+define('WP_MEMORY_LIMIT', '128M');
+define('WP_MAX_MEMORY_LIMIT', '256M');
+
 # Debug
-define( 'WP_DEBUG', true );
-if ( WP_DEBUG ) {
-    @ini_set( 'display_errors', 0 );
-    if ( !defined( 'WP_DEBUG_LOG' ) ) define( 'WP_DEBUG_LOG', 1 );
-    if ( !defined( 'WP_DEBUG_DISPLAY' ) ) define( 'WP_DEBUG_DISPLAY', false );
-    if ( !defined( 'SCRIPT_DEBUG' ) ) define( 'SCRIPT_DEBUG', 1 );
-    if ( !defined( 'SAVEQUERIES' ) ) define( 'SAVEQUERIES', 1 );
+define('WP_DEBUG', true);
+if (WP_DEBUG) {
+    @ini_set('display_errors', 0);
+    if (!defined('WP_DEBUG_LOG')) { define('WP_DEBUG_LOG', 1); }
+    if (!defined('WP_DEBUG_DISPLAY')) { define('WP_DEBUG_DISPLAY', false); }
+    if (!defined('SCRIPT_DEBUG')) { define('SCRIPT_DEBUG', 1); }
+    if (!defined('SAVEQUERIES')) { define('SAVEQUERIES', 1); }
 }
 
 ##WPUINSTALLER##
 PHP
 
-    if [[ $use_subfolder == 'y' ]]; then
+    if [[ ${use_subfolder} == 'y' ]]; then
         wpuinstaller_sed "s/##WPUINSTALLER##/define('WP_CONTENT_DIR', dirname(__FILE__)\.'\/\.\.\/wp-content');/g" "${MAINDIR}wp-cms/wp-config.php";
     else
         wpuinstaller_sed "s/##WPUINSTALLER##//g" "${MAINDIR}wp-config.php";
     fi;
 
 fi;
+
+## Default robots.txt
+CONTENT_ROBOTS_TXT=$(cat <<TXT
+User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+TXT
+);
+echo "${CONTENT_ROBOTS_TXT}" > "${MAINDIR}robots.txt";
 
 # If table are not present
 if ! $(php ${WPU_PHPCLI} core is-installed); then
