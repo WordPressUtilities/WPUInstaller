@@ -39,7 +39,7 @@ if [[ ! -f "${MAINDIR}wp-config.php" ]]; then
     php ${WPU_PHPCLI} core config --dbhost=${mysql_host} --dbname=${mysql_database} --dbuser=${mysql_user} --dbpass=${mysql_password} --dbprefix=${mysql_prefix} --extra-php <<PHP
 
 # URLs
-if(!\$_SERVER['HTTP_HOST']){
+if(!isset(\$_SERVER['HTTP_HOST']) || !\$_SERVER['HTTP_HOST']){
     \$_SERVER['HTTP_HOST'] = '${project_dev_url_raw}';
 }
 define('WP_SITEURL', 'http://' . \$_SERVER['HTTP_HOST'] . '/');
