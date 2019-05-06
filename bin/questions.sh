@@ -41,7 +41,7 @@ fi;
 project_l10n_tool='qtranslate';
 if [[ $project_l10n == 'y' ]]; then
     read -p "Use Polylang instead of qtranslate ? (Y/n) " use_polylang;
-    if [[ $use_polylang == 'y' ]]; then
+    if [[ $use_polylang != 'y' ]]; then
         project_l10n_tool='polylang';
     fi;
 fi;
