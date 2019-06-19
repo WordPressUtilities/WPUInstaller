@@ -60,7 +60,6 @@ fi;
 if [[ $install_recommended_plugins == 'y' ]]; then
     echo "## Install recommended plugins";
     php ${WPU_PHPCLI} plugin install limit-login-attempts --activate;
-    php ${WPU_PHPCLI} plugin install health-check --activate;
 
     # No activation
     php ${WPU_PHPCLI} plugin install query-monitor;
