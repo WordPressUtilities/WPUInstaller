@@ -11,7 +11,7 @@ if [[ ! -d 'wp-content' ]]; then
     if [[ $use_subfolder == 'y' ]]; then
         # Retrieve last WordPress version
         wget -O "${MAINDIR}version.json" http://api.wordpress.org/core/version-check/1.7/;
-        wp_version=$(stackov_parse_json $(cat ${MAINDIR}version.json) version);
+        wp_version=$(bashutilities_parse_json $(cat ${MAINDIR}version.json) version);
         git submodule add --quiet --depth 1 https://github.com/wordpress/wordpress wp-cms;
         echo "... loading latest WordPress version";
         cd "${MAINDIR}wp-cms";
@@ -67,9 +67,9 @@ if (WP_DEBUG) {
 PHP
 
     if [[ ${use_subfolder} == 'y' ]]; then
-        wpuinstaller_sed "s/##WPUINSTALLER##/define('WP_CONTENT_DIR', dirname(__FILE__)\.'\/\.\.\/wp-content');/g" "${MAINDIR}wp-cms/wp-config.php";
+        bashutilities_sed "s/##WPUINSTALLER##/define('WP_CONTENT_DIR', dirname(__FILE__)\.'\/\.\.\/wp-content');/g" "${MAINDIR}wp-cms/wp-config.php";
     else
-        wpuinstaller_sed "s/##WPUINSTALLER##//g" "${MAINDIR}wp-config.php";
+        bashutilities_sed "s/##WPUINSTALLER##//g" "${MAINDIR}wp-config.php";
     fi;
 
 fi;
