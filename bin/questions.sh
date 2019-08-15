@@ -46,15 +46,8 @@ if [[ $project_l10n == 'y' ]]; then
     fi;
 fi;
 
-read -p "Is the home page a CMS page ? (Y/n) " home_is_cms;
-if [[ $home_is_cms == '' ]]; then
-    home_is_cms="y";
-fi;
-
-read -p "Is it an ecommerce ? (y/N) " is_woocommerce;
-if [[ $is_woocommerce == 'y' ]]; then
-    is_woocommerce="y";
-fi;
+home_is_cms=$(bashutilities_get_yn "Is the home page a CMS page ?" 'y');
+is_woocommerce=$(bashutilities_get_yn "Is it an ecommerce ?" 'n');
 
 read -p "What's your email address ? [test@yopmail.com] : " email_address;
 if [[ $email_address == '' ]]; then
@@ -93,20 +86,9 @@ if [[ $mysql_database == '' ]]; then
 fi;
 echo "- MySQL Database: ${mysql_database}";
 
-read -p "Use git submodules ? (Y/n) " use_submodules;
-if [[ $use_submodules != 'n' ]]; then
-    use_submodules='y';
-fi;
-
-read -p "Install recommended plugins ? (Y/n) " install_recommended_plugins;
-if [[ $install_recommended_plugins != 'n' ]]; then
-    install_recommended_plugins='y';
-fi;
-
-read -p "Add shell scripts ? (y/N) " wpu_add_shell_scripts;
-if [[ $wpu_add_shell_scripts != 'y' ]]; then
-    wpu_add_shell_scripts='n';
-fi;
+use_submodules=$(bashutilities_get_yn "Use git submodules ?" 'n');
+install_recommended_plugins=$(bashutilities_get_yn "Install recommended plugins ?" 'y');
+wpu_add_shell_scripts=$(bashutilities_get_yn "Add shell scripts ?" 'n');
 
 read -p "Install WordPress in a subfolder ? (y/N) " use_subfolder;
 if [[ $use_subfolder == 'y' ]]; then
