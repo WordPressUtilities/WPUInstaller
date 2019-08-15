@@ -78,6 +78,9 @@ fi;
 CONTENT_ROBOTS_TXT=$(cat <<TXT
 User-agent: *
 Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/
+Allow: /wp-content/uploads/
 Allow: /wp-admin/admin-ajax.php
 TXT
 );
@@ -89,7 +92,6 @@ if ! $(php ${WPU_PHPCLI} core is-installed); then
     php ${WPU_PHPCLI} core install --url="${project_dev_url}" --title="${project_name}" --admin_user=admin --admin_password=admin --admin_email="${email_address}"
 fi
 
-
 if [[ $use_submodules == 'y' ]]; then
     php ${WPU_PHPCLI} core language install ${WP_LOCALE};
     php ${WPU_PHPCLI} core language activate ${WP_LOCALE};
@@ -99,6 +101,7 @@ fi;
 echo '### Deleting default items';
 if [[ $use_subfolder == 'n' ]]; then
     rm -rf "${MAINDIR}readme.html";
+    rm -rf "${MAINDIR}license.txt";
 fi;
 
 # Install subfolder
