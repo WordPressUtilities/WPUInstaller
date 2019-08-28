@@ -45,6 +45,12 @@ cp "${SCRIPTDIR}inc/home.php" "${WPU_THEME}home.php";
 cp "${SCRIPTDIR}inc/functions.php" "${WPU_THEME}functions.php";
 bashutilities_sed "s/wpuproject/${project_id}/g" "${WPU_THEME}functions.php";
 
+_functions_enable_multilingual='false';
+if [[ "${project_l10n}" == 'y' ]]; then
+    _functions_enable_multilingual='true';
+fi;
+bashutilities_sed "s/project_is_multilingual/__return_${_functions_enable_multilingual}/g" "${WPU_THEME}functions.php";
+
 # - Templates
 cp -rf "${SCRIPTDIR}inc/tpl/" "${WPU_THEME}tpl/";
 
