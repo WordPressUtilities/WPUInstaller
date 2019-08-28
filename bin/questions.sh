@@ -27,6 +27,15 @@ project_dev_url_raw=${project_dev_url/http:\/\//};
 project_dev_url_raw=${project_dev_url_raw/\//};
 echo "- Project URL: ${project_dev_url}";
 
+if [[ $(wget "${project_dev_url}" -O-) ]] 2>/dev/null; then
+    _website_access='1';
+else
+    echo $(bashutilities_message 'The project URL is not reachable. Please check it and try again.' 'error');
+    _website_access='0';
+    return 0;
+fi
+
+
 read -p "Is it a multilingual project ? (y/N) " project_l10n;
 if [[ $project_l10n != '' ]]; then
     project_l10n="y";
@@ -86,7 +95,15 @@ if [[ $mysql_database == '' ]]; then
 fi;
 echo "- MySQL Database: ${mysql_database}";
 
-use_submodules=$(bashutilities_get_yn "Use git submodules ?" 'n');
+# Test MySQL access
+_mysql_access_ok='1';
+if ! mysql -h "${mysql_host}" -u "${mysql_user}" -p"${mysql_password}" -e "use ${mysql_database}"; then
+    echo $(bashutilities_message 'Your MySQL Ids are invalid. Please check them and try again.' 'error');
+    _mysql_access_ok='0';
+    return 0;
+fi
+
+use_submodules=$(bashutilities_get_yn "Use git submodules ?" 'y');
 install_recommended_plugins=$(bashutilities_get_yn "Install recommended plugins ?" 'y');
 wpu_add_shell_scripts=$(bashutilities_get_yn "Add shell scripts ?" 'n');
 

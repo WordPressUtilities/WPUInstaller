@@ -7,6 +7,14 @@ export PATH=$PATH:/Applications/MAMP/Library/bin/
 . "${SCRIPTDIR}BashUtilities/bashutilities.sh";
 . "${SCRIPTDIR}bin/vars.sh";
 . "${SCRIPTDIR}bin/questions.sh";
+
+if [[ "${_website_access}" != '1' ]]; then
+    return 0;
+fi;
+if [[ "${_mysql_access_ok}" != '1' ]]; then
+    return 0;
+fi;
+
 . "${SCRIPTDIR}bin/git.sh";
 . "${SCRIPTDIR}bin/wpcli.sh";
 . "${SCRIPTDIR}bin/wp.sh";
