@@ -27,9 +27,13 @@ project_dev_url_raw=${project_dev_url/http:\/\//};
 project_dev_url_raw=${project_dev_url_raw/\//};
 echo "- Project URL: ${project_dev_url}";
 
-if [[ $(wget "${project_dev_url}" -O-) ]] 2>/dev/null; then
+touch "${MAINDIR}/test.html";
+echo '1' > "${MAINDIR}/test.html";
+if [[ $(wget "${project_dev_url}/test.html" -O-) ]] 2>/dev/null; then
     _website_access='1';
+    rm "${MAINDIR}/test.html";
 else
+    rm "${MAINDIR}/test.html";
     echo $(bashutilities_message 'The project URL is not reachable. Please check it and try again.' 'error');
     _website_access='0';
     return 0;
