@@ -35,7 +35,7 @@ mkdir "${MAINDIR}${WP_PLUGINS_DIR}";
 if [[ ! -f "${MAINDIR}wp-config.php" ]]; then
     echo '### Create WP Config';
 
-    echo $(mysql -h${mysql_host} -u${mysql_user} -p${mysql_password} -e "create database IF NOT EXISTS ${mysql_database};") > /dev/null;
+    echo $(mysql --defaults-extra-file="${MAINDIR}my.cnf" -e "create database IF NOT EXISTS ${mysql_database};") > /dev/null;
     php ${WPU_PHPCLI} core config --dbhost=${mysql_host} --dbname=${mysql_database} --dbuser=${mysql_user} --dbpass=${mysql_password} --dbprefix=${mysql_prefix} --extra-php <<PHP
 
 # URLs

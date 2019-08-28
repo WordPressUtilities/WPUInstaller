@@ -20,6 +20,7 @@ echo '### Set gitignore';
 echo "# WordPress
 node_modules
 .sass-cache
+my.cnf
 wp-cli.phar
 WPUtilities/
 /.htaccess
