@@ -19,10 +19,7 @@ if [[ $project_id == '' ]]; then
 fi;
 echo "- Project ID: ${project_id}";
 
-read -p "What's the project dev url ? [http://${project_id}.test] : " project_dev_url;
-if [[ $project_dev_url == '' ]]; then
-    project_dev_url="http://${project_id}.test";
-fi;
+project_dev_url=$(bashutilities_get_user_var "What's the project dev url ?" "http://${project_id}.test");
 project_dev_url_raw=${project_dev_url/http:\/\//};
 project_dev_url_raw=${project_dev_url_raw/\//};
 echo "- Project URL: ${project_dev_url}";
@@ -33,53 +30,33 @@ if [[ $(wget "${project_dev_url}/test.html" -O-) ]] 2>/dev/null; then
     _website_access='1';
     rm "${MAINDIR}/test.html";
 else
+    _website_access='0';
     rm "${MAINDIR}/test.html";
     echo $(bashutilities_message 'The project URL is not reachable. Please check it and try again.' 'error');
-    _website_access='0';
     return 0;
 fi
 
-read -p "What's your email address ? [test@yopmail.com] : " email_address;
-if [[ $email_address == '' ]]; then
-    email_address="test@yopmail.com";
-fi;
+email_address=$(bashutilities_get_user_var "What's your email address ?" "test@example.com");
 echo "- Email: ${email_address}";
 
 ###################################
 ## MYSQL
 ###################################
 
-read -p "What's the MYSQL HOST ? [localhost] : " mysql_host;
-if [[ $mysql_host == '' ]]; then
-    mysql_host="localhost";
-fi;
+mysql_host=$(bashutilities_get_user_var "What's the MYSQL HOST?" "localhost");
 echo "- MySQL Host: ${mysql_host}";
 
-read -p "What's the MYSQL USER ? [root] : " mysql_user;
-if [[ $mysql_user == '' ]]; then
-    mysql_user="root";
-fi;
+mysql_user=$(bashutilities_get_user_var "What's the MYSQL USER?" "root");
 echo "- MySQL User: ${mysql_user}";
 
-read -p "What's the MYSQL PASSWORD ? [root] : " mysql_password;
-if [[ $mysql_password == '' ]]; then
-    mysql_password="root";
-fi;
+mysql_password=$(bashutilities_get_user_var "What's the MYSQL PASSWORD?" "root");
 echo "- MySQL Pass: ${mysql_password}";
 
-default_mysql_prefix="$(echo ${project_id} | cut -c1-3)_";
-read -p "What's the MYSQL PREFIX ? [${default_mysql_prefix}] : " mysql_prefix;
-if [[ $mysql_prefix == '' ]]; then
-    mysql_prefix="${default_mysql_prefix}";
-fi;
+mysql_prefix=$(bashutilities_get_user_var "What's the MYSQL PREFIX?" "$(echo ${project_id} | cut -c1-3)_");
 echo "- MySQL Prefix: ${mysql_prefix}";
 
-read -p "What's the MYSQL DATABASE ? [${project_id}] : " mysql_database;
-if [[ $mysql_database == '' ]]; then
-    mysql_database="${project_id}";
-fi;
+mysql_database=$(bashutilities_get_user_var "What's the MYSQL DATABASE?" "${project_id}");
 echo "- MySQL Database: ${mysql_database}";
-
 
 # Create my.cnf
 MY_CNF_CONTENT=$(cat <<TXT
@@ -121,7 +98,6 @@ fi;
 ## Config
 ###################################
 
-
 read -p "Is it a multilingual project ? (y/N) " project_l10n;
 if [[ $project_l10n != '' ]]; then
     project_l10n="y";
@@ -136,7 +112,7 @@ fi;
 project_l10n_tool='qtranslate';
 if [[ $project_l10n == 'y' ]]; then
     read -p "Use Polylang instead of qtranslate ? (Y/n) " use_polylang;
-    if [[ $use_polylang != 'y' ]]; then
+    if [[ $use_polylang != 'n' ]]; then
         project_l10n_tool='polylang';
     fi;
 fi;
