@@ -66,6 +66,7 @@ mkdir "${WPU_THEME}inc/lang/";
 WPU_THEME_TRANSLATE_FILE="${WPU_THEME}inc/lang/${WP_LOCALE}.po";
 cp "${SCRIPTDIR}inc/lang/fr_FR.po" "${WPU_THEME_TRANSLATE_FILE}";
 bashutilities_sed "s/fr_FR/${WP_LOCALE}/g" "${WPU_THEME_TRANSLATE_FILE}";
+bashutilities_sed "s/wpuprojectid/${project_id}/g" "${WPU_THEME_TRANSLATE_FILE}";
 bashutilities_sed "s/wpuproject/${project_name}/g" "${WPU_THEME_TRANSLATE_FILE}";
 
 # - Assets
