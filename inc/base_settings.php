@@ -18,8 +18,12 @@ class wpuprojectid_settings {
         global $wpu_settings_version;
         if (method_exists($wpu_settings_version, 'activate_plugins')) {
             $wpu_settings_version->activate_plugins(array(
-                'taxonomy-terms-order/taxonomy-terms-order.php',
-                'wpuimporttwitter/wpuimporttwitter.php',
+                'wpudisabler/wpudisabler.php',
+                'wpuoptions/wpuoptions.php',
+                'wpupostmetas/wpupostmetas.php',
+                'wpuposttypestaxos/wpuposttypestaxos.php',
+                'wpuseo/wpuseo.php',
+                'wputaxometas/wputaxometas.php'
             ));
         }
 
