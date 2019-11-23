@@ -45,6 +45,9 @@ if(!isset(\$_SERVER['HTTP_HOST']) || !\$_SERVER['HTTP_HOST']){
 define('WP_SITEURL', 'http://' . \$_SERVER['HTTP_HOST'] . '/');
 define('WP_HOME', 'http://' . \$_SERVER['HTTP_HOST'] . '/');
 
+# CRONs
+define('DISABLE_WP_CRON', true);
+
 # Config
 define('EMPTY_TRASH_DAYS', 7);
 define('WP_POST_REVISIONS', 6);
