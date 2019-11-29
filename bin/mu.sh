@@ -14,6 +14,11 @@ echo "## Install wpu_muplugin_autoloader";
 cp "${MAINDIR}WPUtilities/${WP_MUPLUGINS_DIR}wpu_muplugin_autoloader.php" "${MAINDIR}${WP_MUPLUGINS_DIR}wpu_muplugin_autoloader.php";
 echo "- wpu_muplugin_autoloader is installed.";
 
+echo "## Install wpu_local_overrides.php";
+cp "${SCRIPTDIR}inc/wpu_local_overrides.php" "${MAINDIR}${WP_MUPLUGINS_DIR}wpu_local_overrides.php";
+bashutilities_sed "s/wpuproject/${project_name}/g" "${MAINDIR}${WP_MUPLUGINS_DIR}wpu_local_overrides.php";
+echo "- wpu_local_overrides is installed.";
+
 # Forced MU Plugins
 for i in $WPU_FORCED_MUPLUGINS
 do

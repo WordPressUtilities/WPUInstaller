@@ -1,0 +1,50 @@
+<?php
+/*
+Plugin Name: [wpuproject] Local Overrides
+Description: Site local overrides.
+*/
+
+###################################
+## DO _NOT_ COMMIT THIS FILE
+###################################
+
+/* ----------------------------------------------------------
+  Override some DB Options values
+---------------------------------------------------------- */
+
+class WPUOverrideOptions {
+    private $options = array(
+        # Uncomment the following array lines or add new ones.
+        # - Override admin Email
+        # 'admin_email' => 'test@example.com',
+        # 'new_admin_email' => 'test@example.com',
+    );
+
+    public function __construct() {
+        foreach ($this->options as $option => $val) {
+            add_filter('pre_option_' . $option, array(&$this, 'change_option_value'), 10, 2);
+        }
+    }
+
+    public function change_option_value($val, $option) {
+        return array_key_exists($option, $this->options) ? $this->options[$option] : $val;
+    }
+}
+
+new WPUOverrideOptions();
+
+/* ----------------------------------------------------------
+  Override some 404 for images
+---------------------------------------------------------- */
+
+# Add your own URL and uncomment
+add_action('wpuux_preventheavy404_before_headers', function ($extension) {
+    $images_ext = array(
+        'jpg',
+        'png'
+    );
+    if (!isset($_SERVER['REQUEST_URI']) || empty($_SERVER['REQUEST_URI']) || !in_array($extension, $images_ext)) {
+        return;
+    }
+    # wp_redirect('https://PRODUCTIONURL/' . $_SERVER['REQUEST_URI']); exit;
+}, 10, 1);

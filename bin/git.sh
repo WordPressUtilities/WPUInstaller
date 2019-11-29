@@ -22,6 +22,7 @@ node_modules
 .sass-cache
 my.cnf
 wp-cli.phar
+wpu_local_overrides.php
 WPUtilities/
 /.htaccess
 wp-content/themes/${project_id}/tests/config.json
