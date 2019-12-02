@@ -42,11 +42,17 @@ if [[ ! -f "${MAINDIR}wp-config.php" ]]; then
 if(!isset(\$_SERVER['HTTP_HOST']) || !\$_SERVER['HTTP_HOST']){
     \$_SERVER['HTTP_HOST'] = '${project_dev_url_raw}';
 }
+if(!isset(\$_SERVER['SERVER_PROTOCOL']) || !\$_SERVER['SERVER_PROTOCOL']){
+    \$_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.0';
+}
 define('WP_SITEURL', 'http://' . \$_SERVER['HTTP_HOST'] . '/');
 define('WP_HOME', 'http://' . \$_SERVER['HTTP_HOST'] . '/');
 
 # CRONs
 define('DISABLE_WP_CRON', true);
+
+# Environment
+define('WPU_ENVIRONMENT', 'local');
 
 # Config
 define('EMPTY_TRASH_DAYS', 7);
