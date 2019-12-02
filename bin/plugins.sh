@@ -62,6 +62,7 @@ if [[ $install_recommended_plugins == 'y' ]]; then
     php ${WPU_PHPCLI} plugin install limit-login-attempts --activate;
 
     # No activation
+    php ${WPU_PHPCLI} plugin install classic-editor;
     php ${WPU_PHPCLI} plugin install query-monitor;
     php ${WPU_PHPCLI} plugin install google-sitemap-generator;
 
