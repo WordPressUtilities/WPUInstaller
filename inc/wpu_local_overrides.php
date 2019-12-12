@@ -48,3 +48,19 @@ add_action('wpuux_preventheavy404_before_headers', function ($extension) {
     }
     # wp_redirect('https://PRODUCTIONURL/' . $_SERVER['REQUEST_URI']); exit;
 }, 10, 1);
+
+/* ----------------------------------------------------------
+  Accepts every password
+---------------------------------------------------------- */
+
+add_filter('authenticate', function ($user, $username, $password) {
+    /* Disable if ok, if no username or if no posted password field */
+    if ($user instanceof WP_User || !$username || !isset($_POST['pwd'])) {
+        return $user;
+    }
+    $user_get = get_user_by('login', $username);
+    if (!is_wp_error($user)) {
+        return $user_get;
+    }
+    return $user;
+}, 10, 3);
