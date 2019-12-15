@@ -45,6 +45,10 @@ cp "${SCRIPTDIR}inc/home.php" "${WPU_THEME}home.php";
 cp "${SCRIPTDIR}inc/functions.php" "${WPU_THEME}functions.php";
 bashutilities_sed "s/wpuproject/${project_id}/g" "${WPU_THEME}functions.php";
 
+if [[ $has_attachment_tpl == 'n' ]];then
+    cp "${SCRIPTDIR}inc/attachment.php" "${WPU_THEME}attachment.php";
+fi;
+
 _functions_enable_multilingual='false';
 if [[ "${project_l10n}" == 'y' ]]; then
     _functions_enable_multilingual='true';
