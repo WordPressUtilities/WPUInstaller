@@ -1,5 +1,5 @@
 <IfModule mod_headers.c>
-<FilesMatch (.git|.scss|grunt/|inc/|node_modules/|config.rb|Gruntfile.js|gruntfile.js|package.json)>
+<FilesMatch (.git|\.php|\.scss|browserslist|config.rb|grunt/|Gruntfile.js|gruntfile.js|gulp/|gulpfile.js|inc/|lang/|Makefile|node_modules/|package-lock.json|package.json|tpl/)>
 Deny from all
 </FilesMatch>
 </IfModule>
