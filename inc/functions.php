@@ -10,7 +10,7 @@ include dirname(__FILE__) . '/../WPUTheme/z-protect.php';
 
 add_action('after_setup_theme', 'wpuproject_setup');
 function wpuproject_setup() {
-    load_theme_textdomain('wpuproject', get_stylesheet_directory() . '/inc/lang');
+    load_theme_textdomain('wpuproject', get_stylesheet_directory() . '/lang');
 }
 
 /* Social networks
@@ -21,7 +21,7 @@ function wpuproject_wputheme_social_links($links) {
     return array(
         'twitter' => 'Twitter',
         'facebook' => 'Facebook',
-        'instagram' => 'Instagram',
+        'instagram' => 'Instagram'
     );
 }
 
@@ -54,12 +54,12 @@ function wputh_set_pages_site($pages_site) {
     $pages_site['about__page_id'] = array(
         'constant' => 'ABOUT__PAGE_ID',
         'post_title' => 'A Propos',
-        'post_content' => '<p>Contenu à propos.</p>',
+        'post_content' => '<p>Contenu à propos.</p>'
     );
     $pages_site['mentions__page_id'] = array(
         'constant' => 'MENTIONS__PAGE_ID',
         'post_title' => 'Mentions légales',
-        'post_content' => '<p>Contenu des mentions légales</p>',
+        'post_content' => '<p>Contenu des mentions légales</p>'
     );
     return $pages_site;
 }
@@ -69,8 +69,13 @@ function wputh_set_pages_site($pages_site) {
 
 add_filter('wputh_javascript_files', 'wpuproject_javascript_files', 99, 1);
 function wpuproject_javascript_files($js_files) {
+    /* Remove some WPUTheme scripts */
     unset($js_files['functions-faq-accordion']);
     unset($js_files['functions-search-form-check']);
+    unset($js_files['wputh-maps']);
+    unset($js_files['events']);
+
+    /* Load this theme scripts */
     $js_files['events'] = array(
         'uri' => '/assets/js/events.js',
         'footer' => 1
@@ -128,7 +133,7 @@ add_filter('wpu_thumbnails_sizes', 'wpuproject_set_wpu_thumbnails_sizes');
 function wpuproject_set_wpu_thumbnails_sizes($sizes) {
     $sizes['big'] = array(
         'w' => 1280,
-        'h' => 1280,
+        'h' => 1280
     );
     return $sizes;
 }

@@ -63,12 +63,12 @@ cp -rf "${SCRIPTDIR}inc/tests/" "${WPU_THEME}tests/";
 bashutilities_sed "s,wpuprojecturl,${project_dev_url},g" "${WPU_THEME}tests/config.json";
 
 # - Translation
-mkdir "${WPU_THEME}inc/";
-touch "${WPU_THEME}inc/.htaccess";
-echo 'deny from all' > "${WPU_THEME}inc/.htaccess";
-mkdir "${WPU_THEME}inc/lang/";
-WPU_THEME_TRANSLATE_FILE="${WPU_THEME}inc/lang/${WP_LOCALE}.po";
-cp "${SCRIPTDIR}inc/lang/fr_FR.po" "${WPU_THEME_TRANSLATE_FILE}";
+mkdir "${WPU_THEME}lang/";
+touch "${WPU_THEME}lang/.htaccess";
+echo 'deny from all' > "${WPU_THEME}lang/.htaccess";
+mkdir "${WPU_THEME}lang/";
+WPU_THEME_TRANSLATE_FILE="${WPU_THEME}lang/${WP_LOCALE}.po";
+cp "${SCRIPTDIR}lang/fr_FR.po" "${WPU_THEME_TRANSLATE_FILE}";
 bashutilities_sed "s/fr_FR/${WP_LOCALE}/g" "${WPU_THEME_TRANSLATE_FILE}";
 bashutilities_sed "s/wpuprojectid/${project_id}/g" "${WPU_THEME_TRANSLATE_FILE}";
 bashutilities_sed "s/wpuproject/${project_name}/g" "${WPU_THEME_TRANSLATE_FILE}";
