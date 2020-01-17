@@ -37,17 +37,6 @@ new WPUOverrideOptions();
   Override some 404 for images
 ---------------------------------------------------------- */
 
-# Add your own URL and uncomment
-add_action('wpuux_preventheavy404_before_headers', function ($extension) {
-    $images_ext = array(
-        'jpg',
-        'png'
-    );
-    if (!isset($_SERVER['REQUEST_URI']) || empty($_SERVER['REQUEST_URI']) || !in_array($extension, $images_ext)) {
-        return;
-    }
-    # wp_redirect('https://PRODUCTIONURL/' . $_SERVER['REQUEST_URI']); exit;
-}, 10, 1);
 add_filter('rewrite_rules',function ($rules){
 
     # Add your own URL below and remove the next line
