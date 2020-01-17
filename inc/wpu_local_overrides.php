@@ -48,6 +48,26 @@ add_action('wpuux_preventheavy404_before_headers', function ($extension) {
     }
     # wp_redirect('https://PRODUCTIONURL/' . $_SERVER['REQUEST_URI']); exit;
 }, 10, 1);
+add_filter('rewrite_rules',function ($rules){
+
+    # Add your own URL below and remove the next line
+    return $rules;
+
+    $new_rules = <<<EOT
+
+# Redirect to prod if image does not exists
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} (\.jpg|\.png|\.gif)$ [NC]
+RewriteRule ^(.*)$ https://PRODUCTIONURL/$1 [R,L]
+</IfModule>
+# End Redirect
+
+EOT;
+    return $new_rules . $rules;
+}, 10, 1);
+
 
 /* ----------------------------------------------------------
   Accepts every password
