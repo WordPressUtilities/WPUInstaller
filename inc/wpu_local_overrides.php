@@ -57,6 +57,17 @@ EOT;
     return $new_rules . $rules;
 }, 10, 1);
 
+/*
+# NGINX RULE :
+#
+# define error page
+error_page 404 = @customerror404;
+location @customerror404 {
+    if ($request_filename ~* [jpg|png|gif]$){
+        return 302 https://PRODUCTIONURL/$document_uri;
+    }
+}
+*/
 
 /* ----------------------------------------------------------
   Accepts every password
