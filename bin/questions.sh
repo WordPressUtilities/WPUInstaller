@@ -122,6 +122,13 @@ is_woocommerce=$(bashutilities_get_yn "Is it an ecommerce ?" 'n');
 has_attachment_tpl=$(bashutilities_get_yn "Do you need the attachment template ?" 'n');
 use_submodules=$(bashutilities_get_yn "Use git submodules ?" 'y');
 install_recommended_plugins=$(bashutilities_get_yn "Install recommended plugins ?" 'y');
+need_acf=$(bashutilities_get_yn "Do you need Advanced Custom Fields ?" 'y');
+if [[ $need_acf == 'y' ]]; then
+    read -p "What's your ACF API Key ? " acf_api_key;
+    if [[ $acf_api_key == '' ]]; then
+        need_acf="n";
+    fi;
+fi;
 wpu_add_shell_scripts=$(bashutilities_get_yn "Add shell scripts ?" 'n');
 
 read -p "Install WordPress in a subfolder ? (y/N) " use_subfolder;

@@ -56,6 +56,20 @@ if [[ $is_woocommerce == 'y' ]]; then
     git commit --no-verify -m "Installation - Plugin : Woocommerce" --quiet;
 fi;
 
+# ACF
+if [[ $need_acf == 'y' ]];then
+    echo "## Install ACF";
+    wp plugin install "http://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=${acf_api_key}" --activate;
+    cd "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
+    if [[ $use_submodules == 'y' ]]; then
+        git submodule --quiet add "https://github.com/WordPressUtilities/wpu_acf_flexible.git";
+    else
+        git clone --quiet "https://github.com/WordPressUtilities/wpu_acf_flexible.git";
+        rm -rf "${i}/.git";
+    fi;
+    cd "${MAINDIR}";
+fi;
+
 # Recommended
 if [[ $install_recommended_plugins == 'y' ]]; then
     echo "## Install recommended plugins";
