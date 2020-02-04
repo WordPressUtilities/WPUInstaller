@@ -88,4 +88,4 @@ fi;
 
 # Language
 echo "## Update language";
-php ${WPU_PHPCLI} language core update;
+php ${WPU_PHPCLI} language plugin update --all;

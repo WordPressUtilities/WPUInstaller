@@ -101,10 +101,9 @@ if ! $(php ${WPU_PHPCLI} core is-installed); then
     php ${WPU_PHPCLI} core install --url="${project_dev_url}" --title="${project_name}" --admin_user=admin --admin_password=admin --admin_email="${email_address}"
 fi
 
-if [[ $use_submodules == 'y' ]]; then
-    php ${WPU_PHPCLI} core language install ${WP_LOCALE};
-    php ${WPU_PHPCLI} core language activate ${WP_LOCALE};
-fi;
+
+php ${WPU_PHPCLI} core language install ${WP_LOCALE};
+php ${WPU_PHPCLI} core language activate ${WP_LOCALE};
 
 # Deleting default items
 echo '### Deleting default items';
