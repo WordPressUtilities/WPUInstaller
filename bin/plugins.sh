@@ -89,3 +89,6 @@ fi;
 # Language
 echo "## Update language";
 php ${WPU_PHPCLI} language plugin update --all;
+
+git add -A
+git commit --no-verify -m "Installation - Plugin Lang" --quiet;
