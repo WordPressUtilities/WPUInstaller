@@ -4,6 +4,7 @@ wputh_display_title();
 wp_nav_menu( array(
     'depth' => 2,
     'theme_location' => 'main',
+    'fallback_cb' => 'wputh_default_menu',
     'container_class' => 'main-menu__wrapper',
     'menu_class' => 'main-menu'
 ) );
