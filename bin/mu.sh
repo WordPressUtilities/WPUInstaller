@@ -8,6 +8,7 @@ echo '### MU-Plugins installation';
 
 mkdir "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
 mkdir "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}";
+mkdir "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/pages";
 mkdir "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/entities";
 
 echo "## Install wpu_muplugin_autoloader";
@@ -63,9 +64,10 @@ bashutilities_sed "s/wpuproject/${project_name}/g" "${MAINDIR}${WP_MUPLUGINS_DIR
 
 # Home page
 if [[ "${home_is_cms}" == 'y' ]]; then
-    cp "${SCRIPTDIR}inc/cms_home.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_home.php";
-    bashutilities_sed "s/wpuprojectname/${project_name}/g" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_home.php";
-    bashutilities_sed "s/wpuprojectid/${project_id}/g" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_home.php";
+    home__cms_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/pages/${project_id}_home.php";
+    cp "${SCRIPTDIR}inc/cms_home.php" "${home__cms_file}";
+    bashutilities_sed "s/wpuprojectname/${project_name}/g" "${home__cms_file}";
+    bashutilities_sed "s/wpuprojectid/${project_id}/g" "${home__cms_file}";
     home__page_id=$(php ${WPU_PHPCLI} option get home__page_id)
     php ${WPU_PHPCLI} option update page_on_front "${home__page_id}";
     php ${WPU_PHPCLI} option update show_on_front "page";
