@@ -5,6 +5,7 @@ SCRIPTDIR="$( dirname "${BASH_SOURCE[0]}" )/";
 export PATH=$PATH:/Applications/MAMP/Library/bin/
 
 . "${SCRIPTDIR}BashUtilities/bashutilities.sh";
+. "${SCRIPTDIR}bin/tools.sh";
 . "${SCRIPTDIR}bin/vars.sh";
 . "${SCRIPTDIR}bin/questions.sh";
 

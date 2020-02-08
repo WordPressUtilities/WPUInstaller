@@ -19,12 +19,8 @@ if [[ $wpu_add_shell_scripts == 'y' ]]; then
     echo 'deny from all' > "${WPU_SHELL}.htaccess";
 
     # Add submodule
-    if [[ $use_submodules == 'y' ]]; then
-        git submodule --quiet add "https://github.com/WordPressUtilities/wpuwooimportexport.git";
-    else
-        git clone --quiet "https://github.com/WordPressUtilities/wpuwooimportexport.git";
-        rm -rf "wpuwooimportexport/.git";
-    fi;
+    wpui_submodule_or_install "https://github.com/WordPressUtilities/wpuwooimportexport.git" "${use_submodules}";
+
     # Add example
     cp "${SCRIPTDIR}inc/base_shell.php" "${WPU_SHELL}clean.php"
     bashutilities_sed "s/wpuprojectid/${project_id}/g" "${WPU_SHELL}clean.php";

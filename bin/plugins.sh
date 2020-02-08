@@ -10,12 +10,7 @@ for i in $WPU_SUBMODULE_PLUGINS
 do
     echo "## Install ${i}";
     cd "${MAINDIR}${WP_PLUGINS_DIR}";
-    if [[ $use_submodules == 'y' ]]; then
-        git submodule --quiet add "https://github.com/WordPressUtilities/${i}.git";
-    else
-        git clone --quiet "https://github.com/WordPressUtilities/${i}.git";
-        rm -rf "${i}/.git";
-    fi;
+    wpui_submodule_or_install "https://github.com/WordPressUtilities/${i}.git" "${use_submodules}";
     cd "${MAINDIR}";
     php ${WPU_PHPCLI} plugin activate "${i}";
 done;
@@ -62,12 +57,7 @@ if [[ $need_acf == 'y' ]];then
     wp plugin install "http://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=${acf_api_key}" --activate;
     wp plugin install acf-extended --activate;
     cd "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
-    if [[ $use_submodules == 'y' ]]; then
-        git submodule --quiet add "https://github.com/WordPressUtilities/wpu_acf_flexible.git";
-    else
-        git clone --quiet "https://github.com/WordPressUtilities/wpu_acf_flexible.git";
-        rm -rf "${i}/.git";
-    fi;
+    wpui_submodule_or_install "https://github.com/WordPressUtilities/wpu_acf_flexible.git" "${use_submodules}";
     cd "${MAINDIR}";
 fi;
 
