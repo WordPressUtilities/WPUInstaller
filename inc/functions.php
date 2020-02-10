@@ -131,9 +131,6 @@ function wpuproject_googlefonts() {
 
 add_filter('wpu_thumbnails_sizes', 'wpuproject_set_wpu_thumbnails_sizes');
 function wpuproject_set_wpu_thumbnails_sizes($sizes) {
-    $sizes['big'] = array(
-        'w' => 1280,
-        'h' => 1280
-    );
+    // $sizes['big'] = array('w' => 1280,'h' => 1280);
     return $sizes;
 }
