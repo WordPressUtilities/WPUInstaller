@@ -34,7 +34,7 @@ Author URI: http://darklg.me/
 cp "${SCRIPTDIR}inc/htaccess.txt" "${WPU_THEME}.htaccess";
 
 # - Index
-cp "${SCRIPTDIR}inc/home.php" "${WPU_THEME}home.php";
+cp "${SCRIPTDIR}inc/home.php" "${WPU_THEME}front-page.php";
 
 # - Functions
 cp "${SCRIPTDIR}inc/functions.php" "${WPU_THEME}functions.php";
