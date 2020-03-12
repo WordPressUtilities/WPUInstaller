@@ -48,7 +48,7 @@ add_filter('rewrite_rules',function ($rules){
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_URI} (\.jpg|\.png|\.gif)$ [NC]
+RewriteCond %{REQUEST_URI} (\.jpg|\.jpeg|\.png|\.gif)$ [NC]
 RewriteRule ^(.*)$ https://PRODUCTIONURL/$1 [R,L]
 </IfModule>
 # End Redirect
