@@ -28,5 +28,6 @@ WPUtilities/
 wp-content/themes/${project_id}/tests/config.json
 wp-content/themes/twenty*
 wp-content/uploads/
+wp-content/db.php
 wp-content/debug.log
 wp-config.php" >> "${wpu_git_root_dir}/.gitignore";
