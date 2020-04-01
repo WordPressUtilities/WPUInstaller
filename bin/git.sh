@@ -30,5 +30,6 @@ wp-content/object-cache.php
 wp-content/themes/${project_id}/tests/config.json
 wp-content/themes/twenty*
 wp-content/uploads/
+wpu-test.php
 wpu_local_overrides.php
 WPUtilities/" >> "${wpu_git_root_dir}/.gitignore";
