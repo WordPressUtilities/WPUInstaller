@@ -83,6 +83,11 @@ function wpuproject_javascript_files($js_files) {
     return $js_files;
 }
 
+/* Load common libs */
+
+add_filter('wputh_common_libraries__slickslider', '__return_true', 1, 1);
+add_filter('wputh_common_libraries__simplebar', '__return_true', 1, 1);
+
 /* Styles
  -------------------------- */
 
