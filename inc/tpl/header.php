@@ -1,3 +1,4 @@
+<div class="centered-container cc-header-main">
 <header class="header-main">
 <?php
 wputh_display_title();
@@ -11,4 +12,6 @@ wp_nav_menu( array(
 ) );
 echo wputh_get_social_links_html();
 ?>
+<a href="#" class="nav-toggle"><span></span></a>
 </header>
+</div>
