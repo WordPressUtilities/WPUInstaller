@@ -83,24 +83,11 @@ PHP
 
 fi;
 
-## Default robots.txt
-CONTENT_ROBOTS_TXT=$(cat <<TXT
-User-agent: *
-Disallow: /wp-admin/
-Disallow: /wp-includes/
-Disallow: /wp-content/
-Allow: /wp-content/uploads/
-Allow: /wp-admin/admin-ajax.php
-TXT
-);
-echo "${CONTENT_ROBOTS_TXT}" > "${MAINDIR}robots.txt";
-
 # If table are not present
 if ! $(php ${WPU_PHPCLI} core is-installed); then
     echo '### Install WP';
     php ${WPU_PHPCLI} core install --url="${project_dev_url}" --title="${project_name}" --admin_user=admin --admin_password=admin --admin_email="${email_address}"
 fi
-
 
 php ${WPU_PHPCLI} core language install ${WP_LOCALE};
 php ${WPU_PHPCLI} core language activate ${WP_LOCALE};
