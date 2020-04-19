@@ -27,6 +27,7 @@ wp-config.php
 wp-content/db.php
 wp-content/debug.log
 wp-content/object-cache.php
+wp-content/languages/themes/twenty*
 wp-content/themes/${project_id}/tests/config.json
 wp-content/themes/twenty*
 wp-content/uploads/
