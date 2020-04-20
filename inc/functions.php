@@ -47,15 +47,18 @@ add_filter('wputheme_display_header', '__return_false', 1, 1);
 add_filter('wputheme_display_mainwrapper', '__return_false', 1, 1);
 add_filter('wputheme_display_footer', '__return_false', 1, 1);
 
+/* Menus
+-------------------------- */
+
+add_filter('wputh_default_menus', function ($menus) {
+    $menus['footer'] = 'Footer';
+    return $menus;
+}, 10, 1);
+
 /* Pages
  -------------------------- */
 
 function wputh_set_pages_site($pages_site) {
-    $pages_site['about__page_id'] = array(
-        'constant' => 'ABOUT__PAGE_ID',
-        'post_title' => 'A Propos',
-        'post_content' => '<p>Contenu à propos.</p>'
-    );
     $pages_site['mentions__page_id'] = array(
         'constant' => 'MENTIONS__PAGE_ID',
         'post_title' => 'Mentions légales',
@@ -118,6 +121,24 @@ function wpuproject_remove_page_templates($templates) {
     unset($templates['page-templates/page-webservice.php']);
     unset($templates['page-templates/page-woocommerce.php']);
     return $templates;
+}
+
+/* Exclude default widgets
+-------------------------- */
+
+add_action('widgets_init', 'wpuproject_unregister_default_widgets', 11);
+function wpuproject_unregister_default_widgets() {
+    unregister_widget('WP_Widget_Pages');
+    unregister_widget('WP_Widget_Calendar');
+    unregister_widget('WP_Widget_Archives');
+    unregister_widget('WP_Widget_Links');
+    unregister_widget('WP_Widget_Meta');
+    unregister_widget('WP_Widget_Search');
+    unregister_widget('WP_Widget_Categories');
+    unregister_widget('WP_Widget_Recent_Posts');
+    unregister_widget('WP_Widget_Recent_Comments');
+    unregister_widget('WP_Widget_RSS');
+    unregister_widget('WP_Nav_Menu_Widget');
 }
 
 /* Google Fonts
