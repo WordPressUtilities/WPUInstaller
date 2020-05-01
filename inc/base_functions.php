@@ -30,3 +30,14 @@ add_filter('pre_get_posts', function ($query) {
     }
     return $query;
 });
+
+/* ----------------------------------------------------------
+  Disable author page
+---------------------------------------------------------- */
+
+add_action('template_redirect', function () {
+    if (is_author()) {
+        wp_redirect(site_url());
+        die;
+    }
+});
