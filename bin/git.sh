@@ -24,13 +24,18 @@ my.cnf
 node_modules
 wp-cli.phar
 wp-config.php
+wp-content/advanced-cache.php
+wp-content/cache/
 wp-content/db.php
 wp-content/debug.log
-wp-content/object-cache.php
 wp-content/languages/themes/twenty*
+wp-content/object-cache.php
+wp-content/plugins/wp-rocket/license-data.php
 wp-content/themes/${project_id}/tests/config.json
 wp-content/themes/twenty*
 wp-content/uploads/
+wp-content/w3tc-config/
+wp-content/wp-rocket-config/
 wpu-test.php
 wpu_local_overrides.php
 WPUtilities/" >> "${wpu_git_root_dir}/.gitignore";
