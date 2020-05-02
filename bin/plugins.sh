@@ -78,6 +78,7 @@ fi;
 
 # Language
 echo "## Update language";
+php ${WPU_PHPCLI} language plugin install --all "${WP_LOCALE}";
 php ${WPU_PHPCLI} language plugin update --all;
 
 git add -A
