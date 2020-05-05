@@ -47,6 +47,16 @@ do
         echo "- ${i} is installed.";
     fi;
 done;
+for i in $WPU_SUBMODULES_MUPLUGINS
+do
+    read -p "## Install ${i} ? (y/N) " install_muplugin;
+    if [[ $install_muplugin == 'y' ]];then
+        cd "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
+        wpui_submodule_or_install "https://github.com/WordPressUtilities/${i}.git" "${use_submodules}";
+        cd "${MAINDIR}";
+        echo "- ${i} is installed.";
+    fi;
+done;
 
 # Base Functions plugin
 _functions_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_functions.php";

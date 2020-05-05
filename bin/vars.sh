@@ -12,5 +12,6 @@ WP_PLUGINS_DIR='wp-content/plugins/';
 WPU_SUBMODULE_PLUGINS="wpuoptions wpupostmetas wpuseo wpuposttypestaxos wputaxometas wpudisabler";
 WPU_FORCED_MUPLUGINS="wpu_body_classes wpu_settings_version";
 WPU_SUBMODULES_FORCED_MUPLUGINS="wpu_ux_tweaks wpu_file_cache";
-WPU_MUPLUGINS="wpudisablecomments wpudisablesearch wpudisableposts wputh_admin_protect";
+WPU_SUBMODULES_MUPLUGINS="wpudisablecomments wpudisablesearch wpudisableposts";
+WPU_MUPLUGINS="wputh_admin_protect";
 WPU_PHPCLI="${MAINDIR}wp-cli.phar";
