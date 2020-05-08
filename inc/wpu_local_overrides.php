@@ -37,7 +37,7 @@ new WPUOverrideOptions();
   Override some 404 for images
 ---------------------------------------------------------- */
 
-add_filter('rewrite_rules',function ($rules){
+add_filter('mod_rewrite_rules',function ($rules){
 
     # Add your own URL below and remove the next line
     return $rules;
