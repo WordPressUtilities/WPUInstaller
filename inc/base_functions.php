@@ -41,3 +41,14 @@ add_action('template_redirect', function () {
         die;
     }
 });
+
+/* ----------------------------------------------------------
+  Allow SVG upload for admins
+---------------------------------------------------------- */
+
+add_filter('upload_mimes', function ($mimes) {
+    if (current_user_can('delete_users')) {
+        $mimes['svg'] = 'image/svg+xml';
+    }
+    return $mimes;
+});
