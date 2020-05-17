@@ -51,8 +51,10 @@ add_filter('wputheme_display_footer', '__return_false', 1, 1);
 -------------------------- */
 
 add_filter('wputh_default_menus', function ($menus) {
-    $menus['footer'] = 'Footer';
-    return $menus;
+    return array(
+        'main' => __('Main menu', 'wpuproject'),
+        'footer' => __('Footer menu', 'wpuproject')
+    );
 }, 10, 1);
 
 /* Pages
