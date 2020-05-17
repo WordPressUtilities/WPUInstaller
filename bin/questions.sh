@@ -109,13 +109,6 @@ else
     WP_LOCALE="${user_locale}";
     echo "- Locale: ${WP_LOCALE}";
 fi;
-project_l10n_tool='qtranslate';
-if [[ $project_l10n == 'y' ]]; then
-    read -p "Use Polylang instead of qtranslate ? (Y/n) " use_polylang;
-    if [[ $use_polylang != 'n' ]]; then
-        project_l10n_tool='polylang';
-    fi;
-fi;
 
 home_is_cms=$(bashutilities_get_yn "Is the home page a CMS page ?" 'y');
 is_woocommerce=$(bashutilities_get_yn "Is it an ecommerce ?" 'n');
