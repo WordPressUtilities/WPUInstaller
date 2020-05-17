@@ -114,6 +114,26 @@ home_is_cms=$(bashutilities_get_yn "Is the home page a CMS page ?" 'y');
 is_woocommerce=$(bashutilities_get_yn "Is it an ecommerce ?" 'n');
 has_attachment_tpl=$(bashutilities_get_yn "Do you need the attachment template ?" 'n');
 use_submodules=$(bashutilities_get_yn "Use git submodules ?" 'y');
+
+
+WPU_MUPLUGINS_OK="";
+for i in $WPU_MUPLUGINS
+do
+    read -p "## Install ${i} ? (y/N) " install_muplugin;
+    if [[ $install_muplugin == 'y' ]];then
+        WPU_MUPLUGINS_OK="${WPU_MUPLUGINS_OK} ${i}";
+    fi;
+done;
+WPU_SUBMODULES_MUPLUGINS_OK="";
+for i in $WPU_SUBMODULES_MUPLUGINS
+do
+    read -p "## Install ${i} ? (y/N) " install_muplugin;
+    if [[ $install_muplugin == 'y' ]];then
+        WPU_SUBMODULES_MUPLUGINS_OK="${WPU_SUBMODULES_MUPLUGINS_OK} ${i}";
+    fi;
+done;
+
+
 install_recommended_plugins=$(bashutilities_get_yn "Install recommended plugins ?" 'y');
 need_acf=$(bashutilities_get_yn "Do you need Advanced Custom Fields ?" 'y');
 if [[ "${need_acf}" == 'y' && "${acf_api_key}" == "" ]]; then

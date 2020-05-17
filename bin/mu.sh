@@ -39,23 +39,19 @@ do
 done;
 
 # Classic MU Plugins
-for i in $WPU_MUPLUGINS
+for i in $WPU_MUPLUGINS_OK
 do
-    read -p "## Install ${i} ? (y/N) " install_muplugin;
-    if [[ $install_muplugin == 'y' ]];then
-        cp "${MAINDIR}WPUtilities/${WP_PLUGINS_DIR}${i}.php" "${MAINDIR}${WP_MUPLUGINS_DIR}wpu/${i}.php";
-        echo "- ${i} is installed.";
-    fi;
+    echo "## Install ${i}";
+    cp "${MAINDIR}WPUtilities/${WP_PLUGINS_DIR}${i}.php" "${MAINDIR}${WP_MUPLUGINS_DIR}wpu/${i}.php";
+    echo "- ${i} is installed.";
 done;
-for i in $WPU_SUBMODULES_MUPLUGINS
+for i in $WPU_SUBMODULES_MUPLUGINS_OK
 do
-    read -p "## Install ${i} ? (y/N) " install_muplugin;
-    if [[ $install_muplugin == 'y' ]];then
-        cd "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
-        wpui_submodule_or_install "https://github.com/WordPressUtilities/${i}.git" "${use_submodules}";
-        cd "${MAINDIR}";
-        echo "- ${i} is installed.";
-    fi;
+    echo "## Install ${i}";
+    cd "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
+    wpui_submodule_or_install "https://github.com/WordPressUtilities/${i}.git" "${use_submodules}";
+    cd "${MAINDIR}";
+    echo "- ${i} is installed.";
 done;
 
 # Base Functions plugin
