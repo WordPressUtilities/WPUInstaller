@@ -116,7 +116,7 @@ has_attachment_tpl=$(bashutilities_get_yn "Do you need the attachment template ?
 use_submodules=$(bashutilities_get_yn "Use git submodules ?" 'y');
 install_recommended_plugins=$(bashutilities_get_yn "Install recommended plugins ?" 'y');
 need_acf=$(bashutilities_get_yn "Do you need Advanced Custom Fields ?" 'y');
-if [[ $need_acf == 'y' ]]; then
+if [[ "${need_acf}" == 'y' && "${acf_api_key}" == "" ]]; then
     read -p "What's your ACF API Key ? " acf_api_key;
     if [[ $acf_api_key == '' ]]; then
         need_acf="n";
