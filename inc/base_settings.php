@@ -12,6 +12,7 @@ class wpuprojectid_settings {
     public function list_actions($actions) {
         #$actions[20200417153516] = array(&$this, 'set_plugins');
         #$actions[20200417153545] = array(&$this, 'set_theme');
+        #$actions[20200417153547] = array(&$this, 'set_options');
         return $actions;
     }
 
@@ -34,6 +35,11 @@ class wpuprojectid_settings {
         switch_theme('wpuprojectid');
         wp_redirect(site_url());
         return;
+    }
+
+    public function set_options() {
+        # update_option('page_on_front', get_option('home__page_id'));
+        # update_option('show_on_front', 'page');
     }
 }
 
