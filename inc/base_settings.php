@@ -7,6 +7,7 @@ Description: Site Auto Settings
 class wpuprojectid_settings {
     public function __construct() {
         add_filter('wpusettingsversion_actions', array(&$this, 'list_actions'), 10, 1);
+        add_filter('wp', array(&$this, 'wp'), 10, 1);
     }
 
     public function list_actions($actions) {
@@ -14,6 +15,13 @@ class wpuprojectid_settings {
         #$actions[20200417153545] = array(&$this, 'set_theme');
         #$actions[20200417153547] = array(&$this, 'set_options');
         return $actions;
+    }
+
+    public function wp() {
+        global $wpu_settings_version;
+        if (method_exists($wpu_settings_version, 'force_home_page_id')) {
+            $wpu_settings_version->force_home_page_id();
+        }
     }
 
     public function set_plugins() {
