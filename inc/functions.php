@@ -118,6 +118,7 @@ function wpuproject_remove_page_templates($templates) {
     unset($templates['page-templates/page-contact.php']);
     unset($templates['page-templates/page-downloads.php']);
     unset($templates['page-templates/page-faq.php']);
+    unset($templates['page-templates/page-forgottenpassword.php']);
     unset($templates['page-templates/page-gallery.php']);
     unset($templates['page-templates/page-sitemap.php']);
     unset($templates['page-templates/page-webservice.php']);
