@@ -52,3 +52,30 @@ add_filter('upload_mimes', function ($mimes) {
     }
     return $mimes;
 });
+
+/* ----------------------------------------------------------
+  Remove Gutemberg styles
+---------------------------------------------------------- */
+
+add_action('wp_print_styles', function () {
+    wp_dequeue_style('wp-block-library');
+}, 100);
+
+/* ----------------------------------------------------------
+  Force HTTPS via PHP
+---------------------------------------------------------- */
+
+add_action('plugins_loaded', function () {
+    $site_url = site_url();
+    if (defined('WP_SITEURL')) {
+        $site_url = WP_SITEURL;
+    }
+    /* Only if HTTPS is needed */
+    if (substr($site_url, 0, 5) != 'https') {
+        return;
+    }
+    if ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'http') || (isset($_SERVER['HTTP_X_REMOTE_PROTO']) && $_SERVER['HTTP_X_REMOTE_PROTO'] == 'http')) {
+        header("Location: https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+        exit();
+    }
+}, 10, 1);
