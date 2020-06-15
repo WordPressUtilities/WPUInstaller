@@ -33,7 +33,7 @@ for i in $WPU_SUBMODULES_FORCED_MUPLUGINS
 do
     echo "## Install ${i}";
     cd "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
-    wpui_submodule_or_install "https://github.com/WordPressUtilities/${i}.git" "${use_submodules}";
+    bashutilities_submodule_or_install "https://github.com/WordPressUtilities/${i}.git" "${use_submodules}";
     cd "${MAINDIR}";
     echo "- ${i} is installed.";
 done;
@@ -49,7 +49,7 @@ for i in $WPU_SUBMODULES_MUPLUGINS_OK
 do
     echo "## Install ${i}";
     cd "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
-    wpui_submodule_or_install "https://github.com/WordPressUtilities/${i}.git" "${use_submodules}";
+    bashutilities_submodule_or_install "https://github.com/WordPressUtilities/${i}.git" "${use_submodules}";
     cd "${MAINDIR}";
     echo "- ${i} is installed.";
 done;

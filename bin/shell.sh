@@ -19,7 +19,7 @@ if [[ $wpu_add_shell_scripts == 'y' ]]; then
     echo 'deny from all' > "${WPU_SHELL}.htaccess";
 
     # Add submodule
-    wpui_submodule_or_install "https://github.com/WordPressUtilities/wpuwooimportexport.git" "${use_submodules}";
+    bashutilities_submodule_or_install "https://github.com/WordPressUtilities/wpuwooimportexport.git" "${use_submodules}";
 
     # Add example
     cp "${SCRIPTDIR}inc/base_shell.php" "${WPU_SHELL}clean.php"

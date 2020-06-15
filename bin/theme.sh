@@ -8,7 +8,7 @@ cd "${MAINDIR}${WP_THEME_DIR}";
 
 echo '### Parent Theme installation';
 
-wpui_submodule_or_install "https://github.com/WordPressUtilities/WPUTheme.git" "${use_submodules}";
+bashutilities_submodule_or_install "https://github.com/WordPressUtilities/WPUTheme.git" "${use_submodules}";
 
 # Commit Theme Installation
 git add -A
