@@ -65,6 +65,11 @@ cp "${SCRIPTDIR}inc/base_settings.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_i
 bashutilities_sed "s/wpuprojectid/${project_id}/g" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_settings.php";
 bashutilities_sed "s/wpuproject/${project_name}/g" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_settings.php";
 
+# Users plugin
+cp "${SCRIPTDIR}inc/base_users.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_users.php";
+bashutilities_sed "s/wpuprojectid/${project_id}/g" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_users.php";
+bashutilities_sed "s/wpuproject/${project_name}/g" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_users.php";
+
 # Home page
 if [[ "${home_is_cms}" == 'y' ]]; then
     home__cms_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/pages/${project_id}_home.php";
