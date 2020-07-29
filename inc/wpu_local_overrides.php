@@ -34,6 +34,17 @@ class WPUOverrideOptions {
 new WPUOverrideOptions();
 
 /* ----------------------------------------------------------
+  Override some user metas
+---------------------------------------------------------- */
+
+add_filter('get_user_metadata', function ($null, $object_id, $meta_key, $single) {
+    if ($meta_key == 'admin_color') {
+        return array('fresh');
+    }
+    return null;
+}, 10, 4);
+
+/* ----------------------------------------------------------
   Override some 404 for images
 ---------------------------------------------------------- */
 
