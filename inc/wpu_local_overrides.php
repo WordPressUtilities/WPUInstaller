@@ -44,6 +44,18 @@ add_filter('get_user_metadata', function ($null, $object_id, $meta_key, $single)
     return null;
 }, 10, 4);
 
+
+/* ----------------------------------------------------------
+  Disable plugins
+---------------------------------------------------------- */
+
+add_action('wp_loaded', function () {
+    # require_once (ABSPATH . 'wp-admin/includes/plugin.php');
+    # if (is_plugin_active('wp-mail-smtp/wp_mail_smtp.php')) {
+    #     deactivate_plugins('wp-mail-smtp/wp_mail_smtp.php');
+    # }
+});
+
 /* ----------------------------------------------------------
   Override some 404 for images
 ---------------------------------------------------------- */
