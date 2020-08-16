@@ -57,6 +57,22 @@ add_action('wp_loaded', function () {
 });
 
 /* ----------------------------------------------------------
+  Override wp mail
+---------------------------------------------------------- */
+
+function wp_mail($to, $subject, $message, $headers = '', $attachments = array()) {
+    $mail = "--- NEW MAIL\n";
+    if (!is_array($to)) {
+        $to = array($to);
+    }
+    $mail .= "TO " . implode(',', $to) . "\n";
+    $mail .= "--\n";
+    $mail .= $message;
+    $mail .= "\n--- NEW MAIL\n";
+    error_log($mail);
+}
+
+/* ----------------------------------------------------------
   Override some 404 for images
 ---------------------------------------------------------- */
 
