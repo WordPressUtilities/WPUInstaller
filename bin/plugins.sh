@@ -79,6 +79,9 @@ EOF
 bashutilities_add_after_marker '#plugins_list' "${methods_string}" "${_plugin_settings_file}";
 bashutilities_sed "s/    #plugins_list//g" "${_plugin_settings_file}";
 
+git add -A
+git commit --no-verify -m "Installation - Plugin Activation" --quiet;
+
 # Language
 echo "## Update language";
 php ${WPU_PHPCLI} language plugin install --all "${WP_LOCALE}";
