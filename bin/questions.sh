@@ -151,6 +151,8 @@ else
     use_subfolder='n';
 fi;
 
+read -p "Do you want to use InteStarter ? (y/N) " use_intestarter;
+
 read -p "Start installation ? (Y/n) " start_installation;
 if [[ $start_installation == 'n' ]]; then
     exit 0;

@@ -4,7 +4,6 @@
 ## Launch InteStarter
 ###################################
 
-read -p "Do you want to use InteStarter ? (y/N) " use_intestarter;
 if [[ $use_intestarter == 'y' ]]; then
 
 ## Init values
