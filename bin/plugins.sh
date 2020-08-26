@@ -68,6 +68,17 @@ if [[ $install_recommended_plugins == 'y' ]]; then
     git commit --no-verify -m "Installation - Recommended Plugins" --quiet;
 fi;
 
+# Activation
+echo "## Plugin Activation";
+_plugins_list=$(wp option get active_plugins);
+_plugin_settings_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_settings.php";
+methods_string=$(cat <<EOF
+    private \$plugins_list=${_plugins_list};
+EOF
+);
+bashutilities_add_after_marker '#plugins_list' "${methods_string}" "${_plugin_settings_file}";
+bashutilities_sed "s/    #plugins_list//g" "${_plugin_settings_file}";
+
 # Language
 echo "## Update language";
 php ${WPU_PHPCLI} language plugin install --all "${WP_LOCALE}";

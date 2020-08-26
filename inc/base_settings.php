@@ -5,6 +5,9 @@ Description: Site Auto Settings
 */
 
 class wpuprojectid_settings {
+
+    #plugins_list
+
     public function __construct() {
         add_filter('wpusettingsversion_actions', array(&$this, 'list_actions'), 10, 1);
         add_filter('wp', array(&$this, 'wp'), 10, 1);
@@ -27,14 +30,7 @@ class wpuprojectid_settings {
     public function set_plugins() {
         global $wpu_settings_version;
         if (method_exists($wpu_settings_version, 'activate_plugins')) {
-            $wpu_settings_version->activate_plugins(array(
-                'wpudisabler/wpudisabler.php',
-                'wpuoptions/wpuoptions.php',
-                'wpupostmetas/wpupostmetas.php',
-                'wpuposttypestaxos/wpuposttypestaxos.php',
-                'wpuseo/wpuseo.php',
-                'wputaxometas/wputaxometas.php'
-            ));
+            $wpu_settings_version->activate_plugins($this->plugins_list);
         }
     }
 
