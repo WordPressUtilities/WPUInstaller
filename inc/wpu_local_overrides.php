@@ -60,14 +60,29 @@ add_action('wp_loaded', function () {
   Override wp mail
 ---------------------------------------------------------- */
 
+function wpu_local_overrides_html2text($html){
+    $text = str_replace('<br />',"\n", $html);
+    $text = str_replace(array('<p>','<ul>','<li>','<h1>','<h2>','<h3>'),"\n", $text);
+    $text = preg_replace('/<title>(.*)<\/title>/isU','',$text);
+    $text = preg_replace('/<style([^>]*)>(.*)<\/style>/isU','',$text);
+    $text = strip_tags($text);
+    $text = trim($text);
+    $text = preg_replace("/[\r\n]{3,}/", "\n", $text);
+    return $text;
+}
+
 function wp_mail($to, $subject, $message, $headers = '', $attachments = array()) {
-    $mail = "--- NEW MAIL\n";
+    $mail = "--- NEW MAIL";
     if (!is_array($to)) {
         $to = array($to);
     }
-    $mail .= "TO " . implode(',', $to) . "\n";
-    $mail .= "--\n";
-    $mail .= $message;
+    $mail .= "\nTO : " . implode(',', $to);
+    $mail .= "\n--\n";
+    $mail .= 'SUBJECT : ' . $subject;
+    $mail .= "\n--\n";
+    $mail .= 'TEXT : ' . wpu_local_overrides_html2text($message);
+    $mail .= "\n--\n";
+    $mail .= 'MESSAGE : ' . $message;
     $mail .= "\n--- NEW MAIL\n";
     error_log($mail);
 }
