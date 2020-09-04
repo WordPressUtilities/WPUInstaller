@@ -32,6 +32,23 @@ add_filter('wpuseo_metas_json_after_settings', function ($metas_json) {
 }, 10, 1);
 
 /* ----------------------------------------------------------
+  Prevent ugly uploads
+---------------------------------------------------------- */
+
+add_filter('wp_handle_upload_prefilter', function ($file) {
+    $size = $file['size'] / 1024;
+    $blocked_types = array(
+        'image/png'
+    );
+
+    $limit = 500;
+    if (($file['type'] == 'image/png') && ($size > $limit)) {
+        $file['error'] = sprintf(__('PNG images should weight less than %s ko ! Shouldn’t this image be converted to JPG?', 'wputh'), $limit);
+    }
+    return $file;
+});
+
+/* ----------------------------------------------------------
   Search only in posts
 ---------------------------------------------------------- */
 
