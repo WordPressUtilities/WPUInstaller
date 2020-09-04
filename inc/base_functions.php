@@ -21,6 +21,17 @@ add_action('plugins_loaded', function () {
 add_filter('core_sitemaps_users_url_list', '__return_empty', 10, 1);
 
 /* ----------------------------------------------------------
+  Hide author in JSON Metas
+---------------------------------------------------------- */
+
+add_filter('wpuseo_metas_json_after_settings', function ($metas_json) {
+    if (isset($metas_json['author'])) {
+        $metas_json['author'] = get_bloginfo('name');
+    }
+    return $metas_json;
+}, 10, 1);
+
+/* ----------------------------------------------------------
   Search only in posts
 ---------------------------------------------------------- */
 
