@@ -45,7 +45,6 @@ if [[ $need_acf == 'y' ]];then
     wp plugin install "http://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=${acf_api_key}" --activate;
     wp plugin install acf-extended --activate;
     wp plugin install acf-autosize --activate;
-    wp plugin install acf-duplicate-repeater --activate;
     cd "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
     bashutilities_submodule_or_install "https://github.com/WordPressUtilities/wpu_acf_flexible.git" "${use_submodules}";
     cd "${MAINDIR}";
@@ -55,6 +54,7 @@ fi;
 if [[ $install_recommended_plugins == 'y' ]]; then
     echo "## Install recommended plugins";
     php ${WPU_PHPCLI} plugin install limit-login-attempts-reloaded --activate;
+    php ${WPU_PHPCLI} plugin install taxonomy-terms-order --activate;
     php ${WPU_PHPCLI} plugin install classic-editor --activate;
 
     # No activation
