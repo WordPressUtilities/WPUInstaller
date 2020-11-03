@@ -68,6 +68,15 @@ if [[ $install_recommended_plugins == 'y' ]]; then
     git commit --no-verify -m "Installation - Recommended Plugins" --quiet;
 fi;
 
+# Search
+if [[ ${WPU_SUBMODULES_MUPLUGINS_OK} != *"wpudisablesearch"* ]];then
+    php ${WPU_PHPCLI} plugin install relevanssi --activate;
+    _plugin_search_settings="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_search.php";
+    cp "${SCRIPTDIR}inc/base_search.php" "${_plugin_search_settings}";
+    bashutilities_sed "s/wpuprojectid/${project_id}/g" "${_plugin_search_settings}";
+    bashutilities_sed "s/wpuproject/${project_name}/g" "${_plugin_search_settings}";
+fi
+
 # Activation
 echo "## Plugin Activation";
 _plugins_list=$(wp option get active_plugins);
