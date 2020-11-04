@@ -70,8 +70,8 @@ bashutilities_sed "s/wpuproject/${project_name}/g" "${WPU_THEME_TRANSLATE_FILE}"
 # - Assets
 mkdir "${WPU_THEME}assets/";
 mkdir "${WPU_THEME}assets/images";
-wget "https://placehold.it/200x100/fff/000?text=${project_id}" -q -O "${WPU_THEME}assets/images/logo.png";
-wget "https://placehold.it/600x450/fff/000?text=${project_id}" -q -O "${WPU_THEME}screenshot.png";
+cp "${SCRIPTDIR}inc/assets/logo.png" "${WPU_THEME}assets/images/logo.png";
+cp "${SCRIPTDIR}inc/assets/screenshot.png" "${WPU_THEME}screenshot.png";
 mkdir "${WPU_THEME}assets/js";
 cp "${SCRIPTDIR}inc/assets/events.js" "${WPU_THEME}assets/js/events.js";
 
