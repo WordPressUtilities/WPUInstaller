@@ -55,7 +55,6 @@ if [[ $install_recommended_plugins == 'y' ]]; then
     echo "## Install recommended plugins";
     php ${WPU_PHPCLI} plugin install limit-login-attempts-reloaded --activate;
     php ${WPU_PHPCLI} plugin install taxonomy-terms-order --activate;
-    php ${WPU_PHPCLI} plugin install classic-editor --activate;
 
     # No activation
     php ${WPU_PHPCLI} plugin install duplicate-post;
