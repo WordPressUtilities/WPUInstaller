@@ -52,6 +52,10 @@ define('WP_HOME', 'http://' . \$_SERVER['HTTP_HOST'] . '/');
 define('WP_AUTO_UPDATE_CORE', false);
 define('AUTOMATIC_UPDATER_DISABLED', true);
 
+# Files
+define( 'DISALLOW_FILE_EDIT', true );
+define( 'DISALLOW_FILE_MODS', true );
+
 # CRONs
 define('DISABLE_WP_CRON', true);
 
