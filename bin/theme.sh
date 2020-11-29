@@ -34,7 +34,16 @@ Author URI: http://darklg.me/
 cp "${SCRIPTDIR}inc/htaccess.txt" "${WPU_THEME}.htaccess";
 
 # - Index
-cp "${SCRIPTDIR}inc/home.php" "${WPU_THEME}front-page.php";
+HOME_PAGE_SOURCE="${SCRIPTDIR}inc/front-page.php";
+if [[ "${home_is_cms}" == 'y' ]]; then
+    if [[ "${need_acf}" == 'y' ]];then
+        HOME_PAGE_SOURCE="${SCRIPTDIR}inc/front-page--acf.php";
+    else
+        HOME_PAGE_SOURCE="${SCRIPTDIR}inc/front-page--cms.php";
+    fi;
+fi;
+cp "${HOME_PAGE_SOURCE}" "${WPU_THEME}front-page.php";
+
 
 # - Functions
 cp "${SCRIPTDIR}inc/functions.php" "${WPU_THEME}functions.php";
