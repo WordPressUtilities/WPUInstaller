@@ -119,8 +119,8 @@ use_submodules=$(bashutilities_get_yn "Use git submodules ?" 'y');
 WPU_MUPLUGINS_OK="";
 for i in $WPU_MUPLUGINS
 do
-    read -p "## Install ${i} ? (y/N) " install_muplugin;
-    if [[ $install_muplugin == 'y' ]];then
+    read -p "## Install ${i} ? (Y/n) " install_muplugin;
+    if [[ $install_muplugin != 'n' ]];then
         WPU_MUPLUGINS_OK="${WPU_MUPLUGINS_OK} ${i}";
     fi;
 done;
