@@ -154,17 +154,6 @@ function wpuproject_unregister_default_widgets() {
     unregister_widget('WP_Nav_Menu_Widget');
 }
 
-/* Google Fonts
- -------------------------- */
-
-add_action('wputh_google_fonts', 'wpuproject_googlefonts');
-function wpuproject_googlefonts() {
-    return array(
-        // 'family' => 'Open+Sans',
-        // 'subset' => 'latin',
-    );
-}
-
 /* Thumbnails
  -------------------------- */
 
