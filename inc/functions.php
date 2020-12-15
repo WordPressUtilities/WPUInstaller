@@ -85,6 +85,10 @@ function wpuproject_javascript_files($js_files) {
         'uri' => '/assets/js/events.js',
         'footer' => 1
     );
+    $js_files['app'] = array(
+        'uri' => '/assets/js/app.js',
+        'footer' => 1
+    );
     return $js_files;
 }
 
