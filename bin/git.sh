@@ -22,7 +22,9 @@ echo "# WordPress
 /.htaccess
 my.cnf
 node_modules
+package-lock.json
 wp-cli.phar
+yarn.lock
 wp-config.php
 wp-content/advanced-cache.php
 wp-content/cache/
