@@ -21,6 +21,7 @@ echo "- Project ID: ${project_id}";
 
 project_dev_url=$(bashutilities_get_user_var "What's the project dev url ?" "http://${project_id}.test");
 project_dev_url_raw=${project_dev_url/http:\/\//};
+project_dev_url_raw=${project_dev_url/https:\/\//};
 project_dev_url_raw=${project_dev_url_raw/\//};
 echo "- Project URL: ${project_dev_url}";
 

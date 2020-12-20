@@ -9,6 +9,7 @@ if [[ $use_intestarter == 'y' ]]; then
 ## Init values
 is_wp_theme='y';
 from_wpinstaller='y';
+project_hostname="${project_dev_url_raw}";
 
 ## Backup files
 mv "${WPU_THEME}assets/images/logo.png" "${WPU_THEME}logo.png";
