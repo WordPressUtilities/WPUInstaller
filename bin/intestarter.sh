@@ -4,8 +4,6 @@
 ## Launch InteStarter
 ###################################
 
-if [[ $use_intestarter == 'y' ]]; then
-
 ## Init values
 is_wp_theme='y';
 from_wpinstaller='y';
@@ -23,5 +21,3 @@ newinte;
 ## Restore files
 mv "${WPU_THEME}logo.png" "${WPU_THEME}assets/images/logo.png";
 mv "${WPU_THEME}events.js" "${WPU_THEME}assets/js/events.js";
-
-fi;

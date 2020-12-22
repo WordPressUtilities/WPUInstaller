@@ -21,6 +21,7 @@ echo "- Project ID: ${project_id}";
 
 project_dev_url=$(bashutilities_get_user_var "What's the project dev url ?" "http://${project_id}.test");
 project_dev_url_raw=${project_dev_url/http:\/\//};
+project_dev_url_raw=${project_dev_url/http:\//};
 project_dev_url_raw=${project_dev_url/https:\/\//};
 project_dev_url_raw=${project_dev_url_raw/\//};
 echo "- Project URL: ${project_dev_url}";
@@ -111,9 +112,14 @@ else
     echo "- Locale: ${WP_LOCALE}";
 fi;
 
-home_is_cms=$(bashutilities_get_yn "Is the home page a CMS page ?" 'y');
+need_theme=$(bashutilities_get_yn "Do you need a theme ?" 'y');
+home_is_cms='n';
+has_attachment_tpl='n';
+if [[ "${need_theme}" == 'y' ]];then
+    home_is_cms=$(bashutilities_get_yn "Is the home page a CMS page ?" 'y');
+    has_attachment_tpl=$(bashutilities_get_yn "Do you need the attachment template ?" 'n');
+fi;
 is_woocommerce=$(bashutilities_get_yn "Is it an ecommerce ?" 'n');
-has_attachment_tpl=$(bashutilities_get_yn "Do you need the attachment template ?" 'n');
 use_submodules=$(bashutilities_get_yn "Use git submodules ?" 'y');
 
 
@@ -152,7 +158,10 @@ else
     use_subfolder='n';
 fi;
 
-read -p "Do you want to use InteStarter ? (y/N) " use_intestarter;
+use_intestarter='n';
+if [[ "${need_theme}" == 'y' ]];then
+    read -p "Do you want to use InteStarter ? (y/N) " use_intestarter;
+fi;
 
 read -p "Start installation ? (Y/n) " start_installation;
 if [[ $start_installation == 'n' ]]; then

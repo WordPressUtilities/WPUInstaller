@@ -23,15 +23,20 @@ fi;
 . "${SCRIPTDIR}bin/wpcli.sh";
 . "${SCRIPTDIR}bin/wp.sh";
 . "${SCRIPTDIR}bin/wpu.sh";
-. "${SCRIPTDIR}bin/theme.sh";
+if [[ "${need_theme}" == 'y' ]];then
+    . "${SCRIPTDIR}bin/theme.sh";
+fi;
 . "${SCRIPTDIR}bin/mu.sh";
 . "${SCRIPTDIR}bin/plugins.sh";
 . "${SCRIPTDIR}bin/shell.sh";
 . "${SCRIPTDIR}bin/htaccess.sh";
 . "${SCRIPTDIR}bin/clean.sh";
-. "${SCRIPTDIR}bin/intestarter.sh";
+if [[ "${use_intestarter}" == 'y' ]];then
+    . "${SCRIPTDIR}bin/intestarter.sh";
+fi;
 
 echo '### Success';
-
-cd "${WPU_THEME}";
+if [[ "${need_theme}" == 'y' ]];then
+    cd "${WPU_THEME}";
+fi;
 open "${project_dev_url}";
