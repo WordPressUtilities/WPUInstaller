@@ -23,6 +23,9 @@ git commit --no-verify -m "Installation - Plugins" --quiet;
 if [[ $project_l10n == 'y' ]]; then
     echo "## Install Polylang";
     php ${WPU_PHPCLI} plugin install polylang --activate
+    cd "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
+    bashutilities_submodule_or_install "https://github.com/WordPressUtilities/wpu_pll_utilities.git" "${use_submodules}";
+    cd "${MAINDIR}";
 
     # Commit plugin
     git add -A
