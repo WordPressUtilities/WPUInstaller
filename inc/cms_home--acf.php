@@ -32,15 +32,20 @@ function wpuprojectid_home_wpu_acf_flexible_content($contents) {
     );
 
     /* Target home page */
-    $acf_location = array(
-        array(
+    $acf_location = array();
+    $home_ids = array(get_option('home__page_id'));
+    if (function_exists('pll_get_post_translations')) {
+        $home_ids = pll_get_post_translations($home_ids[0]);
+    }
+    foreach ($home_ids as $home_id) {
+        $acf_location[] = array(
             array(
-                'param' => 'page',
+                'param' => 'post',
                 'operator' => '==',
-                'value' => get_option('home__page_id')
+                'value' => $home_id
             )
-        )
-    );
+        );
+    }
 
     $contents['content-home-blocks'] = array(
         /* Save HTML content in post_content */
