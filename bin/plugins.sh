@@ -48,6 +48,10 @@ if [[ $need_acf == 'y' ]];then
     cd "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
     bashutilities_submodule_or_install "https://github.com/WordPressUtilities/wpu_acf_flexible.git" "${use_submodules}";
     cd "${MAINDIR}";
+
+    # Commit plugin
+    git add -A
+    git commit --no-verify -m "Installation - Plugin : ACF" --quiet;
 fi;
 
 # Recommended
