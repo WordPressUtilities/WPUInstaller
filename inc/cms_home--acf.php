@@ -5,6 +5,14 @@ function wpuprojectid_home_wpu_acf_flexible_content($contents) {
 
     $layouts = array();
 
+    /* Add layout from master blocks */
+    $all_layouts = apply_filters('wpuprojectid_blocks', array());
+    if (isset($all_layouts['cta-image'])) {
+        $layouts['cta-image'] = $all_layouts['cta-image'];
+    }
+
+    /* Add a specific layout */
+    /*
     $layouts['basique'] = array(
         'label' => 'Basique',
         'sub_fields' => array(
@@ -21,6 +29,7 @@ function wpuprojectid_home_wpu_acf_flexible_content($contents) {
             )
         )
     );
+    */
 
     /* Logos : A list of clickable logos */
     $layouts['logos'] = array(

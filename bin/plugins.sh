@@ -52,6 +52,11 @@ if [[ $need_acf == 'y' ]];then
     bashutilities_submodule_or_install "https://github.com/WordPressUtilities/wpu_acf_flexible.git" "${use_submodules}";
     cd "${MAINDIR}";
 
+    # Add blocks
+    _blocks_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_blocks.php";
+    cp "${SCRIPTDIR}inc/base_blocks.php" "${_blocks_file}";
+    wpuinstaller_replace "${_blocks_file}";
+
     # Commit plugin
     git add -A
     git commit --no-verify -m "Installation - Plugin : ACF" --quiet;
