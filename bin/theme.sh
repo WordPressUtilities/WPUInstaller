@@ -47,7 +47,7 @@ cp "${HOME_PAGE_SOURCE}" "${WPU_THEME}front-page.php";
 
 # - Functions
 cp "${SCRIPTDIR}inc/functions.php" "${WPU_THEME}functions.php";
-bashutilities_sed "s/wpuproject/${project_id}/g" "${WPU_THEME}functions.php";
+wpuinstaller_replace "${WPU_THEME}functions.php";
 
 if [[ $has_attachment_tpl == 'n' ]];then
     cp "${SCRIPTDIR}inc/attachment.php" "${WPU_THEME}attachment.php";
@@ -73,8 +73,7 @@ echo 'deny from all' > "${WPU_THEME}lang/.htaccess";
 WPU_THEME_TRANSLATE_FILE="${WPU_THEME}lang/${WP_LOCALE}.po";
 cp "${SCRIPTDIR}inc/lang/fr_FR.po" "${WPU_THEME_TRANSLATE_FILE}";
 bashutilities_sed "s/fr_FR/${WP_LOCALE}/g" "${WPU_THEME_TRANSLATE_FILE}";
-bashutilities_sed "s/wpuprojectid/${project_id}/g" "${WPU_THEME_TRANSLATE_FILE}";
-bashutilities_sed "s/wpuproject/${project_name}/g" "${WPU_THEME_TRANSLATE_FILE}";
+wpuinstaller_replace "${WPU_THEME_TRANSLATE_FILE}";
 
 # - Assets
 mkdir "${WPU_THEME}assets/";

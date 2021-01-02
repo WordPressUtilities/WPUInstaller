@@ -8,6 +8,7 @@ if [[ -f "${SCRIPTDIR}local.sh" ]];then
     . "${SCRIPTDIR}local.sh";
 fi
 
+. "${SCRIPTDIR}bin/functions.sh";
 . "${SCRIPTDIR}BashUtilities/bashutilities.sh";
 . "${SCRIPTDIR}bin/vars.sh";
 . "${SCRIPTDIR}bin/questions.sh";

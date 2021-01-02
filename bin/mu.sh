@@ -17,7 +17,7 @@ echo "- wpu_muplugin_autoloader is installed.";
 
 echo "## Install wpu_local_overrides.php";
 cp "${SCRIPTDIR}inc/wpu_local_overrides.php" "${MAINDIR}${WP_MUPLUGINS_DIR}wpu_local_overrides.php";
-bashutilities_sed "s/wpuproject/${project_name}/g" "${MAINDIR}${WP_MUPLUGINS_DIR}wpu_local_overrides.php";
+wpuinstaller_replace "${MAINDIR}${WP_MUPLUGINS_DIR}wpu_local_overrides.php";
 echo "- wpu_local_overrides is installed.";
 
 # Forced MU Plugins
@@ -57,25 +57,21 @@ done;
 # Base Functions plugin
 _functions_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_functions.php";
 cp "${SCRIPTDIR}inc/base_functions.php" "${_functions_file}";
-bashutilities_sed "s/wpuprojectid/${project_id}/g" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_functions.php";
-bashutilities_sed "s/wpuproject/${project_name}/g" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_functions.php";
+wpuinstaller_replace "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_functions.php";
 
 # Settings plugin
 cp "${SCRIPTDIR}inc/base_settings.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_settings.php";
-bashutilities_sed "s/wpuprojectid/${project_id}/g" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_settings.php";
-bashutilities_sed "s/wpuproject/${project_name}/g" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_settings.php";
+wpuinstaller_replace "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_settings.php";
 
 # Users plugin
 cp "${SCRIPTDIR}inc/base_users.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_users.php";
-bashutilities_sed "s/wpuprojectid/${project_id}/g" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_users.php";
-bashutilities_sed "s/wpuproject/${project_name}/g" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_users.php";
+wpuinstaller_replace "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_users.php";
 
 # Home page
 if [[ "${home_is_cms}" == 'y' ]]; then
     home__cms_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/pages/${project_id}_home.php";
     cp "${SCRIPTDIR}inc/cms_home.php" "${home__cms_file}";
-    bashutilities_sed "s/wpuprojectname/${project_name}/g" "${home__cms_file}";
-    bashutilities_sed "s/wpuprojectid/${project_id}/g" "${home__cms_file}";
+    wpuinstaller_replace "${home__cms_file}";
     home__page_id=$(php ${WPU_PHPCLI} option get home__page_id)
     php ${WPU_PHPCLI} option update page_on_front "${home__page_id}";
     php ${WPU_PHPCLI} option update show_on_front "page";
