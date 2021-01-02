@@ -57,7 +57,7 @@ done;
 # Base Functions plugin
 _functions_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_functions.php";
 cp "${SCRIPTDIR}inc/base_functions.php" "${_functions_file}";
-wpuinstaller_replace "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_functions.php";
+wpuinstaller_replace "${_functions_file}";
 
 # Settings plugin
 cp "${SCRIPTDIR}inc/base_settings.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_settings.php";
