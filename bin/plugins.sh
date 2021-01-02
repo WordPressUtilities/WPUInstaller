@@ -34,12 +34,12 @@ fi;
 
 # Woocommerce
 if [[ $is_woocommerce == 'y' ]]; then
-    echo "## Install Woocommerce";
+    echo "## Install WooCommerce";
     php ${WPU_PHPCLI} plugin install woocommerce --activate
 
     # Commit plugin
     git add -A
-    git commit --no-verify -m "Installation - Plugin : Woocommerce" --quiet;
+    git commit --no-verify -m "Installation - Plugin : WooCommerce" --quiet;
 fi;
 
 # ACF
@@ -57,6 +57,17 @@ if [[ $need_acf == 'y' ]];then
     git commit --no-verify -m "Installation - Plugin : ACF" --quiet;
 fi;
 
+# Search
+if [[ ${WPU_SUBMODULES_MUPLUGINS_OK} != *"wpudisablesearch"* ]];then
+    php ${WPU_PHPCLI} plugin install relevanssi --activate;
+    _plugin_search_settings="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_search.php";
+    cp "${SCRIPTDIR}inc/base_search.php" "${_plugin_search_settings}";
+    wpuinstaller_replace "${_plugin_search_settings}";
+
+    git add -A
+    git commit --no-verify -m "Installation - Plugin : Relevanssi" --quiet;
+fi
+
 # Recommended
 if [[ $install_recommended_plugins == 'y' ]]; then
     echo "## Install recommended plugins";
@@ -73,14 +84,6 @@ if [[ $install_recommended_plugins == 'y' ]]; then
     git add -A
     git commit --no-verify -m "Installation - Recommended Plugins" --quiet;
 fi;
-
-# Search
-if [[ ${WPU_SUBMODULES_MUPLUGINS_OK} != *"wpudisablesearch"* ]];then
-    php ${WPU_PHPCLI} plugin install relevanssi --activate;
-    _plugin_search_settings="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_search.php";
-    cp "${SCRIPTDIR}inc/base_search.php" "${_plugin_search_settings}";
-    wpuinstaller_replace "${_plugin_search_settings}";
-fi
 
 # Activation
 echo "## Plugin Activation";
