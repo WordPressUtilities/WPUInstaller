@@ -74,6 +74,25 @@ add_filter('project_id_blocks', function ($layouts) {
 */
 
 /* ----------------------------------------------------------
+  Default loaded blocks
+---------------------------------------------------------- */
+
+add_filter('acf/load_value/name=content-blocks', function ($value, $post_id, $field) {
+    if ($value !== NULL) {
+        return $value;
+    }
+    $value = array(
+        array(
+            'acf_fc_layout' => 'content'
+        ),
+        array(
+            'acf_fc_layout' => 'image'
+        )
+    );
+    return $value;
+}, 10, 3);
+
+/* ----------------------------------------------------------
   Default layout
 ---------------------------------------------------------- */
 
