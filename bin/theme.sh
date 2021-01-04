@@ -62,6 +62,12 @@ bashutilities_sed "s/project_is_multilingual/__return_${_functions_enable_multil
 # - Templates
 cp -rf "${SCRIPTDIR}inc/tpl/" "${WPU_THEME}tpl/";
 
+# - Specific templates
+if [[ "${need_acf}" == 'y' ]];then
+    cp "${SCRIPTDIR}inc/tpl-page-master.php" "${WPU_THEME}tpl/page-master.php";
+    cp "${SCRIPTDIR}inc/page-master.php" "${WPU_THEME}page-master.php";
+fi;
+
 # - Tests
 cp -rf "${SCRIPTDIR}inc/tests/" "${WPU_THEME}tests/";
 bashutilities_sed "s,wpuprojecturl,${project_dev_url},g" "${WPU_THEME}tests/config.json";
