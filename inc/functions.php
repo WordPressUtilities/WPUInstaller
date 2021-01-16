@@ -47,6 +47,13 @@ add_filter('wputheme_display_header', '__return_false', 1, 1);
 add_filter('wputheme_display_mainwrapper', '__return_false', 1, 1);
 add_filter('wputheme_display_footer', '__return_false', 1, 1);
 
+/* Sidebars
+-------------------------- */
+
+// /* Disable Sidebars */
+// add_filter('wputh_has_sidebar', '__return_false', 1, 1);
+// add_filter('wputh_default_sidebars', '__return_empty_array', 1, 1);
+
 /* Menus
 -------------------------- */
 
