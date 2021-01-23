@@ -40,6 +40,29 @@ add_action('init', function () {
 });
 
 /* ----------------------------------------------------------
+  Clean admin menus
+---------------------------------------------------------- */
+
+add_action('admin_menu', function () {
+    global $submenu;
+    /* For non admins only */
+    if (current_user_can('activate_plugins')) {
+        return;
+    }
+    /* Remove menus */
+    remove_menu_page('tools.php');
+    remove_submenu_page('themes.php', 'themes.php');
+    /* Remove some theme parts */
+    if (isset($submenu['themes.php'])) {
+        foreach ($submenu['themes.php'] as $i => $item) {
+            if ($item[1] == 'edit_theme_options' && $item[4] == 'hide-if-no-customize') {
+                unset($submenu['themes.php'][$i]);
+            }
+        }
+    }
+});
+
+/* ----------------------------------------------------------
   Only an admin can add a new admin
 ---------------------------------------------------------- */
 
