@@ -67,6 +67,12 @@ wpuinstaller_replace "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_s
 cp "${SCRIPTDIR}inc/base_users.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_users.php";
 wpuinstaller_replace "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_users.php";
 
+# Posts
+if [[ ${WPU_SUBMODULES_MUPLUGINS_OK} != *"wpudisableposts"* ]];then
+    cp "${SCRIPTDIR}inc/base_posts.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_posts.php";
+    wpuinstaller_replace "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_posts.php";
+fi
+
 # Home page
 if [[ "${home_is_cms}" == 'y' ]]; then
     home__cms_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/pages/${project_id}_home.php";
