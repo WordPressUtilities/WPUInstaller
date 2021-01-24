@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: [wpuproject] Blocks
+Plugin Name: [wpuprojectname] Blocks
 Description: Add project blocks
 */
 

@@ -23,7 +23,7 @@ if [[ $wpu_add_shell_scripts == 'y' ]]; then
 
     # Add example
     cp "${SCRIPTDIR}inc/base_shell.php" "${WPU_SHELL}clean.php"
-    bashutilities_sed "s/wpuprojectid/${project_id}/g" "${WPU_SHELL}clean.php";
+    wpuinstaller_replace "${WPU_SHELL}clean.php";
 
     cd "${MAINDIR}";
 fi;

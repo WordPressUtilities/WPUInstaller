@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: [wpuproject] Functions
+Plugin Name: [wpuprojectname] Functions
 Description: Website common functions
 */
 

@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: [wpuproject] Settings
+Plugin Name: [wpuprojectname] Settings
 Description: Site Auto Settings
 */
 

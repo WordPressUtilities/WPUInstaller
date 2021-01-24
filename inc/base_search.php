@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: [wpuproject] Search
+Plugin Name: [wpuprojectname] Search
 Description: Search Settings
 */
 

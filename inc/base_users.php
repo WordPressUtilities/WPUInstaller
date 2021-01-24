@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: [wpuproject] Users
+Plugin Name: [wpuprojectname] Users
 Description: User settings
 */
 

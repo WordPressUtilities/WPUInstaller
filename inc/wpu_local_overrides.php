@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: [wpuproject] Local Overrides
+Plugin Name: [wpuprojectname] Local Overrides
 Description: Site local overrides.
 */
 

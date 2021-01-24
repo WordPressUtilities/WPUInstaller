@@ -8,16 +8,16 @@ include dirname(__FILE__) . '/../WPUTheme/z-protect.php';
 /* Lang
  -------------------------- */
 
-add_action('after_setup_theme', 'wpuproject_setup');
-function wpuproject_setup() {
+add_action('after_setup_theme', 'wpuprojectid_setup');
+function wpuprojectid_setup() {
     load_theme_textdomain('wpuproject', get_stylesheet_directory() . '/lang');
 }
 
 /* Social networks
  -------------------------- */
 
-add_filter('wputheme_social_links', 'wpuproject_wputheme_social_links', 10, 1);
-function wpuproject_wputheme_social_links($links) {
+add_filter('wputheme_social_links', 'wpuprojectid_wputheme_social_links', 10, 1);
+function wpuprojectid_wputheme_social_links($links) {
     return array(
         'twitter' => 'Twitter',
         'facebook' => 'Facebook',
@@ -28,13 +28,13 @@ function wpuproject_wputheme_social_links($links) {
 /* Load header & footer
  -------------------------- */
 
-add_action('wputheme_header_items', 'wpuproject_header');
-function wpuproject_header() {
+add_action('wputheme_header_items', 'wpuprojectid_header');
+function wpuprojectid_header() {
     include get_stylesheet_directory() . '/tpl/header.php';
 }
 
-add_action('wp_footer', 'wpuproject_footer');
-function wpuproject_footer() {
+add_action('wp_footer', 'wpuprojectid_footer');
+function wpuprojectid_footer() {
     include get_stylesheet_directory() . '/tpl/footer.php';
 }
 
@@ -79,8 +79,8 @@ function wputh_set_pages_site($pages_site) {
 /* Scripts
  -------------------------- */
 
-add_filter('wputh_javascript_files', 'wpuproject_javascript_files', 99, 1);
-function wpuproject_javascript_files($js_files) {
+add_filter('wputh_javascript_files', 'wpuprojectid_javascript_files', 99, 1);
+function wpuprojectid_javascript_files($js_files) {
     /* Remove some WPUTheme scripts */
     unset($js_files['functions-faq-accordion']);
     unset($js_files['functions-search-form-check']);
@@ -119,8 +119,8 @@ function wputh_control_stylesheets() {
 /* Exclude all parent templates
  -------------------------- */
 
-add_filter('theme_page_templates', 'wpuproject_remove_page_templates');
-function wpuproject_remove_page_templates($templates) {
+add_filter('theme_page_templates', 'wpuprojectid_remove_page_templates');
+function wpuprojectid_remove_page_templates($templates) {
     unset($templates['page-templates/page-bigpictures.php']);
     unset($templates['page-templates/page-contact.php']);
     unset($templates['page-templates/page-downloads.php']);
@@ -136,8 +136,8 @@ function wpuproject_remove_page_templates($templates) {
 /* Exclude default widgets
 -------------------------- */
 
-add_action('widgets_init', 'wpuproject_unregister_default_widgets', 11);
-function wpuproject_unregister_default_widgets() {
+add_action('widgets_init', 'wpuprojectid_unregister_default_widgets', 11);
+function wpuprojectid_unregister_default_widgets() {
     unregister_widget('WP_Widget_Pages');
     unregister_widget('WP_Widget_Calendar');
     unregister_widget('WP_Widget_Archives');
@@ -160,8 +160,8 @@ function wpuproject_unregister_default_widgets() {
 /* Thumbnails
  -------------------------- */
 
-add_filter('wpu_thumbnails_sizes', 'wpuproject_set_wpu_thumbnails_sizes');
-function wpuproject_set_wpu_thumbnails_sizes($sizes) {
+add_filter('wpu_thumbnails_sizes', 'wpuprojectid_set_wpu_thumbnails_sizes');
+function wpuprojectid_set_wpu_thumbnails_sizes($sizes) {
     $sizes['big'] = array('w' => 1280,'h' => 1280);
     return $sizes;
 }

@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: [wpuproject] Posts
+Plugin Name: [wpuprojectname] Posts
 Description: Post settings
 */
 
