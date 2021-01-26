@@ -72,3 +72,23 @@ add_filter('editable_roles', function ($roles) {
     }
     return $roles;
 }, 10, 1);
+
+/* ----------------------------------------------------------
+  Redirection : Allow access to users
+---------------------------------------------------------- */
+
+add_action('admin_menu', function () {
+    if (!defined('REDIRECTION_DB_VERSION')) {
+        return;
+    }
+    add_menu_page(
+        __('Redirection', 'edgyn'),
+        __('Redirection', 'edgyn'),
+        'list_users',
+        'tools.php?page=redirection.php'
+    );
+});
+
+add_filter('redirection_role', function ($role) {
+    return 'list_users';
+});

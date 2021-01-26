@@ -84,6 +84,7 @@ if [[ $install_recommended_plugins == 'y' ]]; then
     php ${WPU_PHPCLI} plugin install google-sitemap-generator;
     php ${WPU_PHPCLI} plugin install happyfiles;
     php ${WPU_PHPCLI} plugin install query-monitor;
+    php ${WPU_PHPCLI} plugin install redirection;
 
     # Commit plugin
     git add -A
