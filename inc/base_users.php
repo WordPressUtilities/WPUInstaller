@@ -82,8 +82,8 @@ add_action('admin_menu', function () {
         return;
     }
     add_menu_page(
-        __('Redirection', 'edgyn'),
-        __('Redirection', 'edgyn'),
+        __('Redirection', 'wpuprojectid'),
+        __('Redirection', 'wpuprojectid'),
         'list_users',
         'tools.php?page=redirection.php'
     );

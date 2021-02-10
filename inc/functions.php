@@ -60,8 +60,8 @@ add_filter('wputheme_display_footer', '__return_false', 1, 1);
 
 add_filter('wputh_default_menus', function ($menus) {
     return array(
-        'main' => __('Main menu', 'wpuproject'),
-        'footer' => __('Footer menu', 'wpuproject')
+        'main' => 'Main menu',
+        'footer' => 'Footer menu',
     );
 }, 10, 1);
 

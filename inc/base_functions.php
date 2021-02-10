@@ -49,7 +49,7 @@ add_filter('wp_handle_upload_prefilter', function ($file) {
 
     $limit = 500;
     if (($file['type'] == 'image/png') && ($size > $limit)) {
-        $file['error'] = sprintf(__('PNG images should weight less than %s ko ! Shouldn’t this image be converted to JPG?', 'wputh'), $limit);
+        $file['error'] = sprintf(__('PNG images should weight less than %s ko ! Shouldn’t this image be converted to JPG?', 'wpuprojectid'), $limit);
     }
     return $file;
 });
