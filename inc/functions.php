@@ -61,7 +61,7 @@ add_filter('wputheme_display_footer', '__return_false', 1, 1);
 add_filter('wputh_default_menus', function ($menus) {
     return array(
         'main' => 'Main menu',
-        'footer' => 'Footer menu',
+        'footer' => 'Footer menu'
     );
 }, 10, 1);
 
@@ -136,6 +136,7 @@ add_filter('theme_page_templates', function ($templates) {
 -------------------------- */
 
 add_action('widgets_init', function () {
+    remove_action('welcome_panel', 'wp_welcome_panel');
     unregister_widget('WP_Widget_Pages');
     unregister_widget('WP_Widget_Calendar');
     unregister_widget('WP_Widget_Archives');
@@ -158,7 +159,7 @@ add_action('widgets_init', function () {
 /* Thumbnails
  -------------------------- */
 
-add_filter('wpu_thumbnails_sizes', function ($sizes) {
-    $sizes['big'] = array('w' => 1280, 'h' => 1280);
-    return $sizes;
+/* All post types */
+add_action('after_setup_theme', function () {
+    add_image_size('big', 1600, 1600);
 });
