@@ -113,3 +113,13 @@ add_action('plugins_loaded', function () {
         exit();
     }
 }, 10, 1);
+
+/* ----------------------------------------------------------
+  Set translation folder
+---------------------------------------------------------- */
+
+add_filter('wpupllutilities__folders_to_scan', function ($folders) {
+    $folders[] = ABSPATH . '/wp-content/themes/wpuprojectid';
+    $folders[] = ABSPATH . '/wp-content/mu-plugins/wpuprojectid';
+    return $folders;
+}, 10, 1);
