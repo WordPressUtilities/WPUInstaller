@@ -15,6 +15,8 @@ Description: Site local overrides.
 class WPUOverrideOptions {
     private $options = array(
         # Uncomment the following array lines or add new ones.
+        # - Override Analytics
+        # 'wputh_ua_analytics' => 'UA-00000',
         # - Override admin Email
         # 'admin_email' => 'test@example.com',
         # 'new_admin_email' => 'test@example.com',
