@@ -39,12 +39,6 @@ do
 done;
 
 # Classic MU Plugins
-for i in $WPU_MUPLUGINS_OK
-do
-    echo "## Install ${i}";
-    cp "${MAINDIR}WPUtilities/${WP_PLUGINS_DIR}${i}.php" "${MAINDIR}${WP_MUPLUGINS_DIR}wpu/${i}.php";
-    echo "- ${i} is installed.";
-done;
 for i in $WPU_SUBMODULES_MUPLUGINS_OK
 do
     echo "## Install ${i}";
