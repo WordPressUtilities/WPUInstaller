@@ -62,6 +62,13 @@ if [[ $need_acf == 'y' ]];then
     git commit --no-verify -m "Installation - Plugin : ACF" --quiet;
 fi;
 
+# Forms
+if [[ "${need_acf_forms}" == 'y' || "${need_contact_form}" == 'y' ]]; then
+    cd "${MAINDIR}${WP_PLUGINS_DIR}";
+    bashutilities_submodule_or_install "https://github.com/WordPressUtilities/wpucontactforms.git" "${use_submodules}";
+    cd "${MAINDIR}";
+fi;
+
 # Search
 if [[ ${WPU_SUBMODULES_MUPLUGINS_OK} != *"wpudisablesearch"* ]];then
     php ${WPU_PHPCLI} plugin install relevanssi --activate;

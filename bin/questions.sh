@@ -122,7 +122,6 @@ fi;
 is_woocommerce=$(bashutilities_get_yn "Is it an ecommerce ?" 'n');
 use_submodules=$(bashutilities_get_yn "Use git submodules ?" 'y');
 
-
 WPU_SUBMODULES_MUPLUGINS_OK="";
 for i in $WPU_SUBMODULES_MUPLUGINS
 do
@@ -132,15 +131,24 @@ do
     fi;
 done;
 
-
 install_recommended_plugins=$(bashutilities_get_yn "Install recommended plugins ?" 'y');
+
+need_contact_form=$(bashutilities_get_yn "Do you need a contact form ?" 'y');
+
+# ACF
 need_acf=$(bashutilities_get_yn "Do you need Advanced Custom Fields ?" 'y');
+need_acf_forms='n';
 if [[ "${need_acf}" == 'y' && "${acf_api_key}" == "" ]]; then
     read -p "What's your ACF API Key ? " acf_api_key;
     if [[ $acf_api_key == '' ]]; then
         need_acf="n";
     fi;
 fi;
+if [[ "${need_acf}" == 'y' && "${acf_api_key}" == "" ]]; then
+    need_acf_forms=$(bashutilities_get_yn "Do you need a contact form in ACF ?" 'y');
+fi;
+
+# Shell
 wpu_add_shell_scripts=$(bashutilities_get_yn "Add shell scripts ?" 'n');
 
 read -p "Install WordPress in a subfolder ? (y/N) " use_subfolder;
