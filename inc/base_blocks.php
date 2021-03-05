@@ -8,7 +8,7 @@ Description: Add project blocks
   Master ACF location
 ---------------------------------------------------------- */
 
-function project_id_get_master_location() {
+function wpuprojectid_get_master_location() {
     return array(
         array(
             array(
@@ -33,7 +33,7 @@ function project_id_get_master_location() {
 
 add_filter('wpu_acf_flexible_content', function ($contents) {
 
-    $all_layouts = apply_filters('project_id_blocks', array());
+    $all_layouts = apply_filters('wpuprojectid_blocks', array());
 
     $all_layouts['content'] = array(
         'label' => 'WYSIWYG',
@@ -51,7 +51,7 @@ add_filter('wpu_acf_flexible_content', function ($contents) {
     /* Page */
     $contents['content-blocks'] = array(
         'save_post' => 1,
-        'location' => project_id_get_master_location(),
+        'location' => wpuprojectid_get_master_location(),
         'name' => 'Master Blocks',
         'layouts' => $all_layouts
     );
@@ -60,7 +60,7 @@ add_filter('wpu_acf_flexible_content', function ($contents) {
 }, 12, 1);
 
 /* Layouts on subfiles
-add_filter('project_id_blocks', function ($layouts) {
+add_filter('wpuprojectid_blocks', function ($layouts) {
     $layouts['home-slider-top'] = array(
         'label' => 'Slider Top',
         'sub_fields' => array(
@@ -130,7 +130,7 @@ EOT;
 ---------------------------------------------------------- */
 
 add_action('wpu_acf_flexible__set_file_content', function ($layout_id, $group) {
-    $scss_path = get_stylesheet_directory() . '/src/scss/project_id/blocks/';
+    $scss_path = get_stylesheet_directory() . '/src/scss/wpuprojectid/blocks/';
     $js_path = get_stylesheet_directory() . '/src/js/blocks/';
     if (!is_dir($scss_path)) {
         mkdir($scss_path);
