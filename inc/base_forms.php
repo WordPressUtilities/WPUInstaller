@@ -13,6 +13,10 @@ class wpuprojectid_forms {
         /* Config */
         add_filter('wpucontactforms_settings', array(&$this, 'wpucontactforms_settings'));
         add_filter('wpucontactforms_submit_contactform_msg_errors', array(&$this, 'wpucontactforms_submit_contactform_msg_errors'), 10, 2);
+        add_action('wpucontactforms_submit_contactform', array(&$this, 'wpucontactforms_submit_contactform'), 10, 2);
+        add_filter('wpucontactforms_email', array(&$this, 'wpucontactforms_email'), 10, 3);
+
+        /* Settings */
         add_filter('wpucontactforms_display_form_after_success', '__return_false');
     }
 
@@ -124,6 +128,19 @@ class wpuprojectid_forms {
         if ($form->options['id'] == 'default_form' && false) {
             /* CALLBACK API */
         }
+
+    }
+
+    /* Email target
+    -------------------------- */
+
+    public function wpucontactforms_email($target_email, $form_options, $form_contact_fields) {
+
+        if ($form_options['id'] == 'default_form' && false) {
+            $target_email = 'test@example.com';
+        }
+
+        return $target_email;
 
     }
 
