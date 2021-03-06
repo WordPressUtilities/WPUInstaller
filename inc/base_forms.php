@@ -18,6 +18,11 @@ class wpuprojectid_forms {
 
         /* Settings */
         add_filter('wpucontactforms_display_form_after_success', '__return_false');
+
+        /* Options */
+        add_filter('wpu_options_tabs', array(&$this, 'wpu_options_tabs'), 10, 1);
+        add_filter('wpu_options_boxes', array(&$this, 'wpu_options_boxes'), 10, 1);
+        add_filter('wpu_options_fields', array(&$this, 'wpu_options_fields'), 10, 1);
     }
 
     /* ----------------------------------------------------------
@@ -101,6 +106,35 @@ class wpuprojectid_forms {
     }
 
     /* ----------------------------------------------------------
+      Options
+    ---------------------------------------------------------- */
+
+    public function wpu_options_tabs($tabs) {
+        $tabs['forms_tab'] = array(
+            'name' => '[project_id] Forms',
+            'sidebar' => true
+        );
+        return $tabs;
+    }
+
+    public function wpu_options_boxes($boxes) {
+        $boxes['forms_box'] = array(
+            'name' => 'Forms',
+            'tab' => 'forms_tab'
+        );
+        return $boxes;
+    }
+
+    public function wpu_options_fields($options) {
+        $options['forms_email_target'] = array(
+            'label' => 'Email',
+            'box' => 'forms_box',
+            'type' => 'email'
+        );
+        return $options;
+    }
+
+    /* ----------------------------------------------------------
       Callback
     ---------------------------------------------------------- */
 
@@ -137,7 +171,10 @@ class wpuprojectid_forms {
     public function wpucontactforms_email($target_email, $form_options, $form_contact_fields) {
 
         if ($form_options['id'] == 'default_form' && false) {
-            $target_email = 'test@example.com';
+            $forms_email_target = get_option('forms_email_target');
+            if (is_email($forms_email_target)) {
+                $target_email = $forms_email_target;
+            }
         }
 
         return $target_email;
