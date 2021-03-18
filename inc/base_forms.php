@@ -197,6 +197,9 @@ function wpuprojectid_forms_get_form_acf_layout() {
     $fields = array();
 
     /* Select a form */
+    if (!is_object($wpuprojectid_forms)) {
+        $wpuprojectid_forms = new wpuprojectid_forms();
+    }
     $forms = $wpuprojectid_forms->get_forms();
     $forms_choice = array();
     foreach ($forms as $id => $form) {
