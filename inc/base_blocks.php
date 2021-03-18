@@ -74,6 +74,21 @@ add_filter('wpuprojectid_blocks', function ($layouts) {
 */
 
 /* ----------------------------------------------------------
+  Custom field types
+---------------------------------------------------------- */
+
+add_filter('wpu_acf_flexible__field_types', function ($types) {
+    /* Title */
+    $types['wpuprojectid_title'] = array(
+        'instructions' => 'Special text : &lt;u&gt;Text&lt;/u&gt;.',
+        'label' => 'Title',
+        'rows' => 3,
+        'type' => 'textarea'
+    );
+    return $types;
+}, 10, 1);
+
+/* ----------------------------------------------------------
   Master Generator model
 ---------------------------------------------------------- */
 
@@ -173,4 +188,3 @@ EOT;
         file_put_contents($js_file, $comment);
     }
 }, 10, 2);
-
