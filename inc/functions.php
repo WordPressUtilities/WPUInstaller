@@ -103,17 +103,9 @@ add_filter('wputh_common_libraries__simplebar', '__return_false', 1, 1);
 /* Styles
  -------------------------- */
 
-define('PROJECT_CSS_DIR', get_stylesheet_directory() . '/assets/css/');
-define('PROJECT_CSS_URL', get_stylesheet_directory_uri() . '/assets/css/');
-
 function wputh_control_stylesheets() {
     wp_dequeue_style('wputhmain');
-
-    // Add child theme
-    $css_files = parse_path(PROJECT_CSS_DIR);
-    foreach ($css_files as $file) {
-        wpu_add_css_file($file, PROJECT_CSS_DIR, PROJECT_CSS_URL);
-    }
+    wp_enqueue_style('wpuproject-styles', get_stylesheet_directory_uri() . '/assets/css/main.css', array(), WPUTHEME_ASSETS_VERSION, false);
 }
 
 /* Exclude all parent templates
