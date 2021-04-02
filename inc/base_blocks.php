@@ -56,6 +56,37 @@ add_filter('wpu_acf_flexible_content', function ($contents) {
         'layouts' => $all_layouts
     );
 
+    /* Header */
+    $contents['master-settings'] = array(
+        'location' => wpuprojectid_get_master_location(),
+        'fields' => array(
+            'master_header' => array(
+                'label' => 'Master - Header',
+                'type' => 'group',
+                'sub_fields' => array(
+                    'cola' => 'wpuacf_50p',
+                    'title' => array(
+                        'label' => 'Titre',
+                        'type' => 'textarea',
+                        'rows' => 2
+                    ),
+                    'intro' => array(
+                        'label' => 'Introduction',
+                        'type' => 'editor',
+                        'toolbar' => 'wpuacf_mini'
+                    ),
+                    'cta' => 'wpuacf_cta',
+                    'colb' => 'wpuacf_50p',
+                    'image' => array(
+                        'type' => 'wpuacf_image',
+                        'required' => false
+                    ),
+                    'video' => 'wpuacf_video'
+                )
+            )
+        )
+    );
+
     return $contents;
 }, 12, 1);
 
@@ -188,3 +219,25 @@ EOT;
         file_put_contents($js_file, $comment);
     }
 }, 10, 2);
+
+/* ----------------------------------------------------------
+  Set default image
+---------------------------------------------------------- */
+
+add_action('save_post', function ($post_id) {
+    if (!function_exists('get_field')) {
+        return;
+    }
+    if (wp_is_post_revision($post_id)) {
+        return;
+    }
+    $post_thumbnail = get_post_meta($post_id, '_thumbnail_id', true);
+    if (!empty($post_thumbnail)) {
+        return;
+    }
+    $master_header_image = get_field('master_header_image', $post_id);
+    if(!$master_header_image){
+        return;
+    }
+    update_post_meta($post_id,  '_thumbnail_id', $master_header_image);
+}, 99);
