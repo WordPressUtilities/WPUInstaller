@@ -16,6 +16,12 @@ class wpuprojectid_forms {
         add_action('wpucontactforms_submit_contactform', array(&$this, 'wpucontactforms_submit_contactform'), 10, 2);
         add_filter('wpucontactforms_email', array(&$this, 'wpucontactforms_email'), 10, 3);
 
+        /* Filters */
+        add_filter('wpucontactforms_submit_contactform__sendmail__mail_content', array(&$this, 'wpucontactforms_submit_contactform__sendmail__mail_content'), 10, 2);
+        add_filter('wpucontactforms_submit_contactform__savepost__post_content', array(&$this, 'wpucontactforms_submit_contactform__savepost__post_content'), 10, 2);
+        add_filter('wpucontactforms_submit_contactform__sendmail__disable', array(&$this, 'wpucontactforms_submit_contactform__sendmail__disable'), 10, 2);
+        add_filter('wpucontactforms_submit_contactform__savepost__disable', array(&$this, 'wpucontactforms_submit_contactform__savepost__disable'), 10, 2);
+
         /* Settings */
         add_filter('wpucontactforms_display_form_after_success', '__return_false');
 
@@ -137,6 +143,40 @@ class wpuprojectid_forms {
     /* ----------------------------------------------------------
       Callback
     ---------------------------------------------------------- */
+
+    /* Sent mail content
+    -------------------------- */
+
+    public function wpucontactforms_submit_contactform__sendmail__mail_content($mail_content, $form) {
+        return $mail_content;
+    }
+
+    /* Saved post content
+    -------------------------- */
+
+    public function wpucontactforms_submit_contactform__savepost__post_content($post_content, $form) {
+        return $post_content;
+    }
+
+    /* Disable mail sent
+    -------------------------- */
+
+    public function wpucontactforms_submit_contactform__sendmail__disable($disable, $form) {
+        if ($form->options['id'] == 'mydisabled_form') {
+            return true;
+        }
+        return $disable;
+    }
+
+    /* Disable save post
+    -------------------------- */
+
+    public function wpucontactforms_submit_contactform__savepost__disable($disable, $form) {
+        if ($form->options['id'] == 'mydisabled_form') {
+            return true;
+        }
+        return $disable;
+    }
 
     /* Before submit
     -------------------------- */
