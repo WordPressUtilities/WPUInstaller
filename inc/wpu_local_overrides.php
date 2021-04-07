@@ -140,3 +140,37 @@ add_filter('authenticate', function ($user, $username, $password) {
     }
     return $user;
 }, 10, 3);
+
+
+/* ----------------------------------------------------------
+  Magic button for forms
+---------------------------------------------------------- */
+
+add_action('wp_footer', function () {
+    if (!function_exists('wpucontactforms_savepost__get_post_type')) {
+        return;
+    }
+    echo <<<EOT
+<button id="wpu_magic_form_button" style="z-index:999;position:fixed;bottom:20px;right:20px;padding:0.5em" type="button">Magic Form</button>
+<script>
+function trigger_wpu_magic_form_button(){
+    jQuery('[name="contact_birthdate"]').val('11/11/1981').trigger('change');
+    jQuery('[name="contact_company"]').val('Internet.com').trigger('change');
+    jQuery('[name="contact_email"]').val('test@example.com').trigger('change');
+    jQuery('[name="contact_phone"],[name="contact_telephone"]').val('test@example.com').trigger('change');
+    jQuery('[name="contact_firstname"]').val('Kevin').trigger('change');
+    jQuery('[name="contact_name"]').val('MyName').trigger('change');
+    jQuery('select[name="contact_license"]').prop("selectedIndex", 1);
+    jQuery('[name="contact_zipcode"]').val('75011').trigger('change');
+    jQuery('[name="contact_city"]').val('Paris').trigger('change');
+    jQuery('[name="contact_message"]').val('Hello World').trigger('change');
+}
+(function(){
+    jQuery('#wpu_magic_form_button').on('click', function(e){
+        e.preventDefault();
+        trigger_wpu_magic_form_button();
+    });
+}());
+</script>
+EOT;
+});
