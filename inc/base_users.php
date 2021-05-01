@@ -55,7 +55,7 @@ add_action('admin_menu', function () {
     /* Remove some theme parts */
     if (isset($submenu['themes.php'])) {
         foreach ($submenu['themes.php'] as $i => $item) {
-            if ($item[1] == 'edit_theme_options' && $item[4] == 'hide-if-no-customize') {
+            if (isset($item[1], $item[4]) && $item[1] == 'edit_theme_options' && $item[4] == 'hide-if-no-customize') {
                 unset($submenu['themes.php'][$i]);
             }
         }
