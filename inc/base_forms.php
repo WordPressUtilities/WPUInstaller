@@ -6,7 +6,13 @@ Description: Config for forms
 */
 
 class wpuprojectid_forms {
-    public function __construct() {
+    public function __construct($init = true) {
+        if ($init) {
+            $this->set_hooks();
+        }
+    }
+
+    public function set_hooks() {
         /* Init */
         add_action('wp_loaded', array(&$this, 'init_forms'));
 
@@ -46,21 +52,21 @@ class wpuprojectid_forms {
         }
     }
 
-    public function get_forms() {
+    public function get_forms($with_fields = true) {
         $forms = array();
         $forms['default_form'] = array(
             'id' => 'default_form',
             'name' => 'Default Form',
             'contact__success' => '<div>This is a custom message !</div>',
             'contact__settings' => array(
-                'contact_fields' => $this->get_fields('default_form')
+                'contact_fields' => $with_fields ? $this->get_fields('default_form') : array()
             )
         );
         $forms['another_form'] = array(
             'id' => 'another_form',
             'name' => 'Another Form',
             'contact__settings' => array(
-                'contact_fields' => $this->get_fields('another_form')
+                'contact_fields' => $with_fields ? $this->get_fields('another_form') : array()
             )
         );
         return $forms;
