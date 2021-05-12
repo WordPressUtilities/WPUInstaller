@@ -47,7 +47,6 @@ if [[ $need_acf == 'y' ]];then
     echo "## Install ACF";
     wp plugin install "http://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=${acf_api_key}" --activate;
     wp plugin install acf-extended --activate;
-    wp plugin install acf-autosize --activate;
     cd "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
     bashutilities_submodule_or_install "https://github.com/WordPressUtilities/wpu_acf_flexible.git" "${use_submodules}";
     cd "${MAINDIR}";
@@ -89,7 +88,6 @@ if [[ $install_recommended_plugins == 'y' ]]; then
     # No activation
     php ${WPU_PHPCLI} plugin install duplicate-post;
     php ${WPU_PHPCLI} plugin install google-sitemap-generator;
-    php ${WPU_PHPCLI} plugin install happyfiles;
     php ${WPU_PHPCLI} plugin install query-monitor;
     php ${WPU_PHPCLI} plugin install redirection;
 
