@@ -150,6 +150,10 @@ fi;
 
 # Shell
 wpu_add_shell_scripts=$(bashutilities_get_yn "Add shell scripts ?" 'n');
+use_external_api='n';
+if [[ "${wpu_add_shell_scripts}" == 'y' ]];then
+    read -p "Do you need to use an external API ? (y/N) " use_external_api;
+fi;
 
 read -p "Install WordPress in a subfolder ? (y/N) " use_subfolder;
 if [[ $use_subfolder == 'y' ]]; then

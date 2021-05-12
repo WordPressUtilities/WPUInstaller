@@ -27,3 +27,24 @@ if [[ $wpu_add_shell_scripts == 'y' ]]; then
 
     cd "${MAINDIR}";
 fi;
+
+###################################
+## API
+###################################
+
+if [[ "${use_external_api}" == 'y' ]];then
+
+    # Load Base Plugin Settings
+    git clone --quiet "https://github.com/WordPressUtilities/wpubaseplugin.git";
+    mv "${MAINDIR}wpubaseplugin/inc/WPUBaseSettings" "${MAINDIR}${WP_MUPLUGINS_DIR}/wpu/WPUBaseSettings";
+    rm -rf "${MAINDIR}wpubaseplugin/";
+    bashutilities_sed "s/namespace\ .*/namespace ${project_id}_wpubasesettings;/g"  "${MAINDIR}${WP_MUPLUGINS_DIR}/wpu/WPUBaseSettings/WPUBaseSettings.php";
+
+    # Create mu-plugin API
+    _mu_plugin_api_dir="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/api/";
+    _mu_plugin_api_file="${_mu_plugin_api_dir}${project_id}_api.php";
+    mkdir "${_mu_plugin_api_dir}";
+    cp "${SCRIPTDIR}inc/base_api.php" "${_mu_plugin_api_file}";
+    wpuinstaller_replace "${_mu_plugin_api_file}";
+
+fi;
