@@ -29,10 +29,15 @@ class wpuprojectid_myapiid {
             )
         );
         $this->settings = array(
-            'sources' => array(
-                'label' => 'Sources',
-                'help' => 'One #hashtag or one @user per line.',
-                'type' => 'textarea'
+            'api_endpoint' => array(
+                'label' => 'API Endpoint',
+                'help' => 'Your endpoint.',
+                'type' => 'url'
+            ),
+            'api_token' => array(
+                'label' => 'API Token',
+                'help' => 'Your token.',
+                'type' => 'text'
             )
         );
         if (is_admin()) {
@@ -49,6 +54,12 @@ $wpuprojectid_myapiid = new wpuprojectid_myapiid();
 
 function wpuprojectid_myapiid_import_action() {
     $opt = get_option('wpuprojectid_myapiid_options');
+
+    if (!is_array($opt) || !isset($opt['api_token']) || !isset($opt['api_endpoint']) || empty($opt['api_token']) || empty($opt['api_endpoint'])) {
+        echo 'Missing config values';
+        return;
+    }
+
     $url = '';
     $content = json_decode(wp_remote_retrieve_body(wp_remote_get($url)), true);
 }
