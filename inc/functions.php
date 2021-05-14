@@ -105,7 +105,7 @@ add_filter('wputh_common_libraries__simplebar', '__return_false', 1, 1);
 
 function wputh_control_stylesheets() {
     wp_dequeue_style('wputhmain');
-    wp_enqueue_style('wpuproject-styles', get_stylesheet_directory_uri() . '/assets/css/main.css', array(), WPUTHEME_ASSETS_VERSION, false);
+    wp_enqueue_style('wpuprojectid-styles', get_stylesheet_directory_uri() . '/assets/css/main.css', array(), WPUTHEME_ASSETS_VERSION, false);
 }
 
 /* Exclude all parent templates
