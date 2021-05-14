@@ -87,6 +87,7 @@ function wp_mail($to, $subject, $message, $headers = '', $attachments = array())
     $mail .= 'MESSAGE : ' . $message;
     $mail .= "\n--- NEW MAIL\n";
     error_log($mail);
+    return true;
 }
 
 /* ----------------------------------------------------------
