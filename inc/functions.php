@@ -48,6 +48,11 @@ add_filter('wputheme_display_header', '__return_false', 1, 1);
 add_filter('wputheme_display_mainwrapper', '__return_false', 1, 1);
 add_filter('wputheme_display_footer', '__return_false', 1, 1);
 
+/* Settings
+-------------------------- */
+
+add_filter('wputheme_usesessions', '__return_false', 1, 1);
+
 /* Sidebars
 -------------------------- */
 
