@@ -61,5 +61,37 @@ function wpuprojectid_myapiid_import_action() {
     }
 
     $url = '';
-    $content = json_decode(wp_remote_retrieve_body(wp_remote_get($url)), true);
+    $content = wpuprojectid_myapiid_get($url, array(
+        'token' => $opt['api_token']
+    ));
+}
+
+/* ----------------------------------------------------------
+  API callback
+---------------------------------------------------------- */
+
+function wpuprojectid_myapiid_get($remote_url, $headers = array(), $args = array()) {
+
+    /* Default args */
+    if (!is_array($args)) {
+        $args = array();
+    }
+    if ($headers && is_array($headers)) {
+        $args['headers'] = $headers;
+    }
+
+    /* Making the call */
+    $result_body = wp_remote_retrieve_body(wp_remote_get($remote_url, $args));
+    if (!$result_body) {
+        return false;
+    }
+
+    /* Converting to JSON */
+    $first_char = substr($result_body, 0, 1);
+    if ($first_char == '{' || $first_char == '[') {
+        return json_decode($result_body, true);
+    }
+
+    /* Sending result */
+    return $result_body;
 }
