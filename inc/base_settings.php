@@ -17,6 +17,7 @@ class wpuprojectid_settings {
         #$actions[20200417153516] = array(&$this, 'set_plugins');
         #$actions[20200417153545] = array(&$this, 'set_theme');
         #$actions[20200417153547] = array(&$this, 'set_options');
+        #$actions[20200417153548] = array(&$this, 'set_menus');
         return $actions;
     }
 
@@ -44,6 +45,19 @@ class wpuprojectid_settings {
     public function set_options() {
         # update_option('page_on_front', get_option('home__page_id'));
         # update_option('show_on_front', 'page');
+    }
+
+    public function set_menus() {
+        global $wpu_settings_version;
+
+        /* Use theme menus */
+        $menus = apply_filters('wputh_default_menus', array());
+
+        /* Add pages to these menus */
+        $pages = array(get_option('home__page_id'), get_option('mentions__page_id'));
+
+        /* Create menus */
+        $wpu_settings_version->set_menus($pages, $menus, 'kana');
     }
 }
 
