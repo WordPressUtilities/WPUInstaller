@@ -57,7 +57,7 @@ class wpuprojectid_settings {
         $pages = array(get_option('home__page_id'), get_option('mentions__page_id'));
 
         /* Create menus */
-        $wpu_settings_version->set_menus($pages, $menus, 'kana');
+        $wpu_settings_version->set_menus($pages, $menus, 'wpuprojectid');
     }
 }
 
