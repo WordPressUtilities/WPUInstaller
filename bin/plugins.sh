@@ -66,6 +66,10 @@ if [[ "${need_acf_forms}" == 'y' || "${need_contact_form}" == 'y' ]]; then
     cd "${MAINDIR}${WP_PLUGINS_DIR}";
     bashutilities_submodule_or_install "https://github.com/WordPressUtilities/wpucontactforms.git" "${use_submodules}";
     cd "${MAINDIR}";
+    git add -A
+    git commit --no-verify -m "Installation - Plugin : WPU Contact forms" --quiet;
+fi;
+
 # WP Rocket
 if [[ "${need_wprocket}" == 'y' ]];then
     wpuinstaller_github_plugin wp-media wp-rocket;
