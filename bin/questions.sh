@@ -155,7 +155,7 @@ need_wprocket=$(bashutilities_get_yn "Do you need WP Rocket ?" 'y');
 wpu_add_shell_scripts=$(bashutilities_get_yn "Add shell scripts ?" 'n');
 use_external_api='n';
 if [[ "${wpu_add_shell_scripts}" == 'y' ]];then
-    read -p "Do you need to use an external API ? (y/N) " use_external_api;
+    use_external_api=$(bashutilities_get_yn "Do you need to use an external API ?" 'n');
 fi;
 
 read -p "Install WordPress in a subfolder ? (y/N) " use_subfolder;
