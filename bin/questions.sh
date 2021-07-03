@@ -148,6 +148,9 @@ if [[ "${need_acf}" == 'y' && "${acf_api_key}" == "" ]]; then
     need_acf_forms=$(bashutilities_get_yn "Do you need a contact form in ACF ?" 'y');
 fi;
 
+# WP Rocket
+need_wprocket=$(bashutilities_get_yn "Do you need WP Rocket ?" 'y');
+
 # Shell
 wpu_add_shell_scripts=$(bashutilities_get_yn "Add shell scripts ?" 'n');
 use_external_api='n';
