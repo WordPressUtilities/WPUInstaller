@@ -123,3 +123,35 @@ add_filter('wpupllutilities__folders_to_scan', function ($folders) {
     $folders[] = ABSPATH . '/wp-content/mu-plugins/wpuprojectid';
     return $folders;
 }, 10, 1);
+
+/* ----------------------------------------------------------
+  Get loops
+---------------------------------------------------------- */
+
+function wpuprojectid_get_loop_from_ids($wpq_posts = array(), $classname = 'loop-list', $loopfile = 'loop-post.php') {
+    if (!$wpq_posts) {
+        return '';
+    }
+    $html = '<ul class="' . $classname . '">';
+    foreach ($wpq_posts as $wpq_post) {
+        $html .= '<li>';
+        $html .= wpuprojectid_get_loop_item_from_id($wpq_post, $loopfile);
+        $html .= '</li>';
+    }
+    $html .= '</ul>';
+    return $html;
+}
+
+function wpuprojectid_get_loop_item_from_id($post_obj, $loopfile = 'loop-post.php') {
+    global $post;
+    if (is_numeric($post_obj)) {
+        $post_obj = get_post($post_obj);
+    }
+    $old_post = $post;
+    $post = $post_obj;
+    ob_start();
+    include get_stylesheet_directory() . '/tpl/loops/' . $loopfile;
+    $html = ob_get_clean();
+    $post = $old_post;
+    return $html;
+}
