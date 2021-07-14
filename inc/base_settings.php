@@ -38,13 +38,20 @@ class wpuprojectid_settings {
     public function set_theme() {
         switch_theme('WPUTheme');
         switch_theme('wpuprojectid');
-        wp_redirect(site_url());
-        return;
+        if (!defined('WP_CLI')) {
+            wp_redirect(site_url());
+        }
     }
 
     public function set_options() {
-        # update_option('page_on_front', get_option('home__page_id'));
-        # update_option('show_on_front', 'page');
+        # Pages
+        update_option('page_on_front', get_option('home__page_id'));
+        update_option('show_on_front', 'page');
+
+        # Social
+        update_option('social_instagram_url', 'https://www.instagram.com/');
+        update_option('social_linkedin_url', 'https://www.linkedin.com/');
+        update_option('social_twitter_url', 'https://www.twitter.com/');
     }
 
     public function set_menus() {
@@ -54,9 +61,24 @@ class wpuprojectid_settings {
         $menus = apply_filters('wputh_default_menus', array());
 
         /* Add pages to these menus */
-        $pages = array(get_option('home__page_id'), get_option('mentions__page_id'));
+        $pages = array(
+            get_option('home__page_id'),
+            get_option('contact__page_id'),
+            array(
+                'type' => 'post_type_archive',
+                'post_type' => 'projets'
+            ),
+            array(
+                'type' => 'custom',
+                'url' => 'https://darklg.me',
+                'title' => 'Custom Link'
+            )
+        );
 
         /* Create menus */
+        if (!is_object($wpu_settings_version)) {
+            $wpu_settings_version = new wpu_settings_version();
+        }
         $wpu_settings_version->set_menus($pages, $menus, 'wpuprojectid');
     }
 }
