@@ -14,7 +14,7 @@ $content_width = 680;
  -------------------------- */
 
 add_action('after_setup_theme', function () {
-    load_theme_textdomain('wpuproject', get_stylesheet_directory() . '/lang');
+    load_theme_textdomain('wpuprojectid', get_stylesheet_directory() . '/lang');
 });
 
 /* Social networks
@@ -104,6 +104,7 @@ add_filter('wputh_javascript_files', function ($js_files) {
 
 add_filter('wputh_common_libraries__slickslider', '__return_true', 1, 1);
 add_filter('wputh_common_libraries__simplebar', '__return_false', 1, 1);
+add_filter('wputh_common_libraries__juxtapose', '__return_false', 1, 1);
 
 /* Styles
  -------------------------- */
