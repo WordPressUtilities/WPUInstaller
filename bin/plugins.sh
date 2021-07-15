@@ -45,8 +45,8 @@ fi;
 # ACF
 if [[ $need_acf == 'y' ]];then
     echo "## Install ACF";
-    wp plugin install "http://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=${acf_api_key}" --activate;
-    wp plugin install acf-extended --activate;
+    php ${WPU_PHPCLI} plugin install "http://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=${acf_api_key}" --activate;
+    php ${WPU_PHPCLI} plugin install acf-extended --activate;
     cd "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
     bashutilities_submodule_or_install "https://github.com/WordPressUtilities/wpu_acf_flexible.git" "${use_submodules}";
     cd "${MAINDIR}";
@@ -107,7 +107,7 @@ fi;
 
 # Activation
 echo "## Plugin Activation";
-_plugins_list=$(wp option get active_plugins);
+_plugins_list=$(php ${WPU_PHPCLI} option get active_plugins);
 _plugin_settings_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_settings.php";
 methods_string=$(cat <<EOF
     private \$plugins_list=${_plugins_list};
