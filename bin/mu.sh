@@ -67,6 +67,12 @@ if [[ ${WPU_SUBMODULES_MUPLUGINS_OK} != *"wpudisableposts"* ]];then
     wpuinstaller_replace "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_posts.php";
 fi
 
+# Menus
+if [[ "${need_advanced_menus}" == 'y' ]];then
+    cp "${SCRIPTDIR}inc/base_menus.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_menus.php";
+    wpuinstaller_replace "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_menus.php";
+fi;
+
 # Home page
 if [[ "${home_is_cms}" == 'y' ]]; then
     home__cms_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/pages/${project_id}_home.php";

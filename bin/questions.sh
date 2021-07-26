@@ -115,9 +115,11 @@ fi;
 need_theme=$(bashutilities_get_yn "Do you need a theme ?" 'y');
 home_is_cms='n';
 has_attachment_tpl='n';
+need_advanced_menus='n';
 if [[ "${need_theme}" == 'y' ]];then
     home_is_cms=$(bashutilities_get_yn "Is the home page a CMS page ?" 'y');
     has_attachment_tpl=$(bashutilities_get_yn "Do you need the attachment template ?" 'n');
+    need_advanced_menus=$(bashutilities_get_yn "Do you need advanced menus ?" 'y');
 fi;
 is_woocommerce=$(bashutilities_get_yn "Is it an ecommerce ?" 'n');
 use_submodules=$(bashutilities_get_yn "Use git submodules ?" 'y');
