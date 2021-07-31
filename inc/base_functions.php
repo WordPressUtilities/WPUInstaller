@@ -9,9 +9,13 @@ Description: Website common functions
 ---------------------------------------------------------- */
 
 add_action('plugins_loaded', function () {
-    if (!is_user_logged_in()) {
-        add_filter('wpudisabler__disable_wp_api', '__return_true');
+    if (is_user_logged_in()) {
+        return;
     }
+    if (current_user_can('delete_users')) {
+        return;
+    }
+    add_filter('wpudisabler__disable_wp_api', '__return_true');
 }, 5);
 
 /* ----------------------------------------------------------
