@@ -12,7 +12,7 @@ add_action('plugins_loaded', function () {
     if (is_user_logged_in()) {
         return;
     }
-    if (current_user_can('delete_users')) {
+    if (current_user_can('remove_users')) {
         return;
     }
     add_filter('wpudisabler__disable_wp_api', '__return_true');
@@ -85,7 +85,7 @@ add_action('template_redirect', function () {
 ---------------------------------------------------------- */
 
 add_filter('upload_mimes', function ($mimes) {
-    if (current_user_can('delete_users')) {
+    if (current_user_can('remove_users')) {
         $mimes['svg'] = 'image/svg+xml';
     }
     return $mimes;
