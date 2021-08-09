@@ -80,6 +80,12 @@ function wpuprojectid_myapiid_get($remote_url, $headers = array(), $args = array
         $args['headers'] = $headers;
     }
 
+    /* Checking if this call can be made */
+    if (defined('WP_HTTP_BLOCK_EXTERNAL') && WP_HTTP_BLOCK_EXTERNAL) {
+        error_log('Error: WP_HTTP_BLOCK_EXTERNAL is enabled.');
+        return false;
+    }
+
     /* Making the call */
     $result_body = wp_remote_retrieve_body(wp_remote_get($remote_url, $args));
     if (!$result_body) {
