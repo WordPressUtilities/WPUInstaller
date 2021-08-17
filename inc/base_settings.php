@@ -44,6 +44,13 @@ class wpuprojectid_settings {
     }
 
     public function set_options() {
+        # WordPress
+        update_option('start_of_week', '1');
+        update_option('date_format', 'j F Y');
+        update_option('time_format', 'H:i');
+        update_option('timezone_string', 'Europe/Paris');
+        update_option('permalink_structure', '/%postname%/');
+
         # Pages
         update_option('page_on_front', get_option('home__page_id'));
         update_option('show_on_front', 'page');
