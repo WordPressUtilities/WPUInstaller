@@ -63,8 +63,13 @@ wpuinstaller_replace "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_u
 
 # Posts
 if [[ ${WPU_SUBMODULES_MUPLUGINS_OK} != *"wpudisableposts"* ]];then
-    cp "${SCRIPTDIR}inc/base_posts.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_posts.php";
-    wpuinstaller_replace "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_posts.php";
+    # Ensure dir exists
+    _POSTS_DIR="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/entities";
+    mkdir -p "${_POSTS_DIR}";
+    # Copy file
+    _POSTS_FILE="${_POSTS_DIR}/${project_id}_posts.php";
+    cp "${SCRIPTDIR}inc/base_posts.php" "${_POSTS_FILE}";
+    wpuinstaller_replace "${_POSTS_FILE}";
 fi
 
 # Menus
