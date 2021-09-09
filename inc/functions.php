@@ -138,6 +138,7 @@ add_filter('theme_page_templates', function ($templates) {
     unset($templates['page-templates/page-sitemap.php']);
     unset($templates['page-templates/page-webservice.php']);
     unset($templates['page-templates/page-woocommerce.php']);
+    unset($templates['page-templates/page-template-flexible.php']);
     return $templates;
 });
 
