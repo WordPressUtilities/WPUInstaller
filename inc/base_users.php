@@ -92,14 +92,3 @@ add_action('admin_menu', function () {
 add_filter('redirection_role', function ($role) {
     return 'list_users';
 });
-
-/* ----------------------------------------------------------
-  Failed login in front : redirect to the home page
----------------------------------------------------------- */
-
-add_action('wp_login_failed', function ($username) {
-    if (!strstr($referrer, 'wp-login') && !strstr($referrer, 'wp-admin')) {
-        wp_redirect(site_url() . '?login=failed');
-        exit;
-    }
-});
