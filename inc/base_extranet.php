@@ -5,6 +5,32 @@ Description: Handle website extranet
 */
 
 /* ----------------------------------------------------------
+  Pages
+---------------------------------------------------------- */
+
+add_filter('wputh_pages_site', function ($pages_site) {
+    /* Uncomment when your pages are configured */
+    return $pages_site;
+    $pages_site['extranet_dashboard__page_id'] = array(
+        'post_title' => 'Dashboard',
+        'page_template' => 'extranet-dashboard.php',
+        'wpu_post_metas' => array(
+            'is_extranet_page' => 1
+        ),
+        'disable_items' => array()
+    );
+    $pages_site['extranet_comments__page_id'] = array(
+        'post_title' => 'My comments',
+        'page_template' => 'extranet-comments.php',
+        'wpu_post_metas' => array(
+            'is_extranet_page' => 1
+        ),
+        'disable_items' => array()
+    );
+    return $pages_site;
+});
+
+/* ----------------------------------------------------------
   Pages settings
 ---------------------------------------------------------- */
 
@@ -13,6 +39,13 @@ Description: Handle website extranet
 
 function wpuprojectid_extranet__get_login_page() {
     return site_url('#panel-login');
+}
+
+/* Dashboard page
+-------------------------- */
+
+function wpuprojectid_extranet__get_dashboard_page() {
+    return get_page_link(get_option('extranet_dashboard__page_id'));
 }
 
 /* Mark a page as extranet
@@ -102,6 +135,9 @@ add_action('wp_login_failed', function ($username) {
   Templates
 ---------------------------------------------------------- */
 
+/* Header
+-------------------------- */
+
 add_action('wputheme_main_overcontent_inajax', function () {
     if (!is_page()) {
         return;
@@ -111,6 +147,18 @@ add_action('wputheme_main_overcontent_inajax', function () {
         return;
     }
 
+    echo '<div><h1>' . __('Extranet', 'wpuprojectid') . '</h1></div>';
+    echo wpuprojectid_extranet_get_menu();
+    echo '<h2>' . get_the_title() . '</h2>';
+
+}, 999);
+
+/* Menu
+-------------------------- */
+
+function wpuprojectid_extranet_get_menu() {
+
+    $html = '';
     $posts_extranet = get_posts(array(
         'post_type' => 'page',
         'post_status' => 'any',
@@ -123,12 +171,12 @@ add_action('wputheme_main_overcontent_inajax', function () {
         ))
     ));
 
-    echo '<div><h1>' . __('Extranet', 'wpuprojectid') . '</h1></div>';
-    echo '<ul>';
+    $html .= '<ul>';
     foreach ($posts_extranet as $p) {
-        echo '<li><a ' . ($p->ID == get_the_ID() ? 'class="active"' : '') . ' href="' . get_permalink($p) . '">' . get_the_title($p) . '</a></li>';
+        $html .= '<li><a ' . ($p->ID == get_the_ID() ? 'class="active"' : '') . ' href="' . get_permalink($p) . '">' . get_the_title($p) . '</a></li>';
     }
-    echo '</ul>';
-    echo '<h2>' . get_the_title() . '</h2>';
+    $html .= '<li><a href="' . wp_logout_url(site_url()) . '">' . __('Log out', 'wpuprojectid') . '</a></li>';
+    $html .= '</ul>';
 
-}, 999);
+    return $html;
+}
