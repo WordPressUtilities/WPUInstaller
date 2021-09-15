@@ -19,7 +19,10 @@ echo '### Set gitignore';
 
 echo "# WordPress
 .sass-cache
+.disable_wpu_admin_protect
 /.htaccess
+diff-before.txt
+diff-after.txt
 my.cnf
 node_modules
 package-lock.json
