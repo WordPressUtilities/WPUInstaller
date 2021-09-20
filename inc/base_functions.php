@@ -128,6 +128,10 @@ add_filter('wpupllutilities__folders_to_scan', function ($folders) {
     return $folders;
 }, 10, 1);
 
+add_filter('wpu_pll_utilities_helper_translate_domain', function ($content) {
+    return 'wpuprojectid';
+}, 10, 1);
+
 /* ----------------------------------------------------------
   Get loops
 ---------------------------------------------------------- */
