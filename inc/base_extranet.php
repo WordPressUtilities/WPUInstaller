@@ -121,6 +121,16 @@ add_action('wp', function () {
     wp_redirect(wpuprojectid_extranet__get_login_page());
 });
 
+/* Redirect to dashboard after login
+-------------------------- */
+
+add_filter('login_redirect', function ($url, $request, $user) {
+    if ($user && is_object($user) && is_a($user, 'WP_User') && !$user->has_cap('edit_posts')) {
+        return wpuprojectid_extranet__get_dashboard_page();
+    }
+    return $url;
+}, 10, 3);
+
 /* Failed login in front : redirect to the home page
 -------------------------- */
 
@@ -129,6 +139,13 @@ add_action('wp_login_failed', function ($username) {
         wp_redirect(add_query_arg('login', 'failed', wpuprojectid_extranet__get_login_page()));
         exit;
     }
+});
+
+/* Re-enable registration
+-------------------------- */
+
+add_action('plugins_loaded', function () {
+    remove_filter('pre_option_users_can_register', 'wputh_admin_option_users_can_register');
 });
 
 /* ----------------------------------------------------------
@@ -158,6 +175,14 @@ add_action('wputheme_main_overcontent_inajax', function () {
 
 function wpuprojectid_extranet_get_menu() {
 
+    if (!is_array($args)) {
+        $args = array();
+    }
+
+    if (!isset($args['has_logout'])) {
+        $args['has_logout'] = true;
+    }
+
     $html = '';
     $posts_extranet = get_posts(array(
         'post_type' => 'page',
@@ -175,7 +200,9 @@ function wpuprojectid_extranet_get_menu() {
     foreach ($posts_extranet as $p) {
         $html .= '<li><a ' . ($p->ID == get_the_ID() ? 'class="active"' : '') . ' href="' . get_permalink($p) . '">' . get_the_title($p) . '</a></li>';
     }
-    $html .= '<li><a href="' . wp_logout_url(site_url()) . '">' . __('Log out', 'wpuprojectid') . '</a></li>';
+    if ($args['has_logout']) {
+        $html .= '<li><a href="' . wp_logout_url(site_url()) . '">' . __('Log out', 'wpuprojectid') . '</a></li>';
+    }
     $html .= '</ul>';
 
     return $html;
