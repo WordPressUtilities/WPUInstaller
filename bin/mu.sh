@@ -74,6 +74,7 @@ fi;
 if [[ "${need_extranet}" == 'y' ]];then
     cp "${SCRIPTDIR}inc/base_extranet.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_extranet.php";
     wpuinstaller_replace "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_extranet.php";
+    wpuinstaller_install_mu "wpu_extranet";
 fi;
 
 # Home page
