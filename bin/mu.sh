@@ -31,21 +31,13 @@ done;
 # Forced Submodules MU Plugins
 for i in $WPU_SUBMODULES_FORCED_MUPLUGINS
 do
-    echo "## Install ${i}";
-    cd "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
-    bashutilities_submodule_or_install "https://github.com/WordPressUtilities/${i}.git" "${use_submodules}";
-    cd "${MAINDIR}";
-    echo "- ${i} is installed.";
+    wpuinstaller_install_mu "${i}";
 done;
 
 # Classic MU Plugins
 for i in $WPU_SUBMODULES_MUPLUGINS_OK
 do
-    echo "## Install ${i}";
-    cd "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
-    bashutilities_submodule_or_install "https://github.com/WordPressUtilities/${i}.git" "${use_submodules}";
-    cd "${MAINDIR}";
-    echo "- ${i} is installed.";
+    wpuinstaller_install_mu "${i}";
 done;
 
 # Base Functions plugin

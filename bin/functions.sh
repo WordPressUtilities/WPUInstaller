@@ -6,7 +6,6 @@ function wpuinstaller_replace() {
     bashutilities_sed "s/wpuproject/${project_name}/g" "${1}";
 }
 
-
 function wpuinstaller_github_plugin(){
     _PLUGIN_USER="$1";
     _PLUGIN_NAME="$2";
@@ -25,4 +24,12 @@ function wpuinstaller_github_plugin(){
     mv -f "tmp_plugin_dir/${_PLUGIN_NAME}" "wp-content/plugins/${_PLUGIN_NAME}";
     # Delete tmp dir
     rm -rf tmp_plugin_dir;
+}
+
+function wpuinstaller_install_mu(){
+    echo "## Install ${1}";
+    cd "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
+    bashutilities_submodule_or_install "https://github.com/WordPressUtilities/${1}.git" "${use_submodules}";
+    cd "${MAINDIR}";
+    echo "- ${1} is installed.";
 }
