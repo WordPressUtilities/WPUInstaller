@@ -23,9 +23,7 @@ git commit --no-verify -m "Installation - Plugins" --quiet;
 if [[ $project_l10n == 'y' ]]; then
     echo "## Install Polylang";
     php ${WPU_PHPCLI} plugin install polylang --activate
-    cd "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
-    bashutilities_submodule_or_install "https://github.com/WordPressUtilities/wpu_pll_utilities.git" "${use_submodules}";
-    cd "${MAINDIR}";
+    wpuinstaller_install_mu "wpu_pll_utilities";
 
     # Commit plugin
     git add -A
@@ -47,9 +45,7 @@ if [[ $need_acf == 'y' ]];then
     echo "## Install ACF";
     php ${WPU_PHPCLI} plugin install "http://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=${acf_api_key}" --activate;
     php ${WPU_PHPCLI} plugin install acf-extended --activate;
-    cd "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
-    bashutilities_submodule_or_install "https://github.com/WordPressUtilities/wpu_acf_flexible.git" "${use_submodules}";
-    cd "${MAINDIR}";
+    wpuinstaller_install_mu "wpu_acf_flexible";
 
     # Add blocks
     _blocks_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_blocks.php";
