@@ -15,7 +15,7 @@ $content_width = 680;
 
 add_action('wp_head', function () {
     $theme_color = '#336699';
-    echo '<script>:root{--base-theme-color:' . $theme_color . '}</script>';
+    echo '<style>:root{--base-theme-color:' . $theme_color . '}</style>';
     echo '<meta name="theme-color" content="' . $theme_color . '" />';
     echo '<meta name="msapplication-navbutton-color" content="' . $theme_color . '">';
     echo '<meta name="apple-mobile-web-app-status-bar-style" content="' . $theme_color . '">';
