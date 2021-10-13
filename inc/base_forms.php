@@ -94,6 +94,12 @@ class wpuprojectid_forms {
             'type' => 'email',
             'required' => 1
         );
+        $fields['contact_values'] = array(
+            'label' => __('Choose a value', 'wpuprojectid'),
+            'type' => 'radio',
+            'required' => 1,
+            'datas' => get_option('forms_radio_values')
+        );
         $fields['contact_message'] = array(
             'label' => __('Message', 'wpuprojectid'),
             'type' => 'textarea',
@@ -142,6 +148,13 @@ class wpuprojectid_forms {
             'label' => 'Email',
             'box' => 'forms_box',
             'type' => 'email'
+        );
+        $options['forms_radio_values'] = array(
+            'label' => 'Radio values',
+            'box' => 'forms_box',
+            'default_value' => "one\ntwo\nthree",
+            'help' => 'One per line',
+            'type' => 'textarea'
         );
         return $options;
     }
