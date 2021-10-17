@@ -44,6 +44,38 @@ class wpuprojectid_myapiid {
             new \wpuprojectid_wpubasesettings\WPUBaseSettings($this->settings_details, $this->settings);
         }
     }
+
+    public function get_options() {
+        $opt = get_option('wpuprojectid_myapiid_options');
+
+        if (!is_array($opt) || !isset($opt['api_token'], $opt['api_endpoint']) || empty($opt['api_token']) || empty($opt['api_endpoint'])) {
+            error_log('API - Missing values');
+            return false;
+        }
+
+        /* Checking if this call can be made */
+        if (defined('WP_HTTP_BLOCK_EXTERNAL') && WP_HTTP_BLOCK_EXTERNAL) {
+            error_log('Error: WP_HTTP_BLOCK_EXTERNAL is enabled.');
+            return false;
+        }
+
+        return $opt;
+    }
+
+    public function extract_result($result_body) {
+        if (!$result_body) {
+            return false;
+        }
+
+        /* Converting to JSON */
+        $first_char = substr($result_body, 0, 1);
+        if ($first_char == '{' || $first_char == '[') {
+            return json_decode($result_body, true);
+        }
+
+        /* Sending result */
+        return $result_body;
+    }
 }
 
 $wpuprojectid_myapiid = new wpuprojectid_myapiid();
@@ -53,16 +85,13 @@ $wpuprojectid_myapiid = new wpuprojectid_myapiid();
 ---------------------------------------------------------- */
 
 function wpuprojectid_myapiid_import_action() {
-    $opt = get_option('wpuprojectid_myapiid_options');
+    global $wpuprojectid_myapiid;
 
-    if (!is_array($opt) || !isset($opt['api_token']) || !isset($opt['api_endpoint']) || empty($opt['api_token']) || empty($opt['api_endpoint'])) {
-        echo 'Missing config values';
-        return;
-    }
-
-    $url = '';
-    $content = wpuprojectid_myapiid_get($url, array(
-        'token' => $opt['api_token']
+    $content = wpuprojectid_myapiid_get('route', array(
+        'key' => 'value'
+    ));
+    $content = wpuprojectid_myapiid_post('route', array(
+        'key' => 'value'
     ));
 }
 
@@ -70,34 +99,70 @@ function wpuprojectid_myapiid_import_action() {
   API callback
 ---------------------------------------------------------- */
 
-function wpuprojectid_myapiid_get($remote_url, $headers = array(), $args = array()) {
+/* Get : Example
+-------------------------- */
 
-    /* Default args */
-    if (!is_array($args)) {
-        $args = array();
-    }
-    if ($headers && is_array($headers)) {
-        $args['headers'] = $headers;
-    }
+function wpuprojectid_myapiid_get($route, $data = array()) {
 
-    /* Checking if this call can be made */
-    if (defined('WP_HTTP_BLOCK_EXTERNAL') && WP_HTTP_BLOCK_EXTERNAL) {
-        error_log('Error: WP_HTTP_BLOCK_EXTERNAL is enabled.');
+    global $wpuprojectid_myapiid;
+
+    /* Get options */
+    $opt = $wpuprojectid_myapiid->get_options();
+    if (!$opt) {
         return false;
     }
+
+    /* Build URL & args */
+    $data['api_token'] = $opt['api_token'];
+    $remote_url = $opt['api_endpoint'] . $route . '?' . http_build_query($data);
 
     /* Making the call */
-    $result_body = wp_remote_retrieve_body(wp_remote_get($remote_url, $args));
-    if (!$result_body) {
+    $result_body = wp_remote_retrieve_body(wp_remote_get($remote_url));
+
+    /* Log result */
+    error_log('myapiid - URL : ' . $remote_url);
+    error_log('myapiid - GET : ' . json_encode($data));
+    error_log('myapiid - RESULTGET : ' . $result_body);
+
+    /* Return cleaned values */
+    return $wpuprojectid_myapiid->extract_values($result_body);
+}
+
+/* POST : Example
+-------------------------- */
+
+function wpuprojectid_myapiid_post($route, $data = array()) {
+    global $wpuprojectid_myapiid;
+
+    /* Get options */
+    $opt = $wpuprojectid_myapiid->get_options();
+    if (!$opt) {
         return false;
     }
 
-    /* Converting to JSON */
-    $first_char = substr($result_body, 0, 1);
-    if ($first_char == '{' || $first_char == '[') {
-        return json_decode($result_body, true);
-    }
+    /* Build URL & args */
+    $remote_url = $opt['api_endpoint'] . $route . '?' . http_build_query(array(
+        'api_token' => $opt['api_token']
+    ));
+    $args = array(
+        'headers' => array(
+            "Accept: application/json",
+            "Content-Type: application/json"
+        ),
+        'method' => 'POST',
+        'data_format' => 'json',
+        'body' => $data
+    );
 
-    /* Sending result */
-    return $result_body;
+    /* Making the call */
+    $result_body = wp_remote_retrieve_body(wp_remote_post($remote_url, $args));
+
+    /* Log result */
+    error_log('myapiid - URL : ' . $remote_url);
+    error_log('myapiid - POST : ' . json_encode($data));
+    error_log('myapiid - RESULTPOST : ' . $result_body);
+
+    /* Return cleaned values */
+    return $wpuprojectid_myapiid->extract_result($result_body);
+
 }
