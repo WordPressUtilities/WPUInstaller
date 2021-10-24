@@ -33,9 +33,14 @@ add_action('after_setup_theme', function () {
 
 add_filter('wputheme_social_links', function ($links) {
     return array(
-        'twitter' => 'Twitter',
+        'discord' => 'Discord',
         'facebook' => 'Facebook',
-        'instagram' => 'Instagram'
+        'instagram' => 'Instagram',
+        'linkedin' => 'Linkedin',
+        'tiktok' => 'Tiktok',
+        'twitch' => 'Twitch',
+        'twitter' => 'Twitter',
+        'youtube' => 'Youtube'
     );
 }, 10, 1);
 
@@ -68,8 +73,8 @@ add_filter('wputheme_usesessions', '__return_false', 1, 1);
 -------------------------- */
 
 // /* Disable Sidebars */
-// add_filter('wputh_has_sidebar', '__return_false', 1, 1);
-// add_filter('wputh_default_sidebars', '__return_empty_array', 1, 1);
+add_filter('wputh_has_sidebar', '__return_false', 1, 1);
+add_filter('wputh_default_sidebars', '__return_empty_array', 1, 1);
 
 /* Menus
 -------------------------- */
@@ -85,11 +90,13 @@ add_filter('wputh_default_menus', function ($menus) {
  -------------------------- */
 
 function wputh_set_pages_site($pages_site) {
+    /*
     $pages_site['mentions__page_id'] = array(
         'constant' => 'MENTIONS__PAGE_ID',
         'post_title' => 'Mentions légales',
         'post_content' => '<p>Contenu des mentions légales</p>'
     );
+    */
     return $pages_site;
 }
 
@@ -116,6 +123,8 @@ add_filter('wputh_javascript_files', function ($js_files) {
 add_filter('wputh_common_libraries__slickslider', '__return_true', 1, 1);
 add_filter('wputh_common_libraries__simplebar', '__return_false', 1, 1);
 add_filter('wputh_common_libraries__juxtapose', '__return_false', 1, 1);
+add_filter('wputh_common_libraries__clipboard', '__return_false', 1, 1);
+add_filter('wputh_common_libraries__photoswipe', '__return_false', 1, 1);
 
 /* Styles
  -------------------------- */
@@ -123,6 +132,12 @@ add_filter('wputh_common_libraries__juxtapose', '__return_false', 1, 1);
 function wputh_control_stylesheets() {
     wp_dequeue_style('wputhmain');
     wp_enqueue_style('wpuprojectid-styles', get_stylesheet_directory_uri() . '/assets/css/main.css', array(), WPUTHEME_ASSETS_VERSION, false);
+}
+
+if (file_exists(get_stylesheet_directory() . '/assets/css/admin.css')) {
+    add_filter('wpu_acf_flexible__admin_css', function ($content) {
+        return array('admin-styles' => get_stylesheet_directory_uri() . '/assets/css/admin.css');
+    }, 10, 1);
 }
 
 /* Exclude all parent templates
