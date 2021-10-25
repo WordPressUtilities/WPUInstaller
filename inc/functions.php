@@ -134,7 +134,9 @@ function wputh_control_stylesheets() {
     wp_enqueue_style('wpuprojectid-styles', get_stylesheet_directory_uri() . '/assets/css/main.css', array(), WPUTHEME_ASSETS_VERSION, false);
 }
 
+
 if (file_exists(get_stylesheet_directory() . '/assets/css/admin.css')) {
+    add_filter('wpu_acf_flexible__disable_front_css', '__return_true', 10, 1);
     add_filter('wpu_acf_flexible__admin_css', function ($content) {
         return array('admin-styles' => get_stylesheet_directory_uri() . '/assets/css/admin.css');
     }, 10, 1);
