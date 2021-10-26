@@ -111,8 +111,8 @@ add_filter('wputh_javascript_files', function ($js_files) {
     unset($js_files['events']);
 
     /* Load this theme scripts */
-    $js_files['events'] = array(
-        'uri' => '/assets/js/events.js',
+    $js_files['app'] = array(
+        'uri' => '/assets/js/app.js',
         'footer' => 1
     );
     return $js_files;
