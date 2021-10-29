@@ -105,7 +105,7 @@ add_filter('mod_rewrite_rules',function ($rules){
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_URI} (\.jpg|\.jpeg|\.png|\.gif)$ [NC]
+RewriteCond %{REQUEST_URI} (\.jpg|\.jpeg|\.png|\.gif|\.svg|\.mp4)$ [NC]
 RewriteRule ^(.*)$ https://PRODUCTIONURL/$1 [R,L]
 </IfModule>
 # End Redirect
@@ -120,7 +120,7 @@ EOT;
 # define error page
 error_page 404 = @customerror404;
 location @customerror404 {
-    if ($request_filename ~* [jpg|png|gif]$){
+    if ($request_filename ~* [jpg|jpeg|png|gif|svg|mp4]$){
         return 302 https://PRODUCTIONURL/$document_uri;
     }
 }
