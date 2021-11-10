@@ -14,10 +14,10 @@ class wpuprojectid_settings {
     }
 
     public function list_actions($actions) {
-        #$actions[20200417153516] = array(&$this, 'set_plugins');
-        #$actions[20200417153545] = array(&$this, 'set_theme');
-        #$actions[20200417153547] = array(&$this, 'set_options');
-        #$actions[20200417153548] = array(&$this, 'set_menus');
+        #$actions[1001] = array(&$this, 'set_plugins');
+        #$actions[1002] = array(&$this, 'set_theme');
+        #$actions[1003] = array(&$this, 'set_options');
+        #$actions[1004] = array(&$this, 'set_menus');
         return $actions;
     }
 
