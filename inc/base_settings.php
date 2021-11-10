@@ -14,6 +14,7 @@ class wpuprojectid_settings {
     }
 
     public function list_actions($actions) {
+        # Keep a key lower than PHP_INT_MAX
         #$actions[1001] = array(&$this, 'set_plugins');
         #$actions[1002] = array(&$this, 'set_theme');
         #$actions[1003] = array(&$this, 'set_options');
