@@ -162,6 +162,7 @@ use_external_api='n';
 if [[ "${wpu_add_shell_scripts}" == 'y' ]];then
     use_external_api=$(bashutilities_get_yn "Do you need to use an external API ?" 'n');
 fi;
+use_code_tests=$(bashutilities_get_yn "Add code tests ?" 'n');
 
 read -p "Install WordPress in a subfolder ? (y/N) " use_subfolder;
 if [[ $use_subfolder == 'y' ]]; then

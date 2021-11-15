@@ -48,3 +48,14 @@ if [[ "${use_external_api}" == 'y' ]];then
     wpuinstaller_replace "${_mu_plugin_api_file}";
 
 fi;
+
+###################################
+## Tests
+###################################
+
+if [[ "${use_code_tests}" == 'y' ]];then
+    # Create mu-plugin API
+    _phpstanfile="${MAINDIR}phpstan.neon";
+    cp "${SCRIPTDIR}inc/phpstan.neon" "${_phpstanfile}";
+    wpuinstaller_replace "${_phpstanfile}";
+fi;
