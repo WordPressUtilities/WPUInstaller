@@ -10,8 +10,13 @@ from_wpinstaller='y';
 project_hostname="${project_dev_url_raw}";
 
 ## Backup files
-mv "${WPU_THEME}assets/images/logo.png" "${WPU_THEME}logo.png";
-mv "${WPU_THEME}assets/js/events.js" "${WPU_THEME}events.js";
+if [[ -f "${WPU_THEME}assets/images/logo.png" ]];then
+    mv "${WPU_THEME}assets/images/logo.png" "${WPU_THEME}logo.png";
+fi;
+if [[ -f "${WPU_THEME}assets/js/events.js" ]];then
+    mv "${WPU_THEME}assets/js/events.js" "${WPU_THEME}events.js";
+fi;
+
 rm -rf "${WPU_THEME}assets/";
 cd "${WPU_THEME}";
 
@@ -19,8 +24,12 @@ cd "${WPU_THEME}";
 newinte;
 
 ## Restore files
-mv "${WPU_THEME}logo.png" "${WPU_THEME}assets/images/logo.png";
-mv "${WPU_THEME}events.js" "${WPU_THEME}assets/js/events.js";
+if [[ -f "${WPU_THEME}logo.png" ]];then
+    mv "${WPU_THEME}logo.png" "${WPU_THEME}assets/images/logo.png";
+fi;
+if [[ -f "${WPU_THEME}events.js" ]];then
+    mv "${WPU_THEME}events.js" "${WPU_THEME}assets/js/events.js";
+fi;
 
 ## Add extra SCSS
 WPU_SCSSFILE="${WPU_THEME}src/main.scss";

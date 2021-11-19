@@ -151,7 +151,7 @@ if [[ "${need_acf}" == 'y' && "${acf_api_key}" == "" ]]; then
 fi;
 
 # Extranet
-need_extranet=$(bashutilities_get_yn "Do you need an extranet ?" 'y');
+need_extranet=$(bashutilities_get_yn "Do you need an extranet ?" 'n');
 
 # WP Rocket
 need_wprocket=$(bashutilities_get_yn "Do you need WP Rocket ?" 'y');

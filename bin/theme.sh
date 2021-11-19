@@ -87,7 +87,7 @@ mkdir "${WPU_THEME}assets/images";
 cp "${SCRIPTDIR}inc/assets/logo.png" "${WPU_THEME}assets/images/logo.png";
 cp "${SCRIPTDIR}inc/assets/screenshot.png" "${WPU_THEME}screenshot.png";
 mkdir "${WPU_THEME}assets/js";
-cp "${SCRIPTDIR}inc/assets/events.js" "${WPU_THEME}assets/js/events.js";
+cp "${SCRIPTDIR}inc/assets/app.js" "${WPU_THEME}assets/js/app.js";
 
 cd "${MAINDIR}";
 
