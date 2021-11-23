@@ -1,5 +1,5 @@
 <div class="centered-container cc-header-main">
-<header class="header-main">
+<header class="header-main" role="banner">
 <?php
 wputh_display_title();
 wp_nav_menu( array(
