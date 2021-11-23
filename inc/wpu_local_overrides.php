@@ -46,7 +46,6 @@ add_filter('get_user_metadata', function ($null, $object_id, $meta_key, $single)
     return null;
 }, 10, 4);
 
-
 /* ----------------------------------------------------------
   Disable plugins
 ---------------------------------------------------------- */
@@ -62,11 +61,11 @@ add_action('wp_loaded', function () {
   Override wp mail
 ---------------------------------------------------------- */
 
-function wpu_local_overrides_html2text($html){
-    $text = str_replace('<br />',"\n", $html);
-    $text = str_replace(array('<p>','<ul>','<li>','<h1>','<h2>','<h3>'),"\n", $text);
-    $text = preg_replace('/<title>(.*)<\/title>/isU','',$text);
-    $text = preg_replace('/<style([^>]*)>(.*)<\/style>/isU','',$text);
+function wpu_local_overrides_html2text($html) {
+    $text = str_replace('<br />', "\n", $html);
+    $text = str_replace(array('<p>', '<ul>', '<li>', '<h1>', '<h2>', '<h3>'), "\n", $text);
+    $text = preg_replace('/<title>(.*)<\/title>/isU', '', $text);
+    $text = preg_replace('/<style([^>]*)>(.*)<\/style>/isU', '', $text);
     $text = strip_tags($text);
     $text = trim($text);
     $text = preg_replace("/[\r\n]{3,}/", "\n", $text);
@@ -94,7 +93,7 @@ function wp_mail($to, $subject, $message, $headers = '', $attachments = array())
   Override some 404 for images
 ---------------------------------------------------------- */
 
-add_filter('mod_rewrite_rules',function ($rules){
+add_filter('mod_rewrite_rules', function ($rules) {
 
     # Add your own URL below and remove the next line
     return $rules;
@@ -131,17 +130,16 @@ location @customerror404 {
 ---------------------------------------------------------- */
 
 add_filter('authenticate', function ($user, $username, $password) {
-    /* Disable if ok, if no username or if no posted password field */
+    /* Disabled if ok, if no username or if no posted password field */
     if ($user instanceof WP_User || !$username || !isset($_POST['pwd'])) {
         return $user;
     }
-    $user_get = get_user_by('login', $username);
+    $user_get = get_user_by(is_email($username) ? 'email' : 'login', $username);
     if (!is_wp_error($user)) {
         return $user_get;
     }
     return $user;
 }, 10, 3);
-
 
 /* ----------------------------------------------------------
   Magic button for forms
