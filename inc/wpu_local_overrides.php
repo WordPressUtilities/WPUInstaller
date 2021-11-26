@@ -90,6 +90,30 @@ function wp_mail($to, $subject, $message, $headers = '', $attachments = array())
 }
 
 /* ----------------------------------------------------------
+  Protect wp-login
+---------------------------------------------------------- */
+
+add_filter('mod_rewrite_rules', function ($rules) {
+
+    # Setup htpasswd below and remove the next line
+    return $rules;
+
+    $new_rules = <<<EOT
+
+# Protect wp-login
+<Files wp-login.php>
+AuthType Basic
+AuthName "Admin" # Same name as the other protected directories & files
+AuthUserFile [HTPASSWDPATH]/.htpasswd
+Require valid-user
+</Files>
+# End Protect wp-login
+
+EOT;
+    return $new_rules . $rules;
+}, 10, 1);
+
+/* ----------------------------------------------------------
   Override some 404 for images
 ---------------------------------------------------------- */
 
