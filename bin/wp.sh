@@ -98,7 +98,7 @@ if ! $(php ${WPU_PHPCLI} core is-installed); then
 fi
 
 php ${WPU_PHPCLI} core language install ${WP_LOCALE};
-php ${WPU_PHPCLI} core language activate ${WP_LOCALE};
+php ${WPU_PHPCLI} site switch-language ${WP_LOCALE};
 
 # Deleting default items
 echo '### Deleting default items';
