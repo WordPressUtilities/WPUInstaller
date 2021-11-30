@@ -9,22 +9,38 @@ Description: Add project blocks
 ---------------------------------------------------------- */
 
 function wpuprojectid_get_master_location() {
-    return array(
-        array(
+    $acf_location = array();
+    $home_ids = array(get_option('home__page_id'));
+    if (function_exists('pll_get_post_translations')) {
+        $home_ids = pll_get_post_translations($home_ids[0]);
+    }
+    foreach ($home_ids as $home_id) {
+        $acf_location[] = array(
             array(
-                'param' => 'page_template',
+                'param' => 'post',
                 'operator' => '==',
-                'value' => 'page-master.php'
+                'value' => $home_id
             )
-        ),
+        );
+    }
+
+    $acf_location[] = array(
         array(
-            array(
-                'param' => 'post_type',
-                'operator' => '==',
-                'value' => 'post'
-            )
+            'param' => 'page_template',
+            'operator' => '==',
+            'value' => 'page-master.php'
         )
     );
+
+    $acf_location[] = array(
+        array(
+            'param' => 'post_type',
+            'operator' => '==',
+            'value' => 'post'
+        )
+    );
+
+    return $acf_location;
 }
 
 /* ----------------------------------------------------------
@@ -236,8 +252,8 @@ add_action('save_post', function ($post_id) {
         return;
     }
     $master_header_image = get_field('master_header_image', $post_id);
-    if(!$master_header_image){
+    if (!$master_header_image) {
         return;
     }
-    update_post_meta($post_id,  '_thumbnail_id', $master_header_image);
+    update_post_meta($post_id, '_thumbnail_id', $master_header_image);
 }, 99);
