@@ -56,6 +56,10 @@ class wpuprojectid_settings {
         update_option('page_on_front', get_option('home__page_id'));
         update_option('show_on_front', 'page');
 
+        # SEO
+        update_option('blogdescription', 'Agence Web');
+        update_option('wpu_home_meta_description', 'Agence Web with a longer text.');
+
         # Social
         update_option('social_instagram_url', 'https://www.instagram.com/');
         update_option('social_linkedin_url', 'https://www.linkedin.com/');
