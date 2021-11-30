@@ -107,6 +107,7 @@ add_filter('wputh_javascript_files', function ($js_files) {
     /* Remove some WPUTheme scripts */
     unset($js_files['functions-faq-accordion']);
     unset($js_files['functions-search-form-check']);
+    unset($js_files['functions-menu-scroll']);
     unset($js_files['wputh-maps']);
     unset($js_files['events']);
 
