@@ -5,6 +5,33 @@ include dirname(__FILE__) . '/../WPUTheme/z-protect.php';
   Theme options
 ---------------------------------------------------------- */
 
+/* Supported features
+-------------------------- */
+
+/*
+function wputh_custom_theme_setup() {
+    // Supporting HTML5
+    add_theme_support('html5', array(
+        'comment-list',
+        'comment-form',
+        'search-form',
+        'gallery',
+        'caption',
+        'style',
+        'script'
+    ));
+
+    // Supporting thumbnails
+    add_theme_support('post-thumbnails');
+
+    // Supporting RSS Links
+    add_theme_support('automatic-feed-links');
+
+    // Supporting Title
+    add_theme_support('title-tag');
+}
+*/
+
 /* Size
 -------------------------- */
 
