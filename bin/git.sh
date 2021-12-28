@@ -21,6 +21,8 @@ echo "# WordPress
 .sass-cache
 .disable_wpu_admin_protect
 /.htaccess
+/vendor
+/composer.lock
 diff-before.txt
 diff-after.txt
 my.cnf

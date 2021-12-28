@@ -58,4 +58,7 @@ if [[ "${use_code_tests}" == 'y' ]];then
     _phpstanfile="${MAINDIR}phpstan.neon";
     cp "${SCRIPTDIR}inc/phpstan.neon" "${_phpstanfile}";
     wpuinstaller_replace "${_phpstanfile}";
+    # Install phpstan
+    $(cd "${MAINDIR}" && composer require --dev phpstan/phpstan);
+    $(cd "${MAINDIR}" && composer require --dev php-stubs/woocommerce-stubs);
 fi;

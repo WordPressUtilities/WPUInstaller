@@ -1,7 +1,11 @@
 parameters:
+    paths:
+        - .
     level: 5
     bootstrapFiles:
         - shell/wpuwooimportexport/inc/bootstrap.php
+        - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
+        - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
         - wp-content/mu-plugins/wpu/wpu_acf_flexible/inc/helpers.php
         - wp-content/mu-plugins/wpu/WPUBaseSettings/WPUBaseSettings.php
     ignoreErrors:
@@ -13,6 +17,7 @@ parameters:
         - '#Function pll_save_term_translations not found#'
         - '#Function pll_set_term_language not found#'
         - '#Function the_row not found#'
+        - '#Function has_sub_field not found#'
         - '#Function wpu_cached__wpdb_get not found#'
         - '#Function wpu_extranet__get_dashboard_page not found#'
         - '#Function wpu_extranet_change_password__action not found#'
@@ -47,6 +52,7 @@ parameters:
         - '#get_user_meta expects bool, int given#'
         - '#json_decode expects bool, int given#'
     excludePaths:
+        - 'vendor/'
         - 'node_modules/'
         - 'shell/wpuwooimportexport'
         - 'wp-activate.php'
