@@ -136,6 +136,18 @@ add_filter('wpu_acf_flexible__field_types', function ($types) {
 }, 10, 1);
 
 /* ----------------------------------------------------------
+  Ignore some types on file generation
+---------------------------------------------------------- */
+
+add_filter('wpu_acf_flexible__value_content_field', function ($values, $id, $sub_field, $level) {
+    $ignored_types = array('wpuprojectid_custom_field');
+    if (in_array($sub_field['original_field_type'], $ignored_types)) {
+        return '';
+    }
+    return $values;
+}, 10, 4);
+
+/* ----------------------------------------------------------
   Master Generator model
 ---------------------------------------------------------- */
 
