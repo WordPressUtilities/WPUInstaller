@@ -31,8 +31,21 @@ add_filter('use_block_editor_for_post_type', '__return_false', 100);
 add_filter('core_sitemaps_users_url_list', '__return_empty', 10, 1);
 
 /* ----------------------------------------------------------
-  Hide author in JSON Metas
+  Author
 ---------------------------------------------------------- */
+
+/* Disable author page
+-------------------------- */
+
+add_action('template_redirect', function () {
+    if (is_author()) {
+        wp_redirect(site_url());
+        die;
+    }
+});
+
+/* Hide author in JSON Metas
+-------------------------- */
 
 add_filter('wpuseo_metas_json_after_settings', function ($metas_json) {
     if (isset($metas_json['author'])) {
@@ -42,8 +55,11 @@ add_filter('wpuseo_metas_json_after_settings', function ($metas_json) {
 }, 10, 1);
 
 /* ----------------------------------------------------------
-  Prevent ugly uploads
+  Uploads
 ---------------------------------------------------------- */
+
+/* Prevent ugly uploads
+-------------------------- */
 
 add_filter('wp_handle_upload_prefilter', function ($file) {
     $size = $file['size'] / 1024;
@@ -58,6 +74,16 @@ add_filter('wp_handle_upload_prefilter', function ($file) {
     return $file;
 });
 
+/* Allow SVG upload for admins
+-------------------------- */
+
+add_filter('upload_mimes', function ($mimes) {
+    if (current_user_can('remove_users')) {
+        $mimes['svg'] = 'image/svg+xml';
+    }
+    return $mimes;
+});
+
 /* ----------------------------------------------------------
   Search only in posts
 ---------------------------------------------------------- */
@@ -67,28 +93,6 @@ add_filter('pre_get_posts', function ($query) {
         $query->set('post_type', array('post'));
     }
     return $query;
-});
-
-/* ----------------------------------------------------------
-  Disable author page
----------------------------------------------------------- */
-
-add_action('template_redirect', function () {
-    if (is_author()) {
-        wp_redirect(site_url());
-        die;
-    }
-});
-
-/* ----------------------------------------------------------
-  Allow SVG upload for admins
----------------------------------------------------------- */
-
-add_filter('upload_mimes', function ($mimes) {
-    if (current_user_can('remove_users')) {
-        $mimes['svg'] = 'image/svg+xml';
-    }
-    return $mimes;
 });
 
 /* ----------------------------------------------------------
