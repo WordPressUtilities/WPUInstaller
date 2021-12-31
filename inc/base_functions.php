@@ -137,6 +137,28 @@ add_filter('wpu_pll_utilities_helper_translate_domain', function ($content) {
 }, 10, 1);
 
 /* ----------------------------------------------------------
+  Disable some plugins not needed in frontend
+---------------------------------------------------------- */
+
+$request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$is_admin = strpos($request_uri, '/wp-admin/');
+
+if (false === $is_admin) {
+    add_filter('option_active_plugins', function ($plugins) {
+        $disabled_plugins = array(
+            'happyfiles-pro/happyfiles-pro.php'
+        );
+        foreach ($disabled_plugins as $plugin_path) {
+            $k = array_search($plugin_path, $plugins);
+            if (false !== $k) {
+                unset($plugins[$k]);
+            }
+        }
+        return $plugins;
+    });
+}
+
+/* ----------------------------------------------------------
   Get loops
 ---------------------------------------------------------- */
 
