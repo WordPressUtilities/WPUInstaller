@@ -130,7 +130,13 @@ add_filter('wpu_acf_flexible__field_types', function ($types) {
         'instructions' => 'Special text : &lt;u&gt;Text&lt;/u&gt;.',
         'label' => 'Title',
         'rows' => 3,
-        'type' => 'textarea'
+        'type' => 'textarea',
+        'field_vars_callback' => function ($id, $sub_field, $level) {
+            return '$' . $id . ' = get_sub_field(\'' . $id . '\');' . "\n";
+        },
+        'field_html_callback' => function ($id, $sub_field, $level) {
+            return '<?php echo $' . $id . ' ? strtoupper($' . $id . ') : \'\'; ?>'."\n";
+        },
     );
     return $types;
 }, 10, 1);
