@@ -8,8 +8,10 @@ echo '### MU-Plugins installation';
 
 mkdir "${MAINDIR}${WP_MUPLUGINS_DIR}wpu";
 mkdir "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}";
-mkdir "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/pages";
+mkdir "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/blocks";
 mkdir "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/entities";
+mkdir "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/pages";
+mkdir "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/taxonomies";
 
 echo "## Install wpu_muplugin_autoloader";
 cp "${MAINDIR}WPUtilities/${WP_MUPLUGINS_DIR}wpu_muplugin_autoloader.php" "${MAINDIR}${WP_MUPLUGINS_DIR}wpu_muplugin_autoloader.php";
