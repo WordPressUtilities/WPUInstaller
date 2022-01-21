@@ -113,9 +113,42 @@ EOT;
     return $new_rules . $rules;
 }, 10, 1);
 
+
 /* ----------------------------------------------------------
-  Override some 404 for images
+  UPLOADS
 ---------------------------------------------------------- */
+
+/* Download from prod if image does not exists
+-------------------------- */
+
+add_filter('wpuux_preventheavy404_filestype', function ($types) {
+    $types[] = 'svg';
+    return $types;
+}, 10, 1);
+
+add_action('wpuux_preventheavy404_before_headers', function ($ext) {
+    /* Remove return to enable */
+    return false;
+    /* Prepare download */
+    require_once ABSPATH . 'wp-admin/includes/file.php';
+    $path = $_SERVER['REQUEST_URI'];
+    $url = 'https://PRODUCTIONURL' . $path;
+    $dir = ABSPATH . dirname($path);
+    if (!is_dir($dir)) {
+        mkdir($dir, 0777, true);
+    }
+    /* Download and redirect to the new file*/
+    $tmp_file = download_url($url);
+    if ($tmp_file) {
+        copy($tmp_file, ABSPATH . $path);
+        @unlink($tmp_file);
+        wp_redirect(site_url() . $path);
+        die;
+    }
+}, 10, 2);
+
+/* Or redirect to prod if image does not exists
+-------------------------- */
 
 add_filter('mod_rewrite_rules', function ($rules) {
 
