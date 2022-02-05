@@ -1,8 +1,10 @@
 <?php
 include dirname(__FILE__) . '/../WPUTheme/z-protect.php';
+include dirname(__FILE__) . '/inc/helpers.php';
 include dirname(__FILE__) . '/inc/parent-theme.php';
 include dirname(__FILE__) . '/inc/scripts.php';
-include dirname(__FILE__) . '/inc/helpers.php';
+include dirname(__FILE__) . '/inc/social.php';
+include dirname(__FILE__) . '/inc/styles.php';
 
 /* ----------------------------------------------------------
   Theme options
@@ -35,44 +37,12 @@ function wputh_custom_theme_setup() {
 }
 */
 
-/* Size
--------------------------- */
-
-$content_width = 680;
-
-/* Main color
--------------------------- */
-
-add_action('wp_head', function () {
-    $theme_color = '#336699';
-    echo '<style>:root{--base-theme-color:' . $theme_color . '}</style>';
-    echo '<meta name="theme-color" content="' . $theme_color . '" />';
-    echo '<meta name="msapplication-navbutton-color" content="' . $theme_color . '">';
-    echo '<meta name="apple-mobile-web-app-status-bar-style" content="' . $theme_color . '">';
-});
-
 /* Lang
  -------------------------- */
 
 add_action('after_setup_theme', function () {
     load_theme_textdomain('wpuprojectid', get_stylesheet_directory() . '/lang');
 });
-
-/* Social networks
- -------------------------- */
-
-add_filter('wputheme_social_links', function ($links) {
-    return array(
-        'discord' => 'Discord',
-        'facebook' => 'Facebook',
-        'instagram' => 'Instagram',
-        'linkedin' => 'Linkedin',
-        'tiktok' => 'Tiktok',
-        'twitch' => 'Twitch',
-        'twitter' => 'Twitter',
-        'youtube' => 'Youtube'
-    );
-}, 10, 1);
 
 /* Load header & footer
  -------------------------- */
@@ -114,21 +84,6 @@ function wputh_set_pages_site($pages_site) {
     );
     */
     return $pages_site;
-}
-
-/* Styles
- -------------------------- */
-
-function wputh_control_stylesheets() {
-    wp_dequeue_style('wputhmain');
-    wp_enqueue_style('wpuprojectid-styles', get_stylesheet_directory_uri() . '/assets/css/main.css', array(), WPUTHEME_ASSETS_VERSION, false);
-}
-
-if (file_exists(get_stylesheet_directory() . '/assets/css/admin.css')) {
-    add_filter('wpu_acf_flexible__disable_front_css', '__return_true', 10, 1);
-    add_filter('wpu_acf_flexible__admin_css', function ($content) {
-        return array('admin-styles' => get_stylesheet_directory_uri() . '/assets/css/admin.css');
-    }, 10, 1);
 }
 
 /* Thumbnails

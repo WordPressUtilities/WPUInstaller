@@ -49,9 +49,10 @@ cp "${HOME_PAGE_SOURCE}" "${WPU_THEME}front-page.php";
 cp "${SCRIPTDIR}inc/functions.php" "${WPU_THEME}functions.php";
 wpuinstaller_replace "${WPU_THEME}functions.php";
 
-# - Various funciton files
+# - Various functions files
 cp -r "${SCRIPTDIR}inc/theme_inc" "${WPU_THEME}inc";
 wpuinstaller_replace "${WPU_THEME}inc/parent-theme.php";
+wpuinstaller_replace "${WPU_THEME}inc/styles.php";
 
 if [[ $has_attachment_tpl == 'n' ]];then
     cp "${SCRIPTDIR}inc/attachment.php" "${WPU_THEME}attachment.php";
