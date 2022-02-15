@@ -89,11 +89,6 @@ if [[ "${home_is_cms}" == 'y' ]]; then
     php ${WPU_PHPCLI} option update show_on_front "page";
 fi;
 
-if [[ "${home_is_cms}" == 'y' && "${need_acf}" == 'y' ]]; then
-    cat "${SCRIPTDIR}inc/cms_home--acf.php" >> "${home__cms_file}";
-    bashutilities_sed "s+<?php \/\*\ \*\/++g" "${home__cms_file}";
-fi;
-
 if [[ "${need_acf_forms}" == 'y' ]]; then
     base_forms_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_forms.php";
     cp "${SCRIPTDIR}inc/base_forms.php" "${base_forms_file}";

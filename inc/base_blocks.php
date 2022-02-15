@@ -72,8 +72,31 @@ add_filter('wpu_acf_flexible_content', function ($contents) {
         'layouts' => $all_layouts
     );
 
+    return $contents;
+}, 12, 1);
+
+/* Layouts on subfiles
+add_filter('wpuprojectid_blocks', function ($layouts) {
+    $layouts['home-slider-top'] = array(
+        'label' => 'Slider Top',
+        'sub_fields' => array(
+            'test' => array(
+                'label' => 'Test'
+            )
+        )
+    );
+    return $layouts;
+}, 10, 1);
+*/
+
+/* ----------------------------------------------------------
+  Master Header
+---------------------------------------------------------- */
+
+add_filter('wpu_acf_flexible_content', function ($contents) {
+
     /* Header */
-    $contents['master-settings'] = array(
+    $contents['master-header'] = array(
         'location' => wpuprojectid_get_master_location(),
         'fields' => array(
             'master_header' => array(
@@ -102,23 +125,8 @@ add_filter('wpu_acf_flexible_content', function ($contents) {
             )
         )
     );
-
     return $contents;
-}, 12, 1);
-
-/* Layouts on subfiles
-add_filter('wpuprojectid_blocks', function ($layouts) {
-    $layouts['home-slider-top'] = array(
-        'label' => 'Slider Top',
-        'sub_fields' => array(
-            'test' => array(
-                'label' => 'Test'
-            )
-        )
-    );
-    return $layouts;
-}, 10, 1);
-*/
+}, 13, 1);
 
 /* ----------------------------------------------------------
   Custom field types
@@ -135,8 +143,8 @@ add_filter('wpu_acf_flexible__field_types', function ($types) {
             return '$' . $id . ' = get_sub_field(\'' . $id . '\');' . "\n";
         },
         'field_html_callback' => function ($id, $sub_field, $level) {
-            return '<?php echo $' . $id . ' ? strtoupper($' . $id . ') : \'\'; ?>'."\n";
-        },
+            return '<?php echo $' . $id . ' ? strtoupper($' . $id . ') : \'\'; ?>' . "\n";
+        }
     );
     return $types;
 }, 10, 1);
@@ -206,10 +214,13 @@ EOT;
 }, 10, 5);
 
 /* ----------------------------------------------------------
-  At block creation : create SCSS file
+  At block creation : create SCSS & JS files
 ---------------------------------------------------------- */
 
 add_action('wpu_acf_flexible__set_file_content', function ($layout_id, $group) {
+    if (in_array($layout_id, array('excluded_layout_id'))) {
+        return;
+    }
     $scss_path = get_stylesheet_directory() . '/src/scss/wpuprojectid/blocks/';
     $js_path = get_stylesheet_directory() . '/src/js/blocks/';
     if (!is_dir($scss_path)) {
@@ -218,7 +229,6 @@ add_action('wpu_acf_flexible__set_file_content', function ($layout_id, $group) {
     if (!is_dir($js_path)) {
         mkdir($js_path);
     }
-
     $title = str_replace(array('-', '_'), ' ', $layout_id);
     $title = ucwords($title);
 
