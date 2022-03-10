@@ -166,3 +166,40 @@ function wpuprojectid_myapiid_post($route, $data = array()) {
     return $wpuprojectid_myapiid->extract_result($result_body);
 
 }
+
+/* PUT : Example
+-------------------------- */
+
+function wpuprojectid_myapiid_put($route, $data = array()) {
+    global $wpuprojectid_myapiid;
+
+    /* Get options */
+    $opt = $wpuprojectid_myapiid->get_options();
+    if (!$opt) {
+        return false;
+    }
+
+    /* Build URL & args */
+    $remote_url = $opt['api_endpoint'] . $route . '?' . http_build_query(array(
+        'api_token' => $opt['api_token']
+    ));
+    $args = array(
+        'headers' => array(
+            'Content-Type' => 'application/json'
+        ),
+        'body' => json_encode($data),
+        'method' => 'PUT'
+    );
+
+    /* Making the call */
+    $result_body = wp_remote_retrieve_body(wp_remote_post($remote_url, $args));
+
+    /* Log result */
+    error_log('myapiid - URL : ' . $remote_url);
+    error_log('myapiid - PUT : ' . json_encode($data));
+    error_log('myapiid - RESULTPUT : ' . $result_body);
+
+    /* Return cleaned values */
+    return $wpuprojectid_myapiid->extract_result($result_body);
+
+}
