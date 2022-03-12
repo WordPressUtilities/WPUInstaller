@@ -80,27 +80,32 @@ class wpuprojectid_forms {
         $fields = array();
 
         $fields['contact_name'] = array(
+            'api_field_name' => 'firstName',
             'autocomplete' => 'name',
             'label' => __('Name', 'wpuprojectid'),
             'required' => 1
         );
         if ($form_type == 'another_form') {
             $fields['contact_job'] = array(
+                'api_field_name' => 'firstName',
                 'label' => __('Job', 'wpuprojectid')
             );
         }
         $fields['contact_email'] = array(
+            'api_field_name' => 'firstName',
             'label' => __('Email', 'wpuprojectid'),
             'type' => 'email',
             'required' => 1
         );
         $fields['contact_values'] = array(
+            'api_field_name' => 'firstName',
             'label' => __('Choose a value', 'wpuprojectid'),
             'type' => 'radio',
             'required' => 1,
             'datas' => get_option('forms_radio_values')
         );
         $fields['contact_message'] = array(
+            'api_field_name' => 'firstName',
             'label' => __('Message', 'wpuprojectid'),
             'type' => 'textarea',
             'required' => 1
@@ -129,7 +134,7 @@ class wpuprojectid_forms {
 
     public function wpu_options_tabs($tabs) {
         $tabs['forms_tab'] = array(
-            'name' => '[project_id] Forms',
+            'name' => '[wpuprojectname] Forms',
             'sidebar' => true
         );
         return $tabs;
@@ -220,6 +225,7 @@ class wpuprojectid_forms {
 
         if ($form->options['id'] == 'default_form' && false) {
             /* CALLBACK API */
+            $api_values = $this->get_api_values($form->contact_fields);
         }
 
     }
@@ -237,6 +243,44 @@ class wpuprojectid_forms {
         }
 
         return $target_email;
+
+    }
+
+    /* ----------------------------------------------------------
+      APIs
+    ---------------------------------------------------------- */
+
+    public function get_api_values($data, $special_key = 'api_field_name', $form_id = 'default_form') {
+        $full_datas = array();
+
+        $fields = array();
+        $raw_fields = $this->get_fields($form_id);
+        foreach ($raw_fields as $key => $field_value) {
+            if (!isset($field_value[$special_key])) {
+                continue;
+            }
+            $value = false;
+            if (isset($data[$key])) {
+                $value = $data[$key];
+            }
+            if (isset($data[$key]['value'])) {
+                $value = $data[$key]['value'];
+            }
+            if ($value === false || $value === '') {
+                continue;
+            }
+            if (!is_array($value)) {
+                $value = strip_tags(html_entity_decode($value));
+            }
+            $full_datas[$field_value[$special_key]] = $value;
+        }
+
+        /* Transform some datas */
+        if (isset($full_datas['firstName'], $full_datas['lastName'])) {
+            $full_datas['name'] = $full_datas['firstName'] . ' ' . $full_datas['lastName'];
+        }
+
+        return $full_datas;
 
     }
 
