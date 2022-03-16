@@ -62,7 +62,7 @@ _functions_enable_multilingual='false';
 if [[ "${project_l10n}" == 'y' ]]; then
     _functions_enable_multilingual='true';
 fi;
-bashutilities_sed "s/project_is_multilingual/__return_${_functions_enable_multilingual}/g" "${WPU_THEME}functions.php";
+bashutilities_sed "s/project_is_multilingual/__return_${_functions_enable_multilingual}/g" "${WPU_THEME}inc/parent-theme.php";
 
 # - Templates
 cp -rf "${SCRIPTDIR}inc/tpl/" "${WPU_THEME}tpl/";
