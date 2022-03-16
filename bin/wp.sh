@@ -71,7 +71,9 @@ define('WP_MEMORY_LIMIT', '128M');
 define('WP_MAX_MEMORY_LIMIT', '256M');
 
 # Debug
-define('WP_DEBUG', true);
+if(!defined('WP_DEBUG')){
+    define('WP_DEBUG', true);
+}
 if (WP_DEBUG) {
     @ini_set('display_errors', 0);
     if (!defined('WP_DEBUG_LOG')) { define('WP_DEBUG_LOG', 1); }
