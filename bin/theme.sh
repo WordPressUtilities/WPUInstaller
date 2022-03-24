@@ -26,8 +26,8 @@ echo "/*
 Theme Name: ${project_name}
 Description: A WordPress theme for ${project_name}
 Template: WPUTheme
-Author: Darklg
-Author URI: http://darklg.me/
+Author: Kévin Rocher
+Author URI: https://www.kevin-rocher.fr/
 */" > "${WPU_THEME}style.css";
 
 # - htaccess
