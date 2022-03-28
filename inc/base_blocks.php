@@ -229,8 +229,13 @@ add_action('wpu_acf_flexible__set_file_content', function ($layout_id, $group) {
     if (!is_dir($js_path)) {
         mkdir($js_path);
     }
-    $title = str_replace(array('-', '_'), ' ', $layout_id);
-    $title = ucwords($title);
+
+    if (isset($group['layouts'][$layout_id]['label'])) {
+        $title = $group['layouts'][$layout_id]['label'];
+    } else {
+        $title = str_replace(array('-', '_'), ' ', $layout_id);
+        $title = ucwords($title);
+    }
 
     $scss_file = $scss_path . '_' . $layout_id . '.scss';
     if (!file_exists($scss_file)) {
@@ -239,8 +244,12 @@ add_action('wpu_acf_flexible__set_file_content', function ($layout_id, $group) {
 @charset "UTF-8";
 
 /* ----------------------------------------------------------
-  ${title}
+  Block ${title}
 ---------------------------------------------------------- */
+
+.cc-block--${layout_id} {
+
+}
 
 .block--${layout_id} {
 
@@ -253,6 +262,10 @@ EOT;
     $js_file = $js_path . $layout_id . '.js';
     if (!file_exists($js_file)) {
         $comment = <<<EOT
+/**
+ * Block ${title}
+ */
+
 jQuery(document).ready(function($) {
     jQuery('.block--${layout_id}').each(function(){
         var \$this = jQuery(this);
