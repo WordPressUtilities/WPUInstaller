@@ -78,8 +78,7 @@ if (WP_DEBUG) {
     @ini_set('display_errors', 0);
     if (!defined('WP_DEBUG_LOG')) { define('WP_DEBUG_LOG', 1); }
     if (!defined('WP_DEBUG_DISPLAY')) { define('WP_DEBUG_DISPLAY', false); }
-    if (!defined('SCRIPT_DEBUG')) { define('SCRIPT_DEBUG', 1); }
-    if (!defined('SAVEQUERIES')) { define('SAVEQUERIES', 1); }
+    if (!defined('SAVEQUERIES')) { define('SAVEQUERIES', (php_sapi_name() !== 'cli')); }
 }
 
 ##WPUINSTALLER##
