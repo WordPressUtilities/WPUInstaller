@@ -6,6 +6,11 @@ Description: Config for forms
 */
 
 class wpuprojectid_forms {
+
+    private $form_admin_values = array(
+        'forms_radio_values' => 'Radio values'
+    );
+
     public function __construct($init = true) {
         if ($init) {
             $this->set_hooks();
@@ -102,8 +107,23 @@ class wpuprojectid_forms {
             'label' => __('Choose a value', 'wpuprojectid'),
             'type' => 'radio',
             'required' => 1,
-            'datas' => get_option('forms_radio_values')
+            'datas' => $this->get_datas_from_option('forms_radio_values')
         );
+
+        $conditions_values = array(
+            'display' => array(
+                'contact_values' => 'one'
+            ),
+            'required' => array(
+                'contact_values' => 'one'
+            )
+        );
+        $fields['contact_text'] = array(
+            'api_field_name' => 'test',
+            'label' => __('Test', 'wpuprojectid'),
+            'conditions' => $conditions_values,
+        );
+
         $fields['contact_message'] = array(
             'api_field_name' => 'firstName',
             'label' => __('Message', 'wpuprojectid'),
@@ -154,14 +174,34 @@ class wpuprojectid_forms {
             'box' => 'forms_box',
             'type' => 'email'
         );
-        $options['forms_radio_values'] = array(
-            'label' => 'Radio values',
-            'box' => 'forms_box',
-            'default_value' => "one\ntwo\nthree",
-            'help' => 'One per line',
-            'type' => 'textarea'
-        );
+        foreach ($this->form_admin_values as $id => $label) {
+            $options[$id] = array(
+                'label' => $label,
+                'box' => 'forms_box',
+                'default_value' => "one\ntwo\nthree",
+                'help' => 'One per line',
+                'type' => 'textarea'
+            );
+        }
         return $options;
+    }
+
+
+    public function get_datas_from_option($id) {
+        $values = array();
+        if (!array_key_exists($id, $this->form_admin_values)) {
+            return $values;
+        }
+        $opt = get_option($id);
+        if (!$opt) {
+            return $values;
+        }
+        $raw_values = explode("\n", $opt);
+        $raw_values = array_map('trim', $raw_values);
+        foreach ($raw_values as $val) {
+            $values[sanitize_title($val)] = $val;
+        }
+        return $values;
     }
 
     /* ----------------------------------------------------------
