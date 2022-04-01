@@ -8,7 +8,9 @@ Description: Config for forms
 class wpuprojectid_forms {
 
     private $form_admin_values = array(
-        'forms_radio_values' => 'Radio values'
+        'forms_radio_values' => array(
+            'label' => 'Radio values'
+        )
     );
 
     public function __construct($init = true) {
@@ -121,7 +123,7 @@ class wpuprojectid_forms {
         $fields['contact_text'] = array(
             'api_field_name' => 'test',
             'label' => __('Test', 'wpuprojectid'),
-            'conditions' => $conditions_values,
+            'conditions' => $conditions_values
         );
 
         $fields['contact_message'] = array(
@@ -140,6 +142,8 @@ class wpuprojectid_forms {
 
         /* Layout */
         $settings['group_class'] = 'cssc-form cssc-form--default';
+        $settings['label_radio_inner__classname'] = 'label-main';
+        $settings['label_checkbox_inner__classname'] = 'label-main';
 
         /* Validation config */
         $settings['label_text_required'] = '';
@@ -174,18 +178,18 @@ class wpuprojectid_forms {
             'box' => 'forms_box',
             'type' => 'email'
         );
-        foreach ($this->form_admin_values as $id => $label) {
-            $options[$id] = array(
-                'label' => $label,
-                'box' => 'forms_box',
-                'default_value' => "one\ntwo\nthree",
-                'help' => 'One per line',
-                'type' => 'textarea'
-            );
+        $default_field = array(
+            'label' => 'Default',
+            'box' => 'forms_box',
+            'default_value' => "one\ntwo\nthree",
+            'help' => 'One per line',
+            'type' => 'textarea'
+        );
+        foreach ($this->form_admin_values as $id => $field) {
+            $options[$id] = array_merge($default_field, $field);
         }
         return $options;
     }
-
 
     public function get_datas_from_option($id) {
         $values = array();
