@@ -132,6 +132,10 @@ do
         WPU_SUBMODULES_MUPLUGINS_OK="${WPU_SUBMODULES_MUPLUGINS_OK} ${i}";
     fi;
 done;
+need_search='n';
+if [[ ${WPU_SUBMODULES_MUPLUGINS_OK} != *"wpudisablesearch"* ]];then
+    need_search='y';
+fi;
 
 install_recommended_plugins=$(bashutilities_get_yn "Install recommended plugins ?" 'y');
 

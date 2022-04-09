@@ -74,7 +74,7 @@ if [[ "${need_wprocket}" == 'y' ]];then
 fi;
 
 # Search
-if [[ ${WPU_SUBMODULES_MUPLUGINS_OK} != *"wpudisablesearch"* ]];then
+if [[ "${need_search}" == 'y' ]];then
     php ${WPU_PHPCLI} plugin install relevanssi --activate;
     _plugin_search_settings="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_search.php";
     cp "${SCRIPTDIR}inc/base_search.php" "${_plugin_search_settings}";

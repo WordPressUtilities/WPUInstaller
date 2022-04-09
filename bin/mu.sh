@@ -56,7 +56,7 @@ cp "${SCRIPTDIR}inc/base_users.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/
 wpuinstaller_replace "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_users.php";
 
 # Posts
-if [[ ${WPU_SUBMODULES_MUPLUGINS_OK} != *"wpudisableposts"* ]];then
+if [[ "${need_search}" == 'y' ]];then
     # Ensure dir exists
     _POSTS_DIR="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/entities";
     mkdir -p "${_POSTS_DIR}";
