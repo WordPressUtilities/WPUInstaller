@@ -18,6 +18,18 @@ function wpuprojectid_search_custom_fields($custom_fields = array()) {
 }
 
 /* ----------------------------------------------------------
+  Search post types
+---------------------------------------------------------- */
+
+add_filter('wpuprojectid_search_post_types', function ($types = array()) {
+    $types['post'] = array(
+        'label' => 'News',
+        'tpl' => 'loop-post.php'
+    );
+    return $types;
+}, 10, 1);
+
+/* ----------------------------------------------------------
   Display search
 ---------------------------------------------------------- */
 
