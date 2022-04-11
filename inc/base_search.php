@@ -18,6 +18,14 @@ function wpuprojectid_search_custom_fields($custom_fields = array()) {
 }
 
 /* ----------------------------------------------------------
+  Disable relevanssi excerpts
+---------------------------------------------------------- */
+
+add_filter('pre_option_relevanssi_excerpts', function ($val) {
+    return 'off';
+});
+
+/* ----------------------------------------------------------
   Search post types
 ---------------------------------------------------------- */
 
