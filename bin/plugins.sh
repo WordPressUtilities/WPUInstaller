@@ -52,6 +52,11 @@ if [[ $need_acf == 'y' ]];then
     cp "${SCRIPTDIR}inc/base_blocks.php" "${_blocks_file}";
     wpuinstaller_replace "${_blocks_file}";
 
+    # Add masterheader
+    _masterheader_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/blocks/${project_id}_masterheader.php";
+    cp "${SCRIPTDIR}inc/base_masterheader.php" "${_masterheader_file}";
+    wpuinstaller_replace "${_masterheader_file}";
+
     # Commit plugin
     git add -A
     git commit --no-verify -m "Installation - Plugin : ACF" --quiet;

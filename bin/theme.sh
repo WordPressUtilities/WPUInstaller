@@ -69,8 +69,11 @@ cp -rf "${SCRIPTDIR}inc/tpl/" "${WPU_THEME}tpl/";
 
 # - Specific templates
 if [[ "${need_acf}" == 'y' ]];then
+    mkdir "${WPU_THEME}tpl/blocks";
+    cp "${SCRIPTDIR}inc/tpl-master-header.php" "${WPU_THEME}tpl/blocks/master-header.php";
     cp "${SCRIPTDIR}inc/tpl-page-master.php" "${WPU_THEME}tpl/page-master.php";
     cp "${SCRIPTDIR}inc/page-master.php" "${WPU_THEME}page-master.php";
+    mkdir "${WPU_THEME}assets/js";
 fi;
 
 # - Tests
