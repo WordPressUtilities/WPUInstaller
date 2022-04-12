@@ -10,7 +10,7 @@ if (!$master_header_title) {
 }
 $master_header_image = get_field('master_header_image');
 $master_header_type = get_field('master_header_header_type');
-$master_header_intro = get_field('master_header_header_intro');
+$master_header_intro = get_field('master_header_intro');
 
 /* Extra attributes */
 
