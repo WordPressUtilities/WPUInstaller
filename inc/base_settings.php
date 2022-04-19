@@ -13,16 +13,19 @@ class wpuprojectid_settings {
         add_filter('wp', array(&$this, 'wp'), 10, 1);
     }
 
-    function plugins_loaded(){
+    function plugins_loaded() {
         add_filter('wpusettingsversion_actions', array(&$this, 'list_actions'), 10, 1);
     }
 
     public function list_actions($actions) {
-        # Keep a key lower than PHP_INT_MAX
-        #$actions[1001] = array(&$this, 'set_plugins');
-        #$actions[1002] = array(&$this, 'set_theme');
-        #$actions[1003] = array(&$this, 'set_options');
-        #$actions[1004] = array(&$this, 'set_menus');
+        global $wpu_settings_version;
+        if (is_object($wpu_settings_version)) {
+            # Keep a key lower than PHP_INT_MAX
+            #$actions[1001] = array(&$this, 'set_plugins');
+            #$actions[1002] = array(&$this, 'set_theme');
+            #$actions[1003] = array(&$this, 'set_options');
+            #$actions[1004] = array(&$this, 'set_menus');
+        }
         return $actions;
     }
 
