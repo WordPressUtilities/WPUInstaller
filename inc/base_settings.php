@@ -9,8 +9,12 @@ class wpuprojectid_settings {
     #plugins_list
 
     public function __construct() {
-        add_filter('wpusettingsversion_actions', array(&$this, 'list_actions'), 10, 1);
+        add_filter('plugins_loaded', array(&$this, 'plugins_loaded'), 10, 1);
         add_filter('wp', array(&$this, 'wp'), 10, 1);
+    }
+
+    function plugins_loaded(){
+        add_filter('wpusettingsversion_actions', array(&$this, 'list_actions'), 10, 1);
     }
 
     public function list_actions($actions) {
