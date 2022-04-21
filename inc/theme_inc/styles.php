@@ -24,7 +24,6 @@ add_action('wp_head', function () {
   Styles
 ---------------------------------------------------------- */
 
-
 function wputh_control_stylesheets() {
     wp_dequeue_style('wputhmain');
     wp_enqueue_style('wpuprojectid-styles', get_stylesheet_directory_uri() . '/assets/css/main.css', array(), WPUTHEME_ASSETS_VERSION, false);
@@ -42,3 +41,18 @@ if (file_exists(get_stylesheet_directory() . '/assets/css/editor.css')) {
         add_editor_style(get_stylesheet_directory_uri() . '/assets/css/editor.css');
     }
 }
+
+/* ----------------------------------------------------------
+  Reset WooCommerce
+---------------------------------------------------------- */
+
+add_filter('woocommerce_enqueue_styles', function ($enqueue_styles) {
+    unset($enqueue_styles['woocommerce-general']);
+    unset($enqueue_styles['woocommerce-smallscreen']);
+    return $enqueue_styles;
+}, 99);
+
+add_action('enqueue_block_assets', function () {
+    wp_deregister_style('wc-blocks-style');
+    wp_dequeue_style('wc-blocks-style');
+});
