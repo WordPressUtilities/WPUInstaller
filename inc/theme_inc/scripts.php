@@ -1,20 +1,11 @@
 <?php
 
 /* ----------------------------------------------------------
-  Local jQuery
+  Disable jQuery migrate
 ---------------------------------------------------------- */
 
-/* Replace local jQuery */
 add_action('wp_enqueue_scripts', function () {
     global $wp_scripts;
-
-    /* Load local jQuery */
-    $local_jquery = parse_url(get_stylesheet_directory_uri(), PHP_URL_PATH) . '/assets/js/jquery/jquery.min.js';
-    if (file_exists(ABSPATH . $local_jquery) && isset($wp_scripts->registered['jquery-core'])) {
-        $wp_scripts->registered['jquery-core']->src = $local_jquery;
-    }
-
-    /* Disable jQuery migrate */
     if (isset($wp_scripts->registered['jquery']) && $wp_scripts->registered['jquery']->deps) {
         $wp_scripts->registered['jquery']->deps = array_diff($wp_scripts->registered['jquery']->deps, array('jquery-migrate'));
     }
