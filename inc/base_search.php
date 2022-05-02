@@ -80,6 +80,7 @@ function wpuprojectid_search_get_post_type_content($post_type_key, $pt_settings,
     if (function_exists('relevanssi_do_query')) {
         relevanssi_do_query($wpq_search);
     }
+    $html = '';
     if ($wpq_search->have_posts()) {
         $html .= '<ul class="loop-list" data-max="' . esc_attr($max) . '" data-found="' . esc_attr($wpq_search->found_posts) . '">';
         while ($wpq_search->have_posts()) {
