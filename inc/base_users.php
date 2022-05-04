@@ -27,6 +27,30 @@ add_action('init', function () {
     $role_details['remove_users'] = true;
     $role_details['promote_users'] = true;
 
+    /* WooCommerce */
+    $role_details['edit_product'] = true;
+    $role_details['read_product'] = true;
+    $role_details['delete_product'] = true;
+    $role_details['edit_products'] = true;
+    $role_details['edit_others_products'] = true;
+    $role_details['publish_products'] = true;
+    $role_details['read_private_products'] = true;
+    $role_details['delete_products'] = true;
+    $role_details['delete_private_products'] = true;
+    $role_details['delete_published_products'] = true;
+    $role_details['delete_others_products'] = true;
+    $role_details['edit_private_products'] = true;
+    $role_details['edit_published_products'] = true;
+    $role_details['manage_product_terms'] = true;
+    $role_details['edit_product_terms'] = true;
+    $role_details['delete_product_terms'] = true;
+    $role_details['assign_product_terms'] = true;
+
+    /* Yoast SEO */
+    $role_details['wpseo_bulk_edit'] = true;
+    $role_details['wpseo_edit_advanced_metadata'] = true;
+    $role_details['wpseo_manage_options'] = true;
+
     $role_version = md5($role_id . $role_name . json_encode($role_details));
 
     /* Update role only if it doesn’t exists */
