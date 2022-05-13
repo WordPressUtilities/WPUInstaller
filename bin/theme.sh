@@ -66,6 +66,7 @@ bashutilities_sed "s/project_is_multilingual/__return_${_functions_enable_multil
 
 # - Templates
 cp -rf "${SCRIPTDIR}inc/tpl/" "${WPU_THEME}tpl/";
+cp -rf "${SCRIPTDIR}inc/page.php" "${WPU_THEME}page.php";
 
 # - Specific templates
 if [[ "${need_acf}" == 'y' ]];then
