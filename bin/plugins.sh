@@ -98,7 +98,6 @@ if [[ $install_recommended_plugins == 'y' ]]; then
 
     # No activation
     php ${WPU_PHPCLI} plugin install duplicate-post;
-    php ${WPU_PHPCLI} plugin install google-sitemap-generator;
     php ${WPU_PHPCLI} plugin install query-monitor;
     php ${WPU_PHPCLI} plugin install redirection;
 
@@ -110,6 +109,9 @@ fi;
 # Activation
 echo "## Plugin Activation";
 _plugins_list=$(php ${WPU_PHPCLI} option get active_plugins);
+if [[ "${_plugins_list}" == '' ]];then
+    _plugins_list='array()';
+fi;
 _plugin_settings_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_settings.php";
 methods_string=$(cat <<EOF
     private \$plugins_list=${_plugins_list};
