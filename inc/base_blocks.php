@@ -12,7 +12,10 @@ function wpuprojectid_get_master_location() {
     $acf_location = array();
     $home_ids = array(get_option('home__page_id'));
     if (function_exists('pll_get_post_translations')) {
-        $home_ids = pll_get_post_translations($home_ids[0]);
+        $home_ids_tr = pll_get_post_translations($home_ids[0]);
+        if ($home_ids_tr) {
+            $home_ids = $home_ids_tr;
+        }
     }
     foreach ($home_ids as $home_id) {
         $acf_location[] = array(
