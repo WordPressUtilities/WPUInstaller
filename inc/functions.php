@@ -13,8 +13,19 @@ include dirname(__FILE__) . '/inc/styles.php';
 /* Supported features
 -------------------------- */
 
-/*
 function wputh_custom_theme_setup() {
+/*
+    // WooCommerce
+    add_theme_support('woocommerce');
+
+    // Theme style
+    add_theme_support('custom-background');
+    add_theme_support('custom-header');
+
+    // Supporting RSS Links
+    add_theme_support('automatic-feed-links');
+*/
+
     // Supporting HTML5
     add_theme_support('html5', array(
         'comment-list',
@@ -29,13 +40,9 @@ function wputh_custom_theme_setup() {
     // Supporting thumbnails
     add_theme_support('post-thumbnails');
 
-    // Supporting RSS Links
-    add_theme_support('automatic-feed-links');
-
     // Supporting Title
     add_theme_support('title-tag');
 }
-*/
 
 /* Lang
  -------------------------- */

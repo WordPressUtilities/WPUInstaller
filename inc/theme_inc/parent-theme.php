@@ -4,7 +4,7 @@
   Features
 ---------------------------------------------------------- */
 
-add_filter('wputheme_display_languages', 'project_is_multilingual', 1, 1);
+add_filter('wputheme_display_languages', '__return_false', 1, 1);
 add_filter('wputheme_display_breadcrumbs', '__return_false', 1, 1);
 add_filter('wputheme_display_header', '__return_false', 1, 1);
 add_filter('wputheme_display_mainwrapper', '__return_false', 1, 1);
