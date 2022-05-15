@@ -77,10 +77,6 @@ if [[ "${need_acf}" == 'y' ]];then
     mkdir "${WPU_THEME}assets/js";
 fi;
 
-# - Tests
-cp -rf "${SCRIPTDIR}inc/tests/" "${WPU_THEME}tests/";
-bashutilities_sed "s,wpuprojecturl,${project_dev_url},g" "${WPU_THEME}tests/config.json";
-
 # - Search
 if [[ "${need_search}" == 'y' ]];then
     cp "${SCRIPTDIR}inc/search-results.php" "${WPU_THEME}search.php";

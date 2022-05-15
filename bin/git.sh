@@ -38,7 +38,6 @@ wp-content/debug.log
 wp-content/languages/themes/twenty*
 wp-content/object-cache.php
 wp-content/plugins/wp-rocket/license-data.php
-wp-content/themes/${project_id}/tests/config.json
 wp-content/themes/twenty*
 wp-content/uploads/
 wp-content/w3tc-config/
