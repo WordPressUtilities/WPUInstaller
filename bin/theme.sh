@@ -68,15 +68,6 @@ bashutilities_sed "s/project_is_multilingual/__return_${_functions_enable_multil
 cp -rf "${SCRIPTDIR}inc/tpl/" "${WPU_THEME}tpl/";
 cp -rf "${SCRIPTDIR}inc/page.php" "${WPU_THEME}page.php";
 
-# - Specific templates
-if [[ "${need_acf}" == 'y' ]];then
-    mkdir "${WPU_THEME}tpl/blocks";
-    cp "${SCRIPTDIR}inc/tpl-master-header.php" "${WPU_THEME}tpl/blocks/master-header.php";
-    cp "${SCRIPTDIR}inc/tpl-page-master.php" "${WPU_THEME}tpl/page-master.php";
-    cp "${SCRIPTDIR}inc/page-master.php" "${WPU_THEME}page-master.php";
-    mkdir "${WPU_THEME}assets/js";
-fi;
-
 # - Search
 if [[ "${need_search}" == 'y' ]];then
     cp "${SCRIPTDIR}inc/search-results.php" "${WPU_THEME}search.php";
@@ -98,6 +89,15 @@ cp "${SCRIPTDIR}inc/assets/logo.png" "${WPU_THEME}assets/images/logo.png";
 cp "${SCRIPTDIR}inc/assets/screenshot.png" "${WPU_THEME}screenshot.png";
 mkdir "${WPU_THEME}assets/js";
 cp "${SCRIPTDIR}inc/assets/app.js" "${WPU_THEME}assets/js/app.js";
+
+# - Specific templates
+if [[ "${need_acf}" == 'y' ]];then
+    mkdir "${WPU_THEME}tpl/blocks";
+    cp "${SCRIPTDIR}inc/tpl-master-header.php" "${WPU_THEME}tpl/blocks/master-header.php";
+    cp "${SCRIPTDIR}inc/tpl-page-master.php" "${WPU_THEME}tpl/page-master.php";
+    cp "${SCRIPTDIR}inc/page-master.php" "${WPU_THEME}page-master.php";
+    mkdir "${WPU_THEME}assets/js";
+fi;
 
 cd "${MAINDIR}";
 
