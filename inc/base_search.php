@@ -63,7 +63,7 @@ function wpuprojectid_search_get_post_type_content($post_type_key, $pt_settings,
         $args = array();
     }
     if (!isset($args['per_page'])) {
-        $args['per_page'] = 3;
+        $args['per_page'] = 6;
     }
     if (!isset($args['paged']) || $args['paged'] == 0) {
         $args['paged'] = 1;
@@ -94,7 +94,7 @@ function wpuprojectid_search_get_post_type_content($post_type_key, $pt_settings,
         $html .= '</ul>';
         if ($wpq_search->found_posts > $max) {
             $html .= '<div class="search-load-more-wrapper">';
-            $html .= '<button type="button" data-s="'.esc_attr(get_search_query()).'" data-search-pt="' . esc_attr($post_type_key) . '" data-search-paged="' . esc_attr($args['paged'] + 1) . '">' . __('Load more', 'wpuprojectid') . '</button>';
+            $html .= '<button type="button" class="wpuprojectid-button" data-s="'.esc_attr(get_search_query()).'" data-search-pt="' . esc_attr($post_type_key) . '" data-search-paged="' . esc_attr($args['paged'] + 1) . '"><span>' . __('Load more', 'wpuprojectid') . '</span></button>';
             $html .= '</div>';
         }
     }
