@@ -68,9 +68,9 @@ class wpuprojectid_settings {
         update_option('wpu_home_meta_description', 'Agence Web with a longer text.');
 
         # Social
-        update_option('social_instagram_url', 'https://www.instagram.com/');
-        update_option('social_linkedin_url', 'https://www.linkedin.com/');
-        update_option('social_twitter_url', 'https://www.twitter.com/');
+        update_option('social_instagram_url', 'https://www.instagram.com/wpuprojectid');
+        update_option('social_linkedin_url', 'https://www.linkedin.com/wpuprojectid');
+        update_option('social_twitter_url', 'https://www.twitter.com/wpuprojectid');
     }
 
     public function set_menus() {
