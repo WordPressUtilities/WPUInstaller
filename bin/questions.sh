@@ -150,7 +150,7 @@ if [[ "${need_acf}" == 'y' && "${acf_api_key}" == "" ]]; then
         need_acf="n";
     fi;
 fi;
-if [[ "${need_acf}" == 'y' && "${acf_api_key}" == "" ]]; then
+if [[ "${need_acf}" != 'n' && "${acf_api_key}" != "" ]]; then
     need_acf_forms=$(bashutilities_get_yn "Do you need a contact form in ACF ?" 'y');
 fi;
 

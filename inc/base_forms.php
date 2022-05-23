@@ -144,6 +144,7 @@ class wpuprojectid_forms {
         $settings['group_class'] = 'cssc-form cssc-form--default';
         $settings['label_radio_inner__classname'] = 'label-main';
         $settings['label_checkbox_inner__classname'] = 'label-main';
+        $settings['submit_class'] = 'cssc-button';
 
         /* Validation config */
         $settings['label_text_required'] = '';
