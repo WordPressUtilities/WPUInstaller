@@ -35,14 +35,16 @@ function wpuprojectid_get_master_location() {
         )
     );
 
-    $acf_location[] = array(
-        array(
-            'param' => 'post_type',
-            'operator' => '==',
-            'value' => 'post'
-        )
-    );
-
+    $post_types = apply_filters('wpuprojectid_master_post_types', array('post'));
+    foreach ($post_types as $post_type) {
+        $acf_location[] = array(
+            array(
+                'param' => 'post_type',
+                'operator' => '==',
+                'value' => $post_type
+            )
+        );
+    }
     return $acf_location;
 }
 
