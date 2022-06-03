@@ -95,45 +95,6 @@ add_filter('wpuprojectid_blocks', function ($layouts) {
 */
 
 /* ----------------------------------------------------------
-  Master Header
----------------------------------------------------------- */
-
-add_filter('wpu_acf_flexible_content', function ($contents) {
-
-    /* Header */
-    $contents['master-header'] = array(
-        'location' => wpuprojectid_get_master_location(),
-        'fields' => array(
-            'master_header' => array(
-                'label' => 'Master - Header',
-                'type' => 'group',
-                'sub_fields' => array(
-                    'cola' => 'wpuacf_50p',
-                    'title' => array(
-                        'label' => 'Titre',
-                        'type' => 'textarea',
-                        'rows' => 2
-                    ),
-                    'intro' => array(
-                        'label' => 'Introduction',
-                        'type' => 'editor',
-                        'toolbar' => 'wpuacf_mini'
-                    ),
-                    'cta' => 'wpuacf_cta',
-                    'colb' => 'wpuacf_50p',
-                    'image' => array(
-                        'type' => 'wpuacf_image',
-                        'required' => false
-                    ),
-                    'video' => 'wpuacf_video'
-                )
-            )
-        )
-    );
-    return $contents;
-}, 13, 1);
-
-/* ----------------------------------------------------------
   Custom field types
 ---------------------------------------------------------- */
 
