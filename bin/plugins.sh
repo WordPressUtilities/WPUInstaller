@@ -8,10 +8,7 @@ echo '### Plugins installation';
 
 for i in $WPU_SUBMODULE_PLUGINS
 do
-    echo "## Install ${i}";
-    cd "${MAINDIR}${WP_PLUGINS_DIR}";
-    bashutilities_submodule_or_install "https://github.com/WordPressUtilities/${i}.git" "${use_submodules}";
-    cd "${MAINDIR}";
+    wpuinstaller_install_plugin "${i}";
     php ${WPU_PHPCLI} plugin activate "${i}";
 done;
 
@@ -64,9 +61,7 @@ fi;
 
 # Forms
 if [[ "${need_acf_forms}" == 'y' || "${need_contact_form}" == 'y' ]]; then
-    cd "${MAINDIR}${WP_PLUGINS_DIR}";
-    bashutilities_submodule_or_install "https://github.com/WordPressUtilities/wpucontactforms.git" "${use_submodules}";
-    cd "${MAINDIR}";
+    wpuinstaller_install_plugin "wpucontactforms";
     git add -A
     git commit --no-verify -m "Installation - Plugin : WPU Contact forms" --quiet;
 fi;

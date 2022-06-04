@@ -33,3 +33,11 @@ function wpuinstaller_install_mu(){
     cd "${MAINDIR}";
     echo "- ${1} is installed.";
 }
+
+function wpuinstaller_install_plugin(){
+    echo "## Install ${1}";
+    cd "${MAINDIR}${WP_PLUGINS_DIR}";
+    bashutilities_submodule_or_install "https://github.com/WordPressUtilities/${1}.git" "${use_submodules}";
+    cd "${MAINDIR}";
+    echo "- ${1} is installed.";
+}
