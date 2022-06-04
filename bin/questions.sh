@@ -139,6 +139,8 @@ fi;
 
 install_recommended_plugins=$(bashutilities_get_yn "Install recommended plugins ?" 'y');
 
+need_advanced_filters=$(bashutilities_get_yn "Do you need Advanced filters ?" 'n');
+
 need_contact_form=$(bashutilities_get_yn "Do you need a contact form ?" 'y');
 
 # ACF

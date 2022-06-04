@@ -59,6 +59,18 @@ if [[ $need_acf == 'y' ]];then
     git commit --no-verify -m "Installation - Plugin : ACF" --quiet;
 fi;
 
+# Filters
+if [[ "${need_advanced_filters}" == 'y' ]];then
+    wpuinstaller_install_plugin "wpulivesearch";
+
+    _plugin_filters_settings="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_filters.php";
+    cp "${SCRIPTDIR}inc/base_filters.php" "${_plugin_filters_settings}";
+    wpuinstaller_replace "${_plugin_filters_settings}";
+
+    git add -A
+    git commit --no-verify -m "Installation - Plugin : WPU Live Search" --quiet;
+fi;
+
 # Forms
 if [[ "${need_acf_forms}" == 'y' || "${need_contact_form}" == 'y' ]]; then
     wpuinstaller_install_plugin "wpucontactforms";
