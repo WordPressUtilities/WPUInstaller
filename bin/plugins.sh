@@ -13,8 +13,7 @@ do
 done;
 
 # Commit Add plugins
-git add -A
-git commit --no-verify -m "Installation - Plugins" --quiet;
+bashutilities_commit_all "Installation - Plugins";
 
 # Polylang
 if [[ $project_l10n == 'y' ]]; then
@@ -23,8 +22,7 @@ if [[ $project_l10n == 'y' ]]; then
     wpuinstaller_install_mu "wpu_pll_utilities";
 
     # Commit plugin
-    git add -A
-    git commit --no-verify -m "Installation - Plugin : Polylang" --quiet;
+    bashutilities_commit_all "Installation - Plugin : Polylang";
 fi;
 
 # Woocommerce
@@ -33,8 +31,7 @@ if [[ $is_woocommerce == 'y' ]]; then
     php ${WPU_PHPCLI} plugin install woocommerce --activate
 
     # Commit plugin
-    git add -A
-    git commit --no-verify -m "Installation - Plugin : WooCommerce" --quiet;
+    bashutilities_commit_all "Installation - Plugin : WooCommerce";
 fi;
 
 # ACF
@@ -55,8 +52,7 @@ if [[ $need_acf == 'y' ]];then
     wpuinstaller_replace "${_masterheader_file}";
 
     # Commit plugin
-    git add -A
-    git commit --no-verify -m "Installation - Plugin : ACF" --quiet;
+    bashutilities_commit_all "Installation - Plugin : ACF";
 fi;
 
 # Filters
@@ -67,22 +63,19 @@ if [[ "${need_advanced_filters}" == 'y' ]];then
     cp "${SCRIPTDIR}inc/base_filters.php" "${_plugin_filters_settings}";
     wpuinstaller_replace "${_plugin_filters_settings}";
 
-    git add -A
-    git commit --no-verify -m "Installation - Plugin : WPU Live Search" --quiet;
+    bashutilities_commit_all "Installation - Plugin : WPU Live Search";
 fi;
 
 # Forms
 if [[ "${need_acf_forms}" == 'y' || "${need_contact_form}" == 'y' ]]; then
     wpuinstaller_install_plugin "wpucontactforms";
-    git add -A
-    git commit --no-verify -m "Installation - Plugin : WPU Contact forms" --quiet;
+    bashutilities_commit_all "Installation - Plugin : WPU Contact forms";
 fi;
 
 # WP Rocket
 if [[ "${need_wprocket}" == 'y' ]];then
     wpuinstaller_github_plugin wp-media wp-rocket;
-    git add -A
-    git commit --no-verify -m "Installation - Plugin : WP Rocket" --quiet;
+    bashutilities_commit_all "Installation - Plugin : WP Rocket";
 fi;
 
 # Search
@@ -92,8 +85,7 @@ if [[ "${need_search}" == 'y' ]];then
     cp "${SCRIPTDIR}inc/base_search.php" "${_plugin_search_settings}";
     wpuinstaller_replace "${_plugin_search_settings}";
 
-    git add -A
-    git commit --no-verify -m "Installation - Plugin : Relevanssi" --quiet;
+    bashutilities_commit_all "Installation - Plugin : Relevanssi";
 fi
 
 # Recommended
@@ -109,8 +101,7 @@ if [[ $install_recommended_plugins == 'y' ]]; then
     php ${WPU_PHPCLI} plugin install redirection;
 
     # Commit plugin
-    git add -A
-    git commit --no-verify -m "Installation - Recommended Plugins" --quiet;
+    bashutilities_commit_all "Installation - Recommended Plugins";
 fi;
 
 # Activation
@@ -127,13 +118,11 @@ EOF
 bashutilities_add_after_marker '#plugins_list' "${methods_string}" "${_plugin_settings_file}";
 bashutilities_sed "s/    #plugins_list//g" "${_plugin_settings_file}";
 
-git add -A
-git commit --no-verify -m "Installation - Plugin Activation" --quiet;
+bashutilities_commit_all "Installation - Plugin Activation";
 
 # Language
 echo "## Update language";
 php ${WPU_PHPCLI} language plugin install --all "${WP_LOCALE}";
 php ${WPU_PHPCLI} language plugin update --all;
 
-git add -A
-git commit --no-verify -m "Installation - Plugin Lang" --quiet;
+bashutilities_commit_all "Installation - Plugin Lang";

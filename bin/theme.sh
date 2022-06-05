@@ -11,8 +11,7 @@ echo '### Parent Theme installation';
 bashutilities_submodule_or_install "https://github.com/WordPressUtilities/WPUTheme.git" "${use_submodules}";
 
 # Commit Theme Installation
-git add -A
-git commit --no-verify -m "Installation - Framework Theme" --quiet;
+bashutilities_commit_all "Installation - Framework Theme";
 
 echo '### Child theme initialisation';
 
@@ -110,5 +109,4 @@ php ${WPU_PHPCLI} theme activate "WPUTheme";
 php ${WPU_PHPCLI} theme activate "${project_id}";
 
 # Commit Theme Installation
-git add -A
-git commit --no-verify -m "Installation - Child Theme" --quiet;
+bashutilities_commit_all "Installation - Child Theme";

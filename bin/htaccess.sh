@@ -9,8 +9,7 @@ echo '### Set htaccess - performance';
 cp "${MAINDIR}WPUtilities/wp-content/.htaccess" "${MAINDIR}wp-content/.htaccess";
 
 # Commit Add htaccess
-git add -A
-git commit --no-verify -m "Installation - content htaccess" --quiet;
+bashutilities_commit_all "Installation - content htaccess";
 
 echo '### Set htaccess - permalinks';
 

@@ -116,6 +116,5 @@ if [[ $use_subfolder == 'y' ]]; then
 fi;
 
 # Commit WordPress Installation
-git add -A
-git commit --no-verify -m "Installation - WordPress" --quiet;
+bashutilities_commit_all "Installation - WordPress";
 

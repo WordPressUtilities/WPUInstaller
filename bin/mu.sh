@@ -96,5 +96,4 @@ if [[ "${need_acf_forms}" == 'y' ]]; then
 fi;
 
 # Commit Add mu-plugins
-git add -A
-git commit --no-verify -m "Installation - MU-Plugins" --quiet;
+bashutilities_commit_all "Installation - MU-Plugins";
