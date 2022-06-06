@@ -1,18 +1,17 @@
-<div class="centered-container cc-header-main">
-<header class="header-main" role="banner">
 <?php
+echo '<div class="centered-container cc-header-main">';
+echo '<header class="header-main" role="banner">';
 wputh_display_title();
-wp_nav_menu( array(
+wputh_display_toggle();
+wp_nav_menu(array(
     'depth' => 2,
     'theme_location' => 'main',
     'fallback_cb' => 'wputh_default_menu',
     'container' => 'div',
     'container_class' => 'main-menu__wrapper',
     'menu_class' => 'main-menu'
-) );
-echo wputh_get_social_links_html('header__social','icon');
+));
+echo wputh_get_social_links_html('header__social', 'icon');
 echo wputh_maincontent_languages();
-?>
-<a role="button" href="#" class="nav-toggle"><span></span></a>
-</header>
-</div>
+echo '</header>';
+echo '</div>';
