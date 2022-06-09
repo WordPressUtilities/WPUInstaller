@@ -28,7 +28,13 @@ add_filter('use_block_editor_for_post_type', '__return_false', 100);
   Core Sitemaps : Disable authors list
 ---------------------------------------------------------- */
 
-add_filter('core_sitemaps_users_url_list', '__return_empty', 10, 1);
+add_filter('wp_sitemaps_enabled', function ($is_enabled) {
+    global $wp_query;
+    if (is_object($wp_query) && isset($wp_query->query_vars['sitemap']) && $wp_query->query_vars['sitemap'] == 'users') {
+        return false;
+    }
+    return $is_enabled;
+}, 10, 1);
 
 /* ----------------------------------------------------------
   Author
