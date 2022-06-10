@@ -10,6 +10,10 @@ Description: User settings
 
 add_action('init', function () {
 
+    if (!get_site_url()) {
+        return;
+    }
+
     /* Details */
     $role_opt = 'wpu_super_editor_role';
     $role_id = 'super_editor';
