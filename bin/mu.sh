@@ -66,6 +66,13 @@ if [[ "${need_search}" == 'y' ]];then
     wpuinstaller_replace "${_POSTS_FILE}";
 fi
 
+# News page
+if [[ "${need_posts_tpl}" == 'y' ]];then
+    pagenews__cms_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/pages/${project_id}_pagenews.php";
+    cp "${SCRIPTDIR}inc/base_page_news.php" "${pagenews__cms_file}";
+    wpuinstaller_replace "${pagenews__cms_file}";
+fi;
+
 # Menus
 if [[ "${need_advanced_menus}" == 'y' ]];then
     cp "${SCRIPTDIR}inc/base_menus.php" "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_menus.php";

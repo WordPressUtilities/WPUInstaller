@@ -98,6 +98,13 @@ if [[ "${need_acf}" == 'y' ]];then
     mkdir "${WPU_THEME}assets/js";
 fi;
 
+# News page
+if [[ "${need_posts_tpl}" == 'y' ]];then
+    mkdir "${WPU_THEME}tpl/loops";
+    cp "${SCRIPTDIR}inc/tpl-page-news.php" "${WPU_THEME}page-news.php";
+    cp "${SCRIPTDIR}inc/loop-post.php" "${WPU_THEME}tpl/loops/loop-post.php";
+fi;
+
 cd "${MAINDIR}";
 
 # Delete default content (Before creation at theme activation)

@@ -137,6 +137,11 @@ if [[ ${WPU_SUBMODULES_MUPLUGINS_OK} != *"wpudisablesearch"* ]];then
     need_search='y';
 fi;
 
+need_posts_tpl='n';
+if [[ ${WPU_SUBMODULES_MUPLUGINS_OK} != *"wpudisableposts"* ]];then
+    need_posts_tpl=$(bashutilities_get_yn "Do you need a news page ?" 'y');
+fi;
+
 install_recommended_plugins=$(bashutilities_get_yn "Install recommended plugins ?" 'y');
 
 need_advanced_filters=$(bashutilities_get_yn "Do you need Advanced filters ?" 'n');
