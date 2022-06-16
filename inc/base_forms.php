@@ -86,9 +86,17 @@ class wpuprojectid_forms {
     public function get_fields($form_type = 'all') {
         $fields = array();
 
-        $fields['contact_name'] = array(
+        $fields['contact_firstname'] = array(
+            'fieldgroup_start' => 1,
             'api_field_name' => 'firstName',
-            'autocomplete' => 'name',
+            'autocomplete' => 'given-name',
+            'label' => __('Name', 'wpuprojectid'),
+            'required' => 1
+        );
+        $fields['contact_name'] = array(
+            'fieldgroup_end' => 1,
+            'api_field_name' => 'lastName',
+            'autocomplete' => 'familyname',
             'label' => __('Name', 'wpuprojectid'),
             'required' => 1
         );
@@ -98,20 +106,42 @@ class wpuprojectid_forms {
                 'label' => __('Job', 'wpuprojectid')
             );
         }
+        $fields['contact_company'] = array(
+            'label' => __('Company', 'wpuprojectid'),
+            'autocomplete' => 'organization',
+            'type' => 'text',
+            'required' => 1
+        );
         $fields['contact_email'] = array(
             'api_field_name' => 'firstName',
             'label' => __('Email', 'wpuprojectid'),
             'type' => 'email',
             'required' => 1
         );
+
+        /* File */
+        $fields['contact_file'] = array(
+            'label' => __('File', 'wpuprojectid'),
+            'help' => sprintf(__('The file should not exceed %s', 'wpuprojectid'), size_format(wp_max_upload_size())),
+            'type' => 'file',
+            'file_types' => array(
+                'image/png',
+                'image/jpg',
+                'image/jpeg',
+                'application/pdf',
+                'application/msword',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            )
+        );
+
+        /* Example of a conditional choice displaying an element */
         $fields['contact_values'] = array(
-            'api_field_name' => 'firstName',
+            'api_field_name' => 'values',
             'label' => __('Choose a value', 'wpuprojectid'),
             'type' => 'radio',
             'required' => 1,
             'datas' => $this->get_datas_from_option('forms_radio_values')
         );
-
         $conditions_values = array(
             'display' => array(
                 'contact_values' => 'one'
@@ -126,8 +156,9 @@ class wpuprojectid_forms {
             'conditions' => $conditions_values
         );
 
+        /* Message */
         $fields['contact_message'] = array(
-            'api_field_name' => 'firstName',
+            'api_field_name' => 'test',
             'label' => __('Message', 'wpuprojectid'),
             'type' => 'textarea',
             'required' => 1
