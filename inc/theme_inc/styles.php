@@ -32,13 +32,13 @@ function wputh_control_stylesheets() {
 if (file_exists(get_stylesheet_directory() . '/assets/css/admin.css')) {
     add_filter('wpu_acf_flexible__disable_front_css', '__return_true', 10, 1);
     add_filter('wpu_acf_flexible__admin_css', function ($content) {
-        return array('admin-wpuprojectid-styles' => get_stylesheet_directory_uri() . '/assets/css/admin.css');
+        return array('admin-wpuprojectid-styles' => get_stylesheet_directory_uri() . '/assets/css/admin.css?cacheversion=' . WPUTHEME_ASSETS_VERSION);
     }, 10, 1);
 }
 
 if (file_exists(get_stylesheet_directory() . '/assets/css/editor.css')) {
     function wputh_add_editor_styles() {
-        add_editor_style(get_stylesheet_directory_uri() . '/assets/css/editor.css');
+        add_editor_style(get_stylesheet_directory_uri() . '/assets/css/editor.css?cacheversion=' . WPUTHEME_ASSETS_VERSION);
     }
 }
 
