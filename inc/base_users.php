@@ -29,6 +29,7 @@ add_action('init', function () {
     $role_details['list_users'] = true;
     $role_details['edit_users'] = true;
     $role_details['remove_users'] = true;
+    $role_details['delete_users'] = true;
     $role_details['promote_users'] = true;
 
     /* WooCommerce */
