@@ -71,6 +71,7 @@ add_filter('wpu_acf_flexible_content', function ($contents) {
 
     /* Page */
     $contents['content-blocks'] = array(
+        'init_files' => (wp_get_environment_type() == 'local'),
         'save_post' => 1,
         'location' => wpuprojectid_get_master_location(),
         'name' => 'Master Blocks',
@@ -222,6 +223,8 @@ add_action('wpu_acf_flexible__set_file_content', function ($layout_id, $group) {
 }
 
 EOT;
+        $comment .= wpuacfflex_template_get_layout_css($layout_id, $group['layouts'][$layout_id], '.block--' . $layout_id);
+
         file_put_contents($scss_file, $comment);
     }
 
