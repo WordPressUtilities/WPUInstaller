@@ -13,6 +13,8 @@ mkdir "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/entities";
 mkdir "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/pages";
 mkdir "${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/taxonomies";
 
+cp "${SCRIPTDIR}inc/htaccess-muplugins.txt" "${MAINDIR}${WP_MUPLUGINS_DIR}.htaccess";
+
 echo "## Install wpu_muplugin_autoloader";
 cp "${MAINDIR}WPUtilities/${WP_MUPLUGINS_DIR}wpu_muplugin_autoloader.php" "${MAINDIR}${WP_MUPLUGINS_DIR}wpu_muplugin_autoloader.php";
 echo "- wpu_muplugin_autoloader is installed.";
