@@ -20,7 +20,7 @@ class wpuprojectid_settings {
     public function list_actions($actions) {
         global $wpu_settings_version;
         if (is_object($wpu_settings_version)) {
-            # Keep a key lower than PHP_INT_MAX
+            # Use a key lower than PHP_INT_MAX
             #$actions[1001] = array(&$this, 'set_plugins');
             #$actions[1002] = array(&$this, 'set_theme');
             #$actions[1003] = array(&$this, 'set_options');
@@ -71,6 +71,56 @@ class wpuprojectid_settings {
         update_option('social_instagram_url', 'https://www.instagram.com/wpuprojectid');
         update_option('social_linkedin_url', 'https://www.linkedin.com/wpuprojectid');
         update_option('social_twitter_url', 'https://www.twitter.com/wpuprojectid');
+
+        if (false) {
+            $this->set_options__woocommerce();
+        }
+    }
+
+    function set_options__woocommerce() {
+
+        # - Common
+        update_option('woocommerce_store_address', '3, rue du Chat');
+        update_option('woocommerce_store_postcode', '75011');
+        update_option('woocommerce_store_city', 'Paris');
+        update_option('woocommerce_default_country', 'FR');
+        update_option('woocommerce_task_list_welcome_modal_dismissed', 'yes');
+
+        # - Taxes
+        update_option('woocommerce_calc_taxes', 'yes');
+        update_option('woocommerce_currency', 'EUR');
+        update_option('woocommerce_prices_include_tax', 'yes');
+        update_option('woocommerce_currency_pos', 'right');
+        update_option('woocommerce_tax_display_cart', 'incl');
+        update_option('woocommerce_tax_display_shop', 'incl');
+        update_option('woocommerce_tax_total_display', 'single');
+
+        # - Shipping
+        update_option('woocommerce_allowed_countries', 'specific');
+        update_option('woocommerce_specific_allowed_countries', array(
+            'FR'
+        ));
+
+        # - Payment
+        update_option('woocommerce_cheque_settings', array(
+            'enabled' => 'yes',
+            'title' => 'Paiements par chèque',
+            'description' => 'Veuillez envoyer un chèque à Nom de la boutique, rue, code postal, ville, pays.',
+            'instructions' => ''
+        ));
+        update_option('woocommerce_bacs_settings', array(
+            'enabled' => 'yes',
+            'title' => 'Virement bancaire',
+            'description' => 'Effectuez le paiement directement depuis votre compte bancaire. Veuillez utiliser l’ID de votre commande comme référence du paiement. Votre commande ne sera pas expédiée tant que les fonds ne seront pas reçus.',
+            'instructions' => '',
+            'account_details' => '',
+            'account_name' => '',
+            'account_number' => '',
+            'sort_code' => '',
+            'bank_name' => '',
+            'iban' => '',
+            'bic' => ''
+        ));
     }
 
     public function set_menus() {
