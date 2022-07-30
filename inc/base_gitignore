@@ -1,0 +1,47 @@
+
+# Common
+.htpasswd
+.sass-cache
+/.htaccess
+/composer.lock
+/license.txt
+/readme.html
+/README.md
+/vendor
+diff-after.txt
+diff-before.txt
+my.cnf
+node_modules
+package-lock.json
+yarn.lock
+
+# WordPress
+.disable_wpu_admin_protect
+/xmlrpc.php
+tools/backups
+tools/logs
+tools/source
+tools/wputools
+wp-cli.phar
+wp-content/languages/themes/twenty*
+wp-content/themes/twenty*
+wp-content/uploads/
+wpu-test.php
+wpu_local_overrides.php
+WPUtilities/
+
+# Cache
+wp-content/advanced-cache.php
+wp-content/cache/
+wp-content/db.php
+wp-content/object-cache.php
+wp-content/plugins/wp-rocket/license-data.php
+wp-content/w3tc-config/
+wp-content/wp-rocket-config/
+
+# Config
+wp-config.php
+
+# Logs
+*.log
+wp-content/debug.log
