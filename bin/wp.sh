@@ -61,6 +61,7 @@ define('DISABLE_WP_CRON', true);
 
 # Environment
 define('WPU_ENVIRONMENT', 'local');
+define('WP_ENVIRONMENT_TYPE', 'local');
 
 # Config
 define('EMPTY_TRASH_DAYS', 7);
