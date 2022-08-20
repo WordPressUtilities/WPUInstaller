@@ -41,15 +41,30 @@ if [[ $need_acf == 'y' ]];then
     php ${WPU_PHPCLI} plugin install acf-extended --activate;
     wpuinstaller_install_mu "wpu_acf_flexible";
 
+    _WPUINSTALLER_BLOCKSDIR="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}/blocks/";
+
+    # Create block dir
+    mkdir "${_WPUINSTALLER_BLOCKSDIR}";
+
     # Add blocks
     _blocks_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_blocks.php";
-    cp "${SCRIPTDIR}inc/base_blocks.php" "${_blocks_file}";
+    cp "${SCRIPTDIR}inc/blocks/base_blocks.php" "${_blocks_file}";
     wpuinstaller_replace "${_blocks_file}";
 
     # Add masterheader
-    _masterheader_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/blocks/${project_id}_masterheader.php";
-    cp "${SCRIPTDIR}inc/base_masterheader.php" "${_masterheader_file}";
+    _masterheader_file="${_WPUINSTALLER_BLOCKSDIR}${project_id}_masterheader.php";
+    cp "${SCRIPTDIR}inc/blocks/base_masterheader.php" "${_masterheader_file}";
     wpuinstaller_replace "${_masterheader_file}";
+
+    # Add special fields
+    _masterfields_file="${_WPUINSTALLER_BLOCKSDIR}${project_id}_masterfields.php";
+    cp "${SCRIPTDIR}inc/blocks/base_masterfields.php" "${_masterfields_file}";
+    wpuinstaller_replace "${_masterfields_file}";
+
+    # Add generated code
+    _mastergenerated_file="${_WPUINSTALLER_BLOCKSDIR}${project_id}_mastergenerated.php";
+    cp "${SCRIPTDIR}inc/blocks/base_mastergenerated.php" "${_mastergenerated_file}";
+    wpuinstaller_replace "${_mastergenerated_file}";
 
     # Commit plugin
     bashutilities_commit_all "Installation - Plugin : ACF";
