@@ -5,20 +5,6 @@ Description: Website common functions
 */
 
 /* ----------------------------------------------------------
-  Disable REST API for non logged-in users
----------------------------------------------------------- */
-
-add_action('plugins_loaded', function () {
-    if (is_user_logged_in()) {
-        return;
-    }
-    if (current_user_can('remove_users')) {
-        return;
-    }
-    add_filter('wpudisabler__disable_wp_api', '__return_true');
-}, 5);
-
-/* ----------------------------------------------------------
   Disable block editor
 ---------------------------------------------------------- */
 
