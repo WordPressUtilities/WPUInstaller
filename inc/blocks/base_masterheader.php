@@ -66,3 +66,11 @@ add_filter('wpu_acf_flexible_content', function ($contents) {
     );
     return $contents;
 }, 13, 1);
+
+/* Save some extra fields
+-------------------------- */
+
+add_filter('wpu_acf_flexible__save_post_default_content_html', function ($content, $post_id) {
+    $content .= wpautop(trim(get_post_meta($post_id, 'intro', 1)));
+    return $content;
+}, 10, 2);
