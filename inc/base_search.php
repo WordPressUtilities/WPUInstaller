@@ -18,6 +18,12 @@ function wpuprojectid_search_custom_fields($custom_fields = array()) {
 }
 
 /* ----------------------------------------------------------
+  Disable UX Tweak if installed
+---------------------------------------------------------- */
+
+add_filter('disable__wpuux_redirect_only_result_search', '__return_true');
+
+/* ----------------------------------------------------------
   Disable relevanssi excerpts
 ---------------------------------------------------------- */
 
@@ -62,12 +68,28 @@ function wpuprojectid_search_get_post_type_content($post_type_key, $pt_settings,
     if (!is_array($args)) {
         $args = array();
     }
+
+    /* Per page */
     if (!isset($args['per_page'])) {
         $args['per_page'] = 6;
     }
+    if (isset($pt_settings['per_page'])) {
+        $args['per_page'] = $pt_settings['per_page'];
+    }
+
+    /* Paged */
     if (!isset($args['paged']) || $args['paged'] == 0) {
         $args['paged'] = 1;
     }
+
+    /* Classname */
+    if (!isset($args['classname'])) {
+        $args['classname'] = 'loop-list';
+    }
+    if (isset($pt_settings['classname'])) {
+        $args['classname'] = $pt_settings['classname'];
+    }
+
     $start = $args['per_page'] * $args['paged'] - $args['per_page'];
     $max = $start + $args['per_page'];
     $wpq_search = new WP_Query();
@@ -82,7 +104,7 @@ function wpuprojectid_search_get_post_type_content($post_type_key, $pt_settings,
     }
     $html = '';
     if ($wpq_search->have_posts()) {
-        $html .= '<ul class="loop-list" data-max="' . esc_attr($max) . '" data-found="' . esc_attr($wpq_search->found_posts) . '">';
+        $html .= '<ul class="' . esc_attr($args['classname']) . '" data-max="' . esc_attr($max) . '" data-found="' . esc_attr($wpq_search->found_posts) . '">';
         while ($wpq_search->have_posts()) {
             $wpq_search->the_post();
             $html .= '<li>';
@@ -94,7 +116,7 @@ function wpuprojectid_search_get_post_type_content($post_type_key, $pt_settings,
         $html .= '</ul>';
         if ($wpq_search->found_posts > $max) {
             $html .= '<div class="search-load-more-wrapper">';
-            $html .= '<button type="button" class="wpuprojectid-button" data-s="'.esc_attr(get_search_query()).'" data-search-pt="' . esc_attr($post_type_key) . '" data-search-paged="' . esc_attr($args['paged'] + 1) . '"><span>' . __('Load more', 'wpuprojectid') . '</span></button>';
+            $html .= '<button type="button" class="wpuprojectid-button" data-s="' . esc_attr(get_search_query()) . '" data-search-pt="' . esc_attr($post_type_key) . '" data-search-paged="' . esc_attr($args['paged'] + 1) . '"><span>' . __('Load more', 'wpuprojectid') . '</span></button>';
             $html .= '</div>';
         }
     }
