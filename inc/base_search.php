@@ -18,6 +18,12 @@ function wpuprojectid_search_custom_fields($custom_fields = array()) {
 }
 
 /* ----------------------------------------------------------
+  Cache search results
+---------------------------------------------------------- */
+
+add_filter('rocket_cache_search', '__return_true');
+
+/* ----------------------------------------------------------
   Disable UX Tweak if installed
 ---------------------------------------------------------- */
 
