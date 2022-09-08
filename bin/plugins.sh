@@ -41,7 +41,7 @@ if [[ $need_acf == 'y' ]];then
     php ${WPU_PHPCLI} plugin install acf-extended --activate;
     wpuinstaller_install_mu "wpu_acf_flexible";
 
-    _WPUINSTALLER_BLOCKSDIR="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}/blocks/";
+    _WPUINSTALLER_BLOCKSDIR="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/blocks/";
 
     # Create block dir
     mkdir "${_WPUINSTALLER_BLOCKSDIR}";
