@@ -27,11 +27,12 @@ function wpuprojectid_get_master_location() {
         );
     }
 
+    /* All pages without a template */
     $acf_location[] = array(
         array(
             'param' => 'page_template',
             'operator' => '==',
-            'value' => 'page-master.php'
+            'value' => 'default'
         )
     );
 
