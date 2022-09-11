@@ -155,8 +155,17 @@ class wpuprojectid_settings {
 $wpuprojectid_settings = new wpuprojectid_settings();
 
 /*
+function wpu_settings_export_options($id) {
+    $opt_value = get_option($id);
+    echo "<pre>update_option('" . $id . "', ";
+    var_export(get_option($id));
+    echo ");</pre>";
+}
+wpu_settings_export_options('duplicate_post_show_link');
+wpu_settings_export_options('duplicate_post_roles');
+
 echo '<pre>$wpu_settings_version->activate_plugins(';
 var_export(get_option('active_plugins'));
 echo ');</pre>';
 die;
-*/
+/**/
