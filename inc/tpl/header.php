@@ -1,4 +1,5 @@
 <?php
+echo '<div class="cc-header-main__wrapper">';
 echo '<div class="centered-container cc-header-main">';
 echo '<header class="header-main" role="banner">';
 wputh_display_title();
@@ -14,4 +15,5 @@ wp_nav_menu(array(
 echo wputh_get_social_links_html('header__social', 'icon');
 echo wputh_maincontent_languages();
 echo '</header>';
+echo '</div>';
 echo '</div>';
