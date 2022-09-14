@@ -37,6 +37,7 @@ class wpuprojectid_forms {
 
         /* Settings */
         add_filter('wpucontactforms_display_form_after_success', '__return_false');
+        add_filter('wpucontactforms_fields_submit_inner_after', array(&$this, 'wpucontactforms_fields_submit_inner_after'), 10, 1);
 
         /* Options */
         add_filter('wpu_options_tabs', array(&$this, 'wpu_options_tabs'), 10, 1);
@@ -77,6 +78,14 @@ class wpuprojectid_forms {
             )
         );
         return $forms;
+    }
+
+    function wpucontactforms_fields_submit_inner_after($content) {
+        $privacy_link = get_the_privacy_policy_link();
+        if ($privacy_link) {
+            $content .= '<div class="privacy-link-wrapper">' . $privacy_link . '</div>';
+        }
+        return $content;
     }
 
     /* ----------------------------------------------------------
