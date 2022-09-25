@@ -119,6 +119,12 @@ if [[ $install_recommended_plugins == 'y' ]]; then
     bashutilities_commit_all "Installation - Recommended Plugins";
 fi;
 
+# Local plugins
+if [[ -d "${SCRIPTDIR}local/plugins/" ]];then
+    rsync -rv "${SCRIPTDIR}local/plugins/" "${MAINDIR}${WP_PLUGINS_DIR}/";
+    bashutilities_commit_all "Installation - Local Plugins";
+fi;
+
 # Activation
 echo "## Plugin Activation";
 _plugins_list=$(php ${WPU_PHPCLI} option get active_plugins);
