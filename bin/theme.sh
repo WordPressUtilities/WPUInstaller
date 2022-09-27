@@ -105,6 +105,12 @@ if [[ "${need_posts_tpl}" == 'y' ]];then
     cp "${SCRIPTDIR}inc/loop-post.php" "${WPU_THEME}tpl/loops/loop-post.php";
 fi;
 
+# Page 404
+if [[ "${need_404_page}" == 'y' ]];then
+    cp "${SCRIPTDIR}inc/tpl-page-404.php" "${WPU_THEME}404.php";
+    wpuinstaller_replace "${WPU_THEME}404.php";
+fi;
+
 cd "${MAINDIR}";
 
 # Delete default content (Before creation at theme activation)

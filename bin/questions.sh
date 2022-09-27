@@ -148,6 +148,8 @@ need_advanced_filters=$(bashutilities_get_yn "Do you need Advanced filters ?" 'n
 
 need_contact_form=$(bashutilities_get_yn "Do you need a contact form ?" 'y');
 
+need_404_page=$(bashutilities_get_yn "Do you need a 404 page ?" 'y');
+
 # ACF
 need_acf=$(bashutilities_get_yn "Do you need Advanced Custom Fields ?" 'y');
 need_acf_forms='n';
