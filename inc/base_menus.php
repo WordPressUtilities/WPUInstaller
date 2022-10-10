@@ -11,10 +11,10 @@ Description: Config for menus
 
 add_action('walker_nav_menu_start_el', function ($item_output, $item, $depth, $args) {
     if ($depth == 0 && $args->container_class == 'main-menu__wrapper') {
-        $item_output = str_replace('</a>', '<span class="wpuprojectid-menu-go"><i class="icon icon_go"></i></span></a>', $item_output);
+        $item_output = str_replace('</a>', '<span class="wpuprojectid-menu-go"><i aria-hidden="true" class="icon icon_go"></i></span></a>', $item_output);
         if (in_array('menu-item-has-children', $item->classes)) {
             $item_output .= '<div class="sub-menu-wrapper">';
-            $item_output .= '<a href="#" role="button" class="wpuprojectid-menu-back"><i class="icon icon_back"></i>'.__('Back', 'wpuprojectid').'</a>';
+            $item_output .= '<a href="#" role="button" class="wpuprojectid-menu-back"><i aria-hidden="true" class="icon icon_back"></i>'.__('Back', 'wpuprojectid').'</a>';
             $item_output .= '<div class="item-title">'.$item->title.'</div>';
         }
     }
