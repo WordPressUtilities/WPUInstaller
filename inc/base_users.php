@@ -143,3 +143,23 @@ add_filter('rest_authentication_errors', function ($result) {
     }
     return $result;
 });
+
+/* ----------------------------------------------------------
+  Admin : filter posts by authors
+---------------------------------------------------------- */
+
+add_action('restrict_manage_posts', function () {
+    $users = get_users(array(
+        'orderby' => 'display_name',
+        'role__not_in' => array(
+            'subscriber',
+            'customer'
+        )
+    ));
+    echo '<select name="author" id="user" class="">';
+    echo '<option value="">' . __('All authors', 'wputh') . '</option>';
+    foreach ($users as $usr) {
+        echo '<option ' . (isset($_GET['author']) && $_GET['author'] == $usr->ID ? 'selected="selected"' : '') . ' value="' . esc_attr($usr->ID) . '">' . $usr->display_name . '</option>';
+    }
+    echo '</select>';
+});
