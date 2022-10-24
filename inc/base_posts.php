@@ -28,11 +28,11 @@ add_action('init', function () {
     $freq_in_minutes = 2;
 
     /* Once every N minutes */
-    $chut_posts_missed_schedule_transient = get_transient('chut_posts_missed_schedule_transient');
-    if ($chut_posts_missed_schedule_transient) {
+    $transient = get_transient('wpuprojectid_posts_missed_schedule_transient');
+    if ($transient) {
         return false;
     }
-    set_transient('chut_posts_missed_schedule_transient', 1, 60 * $freq_in_minutes);
+    set_transient('wpuprojectid_posts_missed_schedule_transient', 1, 60 * $freq_in_minutes);
 
     /* Select all failed transients */
     global $wpdb;
