@@ -136,6 +136,10 @@ need_search='n';
 if [[ ${WPU_SUBMODULES_MUPLUGINS_OK} != *"wpudisablesearch"* ]];then
     need_search='y';
 fi;
+need_posts='n';
+if [[ ${WPU_SUBMODULES_MUPLUGINS_OK} != *"wpudisableposts"* ]];then
+    need_posts='y';
+fi;
 
 need_posts_tpl='n';
 if [[ ${WPU_SUBMODULES_MUPLUGINS_OK} != *"wpudisableposts"* ]];then
