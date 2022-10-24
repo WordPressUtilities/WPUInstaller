@@ -24,10 +24,16 @@ add_filter('wpu_acf_flexible__field_types', function ($types) {
     return $types;
 }, 10, 1);
 
-function wpuprojectid_title($field, $wrapper = true) {
+function wpuprojectid_title($field, $args = array()) {
+    if(!is_array($args)){
+        $args = array();
+    }
+    if(!isset($args['wrapper'])){
+        $args['wrapper'] = true;
+    }
     $field = strip_tags($field, '<u>');
     $field = trim($field);
-    if (!$wrapper) {
+    if (!$args['wrapper']) {
         return $field;
     }
     return '<h2 class="wpuprojectid-title">' . nl2br($field) . '</h2>';
@@ -65,7 +71,7 @@ function wpuprojectid_get_icons() {
         }
         wp_cache_set($cache_id, $icons, '', $cache_duration);
     }
-    return $icons;
+    return array('' => '-- No Icon --') + $icons;
 }
 
 function wpuprojectid_icon($icon = '') {
