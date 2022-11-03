@@ -48,3 +48,16 @@ add_action('init', function () {
     }
 
 });
+
+/* ----------------------------------------------------------
+  Oembed fixes
+---------------------------------------------------------- */
+
+add_filter('embed_oembed_html', function ($html, $url, $attr, $post_id) {
+    /* Wrap and anonymize Youtube */
+    if (strpos($html, 'youtube') !== false) {
+        $html = str_replace('src="https://www.youtube.com/embed', 'src="https://www.youtube-nocookie.com/embed', $html);
+        return '<div class="cssc-content-video-wrapper">' . $html . '</div>';
+    }
+    return $html;
+}, 10, 4);
