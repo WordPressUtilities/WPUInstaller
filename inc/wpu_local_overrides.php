@@ -84,6 +84,8 @@ function wp_mail($to, $subject, $message, $headers = '', $attachments = array())
     $mail .= 'TEXT : ' . wpu_local_overrides_html2text($message);
     $mail .= "\n--\n";
     $mail .= 'MESSAGE : ' . $message;
+    $mail .= "\n--\n";
+    $mail .= 'HEADERS : ' . serialize($headers);
     $mail .= "\n--- NEW MAIL\n";
     error_log($mail);
     return true;
