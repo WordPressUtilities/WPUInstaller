@@ -102,6 +102,14 @@ fi
 php ${WPU_PHPCLI} core language install ${WP_LOCALE};
 php ${WPU_PHPCLI} site switch-language ${WP_LOCALE};
 
+# Add README
+_readme_file="${MAINDIR}readme.md";
+if [[ -f "${_readme_file}" ]];then
+    rm "${_readme_file}";
+fi;
+cp "${SCRIPTDIR}inc/base_readme.md" "${_readme_file}";
+wpuinstaller_replace "${_readme_file}";
+
 # Deleting default items
 echo '### Deleting default items';
 if [[ $use_subfolder == 'n' ]]; then
