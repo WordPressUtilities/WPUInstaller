@@ -87,12 +87,6 @@ if [[ "${need_acf_forms}" == 'y' || "${need_contact_form}" == 'y' ]]; then
     bashutilities_commit_all "Installation - Plugin : WPU Contact forms";
 fi;
 
-# WP Rocket
-if [[ "${need_wprocket}" == 'y' ]];then
-    wpuinstaller_github_plugin wp-media wp-rocket;
-    bashutilities_commit_all "Installation - Plugin : WP Rocket";
-fi;
-
 # Search
 if [[ "${need_search}" == 'y' ]];then
     php ${WPU_PHPCLI} plugin install relevanssi --activate;
@@ -114,6 +108,7 @@ if [[ $install_recommended_plugins == 'y' ]]; then
     php ${WPU_PHPCLI} plugin install duplicate-post;
     php ${WPU_PHPCLI} plugin install query-monitor;
     php ${WPU_PHPCLI} plugin install redirection;
+    php ${WPU_PHPCLI} plugin install w3-total-cache;
 
     # Commit plugin
     bashutilities_commit_all "Installation - Recommended Plugins";

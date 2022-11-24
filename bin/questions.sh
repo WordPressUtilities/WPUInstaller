@@ -170,9 +170,6 @@ fi;
 # Extranet
 need_extranet=$(bashutilities_get_yn "Do you need an extranet ?" 'n');
 
-# WP Rocket
-need_wprocket=$(bashutilities_get_yn "Do you need WP Rocket ?" 'y');
-
 # Shell
 wpu_add_shell_scripts=$(bashutilities_get_yn "Add shell scripts ?" 'n');
 use_external_api='n';
