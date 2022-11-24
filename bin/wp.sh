@@ -103,7 +103,7 @@ php ${WPU_PHPCLI} core language install ${WP_LOCALE};
 php ${WPU_PHPCLI} site switch-language ${WP_LOCALE};
 
 # Add README
-_readme_file="${MAINDIR}readme.md";
+_readme_file="${MAINDIR}project-readme.md";
 if [[ -f "${_readme_file}" ]];then
     rm "${_readme_file}";
 fi;

@@ -1,5 +1,9 @@
 # wpuproject
 
+## Tools
+
+- wp-cli must be installed : https://wp-cli.org/fr/
+
 ## How to install
 
 ### Clone
