@@ -52,25 +52,48 @@ class wpuprojectid_settings {
     }
 
     public function set_options() {
-        # WordPress
+        /* WordPress */
         update_option('start_of_week', '1');
         update_option('date_format', 'j F Y');
         update_option('time_format', 'H:i');
         update_option('timezone_string', 'Europe/Paris');
         update_option('permalink_structure', '/%postname%/');
 
-        # Pages
+        /* Pages */
         update_option('page_on_front', get_option('home__page_id'));
         update_option('show_on_front', 'page');
 
-        # SEO
+        /* SEO */
         update_option('blogdescription', 'Agence Web');
-        update_option('wpu_home_meta_description', 'Agence Web with a longer text.');
+        $meta_desc = 'Agence Web with a longer text.';
+        update_option('wpu_home_meta_description', $meta_desc);
+        # update_option('fr___wpu_home_meta_description', $meta_desc);
+        # update_option('en___wpu_home_meta_description', $meta_desc);
 
-        # Social
+        /* Social */
         update_option('social_instagram_url', 'https://www.instagram.com/wpuprojectid');
         update_option('social_linkedin_url', 'https://www.linkedin.com/wpuprojectid');
         update_option('social_twitter_url', 'https://www.twitter.com/wpuprojectid');
+
+        /* Images */
+        update_option('thumbnail_size_w', 150);
+        update_option('thumbnail_size_h', 150);
+        update_option('medium_size_w', 650);
+        update_option('medium_size_h', 0);
+        update_option('medium_large_size_w', 920);
+        update_option('medium_large_size_h', 0);
+        update_option('large_size_w', 1390);
+        update_option('large_size_h', 0);
+
+        /* Plugin : Limit Login Attempts*/
+        update_option('limit_login_show_warning_badge', '0');
+        update_option('limit_login_hide_dashboard_widget', '1');
+        update_option('limit_login_onboarding_popup_shown', '1');
+        update_option('limit_login_show_top_level_menu_item', '1');
+
+        /* Plugin : Duplicate Post */
+        update_option('duplicate_post_show_link', false);
+        update_option('duplicate_post_roles', false);
 
         if (false) {
             $this->set_options__woocommerce();
