@@ -56,3 +56,34 @@ add_action('enqueue_block_assets', function () {
     wp_deregister_style('wc-blocks-style');
     wp_dequeue_style('wc-blocks-style');
 });
+
+/* ----------------------------------------------------------
+  Performances
+---------------------------------------------------------- */
+
+add_action('wp_head', function () {
+
+    $theme_path = str_replace(site_url(), '', get_stylesheet_directory_uri());
+
+    /* Preload icon font */
+    $icon_path = $theme_path . '/assets/fonts/icons';
+    $icon_file = $icon_path . '/icons.woff2';
+    $version_file = $icon_path . '/version.txt';
+    if (file_exists(ABSPATH . $icon_file) && file_exists(ABSPATH . $version_file)) {
+        echo '<link rel="preload" href="' . $icon_file . '?' . file_get_contents(ABSPATH . $version_file) . '" as="font" type="font/woff2" crossorigin>';
+    }
+
+    /* Preload main fonts */
+    $files = array(
+        // '/assets/fonts/galano_grotesque/galano_grotesque_light-webfont.woff2',
+        // '/assets/fonts/poppins/poppins-regular-webfont.woff2'
+    );
+    foreach ($files as $file) {
+        if (file_exists(ABSPATH . $theme_path . $file)) {
+            echo '<link rel="preload" href="' . $theme_path . $file . '" as="font" type="font/woff2" crossorigin>';
+        }
+    }
+
+    /* Force scrollbar */
+    echo '<style>html,body{min-height:101vh;}</style>';
+}, 1);
