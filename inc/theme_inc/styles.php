@@ -61,7 +61,19 @@ add_action('enqueue_block_assets', function () {
   Performances
 ---------------------------------------------------------- */
 
+/* Required style
+-------------------------- */
+
 add_action('wp_head', function () {
+    /* Force scrollbar */
+    echo '<style>html,body{min-height:100.1vh!important}</style>';
+}, 1);
+
+
+/* Preloaded resources
+-------------------------- */
+
+add_filter('wp_preload_resources', function ($preload_resources = array()) {
 
     $theme_path = str_replace(site_url(), '', get_stylesheet_directory_uri());
 
@@ -70,7 +82,11 @@ add_action('wp_head', function () {
     $icon_file = $icon_path . '/icons.woff2';
     $version_file = $icon_path . '/version.txt';
     if (file_exists(ABSPATH . $icon_file) && file_exists(ABSPATH . $version_file)) {
-        echo '<link rel="preload" href="' . $icon_file . '?' . file_get_contents(ABSPATH . $version_file) . '" as="font" type="font/woff2" crossorigin>';
+        $preload_resources[] = array(
+            'href' => $icon_file . '?' . file_get_contents(ABSPATH . $version_file),
+            'as' => 'font',
+            'type' => 'font/woff2'
+        );
     }
 
     /* Preload main fonts */
@@ -80,10 +96,13 @@ add_action('wp_head', function () {
     );
     foreach ($files as $file) {
         if (file_exists(ABSPATH . $theme_path . $file)) {
-            echo '<link rel="preload" href="' . $theme_path . $file . '" as="font" type="font/woff2" crossorigin>';
+            $preload_resources[] = array(
+                'href' => $theme_path . $file,
+                'as' => 'font',
+                'type' => 'font/woff2'
+            );
         }
     }
 
-    /* Force scrollbar */
-    echo '<style>html,body{min-height:101vh;}</style>';
-}, 1);
+    return $preload_resources;
+}, 10, 1);
