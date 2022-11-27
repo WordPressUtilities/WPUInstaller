@@ -4,6 +4,120 @@
   Custom field types
 ---------------------------------------------------------- */
 
+
+/* Theme
+-------------------------- */
+
+add_filter('wpu_acf_flexible__field_types', function ($types) {
+
+    $types['wpuprojectid_theme'] = array(
+        'label' => 'Theme',
+        'type' => 'group',
+        'sub_fields' => array(
+            'acc' => array(
+                'label' => 'Settings',
+                'type' => 'accordion'
+            ),
+            'margin' => array(
+                'label' => 'Margin',
+                'type' => 'select',
+                'choices' => array(
+                    'large' => 'Large',
+                    'medium' => 'Medium',
+                    'thin' => 'Thin'
+                )
+            ),
+            'theme' => array(
+                'label' => 'Theme',
+                'type' => 'select',
+                'choices' => array(
+                    'white' => 'White background',
+                    'dark' => 'Dark background',
+                )
+            )
+        ),
+        'field_vars_callback' => function ($id, $sub_field, $level) {
+            return '';
+        },
+        'field_html_callback' => function ($id, $sub_field, $level) {
+            return '';
+        }
+    );
+    return $types;
+}, 10, 1);
+
+function wpuprojectid_theme($theme = array()) {
+    if (!is_array($theme)) {
+        $theme = array();
+    }
+
+    $classnames = array();
+
+    if (!isset($theme['theme']) || !$theme['theme']) {
+        $theme['theme'] = 'white';
+    }
+    if (!isset($theme['margin']) || !$theme['margin']) {
+        $theme['margin'] = 'large';
+    }
+
+    /* Margins */
+    if ($theme['theme'] == 'white') {
+        $classnames[] = 'section-m--' . $theme['margin'];
+    } else {
+        $classnames[] = 'section--' . $theme['margin'];
+    }
+
+    /* Theme */
+    switch ($theme['theme']) {
+    case 'dark':
+        $classnames[] = 'section--dark';
+        break;
+    default:
+        $classnames[] = 'section--clear';
+    }
+
+    return implode(' ', $classnames);
+}
+
+/*
+$margin-sizes: ("large": 1,"medium": 0.5,"thin": 0.3);
+@each $name,$size in $margin-sizes {
+    .section--#{$name} {
+        & {
+            padding-top: ($desktop-section-padding * $size);
+            padding-bottom: ($desktop-section-padding * $size);
+        }
+
+        @include resp($desktop_excluded) {
+            padding-top: ($tablet-section-padding * $size);
+            padding-bottom: ($tablet-section-padding * $size);
+        }
+
+        @include resp($mobile_only) {
+            padding-top: ($mobile-section-padding * $size);
+            padding-bottom: ($mobile-section-padding * $size);
+        }
+    }
+
+    .section-m--#{$name} {
+        & {
+            margin-top: ($desktop-section-padding * $size);
+            margin-bottom: ($desktop-section-padding * $size);
+        }
+
+        @include resp($desktop_excluded) {
+            margin-top: ($tablet-section-padding * $size);
+            margin-bottom: ($tablet-section-padding * $size);
+        }
+
+        @include resp($mobile_only) {
+            margin-top: ($mobile-section-padding * $size);
+            margin-bottom: ($mobile-section-padding * $size);
+        }
+    }
+}
+*/
+
 /* Title
 -------------------------- */
 

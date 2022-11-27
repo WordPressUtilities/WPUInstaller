@@ -40,7 +40,7 @@ add_filter('wpu_acf_flexible__file_content', function ($content, $layout_id, $va
     return <<<EOT
 <?php
 ${vars}
-echo '<section class="centered-container section-m cc-block--${layout_id}"><div class="block--${layout_id}">';
+echo '<section class="centered-container section-m cc-block--${layout_id} ' . wpuprojectid_theme(get_sub_field('wpuprojectid_theme')) . '"><div class="block--${layout_id}">';
 ?>
 ${values}
 <?php
