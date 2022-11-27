@@ -4,6 +4,23 @@
  */
 
 /* ----------------------------------------------------------
+  Master Generator model
+---------------------------------------------------------- */
+
+add_filter('wpu_acf_flexible__master_generator__post_details', function ($content) {
+    $content['post_type'] = 'page';
+    $content['post_title'] = 'Page Master';
+    // $content['post_status'] = 'publish';
+    return $content;
+}, 10, 1);
+
+add_action('wpu_acf_flexible__master_generator__after_insert_post', function ($post_id) {
+    update_post_meta($post_id, '_wp_page_template', 'page-master.php');
+    // update_post_meta($post_id, 'master_header_surtitle', 'A sur-title');
+    // update_post_meta($post_id, 'master_header_intro', 'The world needs dreamers and the world needs doers. But above all, the world needs dreamers who do — Sarah Ban Breathnach.');
+}, 10, 1);
+
+/* ----------------------------------------------------------
   Ignore some types on file generation
 ---------------------------------------------------------- */
 
