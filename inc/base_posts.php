@@ -36,7 +36,7 @@ add_action('init', function () {
 
     /* Select all failed transients */
     global $wpdb;
-    $q = $wpdb->prepare("SELECT * FROM $wpdb->posts WHERE post_status=%s AND post_date_gmt > 0 AND post_date_gmt < UTC_TIMESTAMP()", 'future');
+    $q = $wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE post_status=%s AND post_date_gmt > 0 AND post_date_gmt < UTC_TIMESTAMP()", 'future');
     $missed_ids = $wpdb->get_col($q);
     if (empty($missed_ids)) {
         return false;
