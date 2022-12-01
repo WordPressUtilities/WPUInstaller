@@ -37,11 +37,16 @@ add_filter('wpu_acf_flexible_content', function ($contents) {
     $fields['intro'] = array(
         'label' => 'Introduction',
         'type' => 'editor',
+        'editor_height' => 150,
         'toolbar' => 'wpuacf_mini',
         'conditional_logic' => $condition_home
     );
     $fields['cta'] = array(
         'type' => 'wpuacf_cta'
+    );
+    $fields['cta2'] = array(
+        'type' => 'wpuacf_cta',
+        'label' => 'CTA 2'
     );
     $fields['colb'] = 'wpuacf_50p';
     $fields['image'] = array(
