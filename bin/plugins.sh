@@ -43,9 +43,6 @@ if [[ $need_acf == 'y' ]];then
 
     _WPUINSTALLER_BLOCKSDIR="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/blocks/";
 
-    # Create block dir
-    mkdir "${_WPUINSTALLER_BLOCKSDIR}";
-
     # Add blocks
     _blocks_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_blocks.php";
     cp "${SCRIPTDIR}inc/blocks/base_blocks.php" "${_blocks_file}";
