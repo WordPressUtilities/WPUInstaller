@@ -57,19 +57,6 @@ add_filter('wpu_acf_flexible_content', function ($contents) {
 
     $all_layouts = apply_filters('wpuprojectid_blocks', array());
 
-    $all_layouts['content'] = array(
-        'label' => 'WYSIWYG',
-        'wpuacf_model' => 'content-classic'
-    );
-    $all_layouts['video'] = array(
-        'label' => 'Video',
-        'wpuacf_model' => 'video'
-    );
-    $all_layouts['image'] = array(
-        'label' => 'Image',
-        'wpuacf_model' => 'image'
-    );
-
     /* Page */
     $contents['content-blocks'] = array(
         'init_files' => (wp_get_environment_type() == 'local'),

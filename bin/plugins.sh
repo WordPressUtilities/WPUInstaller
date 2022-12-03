@@ -51,20 +51,14 @@ if [[ $need_acf == 'y' ]];then
     cp "${SCRIPTDIR}inc/blocks/base_blocks.php" "${_blocks_file}";
     wpuinstaller_replace "${_blocks_file}";
 
-    # Add masterheader
-    _masterheader_file="${_WPUINSTALLER_BLOCKSDIR}${project_id}_masterheader.php";
-    cp "${SCRIPTDIR}inc/blocks/base_masterheader.php" "${_masterheader_file}";
-    wpuinstaller_replace "${_masterheader_file}";
-
-    # Add special fields
-    _masterfields_file="${_WPUINSTALLER_BLOCKSDIR}${project_id}_masterfields.php";
-    cp "${SCRIPTDIR}inc/blocks/base_masterfields.php" "${_masterfields_file}";
-    wpuinstaller_replace "${_masterfields_file}";
-
-    # Add generated code
-    _mastergenerated_file="${_WPUINSTALLER_BLOCKSDIR}${project_id}_mastergenerated.php";
-    cp "${SCRIPTDIR}inc/blocks/base_mastergenerated.php" "${_mastergenerated_file}";
-    wpuinstaller_replace "${_mastergenerated_file}";
+    # Add blocks sub items
+    _blocks_subitems_path="${SCRIPTDIR}inc/blocks/blocks/";
+    for filename in "${_blocks_subitems_path}"*.php; do
+        _filename=${filename/"${_blocks_subitems_path}base_"/}
+        _blocks_file="${_WPUINSTALLER_BLOCKSDIR}/${project_id}_${_filename}";
+        cp "${_blocks_subitems_path}base_${_filename}" "${_blocks_file}";
+        wpuinstaller_replace "${_blocks_file}";
+    done
 
     # Commit plugin
     bashutilities_commit_all "Installation - Plugin : ACF";
