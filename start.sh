@@ -7,11 +7,18 @@ export PATH=$PATH:/Applications/MAMP/Library/bin/
 if [[ -f "${SCRIPTDIR}local.sh" ]];then
     . "${SCRIPTDIR}local.sh";
 fi
+if [[ -f "wpuinstaller-tpl.sh" ]];then
+    . "wpuinstaller-tpl.sh";
+fi
+if [[ -f "../wpuinstaller-tpl.sh" ]];then
+    . "../wpuinstaller-tpl.sh";
+fi
 
 . "${SCRIPTDIR}bin/functions.sh";
 . "${SCRIPTDIR}BashUtilities/bashutilities.sh";
 . "${SCRIPTDIR}bin/vars.sh";
 . "${SCRIPTDIR}bin/questions.sh";
+. "${SCRIPTDIR}bin/install-template.sh";
 
 if [[ "${_website_access}" != '1' ]]; then
     return 0;
