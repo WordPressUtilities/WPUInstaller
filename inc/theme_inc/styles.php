@@ -85,6 +85,7 @@ add_filter('wp_preload_resources', function ($preload_resources = array()) {
         $preload_resources[] = array(
             'href' => $icon_file . '?' . file_get_contents(ABSPATH . $version_file),
             'as' => 'font',
+            'crossorigin' => 'anonymous',
             'type' => 'font/woff2'
         );
     }
@@ -99,6 +100,7 @@ add_filter('wp_preload_resources', function ($preload_resources = array()) {
             $preload_resources[] = array(
                 'href' => $theme_path . $file,
                 'as' => 'font',
+                'crossorigin' => 'anonymous',
                 'type' => 'font/woff2'
             );
         }
