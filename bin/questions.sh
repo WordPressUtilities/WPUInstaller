@@ -234,7 +234,7 @@ if [[ "${need_acf}" == 'y' && "${acf_api_key}" == "" ]]; then
     fi;
 fi;
 if [[ "${need_acf}" != 'n' && "${acf_api_key}" != "" ]]; then
-    need_acf_forms=$(bashutilities_get_yn "Do you need a contact form in ACF ?" "${wpuinstaller_init__need_acf_forms}");
+    need_acf_forms=$(bashutilities_get_yn "Do you need a contact form in ACF ?" 'y' "${wpuinstaller_init__need_acf_forms}");
 fi;
 
 ###################################
