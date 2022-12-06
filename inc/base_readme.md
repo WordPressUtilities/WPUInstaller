@@ -11,7 +11,7 @@
 - Create a dedicated root project folder.
 - Create a `logs` directory in the root folder.
 - Clone this project in the root folder and go to the cloned folder.
-- Ensure all submodules are loaded : `git submodule update --init --recursive;` (do it everytime you change branch)
+- Ensure all submodules are loaded and at the correct commit version : `git submodule update --init --recursive;` (do it everytime you change branch)
 
 ### Database
 - Setup your favorite local LAMP/WAMP/MAMP to target the root of the project (the folder containing wp-config-sample.php)
@@ -27,7 +27,7 @@
 
 In your wp-config.php :
 
-Add this code to force you local host name (dont forget the trailing slash) :
+Add this code to force your local host name (dont forget the trailing slash) :
 ```php
 define('WP_SITEURL', 'http://wpuprojectid.test/');
 define('WP_HOME', 'http://wpuprojectid.test/');
@@ -54,17 +54,24 @@ if (WP_DEBUG) {
 - Next, just update plugins, core & language files from the WordPress back-office.
 - Lastly, dont forget to recompile the assets if some theme dependencies were updated.
 
+## Theme
+
+- The theme "wpuproject" is a child theme of WPUTheme.
+- The README for the Front-End part should be in `wp-content/themes/wpuprojectid`.
+
 ## Plugins
 
 - Query Monitor should not be active in a prod environment, but it will provide useful info on your local env if you're logged in.
 - WPU Admin Protect adds a lot of rules in the htaccess to protect the website.
 
-## Front-end
+## MU-Plugins
 
-The README for the Front-End part should be in `wp-content/themes/wpuprojectid`.
+- MU-Plugins are must-use plugins : they are automatically loaded and activated.
+- They are automatically loaded in alphabetical order thanks to a main mu-plugin which allow recursive loading (not the default WordPress behavior)
+- This is the place to add features which should stay even when changing theme.
+- The wp-content/mu-plugins/wpu/ subfolder contains dependencies.
+- You can create a file named wp-content/mu-plugins/wpu_local_overrides.php which will not be tracked, and add some hacks inside to test a new feature on your machine.
 
 ## Notes
 
-- Dont edit the files inside a submodule, they are dependencies and your changes will not be saved.
-- The mu-plugins are automatically loaded in alphabetical order. There is a main mu-plugin which allow recursive loading (not the default WordPress behavior)
-- You can create a file named wp-content/mu-plugins/wpu_local_overrides.php which will not be tracked, and add some hacks inside to test a new feature.
+- Dont edit the files inside a git submodule, they are dependencies and your changes will not be saved.
