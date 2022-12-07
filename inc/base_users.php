@@ -123,28 +123,6 @@ add_filter('redirection_role', function ($role) {
 });
 
 /* ----------------------------------------------------------
-  Disable REST API for non logged-in users
----------------------------------------------------------- */
-
-/* Thanks to https://neliosoftware.com/blog/protect-your-wordpress-by-hiding-the-rest-api/ */
-add_filter('rest_authentication_errors', function ($result) {
-    if (!empty($result)) {
-        return $result;
-    }
-    if (!is_user_logged_in()) {
-        return new WP_Error('rest_not_logged_in', 'You are not currently logged in.', array(
-            'status' => 401
-        ));
-    }
-    if (!current_user_can('remove_users')) {
-        return new WP_Error('rest_not_admin', 'You are not an administrator.', array(
-            'status' => 401
-        ));
-    }
-    return $result;
-});
-
-/* ----------------------------------------------------------
   Admin : filter posts by authors
 ---------------------------------------------------------- */
 
