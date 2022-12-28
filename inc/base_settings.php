@@ -31,14 +31,14 @@ class wpuprojectid_settings {
 
     public function wp() {
         global $wpu_settings_version;
-        if (method_exists($wpu_settings_version, 'force_home_page_id')) {
+        if (is_object($wpu_settings_version) && method_exists($wpu_settings_version, 'force_home_page_id')) {
             $wpu_settings_version->force_home_page_id();
         }
     }
 
     public function set_plugins() {
         global $wpu_settings_version;
-        if (method_exists($wpu_settings_version, 'activate_plugins')) {
+        if (is_object($wpu_settings_version) && method_exists($wpu_settings_version, 'activate_plugins')) {
             $wpu_settings_version->activate_plugins($this->plugins_list);
         }
     }
@@ -84,6 +84,8 @@ class wpuprojectid_settings {
         update_option('medium_large_size_h', 0);
         update_option('large_size_w', 1390);
         update_option('large_size_h', 0);
+        update_option('image_default_align', 'center');
+        update_option('image_default_size', 'large');
 
         /* Plugin : Limit Login Attempts*/
         update_option('limit_login_show_warning_badge', '0');
@@ -92,8 +94,19 @@ class wpuprojectid_settings {
         update_option('limit_login_show_top_level_menu_item', '1');
 
         /* Plugin : Duplicate Post */
-        update_option('duplicate_post_show_link', false);
-        update_option('duplicate_post_roles', false);
+        update_option('duplicate_post_show_notice', 0);
+        update_option('duplicate_post_show_link', array(
+            'new_draft' => '1'
+        ));
+        update_option('duplicate_post_types_enabled', array(
+            'post',
+            'page'
+        ));
+        update_option('duplicate_post_roles', array(
+            'administrator',
+            'editor',
+            'super_editor'
+        ));
 
         if (false) {
             $this->set_options__woocommerce();
