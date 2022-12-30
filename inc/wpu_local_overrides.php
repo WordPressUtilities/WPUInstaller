@@ -140,7 +140,7 @@ add_action('wpuux_preventheavy404_before_headers', function ($ext) {
     }
     /* Download and redirect to the new file*/
     $tmp_file = download_url($url);
-    if (!is_object($tmp_file) && file_exists($tmp_file)) {
+    if (!is_object($tmp_file) && is_readable($tmp_file)) {
         copy($tmp_file, ABSPATH . $path);
         @unlink($tmp_file);
         wp_redirect(site_url() . $path);

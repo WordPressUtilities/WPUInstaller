@@ -30,14 +30,14 @@ function wputh_control_stylesheets() {
     wp_enqueue_style('wpuprojectid-styles', get_stylesheet_directory_uri() . '/assets/css/main.css', array(), WPUTHEME_ASSETS_VERSION, false);
 }
 
-if (file_exists(get_stylesheet_directory() . '/assets/css/admin.css')) {
+if (is_readable(get_stylesheet_directory() . '/assets/css/admin.css')) {
     add_filter('wpu_acf_flexible__disable_front_css', '__return_true', 10, 1);
     add_filter('wpu_acf_flexible__admin_css', function ($content) {
         return array('admin-wpuprojectid-styles' => get_stylesheet_directory_uri() . '/assets/css/admin.css?cacheversion=' . WPUTHEME_ASSETS_VERSION);
     }, 10, 1);
 }
 
-if (file_exists(get_stylesheet_directory() . '/assets/css/editor.css')) {
+if (is_readable(get_stylesheet_directory() . '/assets/css/editor.css')) {
     function wputh_add_editor_styles() {
         add_editor_style(get_stylesheet_directory_uri() . '/assets/css/editor.css?cacheversion=' . WPUTHEME_ASSETS_VERSION);
     }
@@ -85,7 +85,7 @@ add_filter('wp_preload_resources', function ($preload_resources = array()) {
     $icon_path = $theme_path . '/assets/fonts/icons';
     $icon_file = $icon_path . '/icons.woff2';
     $version_file = $icon_path . '/version.txt';
-    if (file_exists(ABSPATH . $icon_file) && file_exists(ABSPATH . $version_file)) {
+    if (is_readable(ABSPATH . $icon_file) && is_readable(ABSPATH . $version_file)) {
         $preload_resources[] = array(
             'href' => $icon_file . '?' . file_get_contents(ABSPATH . $version_file),
             'as' => 'font',
@@ -100,7 +100,7 @@ add_filter('wp_preload_resources', function ($preload_resources = array()) {
         // '/assets/fonts/poppins/poppins-regular-webfont.woff2'
     );
     foreach ($files as $file) {
-        if (file_exists(ABSPATH . $theme_path . $file)) {
+        if (is_readable(ABSPATH . $theme_path . $file)) {
             $preload_resources[] = array(
                 'href' => $theme_path . $file,
                 'as' => 'font',
