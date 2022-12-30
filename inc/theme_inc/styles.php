@@ -4,6 +4,9 @@
   Vars
 ---------------------------------------------------------- */
 
+define('MAIN_THEME_COLOR', '#336699');
+define('MAIN_THEME_BACKGROUND_COLOR', '#FFFFFF');
+
 /* Size
 -------------------------- */
 
@@ -11,13 +14,11 @@ $content_width = 680;
 
 /* Main color
 -------------------------- */
-
 add_action('wp_head', function () {
-    $theme_color = '#336699';
-    echo '<style>:root{--base-theme-color:' . $theme_color . '}</style>';
-    echo '<meta name="theme-color" content="' . $theme_color . '" />';
-    echo '<meta name="msapplication-navbutton-color" content="' . $theme_color . '">';
-    echo '<meta name="apple-mobile-web-app-status-bar-style" content="' . $theme_color . '">';
+    echo '<style>:root{--base-theme-color:' . MAIN_THEME_COLOR . '}</style>';
+    echo '<meta name="theme-color" content="' . MAIN_THEME_COLOR . '" />';
+    echo '<meta name="msapplication-navbutton-color" content="' . MAIN_THEME_COLOR . '">';
+    echo '<meta name="apple-mobile-web-app-status-bar-style" content="' . MAIN_THEME_COLOR . '">';
 });
 
 /* ----------------------------------------------------------
@@ -65,10 +66,13 @@ add_action('enqueue_block_assets', function () {
 -------------------------- */
 
 add_action('wp_head', function () {
+    echo '<style>html,body{';
+    /* Force background color */
+    echo 'background-color:' . MAIN_THEME_BACKGROUND_COLOR . ';';
     /* Force scrollbar */
-    echo '<style>html,body{min-height:100.1vh!important}</style>';
+    echo 'min-height:100.1vh!important;';
+    echo '}</style>';
 }, 1);
-
 
 /* Preloaded resources
 -------------------------- */
