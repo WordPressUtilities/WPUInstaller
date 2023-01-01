@@ -77,22 +77,10 @@ add_action('wp_head', function () {
 /* Preloaded resources
 -------------------------- */
 
-add_filter('wp_preload_resources', function ($preload_resources = array()) {
-
-    $theme_path = str_replace(site_url(), '', get_stylesheet_directory_uri());
+add_filter('wputheme_preload_fonts', function ($fonts = array()) {
 
     /* Preload icon font */
-    $icon_path = $theme_path . '/assets/fonts/icons';
-    $icon_file = $icon_path . '/icons.woff2';
-    $version_file = $icon_path . '/version.txt';
-    if (is_readable(ABSPATH . $icon_file) && is_readable(ABSPATH . $version_file)) {
-        $preload_resources[] = array(
-            'href' => $icon_file . '?' . file_get_contents(ABSPATH . $version_file),
-            'as' => 'font',
-            'crossorigin' => 'anonymous',
-            'type' => 'font/woff2'
-        );
-    }
+    $fonts[] = wputheme_preload_font('/assets/fonts/icons/icons.woff2', '/assets/fonts/icons/version.txt');
 
     /* Preload main fonts */
     $files = array(
@@ -100,15 +88,9 @@ add_filter('wp_preload_resources', function ($preload_resources = array()) {
         // '/assets/fonts/poppins/poppins-regular-webfont.woff2'
     );
     foreach ($files as $file) {
-        if (is_readable(ABSPATH . $theme_path . $file)) {
-            $preload_resources[] = array(
-                'href' => $theme_path . $file,
-                'as' => 'font',
-                'crossorigin' => 'anonymous',
-                'type' => 'font/woff2'
-            );
-        }
+        $fonts[] = wputheme_preload_font($file);
     }
 
-    return $preload_resources;
+    return $fonts;
+
 }, 10, 1);
