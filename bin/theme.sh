@@ -43,6 +43,8 @@ if [[ "${home_is_cms}" == 'y' ]]; then
 fi;
 cp "${HOME_PAGE_SOURCE}" "${WPU_THEME}front-page.php";
 
+# - JSON
+echo "{}" > "${WPU_THEME}theme.json";
 
 # - Functions
 cp "${SCRIPTDIR}inc/functions.php" "${WPU_THEME}functions.php";
