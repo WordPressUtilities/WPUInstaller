@@ -18,6 +18,8 @@ yarn.lock
 # WordPress
 .disable_wpu_admin_protect
 /xmlrpc.php
+/wp-links-opml.php
+/wp-signup.php
 tools/backups
 tools/logs
 tools/source
