@@ -39,10 +39,10 @@ add_filter('wpu_acf_flexible__value_content_field', function ($values, $id, $sub
 add_filter('wpu_acf_flexible__file_content', function ($content, $layout_id, $vars, $values, $group) {
     return <<<EOT
 <?php
-${vars}
-echo '<section class="centered-container section-m cc-block--${layout_id} ' . wpuprojectid_theme(get_sub_field('wpuprojectid_theme')) . '"><div class="block--${layout_id}">';
+{$vars}
+echo '<section class="centered-container section-m cc-block--{$layout_id} ' . wpuprojectid_theme(get_sub_field('wpuprojectid_theme')) . '"><div class="block--{$layout_id}">';
 ?>
-${values}
+{$values}
 <?php
 echo '</div></section>';
 EOT;
@@ -79,14 +79,14 @@ add_action('wpu_acf_flexible__set_file_content', function ($layout_id, $group) {
 @charset "UTF-8";
 
 /* ----------------------------------------------------------
-  Block ${title}
+  Block {$title}
 ---------------------------------------------------------- */
 
-.cc-block--${layout_id} {
+.cc-block--{$layout_id} {
 
 }
 
-.block--${layout_id} {
+.block--{$layout_id} {
 
 }
 
@@ -100,11 +100,11 @@ EOT;
     if (!file_exists($js_file)) {
         $comment = <<<EOT
 /**
- * Block ${title}
+ * Block {$title}
  */
 
 jQuery(document).ready(function() {
-    jQuery('.block--${layout_id}').each(function(){
+    jQuery('.block--{$layout_id}').each(function(){
         var \$this = jQuery(this);
     });
 });
