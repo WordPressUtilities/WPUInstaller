@@ -39,6 +39,7 @@ wpuinstaller_init__home_is_cms="${home_is_cms}";
 wpuinstaller_init__has_attachment_tpl="${has_attachment_tpl}";
 wpuinstaller_init__need_advanced_menus="${need_advanced_menus}";
 wpuinstaller_init__need_404_page="${need_404_page}";
+wpuinstaller_init__need_rss="${need_rss}";
 
 # Features
 wpuinstaller_init__is_woocommerce="${is_woocommerce}";
@@ -79,6 +80,7 @@ unset wpuinstaller_init__home_is_cms;
 unset wpuinstaller_init__has_attachment_tpl;
 unset wpuinstaller_init__need_advanced_menus;
 unset wpuinstaller_init__need_404_page;
+unset wpuinstaller_init__need_rss;
 unset wpuinstaller_init__is_woocommerce;
 unset wpuinstaller_init__install_recommended_plugins;
 unset wpuinstaller_init__need_advanced_filters;

@@ -71,6 +71,13 @@ if [[ "${need_posts}" == 'y' ]];then
     _POSTS_FILE="${_POSTS_DIR}/${project_id}_posts.php";
     cp "${SCRIPTDIR}inc/base_posts.php" "${_POSTS_FILE}";
     wpuinstaller_replace "${_POSTS_FILE}";
+
+    # RSS Feeds
+    if [[ "${need_rss}" == 'y' ]];then
+        base_rss_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_rss.php";
+        cp "${SCRIPTDIR}inc/base_rss.php" "${base_rss_file}";
+        wpuinstaller_replace "${base_rss_file}";
+    fi;
 fi
 
 # News page

@@ -180,6 +180,8 @@ if [[ "${need_theme}" == 'y' ]];then
     need_404_page=$(bashutilities_get_yn "Do you need a 404 page ?" 'y' "${wpuinstaller_init__need_404_page}");
 fi
 
+need_rss=$(bashutilities_get_yn "Do you need pretty RSS feeds ?" 'y' "${wpuinstaller_init__need_rss}");
+
 ###################################
 ## Features
 ###################################
