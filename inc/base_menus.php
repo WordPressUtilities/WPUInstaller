@@ -21,14 +21,23 @@ add_action('walker_nav_menu_start_el', function ($item_output, $item, $depth, $a
     return $item_output;
 }, 10, 4);
 
-add_action('walker_nav_menu_end_el', function ($item_output, $item, $depth, $args) {
-    if ($depth == 0 && $args->container_class == 'main-menu__wrapper') {
-        if (in_array('menu-item-has-children', $item->classes)) {
-            $item_output .= '</div>';
+class WpuProjectCamelCaseName_Main_Menu_Walker extends Walker_Nav_Menu {
+    function end_el(&$output, $data_object, $depth = 0, $args = NULL) {
+        if ($depth == 0 && $args->container_class == 'main-menu__wrapper') {
+            if (in_array('menu-item-has-children', $data_object->classes)) {
+                $output .= '</div>'."\n";
+            }
         }
     }
-    return $item_output;
-}, 10, 4);
+}
+/*
+wp_nav_menu(array(
+    ...
+    'container_class' => 'main-menu__wrapper',
+    'walker' => new WpuProjectCamelCaseName_Main_Menu_Walker(),
+    ...
+));
+*/
 
 /* ----------------------------------------------------------
   Change link render if image
