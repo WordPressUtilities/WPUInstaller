@@ -208,19 +208,28 @@ add_action('wp_footer', function () {
         return;
     }
     echo <<<EOT
-<button id="wpu_magic_form_button" style="z-index:999;position:fixed;bottom:20px;right:20px;padding:0.5em" type="button">Magic Form</button>
+<button id="wpu_magic_form_button" style="z-index:9999;position:fixed;bottom:20px;right:20px;padding:0.5em;background:#999;color:#FFF;" type="button">Magic Form</button>
 <script>
 function trigger_wpu_magic_form_button(){
     jQuery('[name="contact_birthdate"]').val('11/11/1981').trigger('change');
     jQuery('[name="contact_company"]').val('Internet.com').trigger('change');
     jQuery('[name="contact_email"]').val('test@example.com').trigger('change');
-    jQuery('[name="contact_phone"],[name="contact_telephone"]').val('test@example.com').trigger('change');
-    jQuery('[name="contact_firstname"]').val('Kevin').trigger('change');
+    jQuery('[name="contact_phone"],[name="contact_telephone"],[name="contact_tel"]').val('0836656565').trigger('change');
+    jQuery('[name="contact_firstname"]').val('Kévin').trigger('change');
     jQuery('[name="contact_name"]').val('MyName').trigger('change');
-    jQuery('select[name="contact_license"]').prop("selectedIndex", 1);
     jQuery('[name="contact_zipcode"]').val('75011').trigger('change');
     jQuery('[name="contact_city"]').val('Paris').trigger('change');
-    jQuery('[name="contact_message"]').val('Hello World').trigger('change');
+    jQuery('[name="contact_message"]').val('Hello World<hr/>Check if HTML is <strong>ignored</strong>.').trigger('change');
+    /* Select */
+    jQuery('select[name="contact_license"]').prop("selectedIndex", 1);
+    /* Radio */
+    jQuery('[data-boxtype="radio"]').each(function(){
+        jQuery(this).find('input[type="radio"]').eq(0).prop('checked',true).trigger('change');
+    })
+    /* Checkbox list */
+    jQuery('[data-boxtype="checkbox-list"]').each(function(){
+        jQuery(this).find('input[type="checkbox"]').eq(0).prop('checked',true).trigger('change');
+    })
 }
 (function(){
     jQuery('#wpu_magic_form_button').on('click', function(e){
