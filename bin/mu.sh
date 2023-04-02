@@ -49,6 +49,11 @@ _functions_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_functi
 cp "${SCRIPTDIR}inc/base_functions.php" "${_functions_file}";
 wpuinstaller_replace "${_functions_file}";
 
+# Base Perfs plugin
+_perfs_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_perfs.php";
+cp "${SCRIPTDIR}inc/base_perfs.php" "${_perfs_file}";
+wpuinstaller_replace "${_perfs_file}";
+
 # Base Options plugin
 _options_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_options.php";
 cp "${SCRIPTDIR}inc/base_options.php" "${_options_file}";
