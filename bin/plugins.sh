@@ -94,6 +94,7 @@ if [[ $install_recommended_plugins == 'y' ]]; then
     php ${WPU_PHPCLI} plugin install limit-login-attempts-reloaded --activate;
     php ${WPU_PHPCLI} plugin install safe-svg --activate;
     php ${WPU_PHPCLI} plugin install taxonomy-terms-order --activate;
+    php ${WPU_PHPCLI} plugin install two-factor --activate;
 
     # No activation
     php ${WPU_PHPCLI} plugin install duplicate-post;
