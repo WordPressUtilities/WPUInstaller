@@ -5,6 +5,20 @@ Description: Website perfs fixes
 */
 
 /* ----------------------------------------------------------
+  Prefetch domains
+---------------------------------------------------------- */
+
+add_action('wp_head', function () {
+    $domains = array(
+        //'https://cdn.shopify.com'
+    );
+    foreach ($domains as $domain) {
+        echo '<link rel="preconnect" href="' . esc_url($domain) . '" />';
+        echo '<link rel="dns-prefetch" href="' . esc_url($domain) . '" />';
+    }
+}, 1);
+
+/* ----------------------------------------------------------
   Disable some plugins scripts & styles
 ---------------------------------------------------------- */
 
