@@ -18,6 +18,7 @@ yarn.lock
 
 # WordPress
 .disable_wpu_admin_protect
+.maintenance
 /xmlrpc.php
 /wp-links-opml.php
 /wp-signup.php
