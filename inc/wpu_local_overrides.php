@@ -188,6 +188,8 @@ location @customerror404 {
 ---------------------------------------------------------- */
 
 add_filter('authenticate', function ($user, $username, $password) {
+    /* Disable two-factor auth */
+    add_filter('two_factor_providers', '__return_empty_array', 10, 1);
     /* Disabled if ok, if no username or if no posted password field */
     if ($user instanceof WP_User || !$username || !isset($_POST['pwd'])) {
         return $user;
