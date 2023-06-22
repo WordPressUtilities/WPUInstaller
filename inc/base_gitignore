@@ -42,6 +42,8 @@ wp-content/object-cache.php
 wp-content/plugins/wp-rocket/license-data.php
 wp-content/w3tc-config/
 wp-content/wp-rocket-config/
+*.sqlite-shm
+*.sqlite-wal
 
 # Config
 wp-config.php
