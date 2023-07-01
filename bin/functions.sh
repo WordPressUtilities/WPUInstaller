@@ -1,10 +1,16 @@
 #!/bin/bash
 
+
 function wpuinstaller_replace() {
     bashutilities_sed "s/wpuprojectname/${project_name}/g" "${1}";
     bashutilities_sed "s/wpuprojectid/${project_id}/g" "${1}";
     bashutilities_sed "s/wpuproject/${project_name}/g" "${1}";
     bashutilities_sed "s/wpumysqlprefix/${mysql_prefix}/g" "${1}";
+}
+
+function wpuinstaller_cp_replace() {
+    cp "${1}" "${2}";
+    wpuinstaller_replace "${2}";
 }
 
 function wpuinstaller_github_plugin(){

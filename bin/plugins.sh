@@ -45,16 +45,14 @@ if [[ $need_acf == 'y' ]];then
 
     # Add blocks
     _blocks_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_blocks.php";
-    cp "${SCRIPTDIR}inc/blocks/base_blocks.php" "${_blocks_file}";
-    wpuinstaller_replace "${_blocks_file}";
+    wpuinstaller_cp_replace "${SCRIPTDIR}inc/blocks/base_blocks.php" "${_blocks_file}";
 
     # Add blocks sub items
     _blocks_subitems_path="${SCRIPTDIR}inc/blocks/blocks/";
     for filename in "${_blocks_subitems_path}"*.php; do
         _filename=${filename/"${_blocks_subitems_path}base_"/}
         _blocks_file="${_WPUINSTALLER_BLOCKSDIR}/${project_id}_${_filename}";
-        cp "${_blocks_subitems_path}base_${_filename}" "${_blocks_file}";
-        wpuinstaller_replace "${_blocks_file}";
+        wpuinstaller_cp_replace "${_blocks_subitems_path}base_${_filename}" "${_blocks_file}";
     done
 
     # Commit plugin
@@ -66,8 +64,7 @@ if [[ "${need_advanced_filters}" == 'y' ]];then
     wpuinstaller_install_plugin "wpulivesearch";
 
     _plugin_filters_settings="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_filters.php";
-    cp "${SCRIPTDIR}inc/base_filters.php" "${_plugin_filters_settings}";
-    wpuinstaller_replace "${_plugin_filters_settings}";
+    wpuinstaller_cp_replace "${SCRIPTDIR}inc/base_filters.php" "${_plugin_filters_settings}";
 
     bashutilities_commit_all "Installation - Plugin : WPU Live Search";
 fi;
@@ -82,8 +79,7 @@ fi;
 if [[ "${need_search}" == 'y' ]];then
     php ${WPU_PHPCLI} plugin install relevanssi --activate;
     _plugin_search_settings="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_search.php";
-    cp "${SCRIPTDIR}inc/base_search.php" "${_plugin_search_settings}";
-    wpuinstaller_replace "${_plugin_search_settings}";
+    wpuinstaller_cp_replace "${SCRIPTDIR}inc/base_search.php" "${_plugin_search_settings}";
 
     bashutilities_commit_all "Installation - Plugin : Relevanssi";
 fi

@@ -22,8 +22,7 @@ if [[ $wpu_add_shell_scripts == 'y' ]]; then
     bashutilities_submodule_or_install "https://github.com/WordPressUtilities/wpuwooimportexport.git" "${use_submodules}";
 
     # Add example
-    cp "${SCRIPTDIR}inc/base_shell.php" "${WPU_SHELL}clean.php"
-    wpuinstaller_replace "${WPU_SHELL}clean.php";
+    wpuinstaller_cp_replace "${SCRIPTDIR}inc/base_shell.php" "${WPU_SHELL}clean.php"
 
     cd "${MAINDIR}";
 fi;
@@ -44,8 +43,7 @@ if [[ "${use_external_api}" == 'y' ]];then
     _mu_plugin_api_dir="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/api/";
     _mu_plugin_api_file="${_mu_plugin_api_dir}${project_id}_api.php";
     mkdir "${_mu_plugin_api_dir}";
-    cp "${SCRIPTDIR}inc/base_api.php" "${_mu_plugin_api_file}";
-    wpuinstaller_replace "${_mu_plugin_api_file}";
+    wpuinstaller_cp_replace "${SCRIPTDIR}inc/base_api.php" "${_mu_plugin_api_file}";
 
 fi;
 
@@ -56,8 +54,7 @@ fi;
 if [[ "${use_code_tests}" == 'y' ]];then
     # Create mu-plugin API
     _phpstanfile="${MAINDIR}phpstan.neon";
-    cp "${SCRIPTDIR}inc/phpstan.neon" "${_phpstanfile}";
-    wpuinstaller_replace "${_phpstanfile}";
+    wpuinstaller_cp_replace "${SCRIPTDIR}inc/phpstan.neon" "${_phpstanfile}";
     # Install phpstan
     $(cd "${MAINDIR}" && composer require --dev phpstan/phpstan);
     $(cd "${MAINDIR}" && composer require --dev php-stubs/woocommerce-stubs);

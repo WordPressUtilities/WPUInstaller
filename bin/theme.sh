@@ -41,14 +41,13 @@ if [[ "${home_is_cms}" == 'y' ]]; then
         HOME_PAGE_SOURCE="${SCRIPTDIR}inc/front-page--cms.php";
     fi;
 fi;
-cp "${HOME_PAGE_SOURCE}" "${WPU_THEME}front-page.php";
+wpuinstaller_cp_replace "${HOME_PAGE_SOURCE}" "${WPU_THEME}front-page.php";
 
 # - JSON
 echo "{}" > "${WPU_THEME}theme.json";
 
 # - Functions
-cp "${SCRIPTDIR}inc/functions.php" "${WPU_THEME}functions.php";
-wpuinstaller_replace "${WPU_THEME}functions.php";
+wpuinstaller_cp_replace "${SCRIPTDIR}inc/functions.php" "${WPU_THEME}functions.php";
 
 # - Various functions files
 cp -r "${SCRIPTDIR}inc/theme_inc" "${WPU_THEME}inc";
@@ -56,7 +55,7 @@ wpuinstaller_replace "${WPU_THEME}inc/parent-theme.php";
 wpuinstaller_replace "${WPU_THEME}inc/styles.php";
 
 if [[ $has_attachment_tpl == 'n' ]];then
-    cp "${SCRIPTDIR}inc/attachment.php" "${WPU_THEME}attachment.php";
+    wpuinstaller_cp_replace "${SCRIPTDIR}inc/attachment.php" "${WPU_THEME}attachment.php";
 fi;
 
 _functions_enable_multilingual='false';
@@ -67,11 +66,11 @@ bashutilities_sed "s/project_is_multilingual/__return_${_functions_enable_multil
 
 # - Templates
 cp -rf "${SCRIPTDIR}inc/tpl/" "${WPU_THEME}tpl/";
-cp -rf "${SCRIPTDIR}inc/page.php" "${WPU_THEME}page.php";
+wpuinstaller_cp_replace "${SCRIPTDIR}inc/page.php" "${WPU_THEME}page.php";
 
 # - Search
 if [[ "${need_search}" == 'y' ]];then
-    cp "${SCRIPTDIR}inc/search-results.php" "${WPU_THEME}search.php";
+    wpuinstaller_cp_replace "${SCRIPTDIR}inc/search-results.php" "${WPU_THEME}search.php";
 fi
 
 # - Translation
@@ -94,23 +93,22 @@ cp "${SCRIPTDIR}inc/assets/app.js" "${WPU_THEME}assets/js/app.js";
 # - Specific templates
 if [[ "${need_acf}" == 'y' ]];then
     mkdir "${WPU_THEME}tpl/blocks";
-    cp "${SCRIPTDIR}inc/tpl-master-header.php" "${WPU_THEME}tpl/blocks/master-header.php";
-    cp "${SCRIPTDIR}inc/tpl-page-master.php" "${WPU_THEME}tpl/page-master.php";
-    cp "${SCRIPTDIR}inc/page-master.php" "${WPU_THEME}page-master.php";
+    wpuinstaller_cp_replace "${SCRIPTDIR}inc/tpl-master-header.php" "${WPU_THEME}tpl/blocks/master-header.php";
+    wpuinstaller_cp_replace "${SCRIPTDIR}inc/tpl-page-master.php" "${WPU_THEME}tpl/page-master.php";
+    wpuinstaller_cp_replace "${SCRIPTDIR}inc/page-master.php" "${WPU_THEME}page-master.php";
     mkdir "${WPU_THEME}assets/js";
 fi;
 
 # News page
 if [[ "${need_posts_tpl}" == 'y' ]];then
     mkdir "${WPU_THEME}tpl/loops";
-    cp "${SCRIPTDIR}inc/tpl-page-news.php" "${WPU_THEME}page-news.php";
-    cp "${SCRIPTDIR}inc/loop-post.php" "${WPU_THEME}tpl/loops/loop-post.php";
+    wpuinstaller_cp_replace "${SCRIPTDIR}inc/tpl-page-news.php" "${WPU_THEME}page-news.php";
+    wpuinstaller_cp_replace "${SCRIPTDIR}inc/loop-post.php" "${WPU_THEME}tpl/loops/loop-post.php";
 fi;
 
 # Page 404
 if [[ "${need_404_page}" == 'y' ]];then
-    cp "${SCRIPTDIR}inc/tpl-page-404.php" "${WPU_THEME}404.php";
-    wpuinstaller_replace "${WPU_THEME}404.php";
+    wpuinstaller_cp_replace "${SCRIPTDIR}inc/tpl-page-404.php" "${WPU_THEME}404.php";
 fi;
 
 cd "${MAINDIR}";
