@@ -65,7 +65,7 @@ class wpuprojectid_forms {
         $forms['default_form'] = array(
             'id' => 'default_form',
             'name' => 'Default Form',
-            'contact__success' => '<div>This is a custom message !</div>',
+            'contact__success' => '<div>' . __('Thank you for your submission', 'wpuprojectid') . '</div>',
             'contact__settings' => array(
                 'contact_fields' => $with_fields ? $this->get_fields('default_form') : array()
             )
@@ -111,7 +111,7 @@ class wpuprojectid_forms {
         );
         if ($form_type == 'another_form') {
             $fields['contact_job'] = array(
-                'api_field_name' => 'firstName',
+                'api_field_name' => 'job',
                 'label' => __('Job', 'wpuprojectid')
             );
         }
@@ -122,7 +122,7 @@ class wpuprojectid_forms {
             'required' => 1
         );
         $fields['contact_email'] = array(
-            'api_field_name' => 'firstName',
+            'api_field_name' => 'email',
             'label' => __('Email', 'wpuprojectid'),
             'type' => 'email',
             'required' => 1
@@ -130,7 +130,9 @@ class wpuprojectid_forms {
 
         /* File */
         $fields['contact_file'] = array(
+            'fake_upload' => 1,
             'label' => __('File', 'wpuprojectid'),
+            'placeholder' => __('Select a file', 'wpuprojectid'),
             'help' => sprintf(__('The file should not exceed %s', 'wpuprojectid'), size_format(wp_max_upload_size())),
             'type' => 'file',
             'file_types' => array(
