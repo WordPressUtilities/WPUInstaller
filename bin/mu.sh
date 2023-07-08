@@ -43,6 +43,12 @@ do
     wpuinstaller_install_mu "${i}";
 done;
 
+# Translation
+if [[ $project_l10n == 'n' ]]; then
+    echo "## Install Translation";
+    wpuinstaller_install_mu "wpu_override_gettext";
+fi;
+
 # Base Functions plugin
 _functions_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_functions.php";
 wpuinstaller_cp_replace "${SCRIPTDIR}inc/base_functions.php" "${_functions_file}";
