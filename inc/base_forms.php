@@ -105,7 +105,7 @@ class wpuprojectid_forms {
         $fields['contact_name'] = array(
             'fieldgroup_end' => 1,
             'api_field_name' => 'lastName',
-            'autocomplete' => 'familyname',
+            'autocomplete' => 'family-name',
             'label' => __('Name', 'wpuprojectid'),
             'required' => 1
         );
@@ -186,7 +186,7 @@ class wpuprojectid_forms {
         $settings['group_class'] = 'cssc-form cssc-form--default';
         $settings['label_radio_inner__classname'] = 'label-main';
         $settings['label_checkbox_inner__classname'] = 'label-main';
-        $settings['submit_class'] = 'cssc-button';
+        $settings['submit_class'] = 'wpuprojectid-button';
 
         /* Validation config */
         $settings['label_text_required'] = '';
@@ -297,7 +297,7 @@ class wpuprojectid_forms {
 
         /* Custom error */
         if ($form->options['id'] == 'default_form' && false) {
-            $errors[] = __('Invalid form.', 'project');
+            $errors[] = __('Invalid form.', 'wpuprojectid');
         }
 
         return $errors;
