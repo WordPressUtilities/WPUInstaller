@@ -73,6 +73,8 @@ function wpu_local_overrides_html2text($html) {
 }
 
 function wp_mail($to, $subject, $message, $headers = '', $attachments = array()) {
+
+    /* Log mails */
     $mail = "--- NEW MAIL";
     if (!is_array($to)) {
         $to = array($to);
@@ -84,10 +86,21 @@ function wp_mail($to, $subject, $message, $headers = '', $attachments = array())
     $mail .= 'TEXT : ' . wpu_local_overrides_html2text($message);
     $mail .= "\n--\n";
     $mail .= 'MESSAGE : ' . $message;
-    $mail .= "\n--\n";
-    $mail .= 'HEADERS : ' . serialize($headers);
     $mail .= "\n--- NEW MAIL\n";
     error_log($mail);
+
+    /* Store mails */
+    $up_dir = wp_upload_dir();
+    $debug_dir = $up_dir['basedir'] . '/wpu_local_overrides_emails/';
+    if (!is_dir($debug_dir)) {
+        mkdir($debug_dir);
+        file_put_contents($debug_dir . '.htaccess', 'deny from all');
+    }
+    $debug_content = $message;
+    $debug_content .= '<!-- to:' . implode(',', $to) . ' -->';
+    $debug_content .= '<!-- subject:' . $subject . ' -->';
+    file_put_contents($debug_dir . microtime(true) . '.html', $debug_content);
+
     return true;
 }
 
