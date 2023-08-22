@@ -20,9 +20,18 @@ add_filter('wpuprojectid_blocks', function ($layouts) {
 /*
 add_filter('get_wpu_acf_wrapper_classname', function ($classes, $block_type) {
     if ($block_type == 'content-classic') {
-        $classes[] = 'centered-container--thin';
-        $classes[] = 'section-m--large';
+        $classes[] = wpuprojectid_theme(get_sub_field('wpuprojectid_theme'));
     }
     return $classes;
+}, 10, 2);
+*/
+
+/* Override fields */
+/*
+add_filter('wpu_acf_flexible__override_model', function ($model, $layout_id) {
+    if ($layout_id == 'content') {
+        $model['sub_fields']['wpuprojectid_theme'] = 'wpuprojectid_theme';
+    }
+    return $model;
 }, 10, 2);
 */
