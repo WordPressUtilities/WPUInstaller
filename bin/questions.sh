@@ -17,9 +17,8 @@ echo "- Project name: ${project_name}";
 
 ## Project ID
 if [ -z "${wpuinstaller_init__project_id}" ]; then
-    default_project_id="$(echo -e "${project_name}" | tr -d '[[:space:]]' | tr [:upper:] [:lower:])";
-    default_project_id="$(echo ${default_project_id} | iconv -f utf8 -t ascii//TRANSLIT)";
-    default_project_id="$(echo ${default_project_id} | tr -cd '[[:alnum:]]._-')";
+    default_project_id=$(bashutilities_string_to_slug "${project_name}");
+    default_project_id="${default_project_id/-/}";
     read -p "What's the project id ? [${default_project_id}] : " project_id;
     if [[ $project_id == '' ]]; then
         project_id="${default_project_id}";
@@ -27,7 +26,8 @@ if [ -z "${wpuinstaller_init__project_id}" ]; then
 else
     project_id="${wpuinstaller_init__project_id}";
 fi
-
+project_id=$(bashutilities_string_to_slug "${project_id}");
+project_id="${project_id/-/}";
 echo "- Project ID: ${project_id}";
 
 # Project URL
