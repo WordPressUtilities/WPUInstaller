@@ -4,7 +4,6 @@
   Custom field types
 ---------------------------------------------------------- */
 
-
 /* Theme
 -------------------------- */
 
@@ -32,7 +31,7 @@ add_filter('wpu_acf_flexible__field_types', function ($types) {
                 'type' => 'select',
                 'choices' => array(
                     'white' => 'White background',
-                    'dark' => 'Dark background',
+                    'dark' => 'Dark background'
                 )
             )
         ),
@@ -139,18 +138,27 @@ add_filter('wpu_acf_flexible__field_types', function ($types) {
 }, 10, 1);
 
 function wpuprojectid_title($field, $args = array()) {
-    if(!is_array($args)){
+    if (!is_array($args)) {
         $args = array();
     }
-    if(!isset($args['wrapper'])){
+    if (!isset($args['wrapper'])) {
         $args['wrapper'] = true;
+    }
+    if (!isset($args['tag'])) {
+        $args['tag'] = 'h2';
+    }
+    if (!isset($args['classname'])) {
+        $args['classname'] = '';
     }
     $field = strip_tags($field, '<u>');
     $field = trim($field);
     if (!$args['wrapper']) {
         return $field;
     }
-    return '<h2 class="wpuprojectid-title">' . nl2br($field) . '</h2>';
+    if (!$field) {
+        return;
+    }
+    return '<' . $args['tag'] . ' class="wpuprojectid-title">' . nl2br($field) . '</' . $args['tag'] . '>';
 }
 
 /* Icons
