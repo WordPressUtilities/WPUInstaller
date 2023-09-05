@@ -99,7 +99,7 @@ class wpuprojectid_forms {
             'fieldgroup_start' => 1,
             'api_field_name' => 'firstName',
             'autocomplete' => 'given-name',
-            'label' => __('Name', 'wpuprojectid'),
+            'label' => __('First Name', 'wpuprojectid'),
             'required' => 1
         );
         $fields['contact_name'] = array(
