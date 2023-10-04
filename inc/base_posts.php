@@ -27,6 +27,11 @@ add_action('init', function () {
 add_action('init', function () {
     $freq_in_minutes = 2;
 
+    /* Only if installed */
+    if (!get_option('db_version')) {
+        return;
+    }
+
     /* Once every N minutes */
     $transient = get_transient('wpuprojectid_posts_missed_schedule_transient');
     if ($transient) {
