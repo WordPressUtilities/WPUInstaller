@@ -14,11 +14,12 @@ $content_width = 680;
 
 /* Main color
 -------------------------- */
+
 add_action('wp_head', function () {
     echo '<style>:root{--base-theme-color:' . MAIN_THEME_COLOR . '}</style>';
-    echo '<meta name="theme-color" content="' . MAIN_THEME_COLOR . '" />';
-    echo '<meta name="msapplication-navbutton-color" content="' . MAIN_THEME_COLOR . '">';
-    echo '<meta name="apple-mobile-web-app-status-bar-style" content="' . MAIN_THEME_COLOR . '">';
+    echo '<meta name="theme-color" content="' . MAIN_THEME_BACKGROUND_COLOR . '" />';
+    echo '<meta name="msapplication-navbutton-color" content="' . MAIN_THEME_BACKGROUND_COLOR . '">';
+    echo '<meta name="apple-mobile-web-app-status-bar-style" content="' . MAIN_THEME_BACKGROUND_COLOR . '">';
 });
 
 /* ----------------------------------------------------------
