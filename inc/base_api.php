@@ -9,6 +9,10 @@ Description: Handle API from myapiid
 ---------------------------------------------------------- */
 
 class wpuprojectid_myapiid {
+    private $settings_details;
+    private $settings;
+    private $wpubasesettings;
+
     public function __construct() {
         add_filter('plugins_loaded', array(&$this, 'plugins_loaded'));
     }
@@ -40,9 +44,7 @@ class wpuprojectid_myapiid {
                 'type' => 'text'
             )
         );
-        if (is_admin()) {
-            new \wpuprojectid_wpubasesettings\WPUBaseSettings($this->settings_details, $this->settings);
-        }
+        $this->wpubasesettings = new \wpuprojectid_wpubasesettings\WPUBaseSettings($this->settings_details, $this->settings);
     }
 
     public function get_options() {
