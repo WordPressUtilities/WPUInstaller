@@ -158,7 +158,7 @@ function wpuprojectid_title($field, $args = array()) {
     if (!$field) {
         return;
     }
-    return '<' . $args['tag'] . ' class="wpuprojectid-title">' . nl2br($field) . '</' . $args['tag'] . '>';
+    return '<' . $args['tag'] . ' class="wpuprojectid-title ' . esc_attr($args['classname']) . '">' . nl2br($field) . '</' . $args['tag'] . '>';
 }
 
 /* Icons
