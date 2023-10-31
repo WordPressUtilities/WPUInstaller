@@ -71,6 +71,9 @@ define('WP_POST_REVISIONS', 6);
 define('WP_MEMORY_LIMIT', '128M');
 define('WP_MAX_MEMORY_LIMIT', '256M');
 
+# Assets
+define('WPUTHEME_ASSETS_VERSION', time());
+
 # Debug
 if(!defined('WP_DEBUG')){
     define('WP_DEBUG', true);
