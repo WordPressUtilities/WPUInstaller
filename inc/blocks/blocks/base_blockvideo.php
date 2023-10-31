@@ -10,6 +10,7 @@ Description: Handle Video
 
 add_filter('wpuprojectid_blocks', function ($layouts) {
     $layouts['video'] = array(
+        'key' => 'video',
         'label' => 'Video',
         'wpuacf_model' => 'video'
     );

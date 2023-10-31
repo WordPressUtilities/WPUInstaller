@@ -10,6 +10,7 @@ Description: Handle Image
 
 add_filter('wpuprojectid_blocks', function ($layouts) {
     $layouts['image'] = array(
+        'key' => 'image',
         'label' => 'Image',
         'wpuacf_model' => 'image'
     );

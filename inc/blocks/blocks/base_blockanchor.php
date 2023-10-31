@@ -10,6 +10,7 @@ Description: Handle Anchor
 
 add_filter('wpuprojectid_blocks', function ($layouts) {
     $layouts['anchor'] = array(
+        'key' => 'anchor',
         'label' => 'Anchor',
         'wpuacf_model' => 'anchor'
     );

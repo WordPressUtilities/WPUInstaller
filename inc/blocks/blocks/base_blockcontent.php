@@ -10,6 +10,7 @@ Description: Handle Content
 
 add_filter('wpuprojectid_blocks', function ($layouts) {
     $layouts['content'] = array(
+        'key' => 'content',
         'label' => 'WYSIWYG',
         'wpuacf_model' => 'content-classic'
     );
