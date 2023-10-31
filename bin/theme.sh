@@ -25,8 +25,8 @@ echo "/*
 Theme Name: ${project_name}
 Description: A WordPress theme for ${project_name}
 Template: WPUTheme
-Author: Kévin Rocher
-Author URI: https://www.kevin-rocher.fr/
+Author: Author
+Author URI: https://www.Author.com/
 */" > "${WPU_THEME}style.css";
 
 # - htaccess
@@ -66,6 +66,8 @@ bashutilities_sed "s/project_is_multilingual/__return_${_functions_enable_multil
 
 # - Templates
 cp -rf "${SCRIPTDIR}inc/tpl/" "${WPU_THEME}tpl/";
+wpuinstaller_replace "${WPU_THEME}tpl/header.php";
+wpuinstaller_replace "${WPU_THEME}tpl/footer.php";
 wpuinstaller_cp_replace "${SCRIPTDIR}inc/page.php" "${WPU_THEME}page.php";
 
 # - Search
