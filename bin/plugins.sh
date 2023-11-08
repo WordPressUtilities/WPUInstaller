@@ -55,6 +55,11 @@ if [[ $need_acf == 'y' ]];then
         wpuinstaller_cp_replace "${_blocks_subitems_path}base_${_filename}" "${_blocks_file}";
     done
 
+    if [[ "${need_acf_forms}" == 'y' ]];then
+        _blocks_file="${_WPUINSTALLER_BLOCKSDIR}/${project_id}_blockforms.php";
+        wpuinstaller_cp_replace "${SCRIPTDIR}inc/blocks/base_blockforms.php" "${_blocks_file}";
+    fi;
+
     # Commit plugin
     bashutilities_commit_all "Installation - Plugin : ACF";
 fi;

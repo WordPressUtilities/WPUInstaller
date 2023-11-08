@@ -109,7 +109,7 @@ if [[ "${home_is_cms}" == 'y' ]]; then
     php ${WPU_PHPCLI} option update show_on_front "page";
 fi;
 
-if [[ "${need_contact_form}" == 'y' ]]; then
+if [[ "${need_acf_forms}" == 'y' || "${need_contact_form}" == 'y' ]]; then
     base_forms_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_forms.php";
     wpuinstaller_cp_replace "${SCRIPTDIR}inc/base_forms.php" "${base_forms_file}";
 fi;
