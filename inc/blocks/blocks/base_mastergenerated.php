@@ -104,6 +104,7 @@ EOT;
  */
 
 jQuery(document).ready(function() {
+    'use strict';
     jQuery('.block--{$layout_id}').each(function(){
         var \$this = jQuery(this);
     });
