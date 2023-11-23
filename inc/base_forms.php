@@ -322,10 +322,13 @@ class wpuprojectid_forms {
 
     public function wpucontactforms_email($target_email, $form_options, $form_contact_fields) {
 
-        if ($form_options['id'] == 'default_form' && false) {
-            $forms_email_target = get_option('forms_email_target');
-            if (is_email($forms_email_target)) {
-                $target_email = $forms_email_target;
+        if ($form_options['id'] == 'default_form' || true) {
+            $mails = array('wpu_opt_email', 'forms_email_target');
+            foreach ($mails as $mail) {
+                $forms_email_target = get_option($mail);
+                if (is_email($forms_email_target)) {
+                    $target_email = $forms_email_target;
+                }
             }
         }
 
