@@ -38,6 +38,15 @@ add_action('rss2_item', function () {
 });
 
 /* ----------------------------------------------------------
+  Display thumb before content
+---------------------------------------------------------- */
+
+add_filter('the_content_feed', function ($content) {
+    $thumb = (get_post_type() == 'post') ? wpautop(get_the_post_thumbnail(), 'large') : '';
+    return $thumb . $content;
+}, 10, 1);
+
+/* ----------------------------------------------------------
   RSS : Post types
 ---------------------------------------------------------- */
 
