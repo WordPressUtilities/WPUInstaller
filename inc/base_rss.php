@@ -58,6 +58,19 @@ add_filter('request', function ($q) {
 });
 
 /* ----------------------------------------------------------
+  RSS : Add tracking
+---------------------------------------------------------- */
+
+add_filter('the_permalink_rss', function ($permalink) {
+    $utm_params = array(
+        'utm_source' => 'rss',
+        'utm_medium' => 'rss',
+        'utm_campaign' => 'rss_feed_campaign'
+    );
+    return add_query_arg($utm_params, $permalink);
+});
+
+/* ----------------------------------------------------------
   RSS : Author
 ---------------------------------------------------------- */
 
