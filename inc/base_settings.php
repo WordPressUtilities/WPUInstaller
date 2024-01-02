@@ -92,6 +92,9 @@ class wpuprojectid_settings {
         update_option('limit_login_hide_dashboard_widget', '1');
         update_option('limit_login_onboarding_popup_shown', '1');
         update_option('limit_login_show_top_level_menu_item', '1');
+        update_option('limit_login_blacklist_usernames', array(
+            'admin'
+        ));
 
         /* Plugin : Duplicate Post */
         update_option('duplicate_post_show_notice', 0);
