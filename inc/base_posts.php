@@ -27,6 +27,11 @@ add_action('init', function () {
 add_action('init', function () {
     $freq_in_minutes = 2;
 
+    /* If doing cron */
+    if (!defined('DOING_CRON') || !DOING_CRON) {
+        return;
+    }
+
     /* Only if installed */
     if (!get_option('db_version')) {
         return;
