@@ -41,10 +41,20 @@ add_action('rss2_item', function () {
   Display thumb before content
 ---------------------------------------------------------- */
 
-add_filter('the_content_feed', function ($content) {
-    $thumb = (get_post_type() == 'post') ? wpautop(get_the_post_thumbnail(), 'large') : '';
-    return $thumb . $content;
-}, 10, 1);
+add_filter('the_content_feed', 'wpuprojectid_rss_display_thumb', 10, 1);
+add_filter('the_excerpt_rss', 'wpuprojectid_rss_display_thumb', 10, 1);
+
+function wpuprojectid_rss_display_thumb($text) {
+    add_filter('max_srcset_image_width', function () {
+        return 1;
+    });
+    $thumb = '';
+    if (get_post_type() == 'post') {
+        $image = wp_get_attachment_image(get_post_thumbnail_id(get_the_ID()), 'medium');
+        $thumb = wpautop($image);
+    }
+    return $thumb . $text;
+}
 
 /* ----------------------------------------------------------
   RSS : Post types
