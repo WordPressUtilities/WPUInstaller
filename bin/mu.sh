@@ -78,6 +78,7 @@ if [[ "${need_posts}" == 'y' ]];then
 
     # RSS Feeds
     if [[ "${need_rss}" == 'y' ]];then
+        wpuinstaller_install_mu "wpu_better_rss";
         base_rss_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_rss.php";
         wpuinstaller_cp_replace "${SCRIPTDIR}inc/base_rss.php" "${base_rss_file}";
     fi;

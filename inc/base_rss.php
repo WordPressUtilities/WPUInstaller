@@ -6,55 +6,14 @@ Description: Config for RSS
 */
 
 /* ----------------------------------------------------------
-  RSS : Images
+  Features
 ---------------------------------------------------------- */
 
-// display featured post thumbnails in WordPress feeds
-// Thanks to https://github.com/kasparsd/feed-image-enclosure/blob/master/feed-image-enclosure.php
-add_action('rss2_item', function () {
-    if (!has_post_thumbnail()) {
-        return;
-    }
-
-    $thumbnail_id = get_post_thumbnail_id(get_the_ID());
-    $thumbnail = image_get_intermediate_size($thumbnail_id, 'medium');
-
-    if (empty($thumbnail)) {
-        return;
-    }
-
-    $filepath = get_attached_file($thumbnail_id);
-    $filesize = 0;
-    if (file_exists($filepath)) {
-        $filesize = filesize($filepath);
-    }
-
-    printf(
-        '<enclosure url="%s" length="%s" type="%s" />',
-        $thumbnail['url'],
-        $filesize,
-        get_post_mime_type($thumbnail_id)
-    );
-});
-
-/* ----------------------------------------------------------
-  Display thumb before content
----------------------------------------------------------- */
-
-add_filter('the_content_feed', 'wpuprojectid_rss_display_thumb', 10, 1);
-add_filter('the_excerpt_rss', 'wpuprojectid_rss_display_thumb', 10, 1);
-
-function wpuprojectid_rss_display_thumb($text) {
-    add_filter('max_srcset_image_width', function () {
-        return 1;
-    });
-    $thumb = '';
-    if (get_post_type() == 'post') {
-        $image = wp_get_attachment_image(get_post_thumbnail_id(get_the_ID()), 'medium');
-        $thumb = wpautop($image);
-    }
-    return $thumb . $text;
-}
+add_filter('wpu_better_rss__display_thumbnail_before_content__enable', '__return_true', 10, 1);
+add_filter('wpu_better_rss__add_tracking_to_links__enable', '__return_true', 10, 1);
+add_filter('wpu_better_rss__add_enclosure_field__enable', '__return_true', 10, 1);
+add_filter('wpu_better_rss__force_sitename_as_author__enable', '__return_true', 10, 1);
+add_filter('wpu_better_rss__add_copyright_in_feed__enable', '__return_true', 10, 1);
 
 /* ----------------------------------------------------------
   RSS : Post types
@@ -66,30 +25,6 @@ add_filter('request', function ($q) {
     }
     return $q;
 });
-
-/* ----------------------------------------------------------
-  RSS : Add tracking
----------------------------------------------------------- */
-
-add_filter('the_permalink_rss', function ($permalink) {
-    $utm_params = array(
-        'utm_source' => 'rss',
-        'utm_medium' => 'rss',
-        'utm_campaign' => 'rss_feed_campaign'
-    );
-    return add_query_arg($utm_params, $permalink);
-});
-
-/* ----------------------------------------------------------
-  RSS : Author
----------------------------------------------------------- */
-
-add_filter('the_author', function ($display_name) {
-    if (is_feed()) {
-        return get_bloginfo('name');
-    }
-    return $display_name;
-}, 40);
 
 /* ----------------------------------------------------------
   RSS : Copyright
