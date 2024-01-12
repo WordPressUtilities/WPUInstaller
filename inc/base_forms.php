@@ -398,29 +398,32 @@ function wpuprojectid_forms_get_form_acf_layout() {
     foreach ($forms as $id => $form) {
         $forms_choice[$id] = $form['name'];
     }
-    $fields['form_type'] = array(
-        'required' => 1,
-        'label' => 'Form',
-        'type' => 'select',
-        'choices' => $forms_choice
-    );
 
-    /* Conditions */
-    $condition_another = array(
-        array(
+    if (count($forms_choice) > 1) {
+        $fields['form_type'] = array(
+            'required' => 1,
+            'label' => 'Form',
+            'type' => 'select',
+            'choices' => $forms_choice
+        );
+
+        /* Conditions */
+        $condition_another = array(
             array(
-                'field' => 'blockformform_type',
-                'operator' => '==',
-                'value' => 'another_form'
+                array(
+                    'field' => 'blockformform_type',
+                    'operator' => '==',
+                    'value' => 'another_form'
+                )
             )
-        )
-    );
-    $fields['form_is_ok'] = array(
-        'ui' => 1,
-        'type' => 'true_false',
-        'label' => 'A condition only for another_form',
-        'conditional_logic' => $condition_another
-    );
+        );
+        $fields['form_is_ok'] = array(
+            'ui' => 1,
+            'type' => 'true_false',
+            'label' => 'A condition only for another_form',
+            'conditional_logic' => $condition_another
+        );
+    }
 
     return array(
         'key' => 'blockform',
