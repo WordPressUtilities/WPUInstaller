@@ -56,8 +56,12 @@ add_action('wpu_acf_flexible__set_file_content', function ($layout_id, $group) {
     if (in_array($layout_id, array('excluded_layout_id'))) {
         return;
     }
-    $scss_path = get_stylesheet_directory() . '/src/scss/wpuprojectid/blocks/';
-    $js_path = get_stylesheet_directory() . '/src/js/blocks/';
+    $base_dir = get_stylesheet_directory() . '/src/';
+    if (!is_dir($base_dir)) {
+        return;
+    }
+    $scss_path = $base_dir . 'scss/wpuprojectid/blocks/';
+    $js_path = $base_dir . 'js/blocks/';
     if (!is_dir($scss_path)) {
         mkdir($scss_path);
     }
