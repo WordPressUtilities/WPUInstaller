@@ -194,11 +194,19 @@ class wpuprojectid_settings {
 $wpuprojectid_settings = new wpuprojectid_settings();
 
 /*
-function wpu_settings_export_options($id) {
+function wpu_settings_export_options($id, $key = false) {
     $opt_value = get_option($id);
-    echo "<pre>update_option('" . $id . "', ";
-    var_export(get_option($id));
-    echo ");</pre>";
+    if ($key && isset($opt_value[$key])) {
+        $opt_value = $opt_value[$key];
+        echo "<pre>\$wpu_settings_version->add_args_to_option('" . $id . "', array(\n";
+        echo "'$key' => " ;
+        var_export($opt_value);
+        echo "\n);</pre>";
+    } else {
+        echo "<pre>update_option('" . $id . "', ";
+        var_export($opt_value);
+        echo ");</pre>";
+    }
 }
 wpu_settings_export_options('duplicate_post_show_link');
 wpu_settings_export_options('duplicate_post_roles');
