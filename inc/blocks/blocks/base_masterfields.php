@@ -33,6 +33,15 @@ add_filter('wpu_acf_flexible__field_types', function ($types) {
                     'white' => 'White background',
                     'dark' => 'Dark background'
                 )
+            ),
+            'responsive_visibility' => array(
+                'label' => 'Responsive visibility',
+                'type' => 'checkbox',
+                'choices' => array(
+                    'desktop' => 'Hide on desktop',
+                    'tablet' => 'Hide on tablet',
+                    'mobile' => 'Hide on mobile'
+                )
             )
         ),
         'field_vars_callback' => function ($id, $sub_field, $level) {
@@ -73,6 +82,19 @@ function wpuprojectid_theme($theme = array()) {
         break;
     default:
         $classnames[] = 'section--clear';
+    }
+
+    /* Visibility */
+    if (isset($theme['responsive_visibility']) && is_array($theme['responsive_visibility'])) {
+        if (in_array('desktop', $theme['responsive_visibility'])) {
+            $classnames[] = 'hidden-on-full';
+        }
+        if (in_array('tablet', $theme['responsive_visibility'])) {
+            $classnames[] = 'hidden-on-tablet';
+        }
+        if (in_array('phone', $theme['responsive_visibility'])) {
+            $classnames[] = 'hidden-on-phone';
+        }
     }
 
     return implode(' ', $classnames);
