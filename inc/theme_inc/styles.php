@@ -22,6 +22,18 @@ add_action('wp_head', function () {
     echo '<meta name="apple-mobile-web-app-status-bar-style" content="' . MAIN_THEME_BACKGROUND_COLOR . '">';
 });
 
+/* Palette
+-------------------------- */
+
+add_filter('wpu_acf_flexible_script_wpuacfadmin_settings', function ($settings) {
+    $settings['color_picker_palettes'] = array(
+        MAIN_THEME_COLOR,
+        '#000',
+        '#FFF'
+    );
+    return $settings;
+}, 10, 1);
+
 /* ----------------------------------------------------------
   Styles
 ---------------------------------------------------------- */
