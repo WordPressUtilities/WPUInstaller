@@ -19,7 +19,13 @@ bashutilities_commit_all "Installation - Plugins";
 if [[ $project_l10n == 'y' ]]; then
     echo "## Install Polylang";
     php ${WPU_PHPCLI} plugin install polylang --activate
+
+    echo "## Install PLL Utilities";
     wpuinstaller_install_mu "wpu_pll_utilities";
+
+    echo "## Install Lang settings";
+    _lang_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_lang.php";
+    wpuinstaller_cp_replace "${SCRIPTDIR}inc/lang/base_lang.php" "${_lang_file}";
 
     # Commit plugin
     bashutilities_commit_all "Installation - Plugin : Polylang";
