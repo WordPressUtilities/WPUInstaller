@@ -17,6 +17,7 @@ add_filter('wpu_acf_flexible__field_types', function ($types) {
                 'label' => 'Settings',
                 'type' => 'accordion'
             ),
+            'cola' => 'wpuacf_25p',
             'margin' => array(
                 'label' => 'Margin',
                 'type' => 'select',
@@ -26,6 +27,18 @@ add_filter('wpu_acf_flexible__field_types', function ($types) {
                     'thin' => 'Thin'
                 )
             ),
+            'colb' => 'wpuacf_25p',
+            'width' => array(
+                'label' => 'Width',
+                'type' => 'select',
+                'default_value' => 'medium',
+                'choices' => array(
+                    'full' => 'Full',
+                    'medium' => 'Medium',
+                    'thin' => 'Thin'
+                )
+            ),
+            'colc' => 'wpuacf_25p',
             'theme' => array(
                 'label' => 'Theme',
                 'type' => 'select',
@@ -34,6 +47,7 @@ add_filter('wpu_acf_flexible__field_types', function ($types) {
                     'dark' => 'Dark background'
                 )
             ),
+            'cold' => 'wpuacf_25p',
             'responsive_visibility' => array(
                 'label' => 'Responsive visibility',
                 'type' => 'checkbox',
@@ -67,6 +81,9 @@ function wpuprojectid_theme($theme = array()) {
     if (!isset($theme['margin']) || !$theme['margin']) {
         $theme['margin'] = 'large';
     }
+    if (!isset($theme['width']) || !$theme['width']) {
+        $theme['width'] = 'medium';
+    }
 
     /* Margins */
     if ($theme['theme'] == 'white') {
@@ -75,10 +92,13 @@ function wpuprojectid_theme($theme = array()) {
         $classnames[] = 'section--' . $theme['margin'];
     }
 
+    /* Width */
+    $classnames[] = 'centered-container--' . $theme['width'];
+
     /* Theme */
     switch ($theme['theme']) {
     case 'dark':
-        $classnames[] = 'section--dark';
+        $classnames[] = 'section--' . $theme['theme'];
         break;
     default:
         $classnames[] = 'section--clear';
