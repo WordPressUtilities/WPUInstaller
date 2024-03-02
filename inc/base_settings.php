@@ -91,7 +91,8 @@ class wpuprojectid_settings {
         update_option('limit_login_show_warning_badge', '0');
         update_option('limit_login_hide_dashboard_widget', '1');
         update_option('limit_login_onboarding_popup_shown', '1');
-        update_option('limit_login_show_top_level_menu_item', '1');
+        update_option('limit_login_show_top_bar_menu_item', '0');
+        update_option('limit_login_show_top_level_menu_item', '0');
         update_option('limit_login_blacklist_usernames', array(
             'admin'
         ));
