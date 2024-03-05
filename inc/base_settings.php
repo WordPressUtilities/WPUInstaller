@@ -63,6 +63,9 @@ class wpuprojectid_settings {
         update_option('page_on_front', get_option('home__page_id'));
         update_option('show_on_front', 'page');
 
+        /* Pager */
+        update_option('posts_per_page', 12);
+
         /* SEO */
         update_option('blogdescription', 'Agence Web');
         $meta_desc = 'Agence Web with a longer text.';
