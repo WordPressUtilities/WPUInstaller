@@ -9,7 +9,7 @@ Description: Config for menus
   Add back button on submenus
 ---------------------------------------------------------- */
 
-add_action('walker_nav_menu_start_el', function ($item_output, $item, $depth, $args) {
+add_filter('walker_nav_menu_start_el', function ($item_output, $item, $depth, $args) {
     if ($depth == 0 && $args->container_class == 'main-menu__wrapper') {
         $item_output = str_replace('</a>', '<span class="wpuprojectid-menu-go"><i aria-hidden="true" class="icon icon_go"></i></span></a>', $item_output);
         if (in_array('menu-item-has-children', $item->classes)) {
