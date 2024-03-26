@@ -8,6 +8,9 @@ class wpuprojectid_settings {
 
     #plugins_list
 
+    private $network_plugins_list = array(
+    );
+
     public function __construct() {
         add_filter('plugins_loaded', array(&$this, 'plugins_loaded'), 10, 1);
         add_filter('wp', array(&$this, 'wp'), 10, 1);
@@ -40,6 +43,7 @@ class wpuprojectid_settings {
         global $wpu_settings_version;
         if (is_object($wpu_settings_version) && method_exists($wpu_settings_version, 'activate_plugins')) {
             $wpu_settings_version->activate_plugins($this->plugins_list);
+            $wpu_settings_version->activate_plugins($this->network_plugins_list, true);
         }
     }
 
@@ -98,6 +102,16 @@ class wpuprojectid_settings {
         update_option('limit_login_show_top_level_menu_item', '0');
         update_option('limit_login_blacklist_usernames', array(
             'admin'
+        ));
+
+        /* Happyfiles Pro */
+        update_option('happyfiles_featured_image_quick_edit', '1');
+        update_option('happyfiles_folder_access', array(
+            'editor' => 'full',
+            'author' => '',
+            'contributor' => '',
+            'subscriber' => '',
+            'super_editor' => 'full'
         ));
 
         /* Plugin : Duplicate Post */
@@ -218,5 +232,9 @@ wpu_settings_export_options('duplicate_post_roles');
 echo '<pre>$wpu_settings_version->activate_plugins(';
 var_export(get_option('active_plugins'));
 echo ');</pre>';
+
+echo '<pre>$wpu_settings_version->activate_plugins(';
+var_export(array_keys(get_site_option('active_sitewide_plugins', array())));
+echo ', true);</pre>';
 die;
 /**/
