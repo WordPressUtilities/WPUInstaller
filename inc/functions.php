@@ -26,6 +26,9 @@ function wputh_custom_theme_setup() {
     add_theme_support('automatic-feed-links');
 */
 
+    // Supporting Custom Logo
+    add_theme_support('custom-logo');
+
     // Supporting HTML5
     add_theme_support('html5', array(
         'comment-list',
