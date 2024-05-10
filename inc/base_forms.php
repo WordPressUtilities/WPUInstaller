@@ -435,7 +435,7 @@ function wpuprojectid_forms_get_form_acf_layout() {
 /*
 ## Flexible content
 <?php
-$form_type = get_sub_field('form_type');
+$form_type = get_sub_field('form_type') || 'default_form';
 $form_is_ok = get_sub_field('form_is_ok');
 ?><section class="centered-container section cc-block--forms">
     <div class="block--forms">
