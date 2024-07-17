@@ -25,7 +25,7 @@ if [[ $project_l10n == 'y' ]]; then
 
     echo "## Install Lang settings";
     _lang_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_lang.php";
-    wpuinstaller_cp_replace "${SCRIPTDIR}inc/lang/base_lang.php" "${_lang_file}";
+    wpuinstaller_cp_replace "${SCRIPTDIR}inc/base_lang.php" "${_lang_file}";
 
     # Commit plugin
     bashutilities_commit_all "Installation - Plugin : Polylang";
@@ -43,7 +43,7 @@ fi;
 # ACF
 if [[ $need_acf == 'y' ]];then
     echo "## Install ACF";
-    php ${WPU_PHPCLI} plugin install "http://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=${acf_api_key}" --activate;
+    php ${WPU_PHPCLI} plugin install "https://connect.advancedcustomfields.com/v2/plugins/download?p=pro&k=${acf_api_key}" --activate;
     php ${WPU_PHPCLI} plugin install acf-extended --activate;
     wpuinstaller_install_mu "wpu_acf_flexible";
 
