@@ -29,16 +29,10 @@ add_filter('wpu_acf_flexible_content', function ($contents) {
         )
     );;
     $fields['cola'] = 'wpuacf_50p';
-    $fields['title'] = array(
-        'label' => 'Titre',
-        'type' => 'textarea',
-        'rows' => 2
-    );
+    $fields['title'] = 'wpuprojectid_title';
     $fields['intro'] = array(
         'label' => 'Introduction',
-        'type' => 'editor',
-        'editor_height' => 150,
-        'toolbar' => 'wpuacf_mini',
+        'type' => 'wpuacf_minieditor',
         'conditional_logic' => $condition_home
     );
     $fields['cta'] = array(
