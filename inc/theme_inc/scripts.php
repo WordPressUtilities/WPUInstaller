@@ -36,7 +36,8 @@ add_filter('wputh_javascript_files', function ($js_files) {
   Load common libs
 ---------------------------------------------------------- */
 
-add_filter('wputh_common_libraries__slickslider', '__return_true', 1, 1);
+add_filter('wputh_common_libraries__swiper', '__return_false', 1, 1);
+add_filter('wputh_common_libraries__slickslider', '__return_false', 1, 1);
 add_filter('wputh_common_libraries__simplebar', '__return_false', 1, 1);
 add_filter('wputh_common_libraries__juxtapose', '__return_false', 1, 1);
 add_filter('wputh_common_libraries__clipboard', '__return_false', 1, 1);
