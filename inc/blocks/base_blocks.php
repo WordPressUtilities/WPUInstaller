@@ -100,9 +100,6 @@ add_filter('acf/load_value/name=content-blocks', function ($value, $post_id, $fi
     $value = array(
         array(
             'acf_fc_layout' => 'content'
-        ),
-        array(
-            'acf_fc_layout' => 'image'
         )
     );
     return $value;

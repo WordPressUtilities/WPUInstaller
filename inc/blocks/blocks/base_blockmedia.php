@@ -1,18 +1,18 @@
 <?php
 /*
-Plugin Name: [wpuprojectname] Content
-Description: Handle Content
+Plugin Name: [wpuprojectname] Media
+Description: Handle Media
 */
 
 /* ----------------------------------------------------------
-  Block Content
+  Block Media
 ---------------------------------------------------------- */
 
 add_filter('wpuprojectid_blocks', function ($layouts) {
-    $layouts['content'] = array(
-        'key' => 'content',
-        'label' => 'WYSIWYG',
-        'wpuacf_model' => 'content-classic'
+    $layouts['media'] = array(
+        'key' => 'media',
+        'label' => 'Media',
+        'wpuacf_model' => 'media'
     );
     return $layouts;
 }, 10, 1);
@@ -20,7 +20,7 @@ add_filter('wpuprojectid_blocks', function ($layouts) {
 /* Add a classname */
 /*
 add_filter('get_wpu_acf_wrapper_classname', function ($classes, $block_type) {
-    if ($block_type == 'content-classic') {
+    if ($block_type == 'media') {
         $classes[] = wpuprojectid_theme(get_sub_field('wpuprojectid_theme'));
     }
     return $classes;
@@ -29,7 +29,7 @@ add_filter('get_wpu_acf_wrapper_classname', function ($classes, $block_type) {
 
 /* Override fields */
 /*
-add_filter('wpu_acf_flexible__override_model__content', function ($model) {
+add_filter('wpu_acf_flexible__override_model__media', function ($model) {
     $model['sub_fields']['wpuprojectid_theme'] = 'wpuprojectid_theme';
     return $model;
 }, 10, 1);
