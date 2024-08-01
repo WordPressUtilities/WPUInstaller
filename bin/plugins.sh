@@ -98,6 +98,7 @@ fi
 # Recommended
 if [[ $install_recommended_plugins == 'y' ]]; then
     echo "## Install recommended plugins";
+    php ${WPU_PHPCLI} plugin install dominant-color-images --activate;
     php ${WPU_PHPCLI} plugin install limit-login-attempts-reloaded --activate;
     php ${WPU_PHPCLI} plugin install safe-svg --activate;
     php ${WPU_PHPCLI} plugin install taxonomy-terms-order --activate;
