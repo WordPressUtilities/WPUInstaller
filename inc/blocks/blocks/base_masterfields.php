@@ -7,6 +7,30 @@
 /* Theme
 -------------------------- */
 
+function wpuprojectid_get_layout_themes($type = 'theme') {
+    $themes = array(
+        /* Default layout always has merged margin and is similar to the page background */
+        'clear' => array(
+            'name' => 'Clear background',
+            'classname' => 'section--clear'
+        ),
+        'dark' => array(
+            'name' => 'Dark background',
+            'classname' => 'section--dark'
+        )
+    );
+    $return_themes = array();
+    foreach ($themes as $theme_id => $theme) {
+        $val = $theme;
+        if ($type && isset($theme[$type])) {
+            $val = $theme[$type];
+        }
+        $return_themes[$theme_id] = $val;
+    }
+
+    return $return_themes;
+}
+
 add_filter('wpu_acf_flexible__field_types', function ($types) {
 
     $types['wpuprojectid_theme'] = array(
@@ -42,10 +66,7 @@ add_filter('wpu_acf_flexible__field_types', function ($types) {
             'theme' => array(
                 'label' => 'Theme',
                 'type' => 'select',
-                'choices' => array(
-                    'white' => 'White background',
-                    'dark' => 'Dark background'
-                )
+                'choices' => wpuprojectid_get_layout_themes('name')
             ),
             'cold' => 'wpuacf_25p',
             'responsive_visibility' => array(
@@ -75,8 +96,12 @@ function wpuprojectid_theme($theme = array()) {
 
     $classnames = array();
 
+    $layout_themes = wpuprojectid_get_layout_themes('classname');
+    $layout_keys = array_keys($layout_themes);
+    $default_layout = isset($layout_keys[0]) ? $layout_keys[0] : 'clear';
+
     if (!isset($theme['theme']) || !$theme['theme']) {
-        $theme['theme'] = 'white';
+        $theme['theme'] = $default_layout;
     }
     if (!isset($theme['margin']) || !$theme['margin']) {
         $theme['margin'] = 'large';
@@ -86,7 +111,7 @@ function wpuprojectid_theme($theme = array()) {
     }
 
     /* Margins */
-    if ($theme['theme'] == 'white') {
+    if ($theme['theme'] == $default_layout) {
         $classnames[] = 'section-m--' . $theme['margin'];
     } else {
         $classnames[] = 'section--' . $theme['margin'];
@@ -96,12 +121,8 @@ function wpuprojectid_theme($theme = array()) {
     $classnames[] = 'centered-container--' . $theme['width'];
 
     /* Theme */
-    switch ($theme['theme']) {
-    case 'dark':
-        $classnames[] = 'section--' . $theme['theme'];
-        break;
-    default:
-        $classnames[] = 'section--clear';
+    if (isset($layout_themes[$theme['theme']])) {
+        $classnames[] = $layout_themes[$theme['theme']];
     }
 
     /* Visibility */
