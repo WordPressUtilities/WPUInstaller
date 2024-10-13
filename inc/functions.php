@@ -78,7 +78,8 @@ add_filter('wputh_default_sidebars', '__return_empty_array', 1, 1);
 add_filter('wputh_default_menus', function ($menus) {
     return array(
         'main' => 'Main menu',
-        'footer' => 'Footer menu'
+        'footer' => 'Footer menu',
+        'copy' => 'Copyright menu'
     );
 }, 10, 1);
 
