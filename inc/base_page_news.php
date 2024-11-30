@@ -19,13 +19,53 @@ function wpuprojectid_pagenews_wputh_set_pages_site($pages_site) {
 }
 
 /* ----------------------------------------------------------
-  Add current class to news menu item on single posts
+  Add current class to news menu item on single posts & categories
 ---------------------------------------------------------- */
 
-add_filter('nav_menu_css_class', 'wpuprojectid_pagenews_add_current_page_class', 10, 2);
-function wpuprojectid_pagenews_add_current_page_class($classes, $item) {
-    if (is_singular('post') && $item->object_id == get_option('news__page_id')) {
+add_filter('nav_menu_css_class', function ($classes, $item) {
+    if ($item->object_id == wpuprojectid_pagenews_get_id() && (is_singular('post') || is_category())) {
         $classes[] = 'current-menu-item';
     }
     return $classes;
+}, 10, 2);
+
+/* ----------------------------------------------------------
+  Get page news
+---------------------------------------------------------- */
+
+function wpuprojectid_pagenews_get_id() {
+    $news_page_id = get_option('news__page_id');
+    if (function_exists('pll_get_post')) {
+        $news_page_id = pll_get_post($news_page_id);
+    }
+    return $news_page_id;
+}
+
+function wpuprojectid_pagenews_get_url() {
+    $news_page_id = wpuprojectid_pagenews_get_id();
+    if (!$news_page_id) {
+        return home_url();
+    }
+    return get_permalink($news_page_id);
+}
+
+/* ----------------------------------------------------------
+  Simple filters
+---------------------------------------------------------- */
+
+function wpuprojectid_pagenews_get_filters() {
+    $filter_html = '';
+
+    /* Link to news page */
+    if (is_category()) {
+        $filter_html .= '<a class="wpuprojectid-button wpuprojectid-button--small wpuprojectid-button--secondary" href="' . get_permalink(wpuprojectid_pagenews_get_id()) . '"><span>' . __('All', 'wpuprojectid') . '</span></a>';
+    }
+
+    /* Link to each category */
+    $categories = get_categories();
+    foreach ($categories as $category) {
+        $filter_html .= '<a class="wpuprojectid-button wpuprojectid-button--small ' . (is_category($category->term_id) ? '' : 'wpuprojectid-button--secondary') . '" href="' . get_category_link($category->term_id) . '"><span>' . $category->name . '</span></a>';
+    }
+
+    return $filter_html;
 }
