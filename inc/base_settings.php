@@ -22,6 +22,13 @@ class wpuprojectid_settings {
 
     public function list_actions($actions) {
         global $wpu_settings_version;
+
+        /* If network plugins are listed, do not continue until multisite is configured */
+        if(!empty($this->network_plugins_list) && !is_multisite()) {
+            error_log('[wpuprojectid_settings] Network plugins are listed but multisite is not configured.');
+            return;
+        }
+
         if (is_object($wpu_settings_version)) {
             # Use a key lower than PHP_INT_MAX
             #$actions[1001] = array(&$this, 'set_plugins');
