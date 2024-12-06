@@ -36,9 +36,11 @@ add_filter('wputheme_share_methods', function ($methods) {
 add_filter('wputheme_social_links', function ($links) {
     return array(
         'discord' => 'Discord',
+        'bluesky' => 'Bluesky',
         'facebook' => 'Facebook',
         'instagram' => 'Instagram',
         'linkedin' => 'Linkedin',
+        'mastodon' => 'Mastodon',
         'tiktok' => 'Tiktok',
         'twitch' => 'Twitch',
         'twitter' => 'Twitter',
