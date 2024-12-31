@@ -14,8 +14,8 @@ add_filter('walker_nav_menu_start_el', function ($item_output, $item, $depth, $a
         $item_output = str_replace('</a>', '<span class="wpuprojectid-menu-go"><i aria-hidden="true" class="icon icon_go"></i></span></a>', $item_output);
         if (in_array('menu-item-has-children', $item->classes)) {
             $item_output .= '<div class="sub-menu-wrapper">';
-            $item_output .= '<a href="#" role="button" class="wpuprojectid-menu-back"><i aria-hidden="true" class="icon icon_back"></i>'.__('Back', 'wpuprojectid').'</a>';
-            $item_output .= '<div class="item-title">'.$item->title.'</div>';
+            $item_output .= '<a href="#" role="button" class="wpuprojectid-menu-back"><i aria-hidden="true" class="icon icon_back"></i>' . __('Back', 'wpuprojectid') . '</a>';
+            $item_output .= '<div class="item-title">' . $item->title . '</div>';
         }
     }
     return $item_output;
@@ -25,7 +25,7 @@ class WpuProjectCamelCaseName_Main_Menu_Walker extends Walker_Nav_Menu {
     function end_el(&$output, $data_object, $depth = 0, $args = NULL) {
         if ($depth == 0 && $args->container_class == 'main-menu__wrapper') {
             if (in_array('menu-item-has-children', $data_object->classes)) {
-                $output .= '</div>'."\n";
+                $output .= '</div>' . "\n";
             }
         }
     }
@@ -40,84 +40,70 @@ wp_nav_menu(array(
 */
 
 /* ----------------------------------------------------------
-  Change link render if image
+  Custom fields
 ---------------------------------------------------------- */
 
-add_filter('nav_menu_item_title', function ($title, $item, $args, $depth) {
-    if ($args->container_class == 'main-menu__wrapper' && $depth > 0) {
-        $link_menu_image = get_field('menu_image', $item->ID);
-        if ($link_menu_image) {
-            $menu_image_url = wp_get_attachment_image_url($link_menu_image, 'medium');
-            $title = '<div class="item-menu-image"><img class="item-menu-image__image" src="' . $menu_image_url . '" loading="lazy" alt="" /><span class="item-menu-image__title">' . $title . '</span></div>';
-        }
-    }
-    return $title;
-
-}, 10, 4);
-
-/* ----------------------------------------------------------
-  Add a menu image
----------------------------------------------------------- */
-
-add_action('plugins_loaded', function () {
-    if (!function_exists('acf_add_local_field_group')) {
-        return;
-    }
-
-    acf_add_local_field_group(array(
-        'key' => 'group_60fe82e35b088',
-        'title' => 'Image menu',
-        'fields' => array(
-            array(
-                'key' => 'field_60fe82e50cda5',
-                'label' => 'image',
-                'name' => 'menu_image',
-                'type' => 'image',
-                'instructions' => '',
-                'required' => 0,
-                'conditional_logic' => 0,
-                'wrapper' => array(
-                    'width' => '',
-                    'class' => '',
-                    'id' => ''
+add_filter('wpu_acf_flexible_content', function ($contents) {
+    $fields = array(
+        'wpuprojectidmenu' => array(
+            'label' => 'Custom',
+            /* Only on level 1 */
+            'wpuacf_nav_item_depth' => array(1),
+            'type' => 'group',
+            'sub_fields' => array(
+                'as_title' => array(
+                    'label' => 'Display as a title',
+                    'type' => 'true_false'
                 ),
-                'uploader' => '',
-                'acfe_thumbnail' => 0,
-                'return_format' => 'id',
-                'preview_size' => 'thumbnail',
-                'min_width' => '',
-                'min_height' => '',
-                'min_size' => '',
-                'max_width' => '',
-                'max_height' => '',
-                'max_size' => '',
-                'mime_types' => '',
-                'translations' => 'copy_once',
-                'library' => 'all'
+                'icon' => array(
+                    'label' => 'Icon',
+                    'type' => 'wpuprojectid_icon'
+                )
             )
-        ),
+        )
+    );
+    $contents['menu-blocks'] = array(
         'location' => array(
             array(
                 array(
                     'param' => 'nav_menu_item',
                     'operator' => '==',
-                    'value' => 'all'
+                    /* Only on footer location */
+                    'value' => 'location/footer'
                 )
             )
         ),
-        'menu_order' => 0,
-        'position' => 'normal',
-        'style' => 'default',
-        'label_placement' => 'left',
-        'instruction_placement' => 'label',
-        'hide_on_screen' => '',
-        'active' => true,
-        'description' => '',
-        'acfe_display_title' => '',
-        'acfe_autosync' => '',
-        'acfe_form' => 0,
-        'acfe_meta' => '',
-        'acfe_note' => ''
-    ));
+        'name' => 'Blocks',
+        'fields' => $fields
+    );
+    return $contents;
+}, 10, 1);
 
-});
+/* Adds a classname
+-------------------------- */
+
+add_filter('nav_menu_css_class', function ($classes, $item, $args, $depth) {
+    if ($args->container_class == 'footer-menu__wrapper' && $depth == 1) {
+        if (get_field('wpuprojectidmenu_as_title', $item->ID)) {
+            $classes[] = 'menu-item--astitle';
+        }
+        if (get_field('wpuprojectidmenu_icon', $item->ID)) {
+            $classes[] = 'menu-item--has-icon';
+        }
+    }
+    return $classes;
+}, 10, 4);
+
+/* Adds an icon
+-------------------------- */
+
+add_filter('nav_menu_item_title', function ($title, $item, $args, $depth) {
+    if ($args->container_class == 'footer-menu__wrapper' && $depth == 1) {
+        /* Icon */
+        $icon = get_field('wpuprojectidmenu_icon', $item->ID);
+        if ($icon) {
+            $title = wpuprojectid_icon($icon) . $title;
+        }
+    }
+    return $title;
+}, 10, 4);
