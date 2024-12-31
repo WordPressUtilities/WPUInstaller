@@ -187,14 +187,15 @@ add_filter('wpu_acf_flexible__field_types', function ($types) {
     /* Title */
     $types['wpuprojectid_title'] = array(
         'instructions' => 'Blue text : &lt;u&gt;Text&lt;/u&gt;.',
-        'label' => 'Title',
+        'wpuacf_validate_html' => true,
+        'label' => __('Title'),
         'rows' => 2,
         'type' => 'textarea',
         'field_vars_callback' => function ($id, $sub_field, $level) {
-            return '$' . $id . ' = get_sub_field(\'' . $id . '\');' . "\n";
+            return '';
         },
         'field_html_callback' => function ($id, $sub_field, $level) {
-            return '<?php echo wpuprojectid_title($' . $id . '); ?>' . "\n";
+            return '<?php echo wpuprojectid_title(get_sub_field(\'' . $id . '\')); ?>' . "\n";
         }
     );
     return $types;
