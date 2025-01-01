@@ -255,3 +255,31 @@ function trigger_wpu_magic_form_button(){
 </script>
 EOT;
 });
+
+/* ----------------------------------------------------------
+  Select all menu items
+---------------------------------------------------------- */
+
+add_action('admin_footer', function () {
+    if (!is_admin() || !current_user_can('manage_options')) {
+        return;
+    }
+    $screen = get_current_screen();
+    if ($screen->base != 'nav-menus') {
+        return;
+    }
+    echo <<<EOT
+<script>
+jQuery(document).ready(function() {
+    jQuery('#nav-menu-bulk-actions-bottom, #nav-menu-bulk-actions-top').each(function() {
+        var _wrapper = jQuery(this);
+        _wrapper.append('<button type="button" class="button action">Select All Menu Items</button>');
+        _wrapper.find('button').on('click', function() {
+            _wrapper.find('.bulk-select-button input[type="checkbox"]').prop('checked', true).trigger('change');
+            jQuery('#menu-to-edit .menu-item-checkbox').click();
+        });
+    });
+});
+</script>
+EOT;
+});
