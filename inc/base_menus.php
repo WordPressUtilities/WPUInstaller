@@ -83,7 +83,7 @@ add_filter('wpu_acf_flexible_content', function ($contents) {
 -------------------------- */
 
 add_filter('nav_menu_css_class', function ($classes, $item, $args, $depth) {
-    if ($args->container_class == 'footer-menu__wrapper' && $depth == 1) {
+    if ($args->theme_location == 'footer' && $depth == 1) {
         if (get_field('wpuprojectidmenu_as_title', $item->ID)) {
             $classes[] = 'menu-item--astitle';
         }
@@ -98,7 +98,7 @@ add_filter('nav_menu_css_class', function ($classes, $item, $args, $depth) {
 -------------------------- */
 
 add_filter('nav_menu_item_title', function ($title, $item, $args, $depth) {
-    if ($args->container_class == 'footer-menu__wrapper' && $depth == 1) {
+    if ($args->theme_location == 'footer' && $depth == 1) {
         /* Icon */
         $icon = get_field('wpuprojectidmenu_icon', $item->ID);
         if ($icon) {
