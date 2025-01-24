@@ -120,6 +120,11 @@ if [[ $use_subfolder == 'n' ]]; then
     rm -rf "${MAINDIR}license.txt";
 fi;
 
+if [[ "${need_comments}" == 'n' ]];then
+    rm -rf "${MAINDIR}wp-comments-post.php";
+    rm -rf "${MAINDIR}wp-trackback.php";
+fi;
+
 # Install subfolder
 if [[ $use_subfolder == 'y' ]]; then
     cp "${SCRIPTDIR}inc/htaccess-wpsubfolder.txt" "${MAINDIR}.htaccess";
