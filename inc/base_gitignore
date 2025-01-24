@@ -41,6 +41,8 @@ wp-content/db.php
 wp-content/object-cache.php
 wp-content/plugins/wp-rocket/license-data.php
 wp-content/w3tc-config/
+wp-content/upgrade-temp-backup/
+wp-content/upgrade/
 wp-content/wp-rocket-config/
 *.sqlite-shm
 *.sqlite-wal
