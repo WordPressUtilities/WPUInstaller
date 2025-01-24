@@ -5,28 +5,22 @@
 ---------------------------------------------------------- */
 
 add_filter('wputheme_share_methods', function ($methods) {
+    $share_methods = array(
+        'email',
+        'clipboard',
+        'whatsapp',
+        'facebook',
+        'sharesheet'
+    );
 
-    /* Comment to edit methods  */
-    return $methods;
+    $new_methods = array();
+    foreach ($share_methods as $method) {
+        if (isset($methods[$method])) {
+            $new_methods[$method] = $methods[$method];
+        }
+    }
 
-    if (isset($methods['email'])) {
-        unset($methods['email']);
-    }
-    if (isset($methods['googleplus'])) {
-        unset($methods['googleplus']);
-    }
-    if (isset($methods['pinterest'])) {
-        unset($methods['pinterest']);
-    }
-    if (isset($methods['whatsapp'])) {
-        unset($methods['whatsapp']);
-    }
-    /* Linkedin is set as first method */
-    if (isset($methods['linkedin'])) {
-        $_method_linkedin = $methods['linkedin'];
-        $methods = array_merge(array('linkedin' => $_method_linkedin), $methods);
-    }
-    return $methods;
+    return $new_methods;
 }, 10, 1);
 
 /* ----------------------------------------------------------
