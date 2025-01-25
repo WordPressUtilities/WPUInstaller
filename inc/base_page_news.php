@@ -69,3 +69,14 @@ function wpuprojectid_pagenews_get_filters() {
 
     return $filter_html;
 }
+
+/* ----------------------------------------------------------
+  Redirect Year/Month/Day archives to news page
+---------------------------------------------------------- */
+
+add_action('template_redirect', function () {
+    if (is_year() || is_month() || is_day()) {
+        wp_redirect(wpuprojectid_pagenews_get_url());
+        exit;
+    }
+});
