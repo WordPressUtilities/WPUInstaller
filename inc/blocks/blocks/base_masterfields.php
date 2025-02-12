@@ -11,11 +11,11 @@ function wpuprojectid_get_layout_themes($type = 'theme') {
     $themes = array(
         /* Default layout always has merged margin and is similar to the page background */
         'clear' => array(
-            'name' => 'Clear background',
+            'name' => __('Clear background', 'wpuprojectid'),
             'classname' => 'section--clear'
         ),
         'dark' => array(
-            'name' => 'Dark background',
+            'name' => __('Dark background', 'wpuprojectid'),
             'classname' => 'section--dark'
         )
     );
@@ -38,44 +38,44 @@ add_filter('wpu_acf_flexible__field_types', function ($types) {
         'type' => 'group',
         'sub_fields' => array(
             'acc' => array(
-                'label' => 'Settings',
+                'label' => __('Settings', 'wpuprojectid'),
                 'type' => 'accordion'
             ),
             'cola' => 'wpuacf_25p',
             'margin' => array(
-                'label' => 'Margin',
+                'label' => __('Margin', 'wpuprojectid'),
                 'type' => 'select',
                 'choices' => array(
-                    'large' => 'Large',
-                    'medium' => 'Medium',
-                    'thin' => 'Thin'
+                    'large' => __('Large', 'wpuprojectid'),
+                    'medium' => __('Medium', 'wpuprojectid'),
+                    'thin' => __('Thin', 'wpuprojectid')
                 )
             ),
             'colb' => 'wpuacf_25p',
             'width' => array(
-                'label' => 'Width',
+                'label' => __('Width', 'wpuprojectid'),
                 'type' => 'select',
                 'default_value' => 'medium',
                 'choices' => array(
-                    'full' => 'Full',
-                    'medium' => 'Medium',
-                    'thin' => 'Thin'
+                    'full' => __('Full', 'wpuprojectid'),
+                    'medium' => __('Medium', 'wpuprojectid'),
+                    'thin' => __('Thin', 'wpuprojectid')
                 )
             ),
             'colc' => 'wpuacf_25p',
             'theme' => array(
-                'label' => 'Theme',
+                'label' => __('Theme', 'wpuprojectid'),
                 'type' => 'select',
                 'choices' => wpuprojectid_get_layout_themes('name')
             ),
             'cold' => 'wpuacf_25p',
             'responsive_visibility' => array(
-                'label' => 'Responsive visibility',
+                'label' => __('Responsive visibility', 'wpuprojectid'),
                 'type' => 'checkbox',
                 'choices' => array(
-                    'desktop' => 'Hide on desktop',
-                    'tablet' => 'Hide on tablet',
-                    'mobile' => 'Hide on mobile'
+                    'desktop' => __('Hide on desktop', 'wpuprojectid'),
+                    'tablet' => __('Hide on tablet', 'wpuprojectid'),
+                    'mobile' => __('Hide on mobile', 'wpuprojectid')
                 )
             )
         ),
