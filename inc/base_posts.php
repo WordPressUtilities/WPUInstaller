@@ -70,3 +70,18 @@ add_filter('embed_oembed_html', function ($html, $url, $attr, $post_id) {
     }
     return $html;
 }, 10, 4);
+
+/* ----------------------------------------------------------
+  WYSIWYG fixes
+---------------------------------------------------------- */
+
+add_filter('tiny_mce_before_init', function ($settings) {
+    $block_formats = array(
+        'Paragraph=p',
+        'Heading 2=h2',
+        'Heading 3=h3',
+        'Heading 4=h4'
+    );
+    $settings['block_formats'] = implode(';', $block_formats);
+    return $settings;
+});
