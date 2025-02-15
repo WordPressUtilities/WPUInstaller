@@ -69,15 +69,7 @@ add_filter('wpu_acf_flexible__field_types', function ($types) {
                 'choices' => wpuprojectid_get_layout_themes('name')
             ),
             'cold' => 'wpuacf_25p',
-            'responsive_visibility' => array(
-                'label' => __('Responsive visibility', 'wpuprojectid'),
-                'type' => 'checkbox',
-                'choices' => array(
-                    'desktop' => __('Hide on desktop', 'wpuprojectid'),
-                    'tablet' => __('Hide on tablet', 'wpuprojectid'),
-                    'mobile' => __('Hide on mobile', 'wpuprojectid')
-                )
-            )
+            'responsive_visibility' => 'wpuacf_responsive_visibility'
         ),
         'field_vars_callback' => function ($id, $sub_field, $level) {
             return '';
@@ -223,47 +215,4 @@ function wpuprojectid_title($field, $args = array()) {
         return;
     }
     return '<' . $args['tag'] . ' class="wpuprojectid-title ' . esc_attr($args['classname']) . '">' . nl2br($field) . '</' . $args['tag'] . '>';
-}
-
-/* Icons
--------------------------- */
-
-add_filter('wpu_acf_flexible__field_types', function ($types) {
-    $types['wpuprojectid_icon'] = array(
-        'label' => 'Icône',
-        'type' => 'select',
-        'choices' => wpuprojectid_get_icons(),
-        'field_vars_callback' => function ($id, $sub_field, $level) {
-            return '$' . $id . ' = get_sub_field(\'' . $id . '\');' . "\n";
-        },
-        'field_html_callback' => function ($id, $sub_field, $level) {
-            return '<?php echo wpuprojectid_icon($' . $id . '); ?>' . "\n";
-        }
-    );
-    return $types;
-}, 10, 1);
-
-function wpuprojectid_get_icons() {
-    $cache_id = 'wpuprojectid_get_icons';
-    $cache_duration = 60;
-
-    $icons = wp_cache_get($cache_id);
-    if ($icons === false) {
-        $icons_raw = glob(get_stylesheet_directory() . '/src/icons/*.svg');
-        $icons = array();
-        foreach ($icons_raw as $icn) {
-            $icn = str_replace('.svg', '', basename($icn));
-            $icons[$icn] = $icn;
-        }
-        wp_cache_set($cache_id, $icons, '', $cache_duration);
-    }
-    return array('' => '-- No Icon --') + $icons;
-}
-
-function wpuprojectid_icon($icon = '') {
-    $icons = wpuprojectid_get_icons();
-    if (!$icon || !array_key_exists($icon, $icons)) {
-        return '';
-    }
-    return '<i aria-hidden="true" class="icon icon_' . esc_attr($icon) . ' wpuprojectid-icn"></i>';
 }
