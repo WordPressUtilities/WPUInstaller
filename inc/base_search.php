@@ -18,12 +18,6 @@ function wpuprojectid_search_custom_fields($custom_fields = array()) {
 }
 
 /* ----------------------------------------------------------
-  Cache search results
----------------------------------------------------------- */
-
-add_filter('rocket_cache_search', '__return_true');
-
-/* ----------------------------------------------------------
   Disable UX Tweak if installed
 ---------------------------------------------------------- */
 
@@ -38,12 +32,24 @@ add_filter('pre_option_relevanssi_excerpts', function ($val) {
 });
 
 /* ----------------------------------------------------------
+  Allow search in custom post types
+---------------------------------------------------------- */
+
+add_filter('pre_get_posts', function ($query) {
+    if ($query->is_search && !is_admin() && isset($query->query['post_type'])) {
+        $query->set('post_type', $query->query['post_type']);
+
+    }
+    return $query;
+});
+
+/* ----------------------------------------------------------
   Search post types
 ---------------------------------------------------------- */
 
 add_filter('wpuprojectid_search_post_types', function ($types = array()) {
     $types['post'] = array(
-        'label' => 'News',
+        'label' => __('News', 'wpuprojectid'),
         'tpl' => 'loop-post.php'
     );
     return $types;
@@ -102,6 +108,7 @@ function wpuprojectid_search_get_post_type_content($post_type_key, $pt_settings,
     $wpq_search->parse_query(array(
         'posts_per_page' => $args['per_page'],
         'offset' => $start,
+        'ignore_sticky_posts' => true,
         'post_type' => $post_type_key,
         's' => get_search_query()
     ));
