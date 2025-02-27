@@ -64,12 +64,29 @@ add_filter('wpuseo_metas_json_after_settings', function ($metas_json) {
 add_filter('wp_handle_upload_prefilter', function ($file) {
     $size = $file['size'] / 1024;
     $blocked_types = array(
-        'image/png'
+        'image/png' => array(
+            'name' => 'PNG',
+            'limit' => 500,
+            'extra_error' => __('Shouldn’t this image be converted to JPG?', 'nutritionsante')
+        ),
+        'image/svg+xml' => array(
+            'name' => 'SVG',
+            'limit' => 200
+        ),
+        'image/gif' => array(
+            'name' => 'GIF',
+            'limit' => 300,
+            'extra_error' => __('Shouldn’t this image be converted to a Video?', 'nutritionsante')
+        )
     );
 
-    $limit = 500;
-    if (($file['type'] == 'image/png') && ($size > $limit)) {
-        $file['error'] = sprintf(__('PNG images should weight less than %s ko ! Shouldn’t this image be converted to JPG?', 'wpuprojectid'), $limit);
+    foreach ($blocked_types as $type => $type_infos) {
+        if ($file['type'] == $type && $size > $type_infos['limit']) {
+            $file['error'] = sprintf(__('%s files should weight less than %s ko !', 'nutritionsante'), $type_infos['name'], $type_infos['limit']);
+            if (isset($type_infos['extra_error'])) {
+                $file['error'] .= ' ' . $type_infos['extra_error'];
+            }
+        }
     }
     return $file;
 });
