@@ -124,6 +124,14 @@ add_action('save_post', function ($post_id) {
     if (!$master_header_image) {
         return;
     }
+    if (is_array($master_header_image)) {
+        if (isset($master_header_image['image']) && is_numeric($master_header_image['image'])) {
+            $master_header_image = $master_header_image['image'];
+        }
+    }
+    if (!is_numeric($master_header_image)) {
+        return;
+    }
     update_post_meta($post_id, '_thumbnail_id', $master_header_image);
 }, 99);
 
