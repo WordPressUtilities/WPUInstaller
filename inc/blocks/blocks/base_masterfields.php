@@ -207,6 +207,7 @@ function wpuprojectid_title($field, $args = array()) {
         $args['classname'] = '';
     }
     $field = strip_tags($field, '<u>');
+    $field = force_balance_tags($field);
     $field = trim($field);
     if (!$args['wrapper']) {
         return $field;
