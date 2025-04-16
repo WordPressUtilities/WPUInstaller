@@ -5,6 +5,14 @@ Description: User settings
 */
 
 /* ----------------------------------------------------------
+  Min admin level
+---------------------------------------------------------- */
+
+add_filter('wputh_admin_protect_block_admin__level_access_min_admin_access', function ($level) {
+    return 'manage_categories';
+});
+
+/* ----------------------------------------------------------
   Admin : filter posts by authors
 ---------------------------------------------------------- */
 
