@@ -293,8 +293,6 @@ class wpuprojectid_forms {
     -------------------------- */
 
     public function wpucontactforms_submit_contactform_msg_errors($errors, $form) {
-        global $wpdb;
-
         /* Custom error */
         if ($form->options['id'] == 'default_form' && false) {
             $errors[] = __('Invalid form.', 'wpuprojectid');
@@ -307,8 +305,6 @@ class wpuprojectid_forms {
     -------------------------- */
 
     public function wpucontactforms_submit_contactform($form) {
-
-        global $wpdb;
 
         if ($form->options['id'] == 'default_form' && false) {
             /* CALLBACK API */
@@ -343,7 +339,6 @@ class wpuprojectid_forms {
     public function get_api_values($data, $special_key = 'api_field_name', $form_id = 'default_form') {
         $full_datas = array();
 
-        $fields = array();
         $raw_fields = $this->get_fields($form_id);
         foreach ($raw_fields as $key => $field_value) {
             if (!isset($field_value[$special_key])) {
