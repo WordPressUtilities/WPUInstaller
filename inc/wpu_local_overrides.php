@@ -283,3 +283,15 @@ jQuery(document).ready(function() {
 </script>
 EOT;
 });
+
+/* ----------------------------------------------------------
+  Hide textdomain error
+  Thx to https://gist.github.com/JulioPotier/57cbf7ce937bcd934a1fa0dcc26590eb
+---------------------------------------------------------- */
+
+add_filter('doing_it_wrong_trigger_error', function ($bool, $function_name) {
+    if ('_load_textdomain_just_in_time' === $function_name) {
+        // return false;
+    }
+    return $bool;
+}, 10, 2);
