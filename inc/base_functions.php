@@ -19,6 +19,12 @@ add_action('plugins_loaded', function () {
 add_filter('use_block_editor_for_post_type', '__return_false', 100);
 
 /* ----------------------------------------------------------
+  WPUSEO - Disable Cookie Tracking
+---------------------------------------------------------- */
+
+add_filter('wpuseo__cookie_notice_tracking_feature_flag', '__return_false', 10, 1);
+
+/* ----------------------------------------------------------
   Core Sitemaps : Disable authors list
 ---------------------------------------------------------- */
 
