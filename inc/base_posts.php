@@ -21,11 +21,17 @@ add_action('init', function () {
 });
 
 /* ----------------------------------------------------------
+  Force display post excerpt in admin
+---------------------------------------------------------- */
+
+add_filter('enable__wpuux_force_display_excerpt_field', '__return_true', 10, 1);
+
+/* ----------------------------------------------------------
   Missed Schedule
 ---------------------------------------------------------- */
 
 add_action('init', function () {
-    $freq_in_minutes = 2;
+    $freq_in_minutes = 5;
 
     /* If doing cron */
     if (!defined('DOING_CRON') || !DOING_CRON) {
