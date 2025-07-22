@@ -34,3 +34,7 @@ add_filter('wpu_acf_flexible__override_model__content', function ($model) {
     return $model;
 }, 10, 1);
 */
+
+add_filter('wpu_acf_flexible__content__content_classic__buttons_number', function () {
+    return 2;
+}, 10, 1);
