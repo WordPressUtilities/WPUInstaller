@@ -90,6 +90,12 @@ add_filter('wpuprojectid_blocks', function ($layouts) {
 // add_filter('wpu_acf_flexible__enable_thumbnails', '__return_true', 10, 1);
 
 /* ----------------------------------------------------------
+  Reusable blocks
+---------------------------------------------------------- */
+
+// add_filter('wpu_acf_flexible__enable_reusable_blocks', '__return_true', 10, 1);
+
+/* ----------------------------------------------------------
   Default loaded blocks
 ---------------------------------------------------------- */
 
