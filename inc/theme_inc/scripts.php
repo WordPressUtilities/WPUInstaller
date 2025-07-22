@@ -21,6 +21,7 @@ add_filter('wputh_javascript_files', function ($js_files) {
     unset($js_files['functions-search-form-check']);
     unset($js_files['functions-menu-scroll']);
     unset($js_files['functions-smooth-scroll']);
+    unset($js_files['functions-remove-utm-ga']);
     unset($js_files['wputh-maps']);
     unset($js_files['events']);
 
