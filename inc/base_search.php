@@ -142,7 +142,7 @@ function wpuprojectid_search_get_post_type_content($post_type_key, $pt_settings,
 -------------------------- */
 
 add_action('wp_footer', function () {
-    if (!isset($_GET['s'])) {
+    if (!isset($_GET['s']) && !is_search()) {
         return;
     }
 ?>
