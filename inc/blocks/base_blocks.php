@@ -8,7 +8,7 @@ Description: Add project blocks
   Master ACF location
 ---------------------------------------------------------- */
 
-function wpuprojectid_get_master_location() {
+function wpuprojectid_get_master_location($exclude_locations_without_master_header = false) {
     $acf_location = array();
     $home_ids = array(get_option('home__page_id'));
     if (function_exists('pll_get_post_translations')) {
@@ -36,15 +36,17 @@ function wpuprojectid_get_master_location() {
         )
     );
 
-    $post_types = apply_filters('wpuprojectid_master_post_types', array('post'));
-    foreach ($post_types as $post_type) {
-        $acf_location[] = array(
-            array(
-                'param' => 'post_type',
-                'operator' => '==',
-                'value' => $post_type
-            )
-        );
+    if (!$exclude_locations_without_master_header) {
+        $post_types = apply_filters('wpuprojectid_master_post_types', array('post'));
+        foreach ($post_types as $post_type) {
+            $acf_location[] = array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => $post_type
+                )
+            );
+        }
     }
     return $acf_location;
 }
