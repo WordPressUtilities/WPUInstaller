@@ -32,8 +32,8 @@ add_filter('wpu_options_fields', function ($options) {
         'box' => 'wpuprojectid_header',
         'type' => 'wp_link'
     );
-    $options['wpuprojectid_header_link'] = array(
-        'label' => 'Lien header',
+    $options['wpuprojectid_header_button2'] = array(
+        'label' => 'Bouton header 2',
         'box' => 'wpuprojectid_header',
         'type' => 'wp_link'
     );
