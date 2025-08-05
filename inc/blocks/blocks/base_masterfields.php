@@ -180,7 +180,7 @@ add_filter('wpu_acf_flexible__field_types', function ($types) {
     $types['wpuprojectid_title'] = array(
         'instructions' => 'Blue text : &lt;u&gt;Text&lt;/u&gt;.',
         'wpuacf_validate_html' => true,
-        'label' => __('Title'),
+        'label' => __('Title', 'wpuprojectid'),
         'rows' => 2,
         'type' => 'textarea',
         'field_vars_callback' => function ($id, $sub_field, $level) {
