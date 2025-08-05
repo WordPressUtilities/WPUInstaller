@@ -9,6 +9,7 @@ function wpuinstaller_replace() {
 }
 
 function wpuinstaller_cp_replace() {
+    rm -f "${2}";
     cp "${1}" "${2}";
     wpuinstaller_replace "${2}";
 }
