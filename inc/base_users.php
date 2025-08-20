@@ -28,7 +28,7 @@ add_action('restrict_manage_posts', function () {
         return;
     }
     echo '<select name="author" class="">';
-    echo '<option value="">' . __('All authors', 'wputh') . '</option>';
+    echo '<option value="">' . __('All authors', 'wpuprojectid') . '</option>';
     foreach ($users as $usr) {
         echo '<option ' . (isset($_GET['author']) && $_GET['author'] == $usr->ID ? 'selected="selected"' : '') . ' value="' . esc_attr($usr->ID) . '">' . esc_html($usr->display_name) . '</option>';
     }
