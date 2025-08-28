@@ -118,3 +118,12 @@ EOT;
         file_put_contents($js_file, $comment);
     }
 }, 10, 2);
+
+/* ----------------------------------------------------------
+  Extra fields
+---------------------------------------------------------- */
+
+add_filter('wpuentitycreator__block__extrafields_after', function ($content = '') {
+    $content .= str_repeat(' ', 12) . "'wpuprojectid_theme' => 'wpuprojectid_theme',";
+    return $content;
+}, 10, 1);
