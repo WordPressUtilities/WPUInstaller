@@ -16,14 +16,14 @@ $master_header_cta2 = get_field('master_header_cta2');
 
 /* Content */
 
-$master_header_title_html = '<h1 class="master-header__title">' . $master_header_title . '</h1>';
+$master_header_title_html = wpuprojectid_title(get_the_title(), array(
+    'classname' => 'master-header__title',
+    'tag' => 'h1'
+));
 
-$master_header_intro_html = '';
-if ($master_header_intro) {
-    $master_header_intro_html .= '<div class="master-header__content cssc-content text--big">';
-    $master_header_intro_html .= get_wpu_acf_minieditor($master_header_intro);
-    $master_header_intro_html .= '</div>';
-}
+$master_header_intro_html = get_wpu_acf_text($master_header_intro, array(
+    'classname' => 'master-header__content cssc-content'
+));
 
 $master_header_cta_html = '';
 if ($master_header_cta || $master_header_cta2) {
