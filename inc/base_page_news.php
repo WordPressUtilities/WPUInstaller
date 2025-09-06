@@ -80,3 +80,17 @@ add_action('template_redirect', function () {
         exit;
     }
 });
+
+/* ----------------------------------------------------------
+  Breadcrumb on News Page
+---------------------------------------------------------- */
+
+add_filter('wputh_get_breadcrumbs__after_home', function ($elements_ariane) {
+    if (is_category() || is_singular('post')) {
+        $elements_ariane['archive-news'] = array(
+            'name' => get_the_title(wpuprojectid_pagenews_get_id()),
+            'link' => wpuprojectid_pagenews_get_url()
+        );
+    }
+    return $elements_ariane;
+}, 10, 1);
