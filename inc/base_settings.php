@@ -24,7 +24,7 @@ class wpuprojectid_settings {
         global $wpu_settings_version;
 
         /* If network plugins are listed, do not continue until multisite is configured */
-        if(!empty($this->network_plugins_list) && !is_multisite()) {
+        if (!empty($this->network_plugins_list) && !is_multisite()) {
             error_log('[wpuprojectid_settings] Network plugins are listed but multisite is not configured.');
             return;
         }
@@ -119,6 +119,19 @@ class wpuprojectid_settings {
             'contributor' => '',
             'subscriber' => '',
             'super_editor' => 'full'
+        ));
+
+        /* WPU Action Logs */
+        update_option('wpuactionlogs_options', array(
+            'action__posts' => '1',
+            'action__wp_update_nav_menu' => '1',
+            'action__terms' => '1',
+            'action__options' => '1',
+            'action__mails' => '1',
+            'action__users' => '1',
+            'action__plugins' => '1',
+            'extras__display_active_users' => '1',
+            'min_capability_log' => 'read'
         ));
 
         /* Plugin : Duplicate Post */
