@@ -5,6 +5,7 @@ include dirname(__FILE__) . '/inc/parent-theme.php';
 include dirname(__FILE__) . '/inc/scripts.php';
 include dirname(__FILE__) . '/inc/social.php';
 include dirname(__FILE__) . '/inc/styles.php';
+include dirname(__FILE__) . '/inc/menus.php';
 
 /* ----------------------------------------------------------
   Theme options
@@ -71,17 +72,6 @@ add_action('wp_footer', function () {
 // /* Disable Sidebars */
 add_filter('wputh_has_sidebar', '__return_false', 1, 1);
 add_filter('wputh_default_sidebars', '__return_empty_array', 1, 1);
-
-/* Menus
--------------------------- */
-
-add_filter('wputh_default_menus', function ($menus) {
-    return array(
-        'main' => 'Main menu',
-        'footer' => 'Footer menu',
-        'copy' => 'Copyright menu'
-    );
-}, 10, 1);
 
 /* Pages
  -------------------------- */

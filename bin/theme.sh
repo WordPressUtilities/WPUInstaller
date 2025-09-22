@@ -53,6 +53,7 @@ wpuinstaller_cp_replace "${SCRIPTDIR}inc/functions.php" "${WPU_THEME}functions.p
 cp -r "${SCRIPTDIR}inc/theme_inc" "${WPU_THEME}inc";
 wpuinstaller_replace "${WPU_THEME}inc/parent-theme.php";
 wpuinstaller_replace "${WPU_THEME}inc/styles.php";
+wpuinstaller_replace "${WPU_THEME}inc/menus.php";
 
 if [[ $has_attachment_tpl == 'n' ]];then
     wpuinstaller_cp_replace "${SCRIPTDIR}inc/attachment.php" "${WPU_THEME}attachment.php";
