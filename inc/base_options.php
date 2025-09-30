@@ -30,12 +30,14 @@ add_filter('wpu_options_fields', function ($options) {
     $options['wpuprojectid_header_button'] = array(
         'label' => 'Bouton header',
         'box' => 'wpuprojectid_header',
-        'type' => 'wp_link'
+        'type' => 'wp_link',
+        'lang' => true
     );
     $options['wpuprojectid_header_button2'] = array(
         'label' => 'Bouton header 2',
         'box' => 'wpuprojectid_header',
-        'type' => 'wp_link'
+        'type' => 'wp_link',
+        'lang' => true
     );
     return $options;
 }, 10, 1);
