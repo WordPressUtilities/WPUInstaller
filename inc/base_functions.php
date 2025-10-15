@@ -73,7 +73,7 @@ add_filter('wp_handle_upload_prefilter', function ($file) {
         'image/png' => array(
             'name' => 'PNG',
             'limit' => 500,
-            'extra_error' => __('Shouldn’t this image be converted to JPG?', 'nutritionsante')
+            'extra_error' => __('Shouldn’t this image be converted to JPG?', 'wpuprojectid')
         ),
         'image/svg+xml' => array(
             'name' => 'SVG',
@@ -82,13 +82,13 @@ add_filter('wp_handle_upload_prefilter', function ($file) {
         'image/gif' => array(
             'name' => 'GIF',
             'limit' => 300,
-            'extra_error' => __('Shouldn’t this image be converted to a Video?', 'nutritionsante')
+            'extra_error' => __('Shouldn’t this image be converted to a Video?', 'wpuprojectid')
         )
     );
 
     foreach ($blocked_types as $type => $type_infos) {
         if ($file['type'] == $type && $size > $type_infos['limit']) {
-            $file['error'] = sprintf(__('%s files should weight less than %s ko !', 'nutritionsante'), $type_infos['name'], $type_infos['limit']);
+            $file['error'] = sprintf(__('%s files should weight less than %s ko !', 'wpuprojectid'), $type_infos['name'], $type_infos['limit']);
             if (isset($type_infos['extra_error'])) {
                 $file['error'] .= ' ' . $type_infos['extra_error'];
             }
