@@ -16,7 +16,7 @@ $master_header_cta2 = get_field('master_header_cta2');
 
 /* Content */
 
-$master_header_title_html = wpuprojectid_title(get_the_title(), array(
+$master_header_title_html = wpuprojectid_title($master_header_title, array(
     'classname' => 'master-header__title',
     'tag' => 'h1'
 ));
