@@ -5,13 +5,17 @@ Description: Website common functions
 */
 
 /* ----------------------------------------------------------
-  Disable REST API for non logged-in users
+  Disabler
 ---------------------------------------------------------- */
 
 add_action('plugins_loaded', function () {
+    /* Disable REST API */
     add_filter('wpudisabler__disable_wp_api__logged_in', '__return_true');
+    /* Disable the author page  */
+    //add_filter('wpudisabler__disable_author_page', '__return_true');
+    /* Disable feeds */
+    //add_filter('wpudisabler__disable_feeds', '__return_true');
 });
-
 /* ----------------------------------------------------------
   Disable block editor
 ---------------------------------------------------------- */
