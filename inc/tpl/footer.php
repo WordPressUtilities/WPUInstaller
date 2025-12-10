@@ -25,7 +25,6 @@ echo wputh_get_social_links_html('footer__social', 'icon');
 /* Lang switcher */
 echo wputh_maincontent_languages();
 
-
 echo '</footer></div>';
 
 /* ----------------------------------------------------------
@@ -36,10 +35,11 @@ $footer_copyright = '&copy; ' . date('Y') . ' - ' . get_bloginfo('name');
 $copy_items = wputh_get_menu_items('copy');
 
 echo '<div class="centered-container cc-copyright section"><div class="copyright">';
-echo '<div class="footer-copyright">' . $footer_copyright . '</div>';
+echo '<div class="footer-links"><ul>';
+echo '<li class="footer-copyright">' . $footer_copyright . '</li>';
 if ($copy_items):
-    echo '<div class="footer-links">';
-    echo '<ul><li>' . implode('</li><li>', $copy_items) . '</li></ul>';
-    echo '</div>';
+    echo '<li>' . implode('</li><li>', $copy_items) . '</li>';
 endif;
+echo '</ul>';
+echo '</div>';
 echo '</div></div>';
