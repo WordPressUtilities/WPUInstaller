@@ -10,14 +10,8 @@ Description: Post settings
 
 add_action('init', function () {
     return;
-    global $pagenow;
-    $tax = array('post_tag', 'category');
-    foreach ($tax as $t) {
-        register_taxonomy($t, array());
-    }
-    if ($pagenow == 'edit-tags.php' && isset($_GET['taxonomy']) && in_array($_GET['taxonomy'], $tax)) {
-        wp_die('Invalid taxonomy');
-    }
+    unregister_taxonomy_for_object_type('category', 'post');
+    unregister_taxonomy_for_object_type('post_tag', 'post');
 });
 
 /* ----------------------------------------------------------
