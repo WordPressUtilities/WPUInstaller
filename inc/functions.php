@@ -93,5 +93,8 @@ function wputh_set_pages_site($pages_site) {
 /* All post types */
 add_action('after_setup_theme', function () {
     set_post_thumbnail_size(500, 9999);
+    remove_image_size('medium_large');
+    remove_image_size('1536x1536');
+    remove_image_size('2048x2048');
     add_image_size('big', 1600, 1600);
 });
