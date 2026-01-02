@@ -104,6 +104,7 @@ class wpuprojectid_settings {
         /* Plugin : Limit Login Attempts*/
         update_option('limit_login_show_warning_badge', '0');
         update_option('limit_login_hide_dashboard_widget', '1');
+        update_option('limit_login_review_notice_shown', '1');
         update_option('limit_login_onboarding_popup_shown', '1');
         update_option('limit_login_show_top_bar_menu_item', '0');
         update_option('limit_login_show_top_level_menu_item', '0');
@@ -147,6 +148,12 @@ class wpuprojectid_settings {
             'administrator',
             'editor',
             'super_editor'
+        ));
+
+        /* Plugin : Polylang */
+        update_option('pll_dismissed_notices', array(
+            'wizard',
+            'review'
         ));
 
         if (false) {
