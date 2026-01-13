@@ -108,6 +108,7 @@ if [[ $install_recommended_plugins == 'y' ]]; then
     php ${WPU_PHPCLI} plugin install duplicate-post;
     php ${WPU_PHPCLI} plugin install query-monitor;
     php ${WPU_PHPCLI} plugin install redirection;
+    php ${WPU_PHPCLI} plugin install tiny-compress-images;
     php ${WPU_PHPCLI} plugin install w3-total-cache;
 
     # Commit plugin
