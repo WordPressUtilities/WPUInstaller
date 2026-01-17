@@ -28,6 +28,13 @@ add_filter('use_block_editor_for_post_type', '__return_false', 100);
 
 add_filter('wpuseo__cookie_notice_tracking_feature_flag', '__return_false', 10, 1);
 
+
+/* ----------------------------------------------------------
+  Options - Do not use default language fallback
+---------------------------------------------------------- */
+
+add_filter('wputh_l18n_get_option__usedefaultlang', '__return_false', 10, 3);
+
 /* ----------------------------------------------------------
   Core Sitemaps : Disable authors list
 ---------------------------------------------------------- */
