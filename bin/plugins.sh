@@ -95,6 +95,14 @@ if [[ "${need_search}" == 'y' ]];then
     bashutilities_commit_all "Installation - Plugin : Relevanssi";
 fi
 
+# Commments
+if [[ "${need_comments}" == 'y' ]];then
+    _plugin_comments_settings="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_comments.php";
+    wpuinstaller_cp_replace "${SCRIPTDIR}inc/base_comments.php" "${_plugin_comments_settings}";
+
+    bashutilities_commit_all "Installation - Comments";
+fi;
+
 # Recommended
 if [[ $install_recommended_plugins == 'y' ]]; then
     echo "## Install recommended plugins";
