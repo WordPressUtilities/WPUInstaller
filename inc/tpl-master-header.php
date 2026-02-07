@@ -18,7 +18,7 @@ $master_header_cta2 = get_field('master_header_cta2');
 
 $master_header_title_html = wpuprojectid_title($master_header_title, array(
     'classname' => 'master-header__title',
-    'tag' => 'h1'
+    'tag' => is_front_page() ? 'h2' : 'h1'
 ));
 
 $master_header_intro_html = get_wpu_acf_text($master_header_intro, array(
