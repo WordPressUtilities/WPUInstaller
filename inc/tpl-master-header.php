@@ -4,15 +4,15 @@
   Vars
 ---------------------------------------------------------- */
 
-$master_header_title = get_field('master_header_title');
+$master_header_title = get_field('master_header_title', wpuacfflex_get_master_header_group());
 if (!$master_header_title) {
     $master_header_title = get_the_title();
 }
-$master_header_image = get_field('master_header_image');
-$master_header_type = get_field('master_header_header_type');
-$master_header_intro = get_field('master_header_intro');
-$master_header_cta = get_field('master_header_cta');
-$master_header_cta2 = get_field('master_header_cta2');
+$master_header_image = get_field('master_header_image', wpuacfflex_get_master_header_group());
+$master_header_type = get_field('master_header_header_type', wpuacfflex_get_master_header_group());
+$master_header_intro = get_field('master_header_intro', wpuacfflex_get_master_header_group());
+$master_header_cta = get_field('master_header_cta', wpuacfflex_get_master_header_group());
+$master_header_cta2 = get_field('master_header_cta2', wpuacfflex_get_master_header_group());
 
 /* Content */
 
