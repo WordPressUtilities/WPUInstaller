@@ -6,7 +6,7 @@
 
 $master_header_title = get_field('master_header_title', wpuacfflex_get_master_header_group());
 if (!$master_header_title) {
-    $master_header_title = get_the_title();
+    $master_header_title = wpuacfflex_master_header_get_fallback_title();
 }
 $master_header_image = get_field('master_header_image', wpuacfflex_get_master_header_group());
 $master_header_type = get_field('master_header_header_type', wpuacfflex_get_master_header_group());
