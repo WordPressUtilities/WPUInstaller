@@ -8,7 +8,16 @@ Description: Add project blocks
   Master ACF location
 ---------------------------------------------------------- */
 
-function wpuprojectid_get_master_location($exclude_locations_without_master_header = false) {
+function wpuprojectid_get_master_location($args = array()) {
+    if (!$args) {
+        $args = array();
+    }
+
+    $args = wp_parse_args($args, array(
+        'load_locations_with_content_only' => false,
+        'load_locations_with_masterheader_only' => false
+    ));
+
     $acf_location = array();
     $home_ids = array(get_option('home__page_id'));
     if (function_exists('pll_get_post_translations')) {
@@ -36,8 +45,33 @@ function wpuprojectid_get_master_location($exclude_locations_without_master_head
         )
     );
 
-    if (!$exclude_locations_without_master_header) {
-        $post_types = apply_filters('wpuprojectid_master_post_types', array('post'));
+    $post_types = apply_filters('wpuprojectid_master_post_types', array('post'));
+    $taxonomies = apply_filters('wpuprojectid_master_taxonomies', array('category'));
+    if ($args['load_locations_with_masterheader_only']) {
+        foreach ($post_types as $post_type) {
+            if ($post_type == 'post') {
+                continue;
+            }
+            $acf_location[] = array(
+                array(
+                    'param' => 'post_type_list',
+                    'operator' => '==',
+                    'value' => $post_type
+                )
+            );
+        }
+        foreach ($taxonomies as $taxonomy) {
+            $acf_location[] = array(
+                array(
+                    'param' => 'taxonomy',
+                    'operator' => '==',
+                    'value' => $taxonomy
+                )
+            );
+        }
+    }
+
+    if ($args['load_locations_with_content_only']) {
         foreach ($post_types as $post_type) {
             $acf_location[] = array(
                 array(
@@ -63,7 +97,10 @@ add_filter('wpu_acf_flexible_content', function ($contents) {
     $contents['content-blocks'] = array(
         'init_files' => (wp_get_environment_type() == 'local'),
         'save_post' => 1,
-        'location' => wpuprojectid_get_master_location(),
+        'location' => wpuprojectid_get_master_location(array(
+            'load_locations_with_content_only' => true,
+            'load_locations_with_masterheader_only' => false
+        )),
         'name' => 'Master Blocks',
         'layouts' => $all_layouts
     );

@@ -53,7 +53,10 @@ add_filter('wpu_acf_flexible_content', function ($contents) {
 
     /* Group */
     $contents['master-header'] = array(
-        'location' => wpuprojectid_get_master_location(true),
+        'location' => wpuprojectid_get_master_location(array(
+            'load_locations_with_content_only' => false,
+            'load_locations_with_masterheader_only' => true
+        )),
         'fields' => array(
             'master_header' => array(
                 'key' => 'master_header',
