@@ -285,6 +285,27 @@ EOT;
 });
 
 /* ----------------------------------------------------------
+  Sample values for WPU Tools
+---------------------------------------------------------- */
+
+add_filter('wputools_sample_post_metas', function ($metas) {
+    /* Events */
+    //$metas['event_location'] = array_rand(array_flip(['Paris', 'Lyon', 'Marseille', 'Toulouse', 'Bordeaux', 'Lille', 'Nice', 'Nantes']), 1);
+    //$metas['event_address'] = array_rand(array_flip(['1 rue de Paris', '10 avenue de Lyon', '', '']), 1);
+    //$metas['event_date'] = array_rand(array_flip(['2024-12-31', '2025-01-15', '2025-02-20', '']), 1);
+    //$metas['event_start'] = mt_rand(0, 1) ? date('Y-m-d H:i:s', strtotime('+' . mt_rand(0, 30) . ' days')) : '';
+    //$metas['event_url'] = array_rand(array_flip(['https://example.com/register', '', '']), 1);
+
+    /* Content Blocks */
+    $metas['content-blocks'] = array('content');
+    $metas['_content-blocks'] = 'field_d56854f4136b6c78add6323ee1a7a63a';
+    $metas['_content-blocks_0_content'] = 'contentcontent';
+    $metas['content-blocks_0_content'] = array_rand(array_flip(['Hello world', 'Lorem ipsum dolor sit amet']), 1);
+
+    return $metas;
+}, 10, 1);
+
+/* ----------------------------------------------------------
   Hide textdomain error
   Thx to https://gist.github.com/JulioPotier/57cbf7ce937bcd934a1fa0dcc26590eb
 ---------------------------------------------------------- */
