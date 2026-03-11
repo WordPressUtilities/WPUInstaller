@@ -88,11 +88,9 @@ fi;
 
 # Search
 if [[ "${need_search}" == 'y' ]];then
-    php ${WPU_PHPCLI} plugin install relevanssi --activate;
     _plugin_search_settings="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_search.php";
     wpuinstaller_cp_replace "${SCRIPTDIR}inc/base_search.php" "${_plugin_search_settings}";
-
-    bashutilities_commit_all "Installation - Plugin : Relevanssi";
+    bashutilities_commit_all "Installation - Search";
 fi
 
 # Commments
