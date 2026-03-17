@@ -8,11 +8,12 @@ $master_header_title = get_field('master_header_title', wpuacfflex_get_master_he
 if (!$master_header_title) {
     $master_header_title = wpuacfflex_master_header_get_fallback_title();
 }
-$master_header_image = get_field('master_header_image', wpuacfflex_get_master_header_group());
-$master_header_type = get_field('master_header_header_type', wpuacfflex_get_master_header_group());
-$master_header_intro = get_field('master_header_intro', wpuacfflex_get_master_header_group());
-$master_header_cta = get_field('master_header_cta', wpuacfflex_get_master_header_group());
-$master_header_cta2 = get_field('master_header_cta2', wpuacfflex_get_master_header_group());
+$master_header_title = apply_filters('master_header_title', $master_header_title);
+$master_header_image = apply_filters('master_header_image', get_field('master_header_image', wpuacfflex_get_master_header_group()));
+$master_header_type = apply_filters('master_header_type', get_field('master_header_header_type', wpuacfflex_get_master_header_group()));
+$master_header_intro = apply_filters('master_header_intro', get_field('master_header_intro', wpuacfflex_get_master_header_group()));
+$master_header_cta = apply_filters('master_header_cta', get_field('master_header_cta', wpuacfflex_get_master_header_group()));
+$master_header_cta2 = apply_filters('master_header_cta2', get_field('master_header_cta2', wpuacfflex_get_master_header_group()));
 
 /* Content */
 
