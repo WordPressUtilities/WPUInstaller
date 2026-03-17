@@ -18,6 +18,9 @@ add_filter('wputheme_search__enabled', '__return_true');
 add_filter('wputheme_search_load_more_classname', function ($classname) {
     return 'wpuprojectid-button';
 }, 10, 1);
+add_filter('wputheme_search_load_more_label', function ($text) {
+    return __('Load more', 'wpuprojectid');
+}, 10, 1);
 
 /* ----------------------------------------------------------
   Search post types
