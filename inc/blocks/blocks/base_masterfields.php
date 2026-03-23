@@ -118,15 +118,10 @@ function wpuprojectid_theme($theme = array()) {
     }
 
     /* Visibility */
-    if (isset($theme['responsive_visibility']) && is_array($theme['responsive_visibility'])) {
-        if (in_array('desktop', $theme['responsive_visibility'])) {
-            $classnames[] = 'hidden-on-full';
-        }
-        if (in_array('tablet', $theme['responsive_visibility'])) {
-            $classnames[] = 'hidden-on-tablet';
-        }
-        if (in_array('phone', $theme['responsive_visibility'])) {
-            $classnames[] = 'hidden-on-phone';
+    if (isset($theme['responsive_visibility'])) {
+        $resp_classnames = get_wpuacf_responsive_visibility_classnames($theme['responsive_visibility']);
+        if (!empty($resp_classnames)) {
+            $classnames = array_merge($classnames, $resp_classnames);
         }
     }
 
