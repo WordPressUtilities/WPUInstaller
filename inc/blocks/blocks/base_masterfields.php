@@ -119,10 +119,7 @@ function wpuprojectid_theme($theme = array()) {
 
     /* Visibility */
     if (isset($theme['responsive_visibility'])) {
-        $resp_classnames = get_wpuacf_responsive_visibility_classnames($theme['responsive_visibility']);
-        if (!empty($resp_classnames)) {
-            $classnames = array_merge($classnames, $resp_classnames);
-        }
+        $classnames = array_merge($classnames, get_wpuacf_responsive_visibility_classnames($theme['responsive_visibility']));
     }
 
     return implode(' ', $classnames);
