@@ -14,7 +14,8 @@ function wpuprojectid_home_wputh_set_pages_site($pages_site) {
     $pages_site['home__page_id'] = array(
         'post_title' => 'Home',
         'post_content' => '<p></p>',
-        'disable_deletion' => 1
+        'disable_deletion' => 1,
+        'disable_pll_lang_selector' => 1
     );
     return $pages_site;
 }
