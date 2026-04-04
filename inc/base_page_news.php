@@ -30,6 +30,21 @@ add_filter('nav_menu_css_class', function ($classes, $item) {
 }, 10, 2);
 
 /* ----------------------------------------------------------
+  ACF fields
+---------------------------------------------------------- */
+
+add_filter('wpuprojectid_master_header_acf_location', function ($acf_location, $args) {
+    $acf_location[] = array(
+        array(
+            'param' => 'page_template',
+            'operator' => '==',
+            'value' => 'page-news.php'
+        )
+    );
+    return $acf_location;
+}, 10, 2);
+
+/* ----------------------------------------------------------
   Get page news
 ---------------------------------------------------------- */
 

@@ -82,6 +82,9 @@ function wpuprojectid_get_master_location($args = array()) {
             );
         }
     }
+
+    $acf_location = apply_filters('wpuprojectid_master_header_acf_location', $acf_location, $args);
+
     return $acf_location;
 }
 
