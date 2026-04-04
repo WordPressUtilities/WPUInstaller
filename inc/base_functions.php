@@ -12,7 +12,7 @@ add_action('plugins_loaded', function () {
     /* Disable REST API */
     add_filter('wpudisabler__disable_wp_api__logged_in', '__return_true');
     /* Disable the author page  */
-    //add_filter('wpudisabler__disable_author_page', '__return_true');
+    add_filter('wpudisabler__disable_author_page', '__return_true');
     /* Disable feeds */
     //add_filter('wpudisabler__disable_feeds', '__return_true');
 });
@@ -50,16 +50,6 @@ add_filter('wp_sitemaps_enabled', function ($is_enabled) {
 /* ----------------------------------------------------------
   Author
 ---------------------------------------------------------- */
-
-/* Disable author page
--------------------------- */
-
-add_action('template_redirect', function () {
-    if (is_author()) {
-        wp_redirect(site_url());
-        die;
-    }
-});
 
 /* Hide author in JSON Metas
 -------------------------- */
