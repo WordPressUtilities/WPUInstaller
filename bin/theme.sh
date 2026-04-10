@@ -33,6 +33,9 @@ Author URI: https://www.Author.com/
 cp "${SCRIPTDIR}inc/htaccess.txt" "${WPU_THEME}.htaccess";
 
 # - Index
+wpuinstaller_cp_replace "${SCRIPTDIR}inc/index-theme.php" "${WPU_THEME}index.php";
+
+# - Front-page
 HOME_PAGE_SOURCE="${SCRIPTDIR}inc/front-page.php";
 if [[ "${home_is_cms}" == 'y' ]]; then
     if [[ "${need_acf}" == 'y' ]];then
