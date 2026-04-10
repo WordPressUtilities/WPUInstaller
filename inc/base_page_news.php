@@ -65,27 +65,6 @@ function wpuprojectid_pagenews_get_url() {
 }
 
 /* ----------------------------------------------------------
-  Simple filters
----------------------------------------------------------- */
-
-function wpuprojectid_pagenews_get_filters() {
-    $filter_html = '';
-
-    /* Link to news page */
-    if (is_category()) {
-        $filter_html .= '<a class="wpuprojectid-button wpuprojectid-button--small wpuprojectid-button--secondary" href="' . get_permalink(wpuprojectid_pagenews_get_id()) . '"><span>' . __('All', 'wpuprojectid') . '</span></a>';
-    }
-
-    /* Link to each category */
-    $categories = get_categories();
-    foreach ($categories as $category) {
-        $filter_html .= '<a class="wpuprojectid-button wpuprojectid-button--small ' . (is_category($category->term_id) ? '' : 'wpuprojectid-button--secondary') . '" href="' . get_category_link($category->term_id) . '"><span>' . $category->name . '</span></a>';
-    }
-
-    return $filter_html;
-}
-
-/* ----------------------------------------------------------
   Redirect Year/Month/Day archives to news page
 ---------------------------------------------------------- */
 

@@ -108,7 +108,10 @@ fi;
 # News page
 if [[ "${need_posts_tpl}" == 'y' ]];then
     mkdir "${WPU_THEME}tpl/loops";
+    mkdir "${WPU_THEME}tpl/news";
     wpuinstaller_cp_replace "${SCRIPTDIR}inc/tpl-page-news.php" "${WPU_THEME}page-news.php";
+    wpuinstaller_cp_replace "${SCRIPTDIR}inc/tpl-category.php" "${WPU_THEME}category.php";
+    wpuinstaller_cp_replace "${SCRIPTDIR}inc/tpl-news-list.php" "${WPU_THEME}tpl/news/list.php";
     wpuinstaller_cp_replace "${SCRIPTDIR}inc/loop-post.php" "${WPU_THEME}tpl/loops/loop-post.php";
 fi;
 
