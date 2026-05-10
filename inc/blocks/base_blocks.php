@@ -46,6 +46,7 @@ function wpuprojectid_get_master_location($args = array()) {
     );
 
     $post_types = apply_filters('wpuprojectid_master_post_types', array('post'));
+    $post_types_master_header = apply_filters('videlio_master_post_types_master_header', array());
     $taxonomies = apply_filters('wpuprojectid_master_taxonomies', array('category'));
     if ($args['load_locations_with_masterheader_only']) {
         foreach ($post_types as $post_type) {
@@ -57,6 +58,18 @@ function wpuprojectid_get_master_location($args = array()) {
                     'param' => 'post_type_list',
                     'operator' => '==',
                     'value' => $post_type
+                )
+            );
+        }
+        foreach ($post_types_master_header as $post_type_master_header) {
+            if ($post_type_master_header == 'post') {
+                continue;
+            }
+            $acf_location[] = array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => $post_type_master_header
                 )
             );
         }
