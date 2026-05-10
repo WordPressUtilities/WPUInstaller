@@ -26,7 +26,7 @@ add_filter('wputheme_search_load_more_label', function ($text) {
   Search post types
 ---------------------------------------------------------- */
 
-add_filter('wpuprojectid_search_post_types', function ($types = array()) {
+add_filter('wputheme_search_post_types', function ($types = array()) {
     $types['post'] = array(
         'label' => __('News', 'wpuprojectid'),
         'tpl' => 'loop-post.php'
