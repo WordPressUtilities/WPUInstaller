@@ -28,7 +28,6 @@ add_filter('use_block_editor_for_post_type', '__return_false', 100);
 
 add_filter('wpuseo__cookie_notice_tracking_feature_flag', '__return_false', 10, 1);
 
-
 /* ----------------------------------------------------------
   Options - Do not use default language fallback
 ---------------------------------------------------------- */
@@ -107,6 +106,24 @@ add_filter('upload_mimes', function ($mimes) {
     }
     return $mimes;
 });
+
+/* ----------------------------------------------------------
+  Override some translations
+---------------------------------------------------------- */
+
+add_filter('gettext', function ($translated_text, $untranslated_text, $domain) {
+
+    if ($domain !== 'MYOVERRIDEPLUGINDOMAIN') {
+        return $translated_text;
+    }
+
+    if ($untranslated_text == 'Good answer') {
+        return 'Bonne réponse';
+    }
+
+    return $translated_text;
+
+}, 10, 3);
 
 /* ----------------------------------------------------------
   Search only in posts
