@@ -102,6 +102,7 @@ if [[ "${need_acf}" == 'y' ]];then
     wpuinstaller_cp_replace "${SCRIPTDIR}inc/tpl-master-header.php" "${WPU_THEME}tpl/blocks/master-header.php";
     wpuinstaller_cp_replace "${SCRIPTDIR}inc/tpl-page-master.php" "${WPU_THEME}tpl/page-master.php";
     wpuinstaller_cp_replace "${SCRIPTDIR}inc/page-master.php" "${WPU_THEME}page.php";
+    bashutilities_sed "/Template Name/d" "${WPU_THEME}page.php";
     mkdir "${WPU_THEME}assets/js";
 fi;
 
