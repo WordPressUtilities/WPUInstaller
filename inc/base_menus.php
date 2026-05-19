@@ -63,16 +63,7 @@ add_filter('wpu_acf_flexible_content', function ($contents) {
         )
     );
     $contents['menu-blocks'] = array(
-        'location' => array(
-            array(
-                array(
-                    'param' => 'nav_menu_item',
-                    'operator' => '==',
-                    /* Only on footer location */
-                    'value' => 'location/footer'
-                )
-            )
-        ),
+        'wpuacf_location__menu_location' => 'main',
         'name' => 'Blocks',
         'fields' => $fields
     );

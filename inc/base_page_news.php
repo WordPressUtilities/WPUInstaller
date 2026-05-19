@@ -23,7 +23,7 @@ function wpuprojectid_pagenews_wputh_set_pages_site($pages_site) {
 ---------------------------------------------------------- */
 
 add_filter('nav_menu_css_class', function ($classes, $item) {
-    if ($item->object_id == wpuprojectid_pagenews_get_id() && (is_singular('post') || is_category())) {
+    if ($item->object_id == wputheme_pagenews_get_id() && (is_singular('post') || is_category())) {
         $classes[] = 'current-menu-item';
     }
     return $classes;
@@ -45,32 +45,12 @@ add_filter('wpuprojectid_master_header_acf_location', function ($acf_location, $
 }, 10, 2);
 
 /* ----------------------------------------------------------
-  Get page news
----------------------------------------------------------- */
-
-function wpuprojectid_pagenews_get_id() {
-    $news_page_id = get_option('news__page_id');
-    if (function_exists('pll_get_post')) {
-        $news_page_id = pll_get_post($news_page_id);
-    }
-    return $news_page_id;
-}
-
-function wpuprojectid_pagenews_get_url() {
-    $news_page_id = wpuprojectid_pagenews_get_id();
-    if (!$news_page_id) {
-        return home_url();
-    }
-    return get_permalink($news_page_id);
-}
-
-/* ----------------------------------------------------------
   Redirect Year/Month/Day archives to news page
 ---------------------------------------------------------- */
 
 add_action('template_redirect', function () {
     if (is_year() || is_month() || is_day()) {
-        wp_redirect(wpuprojectid_pagenews_get_url());
+        wp_redirect(wputheme_pagenews_get_url());
         exit;
     }
 });
@@ -82,8 +62,8 @@ add_action('template_redirect', function () {
 add_filter('wputh_get_breadcrumbs__after_home', function ($elements_ariane) {
     if (is_category() || is_singular('post')) {
         $elements_ariane['archive-news'] = array(
-            'name' => get_the_title(wpuprojectid_pagenews_get_id()),
-            'link' => wpuprojectid_pagenews_get_url()
+            'name' => get_the_title(wputheme_pagenews_get_id()),
+            'link' => wputheme_pagenews_get_url()
         );
     }
     return $elements_ariane;
