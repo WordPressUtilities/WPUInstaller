@@ -16,6 +16,15 @@ add_action('plugins_loaded', function () {
     /* Disable feeds */
     //add_filter('wpudisabler__disable_feeds', '__return_true');
 });
+
+/* ----------------------------------------------------------
+  Min user level for REST API
+---------------------------------------------------------- */
+
+add_filter('wpudisabler__disable_wp_api_user_level', function () {
+    return WPUTH_ADMIN_MIN_LVL;
+}, 10, 1);
+
 /* ----------------------------------------------------------
   Disable block editor
 ---------------------------------------------------------- */
