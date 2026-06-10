@@ -44,6 +44,8 @@ wp-content/w3tc-config/
 wp-content/upgrade-temp-backup/
 wp-content/upgrade/
 wp-content/wp-rocket-config/
+wp-content/smush-webp/
+wp-content/ai1wm-backups/
 *.sqlite-shm
 *.sqlite-wal
 
@@ -52,4 +54,5 @@ wp-config.php
 
 # Logs
 *.log
+wp-content/wflogs/
 wp-content/debug.log
