@@ -19,3 +19,14 @@ function wpuprojectid_home_wputh_set_pages_site($pages_site) {
     );
     return $pages_site;
 }
+
+/* ----------------------------------------------------------
+  Override breadcrumbs
+---------------------------------------------------------- */
+
+add_filter('wputh_get_breadcrumbs__after_all', function ($breadcrumbs) {
+    if (is_array($breadcrumbs) && isset($breadcrumbs['home'])) {
+        $breadcrumbs['home']['name'] = __('Home', 'wpuprojectid');
+    }
+    return $breadcrumbs;
+}, 10, 1);
