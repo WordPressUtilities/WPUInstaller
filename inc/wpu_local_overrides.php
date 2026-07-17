@@ -203,10 +203,19 @@ location @customerror404 {
 add_filter('authenticate', function ($user, $username, $password) {
     /* Disable two-factor auth */
     add_filter('two_factor_providers', '__return_empty_array', 10, 1);
+    add_filter('wp_2fa_user_enabled_methods', '__return_empty_array', 10, 1);
+    add_filter('get_user_metadata', function ($value, $user_id, $meta_key, $single) {
+        if ($meta_key === '_two_factor_enabled_providers') {
+            return array();
+        }
+        return $value;
+    }, 99, 4);
+
     /* Disabled if ok, if no username or if no posted password field */
     if ($user instanceof WP_User || !$username || !isset($_POST['pwd'])) {
         return $user;
     }
+
     $user_get = get_user_by(is_email($username) ? 'email' : 'login', $username);
     if (!is_wp_error($user)) {
         return $user_get;
