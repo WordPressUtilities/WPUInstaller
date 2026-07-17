@@ -57,6 +57,10 @@ wpuinstaller_cp_replace "${SCRIPTDIR}inc/base_functions.php" "${_functions_file}
 _perfs_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_perfs.php";
 wpuinstaller_cp_replace "${SCRIPTDIR}inc/base_perfs.php" "${_perfs_file}";
 
+# Base SEO plugin
+_seo_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_seo.php";
+wpuinstaller_cp_replace "${SCRIPTDIR}inc/base_seo.php" "${_seo_file}";
+
 # Base Options plugin
 _options_file="${MAINDIR}${WP_MUPLUGINS_DIR}${project_id}/${project_id}_options.php";
 wpuinstaller_cp_replace "${SCRIPTDIR}inc/base_options.php" "${_options_file}";
